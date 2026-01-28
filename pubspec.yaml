@@ -1,0 +1,20 @@
+name: duxt_ui
+description: A component library for Jaspr with pre-built, styled UI components.
+version: 0.1.0
+homepage: https://github.com/base-al/duxt-ui
+repository: https://github.com/base-al/duxt-ui
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  jaspr: ^0.22.1
+
+dev_dependencies:
+  lints: ^6.0.0
+
+topics:
+  - web
+  - ui
+  - components
+  - jaspr
