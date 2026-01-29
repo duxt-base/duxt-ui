@@ -1,0 +1,156 @@
+import 'package:jaspr/jaspr.dart';
+import 'package:jaspr/dom.dart';
+
+/// Link color variants
+enum ULinkColor { primary, neutral, inherit }
+
+/// DuxtUI Link component - styled anchor
+class ULink extends StatelessComponent {
+  final String? label;
+  final String href;
+  final bool external;
+  final bool active;
+  final bool disabled;
+  final ULinkColor color;
+  final bool underline;
+  final Component? icon;
+  final Component? trailingIcon;
+  final List<Component> children;
+  final String? classes;
+
+  const ULink({
+    super.key,
+    this.label,
+    required this.href,
+    this.external = false,
+    this.active = false,
+    this.disabled = false,
+    this.color = ULinkColor.primary,
+    this.underline = false,
+    this.icon,
+    this.trailingIcon,
+    this.children = const [],
+    this.classes,
+  });
+
+  String get _colorClasses {
+    switch (color) {
+      case ULinkColor.primary:
+        return active
+            ? 'text-primary-600 dark:text-primary-400'
+            : 'text-primary-500 dark:text-primary-400 hover:text-primary-600 dark:hover:text-primary-300';
+      case ULinkColor.neutral:
+        return active
+            ? 'text-gray-900 dark:text-white'
+            : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white';
+      case ULinkColor.inherit:
+        return 'text-inherit hover:opacity-80';
+    }
+  }
+
+  @override
+  Component build(BuildContext context) {
+    final baseClasses =
+        'inline-flex items-center gap-1 font-medium transition-colors';
+    final underlineClasses = underline
+        ? 'underline underline-offset-4'
+        : 'hover:underline hover:underline-offset-4';
+    final disabledClasses =
+        disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : '';
+
+    return a(
+      href: href,
+      target: external ? Target.blank : null,
+      attributes: external ? {'rel': 'noopener noreferrer'} : null,
+      classes:
+          '$baseClasses $_colorClasses $underlineClasses $disabledClasses ${classes ?? ""}'
+              .trim(),
+      [
+        if (icon != null) icon!,
+        if (label != null) Component.text(label!),
+        ...children,
+        if (trailingIcon != null) trailingIcon!,
+        if (external && trailingIcon == null)
+          span(
+            classes: 'text-xs',
+            [Component.text('\u2197')], // External link arrow
+          ),
+      ],
+    );
+  }
+}
+
+/// DuxtUI NavLink component - navigation-specific link styling
+class UNavLink extends StatelessComponent {
+  final String label;
+  final String href;
+  final bool active;
+  final bool exact;
+  final Component? icon;
+  final String? classes;
+
+  const UNavLink({
+    super.key,
+    required this.label,
+    required this.href,
+    this.active = false,
+    this.exact = false,
+    this.icon,
+    this.classes,
+  });
+
+  @override
+  Component build(BuildContext context) {
+    final baseClasses =
+        'inline-flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-colors';
+    final stateClasses = active
+        ? 'text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-800'
+        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50';
+
+    return a(
+      href: href,
+      classes: '$baseClasses $stateClasses ${classes ?? ""}'.trim(),
+      [
+        if (icon != null) icon!,
+        Component.text(label),
+      ],
+    );
+  }
+}
+
+/// DuxtUI SocialLink component - for social media links
+class USocialLink extends StatelessComponent {
+  final String href;
+  final Component icon;
+  final String? label;
+  final String? ariaLabel;
+  final String? classes;
+
+  const USocialLink({
+    super.key,
+    required this.href,
+    required this.icon,
+    this.label,
+    this.ariaLabel,
+    this.classes,
+  });
+
+  @override
+  Component build(BuildContext context) {
+    return a(
+      href: href,
+      target: Target.blank,
+      classes:
+          'inline-flex items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors ${classes ?? ""}'
+              .trim(),
+      attributes: {
+        'rel': 'noopener noreferrer',
+        if (ariaLabel != null) 'aria-label': ariaLabel!,
+      },
+      [
+        icon,
+        if (label != null) span(classes: 'sr-only', [Component.text(label!)]),
+      ],
+    );
+  }
+}

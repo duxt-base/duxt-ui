@@ -12,6 +12,7 @@ dependencies:
 
 dev_dependencies:
   lints: ^6.0.0
+  jaspr_test: ^0.22.1
 
 topics:
   - web

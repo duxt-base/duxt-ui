@@ -1,61 +1,146 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
-/// Avatar sizes
-enum UAvatarSize { xs, sm, md, lg, xl }
+/// Avatar sizes matching Nuxt UI
+enum UAvatarSize { xxxs, xxs, xs, sm, md, lg, xl, xxl, xxxl }
 
-/// DuxtUI Avatar component
+/// Avatar chip position
+enum UAvatarChipPosition { topRight, bottomRight, topLeft, bottomLeft }
+
+/// DuxtUI Avatar component - Nuxt UI compatible
 class UAvatar extends StatelessComponent {
   final String? src;
   final String? alt;
-  final String? initials;
+  final String? text;
+  final Component? icon;
   final UAvatarSize size;
-  final String? bgColor;
+  final bool? chipColor;
+  final String? chipText;
+  final UAvatarChipPosition chipPosition;
 
   const UAvatar({
     super.key,
     this.src,
     this.alt,
-    this.initials,
+    this.text,
+    this.icon,
     this.size = UAvatarSize.md,
-    this.bgColor,
+    this.chipColor,
+    this.chipText,
+    this.chipPosition = UAvatarChipPosition.topRight,
   });
 
   String get _sizeClasses {
     switch (size) {
+      case UAvatarSize.xxxs:
+        return 'size-4 text-[8px]';
+      case UAvatarSize.xxs:
+        return 'size-5 text-[10px]';
       case UAvatarSize.xs:
-        return 'h-6 w-6 text-xs';
+        return 'size-6 text-xs';
       case UAvatarSize.sm:
-        return 'h-8 w-8 text-sm';
+        return 'size-8 text-sm';
       case UAvatarSize.md:
-        return 'h-10 w-10 text-base';
+        return 'size-10 text-base';
       case UAvatarSize.lg:
-        return 'h-12 w-12 text-lg';
+        return 'size-12 text-lg';
       case UAvatarSize.xl:
-        return 'h-16 w-16 text-xl';
+        return 'size-14 text-xl';
+      case UAvatarSize.xxl:
+        return 'size-16 text-2xl';
+      case UAvatarSize.xxxl:
+        return 'size-20 text-3xl';
+    }
+  }
+
+  String get _iconSizeClasses {
+    switch (size) {
+      case UAvatarSize.xxxs:
+      case UAvatarSize.xxs:
+        return 'size-2';
+      case UAvatarSize.xs:
+        return 'size-3';
+      case UAvatarSize.sm:
+        return 'size-4';
+      case UAvatarSize.md:
+        return 'size-5';
+      case UAvatarSize.lg:
+        return 'size-6';
+      case UAvatarSize.xl:
+      case UAvatarSize.xxl:
+      case UAvatarSize.xxxl:
+        return 'size-8';
+    }
+  }
+
+  String get _chipPositionClasses {
+    switch (chipPosition) {
+      case UAvatarChipPosition.topRight:
+        return 'top-0 right-0';
+      case UAvatarChipPosition.bottomRight:
+        return 'bottom-0 right-0';
+      case UAvatarChipPosition.topLeft:
+        return 'top-0 left-0';
+      case UAvatarChipPosition.bottomLeft:
+        return 'bottom-0 left-0';
     }
   }
 
   @override
   Component build(BuildContext context) {
-    if (src != null) {
-      return img(
-        src: src!,
-        alt: alt ?? '',
-        classes: '$_sizeClasses rounded-full object-cover',
-      );
-    }
-
     return div(
-      classes: '$_sizeClasses rounded-full flex items-center justify-center font-medium text-white ${bgColor ?? "bg-indigo-600"}',
+      classes: 'relative inline-flex',
       [
-        text(initials ?? '?'),
+        // Avatar container
+        div(
+          classes:
+              '$_sizeClasses rounded-full overflow-hidden bg-gray-100 dark:bg-gray-800 flex items-center justify-center font-medium text-gray-600 dark:text-gray-300',
+          [
+            if (src != null)
+              img(
+                src: src!,
+                alt: alt ?? '',
+                classes: 'size-full object-cover',
+              )
+            else if (icon != null)
+              span(classes: _iconSizeClasses, [icon!])
+            else if (text != null)
+              Component.text(text!
+                  .substring(0, text!.length > 2 ? 2 : text!.length)
+                  .toUpperCase())
+            else
+              // Default user icon placeholder
+              span(
+                  classes: '$_iconSizeClasses text-gray-400 dark:text-gray-500',
+                  [Component.text('?')]),
+          ],
+        ),
+        // Chip indicator
+        if (chipColor != null || chipText != null)
+          div(
+            classes:
+                'absolute $_chipPositionClasses transform translate-x-1/4 -translate-y-1/4',
+            [
+              if (chipText != null)
+                span(
+                  classes:
+                      'flex items-center justify-center min-w-4 h-4 px-1 text-[10px] font-medium bg-green-500 text-white rounded-full ring-2 ring-white dark:ring-gray-900',
+                  [Component.text(chipText!)],
+                )
+              else
+                span(
+                  classes:
+                      'block size-2.5 bg-green-500 rounded-full ring-2 ring-white dark:ring-gray-900',
+                  [],
+                ),
+            ],
+          ),
       ],
     );
   }
 }
 
-/// DuxtUI Avatar Group
+/// DuxtUI Avatar Group - Nuxt UI compatible
 class UAvatarGroup extends StatelessComponent {
   final List<UAvatar> avatars;
   final int max;
@@ -68,6 +153,29 @@ class UAvatarGroup extends StatelessComponent {
     this.size = UAvatarSize.md,
   });
 
+  String get _sizeClasses {
+    switch (size) {
+      case UAvatarSize.xxxs:
+        return 'size-4 text-[8px]';
+      case UAvatarSize.xxs:
+        return 'size-5 text-[10px]';
+      case UAvatarSize.xs:
+        return 'size-6 text-xs';
+      case UAvatarSize.sm:
+        return 'size-8 text-sm';
+      case UAvatarSize.md:
+        return 'size-10 text-base';
+      case UAvatarSize.lg:
+        return 'size-12 text-lg';
+      case UAvatarSize.xl:
+        return 'size-14 text-xl';
+      case UAvatarSize.xxl:
+        return 'size-16 text-2xl';
+      case UAvatarSize.xxxl:
+        return 'size-20 text-3xl';
+    }
+  }
+
   @override
   Component build(BuildContext context) {
     final visible = avatars.take(max).toList();
@@ -75,27 +183,15 @@ class UAvatarGroup extends StatelessComponent {
 
     return div(classes: 'flex -space-x-2', [
       for (final avatar in visible)
-        div(classes: 'ring-2 ring-white rounded-full', [avatar]),
+        div(
+            classes: 'ring-2 ring-white dark:ring-gray-900 rounded-full',
+            [avatar]),
       if (remaining > 0)
         div(
-          classes: '${_sizeForGroup} rounded-full bg-gray-200 flex items-center justify-center text-sm font-medium text-gray-600 ring-2 ring-white',
-          [text('+$remaining')],
+          classes:
+              '$_sizeClasses rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center font-medium text-gray-600 dark:text-gray-300 ring-2 ring-white dark:ring-gray-900',
+          [Component.text('+$remaining')],
         ),
     ]);
-  }
-
-  String get _sizeForGroup {
-    switch (size) {
-      case UAvatarSize.xs:
-        return 'h-6 w-6';
-      case UAvatarSize.sm:
-        return 'h-8 w-8';
-      case UAvatarSize.md:
-        return 'h-10 w-10';
-      case UAvatarSize.lg:
-        return 'h-12 w-12';
-      case UAvatarSize.xl:
-        return 'h-16 w-16';
-    }
   }
 }

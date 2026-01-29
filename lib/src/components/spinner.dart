@@ -31,7 +31,8 @@ class USpinner extends StatelessComponent {
   @override
   Component build(BuildContext context) {
     return div(
-      classes: 'animate-spin $_sizeClasses ${color ?? "border-indigo-600"} border-t-transparent rounded-full',
+      classes:
+          'animate-spin $_sizeClasses ${color ?? "border-indigo-600"} border-t-transparent rounded-full',
       [],
     );
   }
@@ -55,13 +56,14 @@ class ULoading extends StatelessComponent {
       [
         USpinner(size: USpinnerSize.lg),
         if (message != null)
-          p(classes: 'text-sm text-gray-600', [text(message!)]),
+          p(classes: 'text-sm text-gray-600', [Component.text(message!)]),
       ],
     );
 
     if (overlay) {
       return div(
-        classes: 'fixed inset-0 bg-white/80 flex items-center justify-center z-50',
+        classes:
+            'fixed inset-0 bg-white/80 flex items-center justify-center z-50',
         [content],
       );
     }

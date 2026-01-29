@@ -51,7 +51,7 @@ UInput(
 // Card
 UCard(
   header: UCardHeader(title: 'Card Title'),
-  children: [text('Card content')],
+  children: [Component.text('Card content')],
 )
 
 // Badge
@@ -69,7 +69,7 @@ UModal(
   open: isOpen,
   title: 'Confirm',
   onClose: () => setState(() => isOpen = false),
-  children: [text('Are you sure?')],
+  children: [Component.text('Are you sure?')],
 )
 
 // Table

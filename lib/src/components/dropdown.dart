@@ -62,7 +62,8 @@ class _UDropdownState extends State<UDropdown> {
       // Menu
       if (_open)
         div(
-          classes: 'absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50',
+          classes:
+              'absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50',
           [
             for (final item in component.items)
               if (item.divider)
@@ -77,8 +78,9 @@ class _UDropdownState extends State<UDropdown> {
                           _close();
                           item.onClick?.call();
                         },
-                  classes: 'w-full px-4 py-2 text-left text-sm ${item.disabled ? "text-gray-400 cursor-not-allowed" : "text-gray-700 hover:bg-gray-100"}',
-                  [text(item.label)],
+                  classes:
+                      'w-full px-4 py-2 text-left text-sm ${item.disabled ? "text-gray-400 cursor-not-allowed" : "text-gray-700 hover:bg-gray-100"}',
+                  [Component.text(item.label)],
                 ),
           ],
         ),

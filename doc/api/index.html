@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="duxt_ui API docs, for the Dart programming language.">
+  <title>duxt_ui - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://github.com/base-al/duxt-ui">duxt_ui package</a></li>
+  </ol>
+  <div class="self-name">duxt_ui</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h1 id="duxtui">DuxtUI</h1>
+<p>A component library for <a href="https://jaspr.dev">Jaspr</a> with pre-built, Tailwind-styled UI components.</p>
+<h2 id="installation">Installation</h2>
+<pre class="language-yaml"><code class="language-yaml">dependencies:
+  duxt_ui:
+    path: ../duxt_ui  # or from pub.dev when published
+</code></pre>
+<h2 id="components">Components</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UButton</code></td>
+<td>Button with variants (solid, outline, ghost, soft, link)</td>
+</tr>
+<tr>
+<td><code>UInput</code></td>
+<td>Text input with label, hint, error states</td>
+</tr>
+<tr>
+<td><code>UTextarea</code></td>
+<td>Multi-line text input</td>
+</tr>
+<tr>
+<td><code>UCard</code></td>
+<td>Card container with header/footer</td>
+</tr>
+<tr>
+<td><code>UBadge</code></td>
+<td>Status badges</td>
+</tr>
+<tr>
+<td><code>UAlert</code></td>
+<td>Alert messages (info, success, warning, error)</td>
+</tr>
+<tr>
+<td><code>UModal</code></td>
+<td>Modal dialogs</td>
+</tr>
+<tr>
+<td><code>UDropdown</code></td>
+<td>Dropdown menus</td>
+</tr>
+<tr>
+<td><code>UTabs</code></td>
+<td>Tab navigation</td>
+</tr>
+<tr>
+<td><code>UTable</code></td>
+<td>Data tables</td>
+</tr>
+<tr>
+<td><code>UAvatar</code></td>
+<td>User avatars with initials fallback</td>
+</tr>
+<tr>
+<td><code>USpinner</code></td>
+<td>Loading spinners</td>
+</tr>
+</tbody>
+</table>
+<h2 id="usage">Usage</h2>
+<pre class="language-dart"><code class="language-dart">import 'package:duxt_ui/duxt_ui.dart';
+
+// Button
+UButton(
+  label: 'Click me',
+  variant: UButtonVariant.solid,
+  color: UButtonColor.primary,
+  onClick: () =&gt; print('clicked'),
+)
+
+// Input
+UInput(
+  label: 'Email',
+  placeholder: 'Enter email',
+  type: InputType.email,
+  error: 'Invalid email',
+)
+
+// Card
+UCard(
+  header: UCardHeader(title: 'Card Title'),
+  children: [Component.text('Card content')],
+)
+
+// Badge
+UBadge(label: 'Active', color: UBadgeColor.success)
+
+// Alert
+UAlert(
+  title: 'Success',
+  description: 'Your changes have been saved.',
+  color: UAlertColor.success,
+)
+
+// Modal
+UModal(
+  open: isOpen,
+  title: 'Confirm',
+  onClose: () =&gt; setState(() =&gt; isOpen = false),
+  children: [Component.text('Are you sure?')],
+)
+
+// Table
+UTable&lt;Map&gt;(
+  columns: [
+    UTableColumn(key: 'name', label: 'Name'),
+    UTableColumn(key: 'email', label: 'Email'),
+  ],
+  data: users,
+)
+
+// Spinner
+USpinner(size: USpinnerSize.md)
+</code></pre>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Jaspr ^0.22.1</li>
+<li>Tailwind CSS (via jaspr_tailwind)</li>
+</ul>
+<h2 id="license">License</h2>
+<p>MIT</p>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="duxt_ui">
+  <span class="name"><a href="duxt_ui/">duxt_ui</a></span> 
+
+</dt>
+<dd>DuxtUI - Component library for Jaspr
+</dd>
+
+        </dl>
+      </section>
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="https://github.com/base-al/duxt-ui">duxt_ui package</a></li>
+</ol>
+
+    <h5 class="hidden-xs"><span class="package-name">duxt_ui</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="duxt_ui/">duxt_ui</a></li>
+</ol>
+
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+</main>
+<footer>
+  <span class="no-break">
+    duxt_ui
+      0.1.0
+  </span>
+  
+</footer>
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

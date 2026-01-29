@@ -1,0 +1,250 @@
+import 'package:jaspr/jaspr.dart';
+import 'package:jaspr/dom.dart';
+import 'chat_message.dart';
+import 'chat_messages.dart';
+import 'chat_prompt.dart';
+import 'chat_prompt_submit.dart';
+
+/// Chat palette position
+enum UChatPalettePosition { bottomRight, bottomLeft, topRight, topLeft }
+
+/// DuxtUI ChatPalette component - floating chat overlay/modal
+class UChatPalette extends StatefulComponent {
+  final bool open;
+  final String? title;
+  final List<ChatMessageData> messages;
+  final bool loading;
+  final String? placeholder;
+  final UChatPalettePosition position;
+  final String? width;
+  final String? height;
+  final VoidCallback? onClose;
+  final ValueChanged<String>? onSend;
+  final Component? headerSlot;
+  final Component? emptyState;
+
+  const UChatPalette({
+    super.key,
+    required this.open,
+    this.title,
+    this.messages = const [],
+    this.loading = false,
+    this.placeholder,
+    this.position = UChatPalettePosition.bottomRight,
+    this.width,
+    this.height,
+    this.onClose,
+    this.onSend,
+    this.headerSlot,
+    this.emptyState,
+  });
+
+  @override
+  State<UChatPalette> createState() => _UChatPaletteState();
+}
+
+class _UChatPaletteState extends State<UChatPalette> {
+  String _inputValue = '';
+
+  String get _positionClasses {
+    switch (component.position) {
+      case UChatPalettePosition.bottomRight:
+        return 'bottom-4 right-4';
+      case UChatPalettePosition.bottomLeft:
+        return 'bottom-4 left-4';
+      case UChatPalettePosition.topRight:
+        return 'top-4 right-4';
+      case UChatPalettePosition.topLeft:
+        return 'top-4 left-4';
+    }
+  }
+
+  void _handleInput(String value) {
+    setState(() => _inputValue = value);
+  }
+
+  void _handleSubmit() {
+    if (_inputValue.trim().isEmpty) return;
+    component.onSend?.call(_inputValue.trim());
+    setState(() => _inputValue = '');
+  }
+
+  @override
+  Component build(BuildContext context) {
+    if (!component.open) {
+      return div([]);
+    }
+
+    final width = component.width ?? 'w-96';
+    final height = component.height ?? 'h-[600px]';
+
+    return div(
+      classes: 'fixed $_positionClasses $width $height z-50',
+      [
+        // Main container
+        div(
+          classes:
+              'flex flex-col h-full bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden',
+          [
+            // Header
+            _buildHeader(),
+
+            // Messages area
+            div(
+              classes: 'flex-1 overflow-hidden flex flex-col',
+              [
+                UChatMessages(
+                  messages: component.messages,
+                  autoScrollToBottom: true,
+                  emptyState: component.emptyState,
+                ),
+              ],
+            ),
+
+            // Input area
+            _buildPrompt(),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Component _buildHeader() {
+    if (component.headerSlot != null) {
+      return component.headerSlot!;
+    }
+
+    return div(
+      classes:
+          'flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900',
+      [
+        // Title
+        if (component.title != null)
+          h3(
+            classes: 'text-base font-semibold text-gray-900 dark:text-gray-100',
+            [Component.text(component.title!)],
+          )
+        else
+          div([]),
+
+        // Close button
+        if (component.onClose != null)
+          button(
+            type: ButtonType.button,
+            onClick: component.onClose,
+            classes:
+                'p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors',
+            attributes: {
+              'aria-label': 'Close chat',
+            },
+            [
+              svg(
+                classes: 'w-5 h-5',
+                attributes: {
+                  'viewBox': '0 0 24 24',
+                  'fill': 'none',
+                  'stroke': 'currentColor',
+                  'stroke-width': '2',
+                  'stroke-linecap': 'round',
+                  'stroke-linejoin': 'round',
+                },
+                [
+                  RawText('<path d="M18 6L6 18M6 6l12 12"/>'),
+                ],
+              ),
+            ],
+          ),
+      ],
+    );
+  }
+
+  Component _buildPrompt() {
+    return div(
+      classes: 'border-t border-gray-200 dark:border-gray-700',
+      [
+        UChatPrompt(
+          placeholder: component.placeholder ?? 'Type a message...',
+          value: _inputValue,
+          disabled: component.loading,
+          onInput: _handleInput,
+          onSubmit: _handleSubmit,
+          trailingSlot: UChatPromptSubmit(
+            disabled: _inputValue.trim().isEmpty,
+            loading: component.loading,
+            onSubmit: _handleSubmit,
+            tooltip: 'Send message',
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+/// Floating action button to toggle chat palette
+class UChatPaletteTrigger extends StatelessComponent {
+  final bool isOpen;
+  final VoidCallback? onToggle;
+  final String? tooltip;
+  final Component? icon;
+  final String? bgColor;
+
+  const UChatPaletteTrigger({
+    super.key,
+    this.isOpen = false,
+    this.onToggle,
+    this.tooltip,
+    this.icon,
+    this.bgColor,
+  });
+
+  @override
+  Component build(BuildContext context) {
+    final colorClasses = bgColor ?? 'bg-indigo-600 hover:bg-indigo-700';
+
+    // Default chat icon
+    final chatIcon = svg(
+      classes: 'w-6 h-6',
+      attributes: {
+        'viewBox': '0 0 24 24',
+        'fill': 'none',
+        'stroke': 'currentColor',
+        'stroke-width': '2',
+        'stroke-linecap': 'round',
+        'stroke-linejoin': 'round',
+      },
+      [
+        RawText('<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'),
+      ],
+    );
+
+    // Close icon
+    final closeIcon = svg(
+      classes: 'w-6 h-6',
+      attributes: {
+        'viewBox': '0 0 24 24',
+        'fill': 'none',
+        'stroke': 'currentColor',
+        'stroke-width': '2',
+        'stroke-linecap': 'round',
+        'stroke-linejoin': 'round',
+      },
+      [
+        RawText('<path d="M18 6L6 18M6 6l12 12"/>'),
+      ],
+    );
+
+    return button(
+      type: ButtonType.button,
+      onClick: onToggle,
+      classes:
+          'fixed bottom-4 right-4 p-4 rounded-full $colorClasses text-white shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 z-40',
+      attributes: {
+        if (tooltip != null) 'title': tooltip!,
+        'aria-label': tooltip ?? (isOpen ? 'Close chat' : 'Open chat'),
+      },
+      [
+        icon ?? (isOpen ? closeIcon : chatIcon),
+      ],
+    );
+  }
+}

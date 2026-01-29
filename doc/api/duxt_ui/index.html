@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="duxt_ui library API docs, for the Dart programming language.">
+  <title>duxt_ui library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">duxt_ui</a></li>
+    <li class="self-crumb">duxt_ui.dart</li>
+  </ol>
+  <div class="self-name">duxt_ui</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar=""
+    data-below-sidebar="duxt_ui&#47;duxt_ui-library-sidebar.html">
+  
+    <div>
+      
+
+      <h1>
+        <span class="kind-library">duxt_ui</span>
+        library 
+ 
+
+      </h1>
+    </div>
+
+    
+<section class="desc markdown">
+  <p>DuxtUI - Component library for Jaspr</p>
+<pre class="language-dart"><code class="language-dart">import 'package:duxt_ui/duxt_ui.dart';
+</code></pre>
+</section>
+
+
+    <section class="summary offset-anchor" id="classes">
+      <h2>Classes</h2>
+      <dl>
+          <dt id="DuxtColors">
+  <span class="name "><a href="../duxt_ui/DuxtColors-class.html">DuxtColors</a></span> 
+
+</dt>
+<dd>
+  Legacy color hex values (for compatibility)
+</dd>
+
+          <dt id="UAlert">
+  <span class="name "><a href="../duxt_ui/UAlert-class.html">UAlert</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Alert component
+</dd>
+
+          <dt id="UAvatar">
+  <span class="name "><a href="../duxt_ui/UAvatar-class.html">UAvatar</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Avatar component
+</dd>
+
+          <dt id="UAvatarGroup">
+  <span class="name "><a href="../duxt_ui/UAvatarGroup-class.html">UAvatarGroup</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Avatar Group
+</dd>
+
+          <dt id="UBadge">
+  <span class="name "><a href="../duxt_ui/UBadge-class.html">UBadge</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Badge component - Nuxt UI compatible
+</dd>
+
+          <dt id="UBgColors">
+  <span class="name "><a href="../duxt_ui/UBgColors-class.html">UBgColors</a></span> 
+
+</dt>
+<dd>
+  Semantic background colors based on Nuxt UI
+</dd>
+
+          <dt id="UButton">
+  <span class="name "><a href="../duxt_ui/UButton-class.html">UButton</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Button component - Nuxt UI compatible
+</dd>
+
+          <dt id="UButtonGroup">
+  <span class="name "><a href="../duxt_ui/UButtonGroup-class.html">UButtonGroup</a></span> 
+
+</dt>
+<dd>
+  Button group for grouping buttons together
+</dd>
+
+          <dt id="UCard">
+  <span class="name "><a href="../duxt_ui/UCard-class.html">UCard</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Card component - Nuxt UI compatible
+</dd>
+
+          <dt id="UCardBody">
+  <span class="name "><a href="../duxt_ui/UCardBody-class.html">UCardBody</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Card Body
+</dd>
+
+          <dt id="UCardFooter">
+  <span class="name "><a href="../duxt_ui/UCardFooter-class.html">UCardFooter</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Card Footer
+</dd>
+
+          <dt id="UCardHeader">
+  <span class="name "><a href="../duxt_ui/UCardHeader-class.html">UCardHeader</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Card Header
+</dd>
+
+          <dt id="UCheckbox">
+  <span class="name "><a href="../duxt_ui/UCheckbox-class.html">UCheckbox</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Checkbox component - Matches Nuxt UI styling
+</dd>
+
+          <dt id="UCheckboxGroup">
+  <span class="name "><a href="../duxt_ui/UCheckboxGroup-class.html">UCheckboxGroup</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  DuxtUI Checkbox Group component - Matches Nuxt UI styling
+</dd>
+
+          <dt id="UCheckboxOption">
+  <span class="name "><a href="../duxt_ui/UCheckboxOption-class.html">UCheckboxOption</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  Checkbox option item
+</dd>
+
+          <dt id="UContextMenu">
+  <span class="name "><a href="../duxt_ui/UContextMenu-class.html">UContextMenu</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Context Menu component - right-click menu
+</dd>
+
+          <dt id="UContextMenuControlled">
+  <span class="name "><a href="../duxt_ui/UContextMenuControlled-class.html">UContextMenuControlled</a></span> 
+
+</dt>
+<dd>
+  Controlled context menu that can be triggered programmatically
+</dd>
+
+          <dt id="UContextMenuItem">
+  <span class="name "><a href="../duxt_ui/UContextMenuItem-class.html">UContextMenuItem</a></span> 
+
+</dt>
+<dd>
+  Context menu item
+</dd>
+
+          <dt id="UDivideColors">
+  <span class="name "><a href="../duxt_ui/UDivideColors-class.html">UDivideColors</a></span> 
+
+</dt>
+<dd>
+  Semantic divide colors
+</dd>
+
+          <dt id="UDrawer">
+  <span class="name "><a href="../duxt_ui/UDrawer-class.html">UDrawer</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Drawer component - slides from edge of screen
+</dd>
+
+          <dt id="UDropdown">
+  <span class="name "><a href="../duxt_ui/UDropdown-class.html">UDropdown</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Dropdown component
+</dd>
+
+          <dt id="UDropdownItem">
+  <span class="name "><a href="../duxt_ui/UDropdownItem-class.html">UDropdownItem</a></span> 
+
+</dt>
+<dd>
+  Dropdown item
+</dd>
+
+          <dt id="UInput">
+  <span class="name "><a href="../duxt_ui/UInput-class.html">UInput</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Input component
+</dd>
+
+          <dt id="ULoading">
+  <span class="name "><a href="../duxt_ui/ULoading-class.html">ULoading</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Loading overlay
+</dd>
+
+          <dt id="UModal">
+  <span class="name "><a href="../duxt_ui/UModal-class.html">UModal</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Modal component
+</dd>
+
+          <dt id="UPopover">
+  <span class="name "><a href="../duxt_ui/UPopover-class.html">UPopover</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Popover component - floating content near trigger
+</dd>
+
+          <dt id="UPopoverControlled">
+  <span class="name "><a href="../duxt_ui/UPopoverControlled-class.html">UPopoverControlled</a></span> 
+
+</dt>
+<dd>
+  Controlled popover that accepts external open state
+</dd>
+
+          <dt id="URadioGroup">
+  <span class="name "><a href="../duxt_ui/URadioGroup-class.html">URadioGroup</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  DuxtUI Radio Group component - Matches Nuxt UI styling
+</dd>
+
+          <dt id="URadioOption">
+  <span class="name "><a href="../duxt_ui/URadioOption-class.html">URadioOption</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  Radio option item
+</dd>
+
+          <dt id="URingColors">
+  <span class="name "><a href="../duxt_ui/URingColors-class.html">URingColors</a></span> 
+
+</dt>
+<dd>
+  Semantic ring/border colors based on Nuxt UI
+</dd>
+
+          <dt id="USelect">
+  <span class="name "><a href="../duxt_ui/USelect-class.html">USelect</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  DuxtUI Select component - Matches Nuxt UI styling
+</dd>
+
+          <dt id="USelectOption">
+  <span class="name "><a href="../duxt_ui/USelectOption-class.html">USelectOption</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  Select option item
+</dd>
+
+          <dt id="USelectOptionGroup">
+  <span class="name "><a href="../duxt_ui/USelectOptionGroup-class.html">USelectOptionGroup</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  Select option group
+</dd>
+
+          <dt id="USlideover">
+  <span class="name "><a href="../duxt_ui/USlideover-class.html">USlideover</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Slideover component - panel that slides over content from side
+</dd>
+
+          <dt id="USpinner">
+  <span class="name "><a href="../duxt_ui/USpinner-class.html">USpinner</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Spinner component
+</dd>
+
+          <dt id="USwitch">
+  <span class="name "><a href="../duxt_ui/USwitch-class.html">USwitch</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Switch component - Matches Nuxt UI styling
+</dd>
+
+          <dt id="UTabItem">
+  <span class="name "><a href="../duxt_ui/UTabItem-class.html">UTabItem</a></span> 
+
+</dt>
+<dd>
+  Tab item
+</dd>
+
+          <dt id="UTable">
+  <span class="name "><a href="../duxt_ui/UTable-class.html">UTable</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  DuxtUI Table component
+</dd>
+
+          <dt id="UTableColumn">
+  <span class="name "><a href="../duxt_ui/UTableColumn-class.html">UTableColumn</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  Table column definition
+</dd>
+
+          <dt id="UTabs">
+  <span class="name "><a href="../duxt_ui/UTabs-class.html">UTabs</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Tabs component
+</dd>
+
+          <dt id="UTextarea">
+  <span class="name "><a href="../duxt_ui/UTextarea-class.html">UTextarea</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Textarea component
+</dd>
+
+          <dt id="UTextColors">
+  <span class="name "><a href="../duxt_ui/UTextColors-class.html">UTextColors</a></span> 
+
+</dt>
+<dd>
+  Semantic text colors based on Nuxt UI
+</dd>
+
+          <dt id="UTooltip">
+  <span class="name "><a href="../duxt_ui/UTooltip-class.html">UTooltip</a></span> 
+
+</dt>
+<dd>
+  DuxtUI Tooltip component - hover hint
+</dd>
+
+          <dt id="UTooltipCustom">
+  <span class="name "><a href="../duxt_ui/UTooltipCustom-class.html">UTooltipCustom</a></span> 
+
+</dt>
+<dd>
+  Tooltip with custom content instead of just text
+</dd>
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="enums">
+      <h2>Enums</h2>
+      <dl>
+          <dt id="UAlertColor">
+  <span class="name "><a href="../duxt_ui/UAlertColor.html">UAlertColor</a></span> 
+
+</dt>
+<dd>
+  Alert colors
+</dd>
+
+          <dt id="UAvatarSize">
+  <span class="name "><a href="../duxt_ui/UAvatarSize.html">UAvatarSize</a></span> 
+
+</dt>
+<dd>
+  Avatar sizes
+</dd>
+
+          <dt id="UBadgeColor">
+  <span class="name "><a href="../duxt_ui/UBadgeColor.html">UBadgeColor</a></span> 
+
+</dt>
+<dd>
+  Badge colors matching Nuxt UI semantic colors
+</dd>
+
+          <dt id="UBadgeSize">
+  <span class="name "><a href="../duxt_ui/UBadgeSize.html">UBadgeSize</a></span> 
+
+</dt>
+<dd>
+  Badge sizes matching Nuxt UI
+</dd>
+
+          <dt id="UBadgeVariant">
+  <span class="name "><a href="../duxt_ui/UBadgeVariant.html">UBadgeVariant</a></span> 
+
+</dt>
+<dd>
+  Badge variants matching Nuxt UI
+</dd>
+
+          <dt id="UButtonColor">
+  <span class="name "><a href="../duxt_ui/UButtonColor.html">UButtonColor</a></span> 
+
+</dt>
+<dd>
+  Button colors matching Nuxt UI semantic colors
+</dd>
+
+          <dt id="UButtonSize">
+  <span class="name "><a href="../duxt_ui/UButtonSize.html">UButtonSize</a></span> 
+
+</dt>
+<dd>
+  Button sizes matching Nuxt UI
+</dd>
+
+          <dt id="UButtonVariant">
+  <span class="name "><a href="../duxt_ui/UButtonVariant.html">UButtonVariant</a></span> 
+
+</dt>
+<dd>
+  Button variants matching Nuxt UI
+</dd>
+
+          <dt id="UCardVariant">
+  <span class="name "><a href="../duxt_ui/UCardVariant.html">UCardVariant</a></span> 
+
+</dt>
+<dd>
+  Card variants matching Nuxt UI
+</dd>
+
+          <dt id="UCheckboxColor">
+  <span class="name "><a href="../duxt_ui/UCheckboxColor.html">UCheckboxColor</a></span> 
+
+</dt>
+<dd>
+  Checkbox colors
+</dd>
+
+          <dt id="UCheckboxGroupOrientation">
+  <span class="name "><a href="../duxt_ui/UCheckboxGroupOrientation.html">UCheckboxGroupOrientation</a></span> 
+
+</dt>
+<dd>
+  Checkbox group orientation
+</dd>
+
+          <dt id="UCheckboxSize">
+  <span class="name "><a href="../duxt_ui/UCheckboxSize.html">UCheckboxSize</a></span> 
+
+</dt>
+<dd>
+  Checkbox sizes
+</dd>
+
+          <dt id="UColor">
+  <span class="name "><a href="../duxt_ui/UColor.html">UColor</a></span> 
+
+</dt>
+<dd>
+  Semantic color names used throughout DuxtUI
+</dd>
+
+          <dt id="UColorShade">
+  <span class="name "><a href="../duxt_ui/UColorShade.html">UColorShade</a></span> 
+
+</dt>
+<dd>
+  Color shade levels (50-950)
+</dd>
+
+          <dt id="UDrawerSide">
+  <span class="name "><a href="../duxt_ui/UDrawerSide.html">UDrawerSide</a></span> 
+
+</dt>
+<dd>
+  Drawer slide direction
+</dd>
+
+          <dt id="UDrawerSize">
+  <span class="name "><a href="../duxt_ui/UDrawerSize.html">UDrawerSize</a></span> 
+
+</dt>
+<dd>
+  Drawer sizes
+</dd>
+
+          <dt id="UInputSize">
+  <span class="name "><a href="../duxt_ui/UInputSize.html">UInputSize</a></span> 
+
+</dt>
+<dd>
+  Input sizes
+</dd>
+
+          <dt id="UModalSize">
+  <span class="name "><a href="../duxt_ui/UModalSize.html">UModalSize</a></span> 
+
+</dt>
+<dd>
+  Modal sizes
+</dd>
+
+          <dt id="UPopoverPlacement">
+  <span class="name "><a href="../duxt_ui/UPopoverPlacement.html">UPopoverPlacement</a></span> 
+
+</dt>
+<dd>
+  Popover placement options
+</dd>
+
+          <dt id="URadioGroupColor">
+  <span class="name "><a href="../duxt_ui/URadioGroupColor.html">URadioGroupColor</a></span> 
+
+</dt>
+<dd>
+  Radio group colors
+</dd>
+
+          <dt id="URadioGroupOrientation">
+  <span class="name "><a href="../duxt_ui/URadioGroupOrientation.html">URadioGroupOrientation</a></span> 
+
+</dt>
+<dd>
+  Radio group orientation
+</dd>
+
+          <dt id="URadioGroupSize">
+  <span class="name "><a href="../duxt_ui/URadioGroupSize.html">URadioGroupSize</a></span> 
+
+</dt>
+<dd>
+  Radio group sizes
+</dd>
+
+          <dt id="USelectColor">
+  <span class="name "><a href="../duxt_ui/USelectColor.html">USelectColor</a></span> 
+
+</dt>
+<dd>
+  Select colors
+</dd>
+
+          <dt id="USelectSize">
+  <span class="name "><a href="../duxt_ui/USelectSize.html">USelectSize</a></span> 
+
+</dt>
+<dd>
+  Select sizes
+</dd>
+
+          <dt id="USlideoverSide">
+  <span class="name "><a href="../duxt_ui/USlideoverSide.html">USlideoverSide</a></span> 
+
+</dt>
+<dd>
+  Slideover slide direction
+</dd>
+
+          <dt id="USlideoverSize">
+  <span class="name "><a href="../duxt_ui/USlideoverSize.html">USlideoverSize</a></span> 
+
+</dt>
+<dd>
+  Slideover sizes
+</dd>
+
+          <dt id="USpinnerSize">
+  <span class="name "><a href="../duxt_ui/USpinnerSize.html">USpinnerSize</a></span> 
+
+</dt>
+<dd>
+  Spinner sizes
+</dd>
+
+          <dt id="USwitchColor">
+  <span class="name "><a href="../duxt_ui/USwitchColor.html">USwitchColor</a></span> 
+
+</dt>
+<dd>
+  Switch colors
+</dd>
+
+          <dt id="USwitchSize">
+  <span class="name "><a href="../duxt_ui/USwitchSize.html">USwitchSize</a></span> 
+
+</dt>
+<dd>
+  Switch sizes
+</dd>
+
+          <dt id="UTooltipPlacement">
+  <span class="name "><a href="../duxt_ui/UTooltipPlacement.html">UTooltipPlacement</a></span> 
+
+</dt>
+<dd>
+  Tooltip placement options
+</dd>
+
+      </dl>
+    </section>
+
+
+
+
+    <section class="summary offset-anchor" id="constants">
+      <h2>Constants</h2>
+      <dl class="properties">
+          <dt id="defaultColorMapping" class="constant">
+    <span class="name "><a href="../duxt_ui/defaultColorMapping-constant.html">defaultColorMapping</a></span>
+  <span class="signature">&#8594; const <a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../duxt_ui/UColor.html">UColor</a></span>, <span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span></span>
+  
+
+</dt>
+<dd>
+  Default color palette mapping to Tailwind colors
+Primary = Green, Secondary = Blue, etc (matches Nuxt UI defaults)
+  
+
+</dd>
+
+      </dl>
+    </section>
+
+
+    <section class="summary offset-anchor" id="functions">
+      <h2>Functions</h2>
+      <dl class="callables">
+          <dt id="bgColor" class="callable">
+  <span class="name"><a href="../duxt_ui/bgColor.html">bgColor</a></span><span class="signature">(<wbr><span class="parameter" id="bgColor-param-color"><span class="type-annotation"><a href="../duxt_ui/UColor.html">UColor</a></span> <span class="parameter-name">color</span>, [</span><span class="parameter" id="bgColor-param-shade"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">shade</span> = <span class="default-value">500</span></span>])
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Get background class for a color
+  
+
+</dd>
+
+          <dt id="colorClass" class="callable">
+  <span class="name"><a href="../duxt_ui/colorClass.html">colorClass</a></span><span class="signature">(<wbr><span class="parameter" id="colorClass-param-color"><span class="type-annotation"><a href="../duxt_ui/UColor.html">UColor</a></span> <span class="parameter-name">color</span>, [</span><span class="parameter" id="colorClass-param-shade"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">shade</span> = <span class="default-value">500</span></span>])
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Get Tailwind class for a semantic color
+  
+
+</dd>
+
+          <dt id="ringColor" class="callable">
+  <span class="name"><a href="../duxt_ui/ringColor.html">ringColor</a></span><span class="signature">(<wbr><span class="parameter" id="ringColor-param-color"><span class="type-annotation"><a href="../duxt_ui/UColor.html">UColor</a></span> <span class="parameter-name">color</span>, [</span><span class="parameter" id="ringColor-param-shade"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">shade</span> = <span class="default-value">500</span></span>])
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Get border/ring class for a color
+  
+
+</dd>
+
+          <dt id="textColor" class="callable">
+  <span class="name"><a href="../duxt_ui/textColor.html">textColor</a></span><span class="signature">(<wbr><span class="parameter" id="textColor-param-color"><span class="type-annotation"><a href="../duxt_ui/UColor.html">UColor</a></span> <span class="parameter-name">color</span>, [</span><span class="parameter" id="textColor-param-shade"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">shade</span> = <span class="default-value">500</span></span>])
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Get text class for a color
+  
+
+</dd>
+
+      </dl>
+    </section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">duxt_ui</a></li>
+    <li class="self-crumb">duxt_ui.dart</li>
+</ol>
+
+    <h5><span class="package-name">duxt_ui</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="../duxt_ui/">duxt_ui</a></li>
+</ol>
+
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+    <h5>duxt_ui library</h5>
+  </div><!--/sidebar-offcanvas-right-->
+</main>
+<footer>
+  <span class="no-break">
+    duxt_ui
+      0.1.0
+  </span>
+  
+</footer>
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

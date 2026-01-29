@@ -1,0 +1,77 @@
+import 'package:jaspr/jaspr.dart';
+import 'package:jaspr/dom.dart';
+
+/// DuxtUI Page component - Main page wrapper with optional aside
+///
+/// Provides a responsive grid layout with optional sidebar.
+/// On large screens, uses a 10-column grid with aside and main areas.
+class UPage extends StatelessComponent {
+  /// The main content of the page
+  final List<Component> children;
+
+  /// Optional left sidebar content (sticky navigation)
+  final Component? left;
+
+  /// Optional right sidebar content
+  final Component? right;
+
+  /// Additional CSS classes
+  final String? classes;
+
+  const UPage({
+    super.key,
+    this.children = const [],
+    this.left,
+    this.right,
+    this.classes,
+  });
+
+  @override
+  Component build(BuildContext context) {
+    final hasAside = left != null || right != null;
+
+    if (!hasAside) {
+      // No aside - simple wrapper
+      return div(
+        classes: 'relative ${classes ?? ""}',
+        children,
+      );
+    }
+
+    // Grid layout with aside
+    return div(
+      classes: 'grid lg:grid-cols-10 lg:gap-8 ${classes ?? ""}',
+      [
+        // Left aside (if provided)
+        if (left != null)
+          aside(
+            classes: 'hidden lg:block lg:col-span-2',
+            [
+              div(
+                classes: 'sticky top-16',
+                [left!],
+              ),
+            ],
+          ),
+        // Main content area
+        main_(
+          classes: hasAside
+              ? 'lg:col-span-${left != null && right != null ? "6" : "8"} min-w-0'
+              : 'lg:col-span-10',
+          children,
+        ),
+        // Right aside (if provided)
+        if (right != null)
+          aside(
+            classes: 'hidden lg:block lg:col-span-2',
+            [
+              div(
+                classes: 'sticky top-16',
+                [right!],
+              ),
+            ],
+          ),
+      ],
+    );
+  }
+}

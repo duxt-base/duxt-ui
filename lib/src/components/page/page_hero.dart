@@ -1,0 +1,142 @@
+import 'package:jaspr/jaspr.dart';
+import 'package:jaspr/dom.dart';
+
+/// DuxtUI PageHero component - Full-width hero section
+///
+/// A prominent hero section with optional gradient background.
+class UPageHero extends StatelessComponent {
+  /// The main title
+  final String? title;
+
+  /// Optional description text
+  final String? description;
+
+  /// Optional headline/eyebrow text above the title
+  final String? headline;
+
+  /// Content alignment
+  final UPageHeaderAlign align;
+
+  /// Optional icon component
+  final Component? icon;
+
+  /// Optional links/buttons section
+  final List<Component> links;
+
+  /// Enable gradient background
+  final bool gradient;
+
+  /// Custom gradient classes (overrides default)
+  final String? gradientClasses;
+
+  /// Additional CSS classes
+  final String? classes;
+
+  /// Custom content slot (overrides title/description)
+  final List<Component> children;
+
+  const UPageHero({
+    super.key,
+    this.title,
+    this.description,
+    this.headline,
+    this.align = UPageHeaderAlign.center,
+    this.icon,
+    this.links = const [],
+    this.gradient = false,
+    this.gradientClasses,
+    this.classes,
+    this.children = const [],
+  });
+
+  String get _alignClasses {
+    switch (align) {
+      case UPageHeaderAlign.left:
+        return 'text-left items-start';
+      case UPageHeaderAlign.center:
+        return 'text-center items-center';
+      case UPageHeaderAlign.right:
+        return 'text-right items-end';
+    }
+  }
+
+  @override
+  Component build(BuildContext context) {
+    final defaultGradient =
+        'bg-gradient-to-b from-primary-50 to-white dark:from-gray-900 dark:to-gray-950';
+    final bgClasses = gradient ? (gradientClasses ?? defaultGradient) : '';
+
+    return section(
+      classes: 'relative py-16 sm:py-24 lg:py-32 $bgClasses ${classes ?? ""}',
+      [
+        // Optional gradient overlay
+        if (gradient)
+          div(
+            classes: 'absolute inset-0 overflow-hidden',
+            [
+              div(
+                classes:
+                    'absolute -top-40 -right-32 w-80 h-80 bg-primary-400/20 rounded-full blur-3xl',
+                [],
+              ),
+              div(
+                classes:
+                    'absolute -bottom-40 -left-32 w-80 h-80 bg-primary-600/20 rounded-full blur-3xl',
+                [],
+              ),
+            ],
+          ),
+        // Content container
+        div(
+          classes: 'relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+          [
+            div(
+              classes:
+                  'flex flex-col $_alignClasses max-w-4xl ${align == UPageHeaderAlign.center ? "mx-auto" : ""}',
+              [
+                // Custom children (if provided)
+                if (children.isNotEmpty)
+                  ...children
+                else ...[
+                  // Icon (if provided)
+                  if (icon != null) div(classes: 'mb-8', [icon!]),
+                  // Headline/eyebrow
+                  if (headline != null)
+                    span(
+                      classes:
+                          'inline-flex items-center rounded-full bg-primary-50 dark:bg-primary-900/30 px-4 py-1.5 text-sm font-medium text-primary-600 dark:text-primary-400 ring-1 ring-inset ring-primary-500/20 mb-6',
+                      [Component.text(headline!)],
+                    ),
+                  // Title
+                  if (title != null)
+                    h1(
+                      classes:
+                          'text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white tracking-tight',
+                      [Component.text(title!)],
+                    ),
+                  // Description
+                  if (description != null)
+                    p(
+                      classes:
+                          'mt-6 text-lg sm:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl',
+                      [Component.text(description!)],
+                    ),
+                  // Links/actions
+                  if (links.isNotEmpty)
+                    div(
+                      classes:
+                          'mt-10 flex flex-wrap gap-4 ${align == UPageHeaderAlign.center ? "justify-center" : ""}',
+                      links,
+                    ),
+                ],
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+/// Re-export align enum for convenience
+enum UPageHeaderAlign { left, center, right }
