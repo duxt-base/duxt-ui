@@ -1,64 +1,295 @@
-# DuxtUI
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/base-al/duxt/main/web/logo.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/base-al/duxt/main/web/logo.svg">
+  <img alt="Duxt UI" src="https://raw.githubusercontent.com/base-al/duxt/main/web/logo.svg" width="180">
+</picture>
 
-A comprehensive UI component library for [Jaspr](https://jaspr.dev) - the Dart web framework. DuxtUI provides 100+ pre-built, styled components inspired by Nuxt UI.
+# Duxt UI
 
-## Installation
+[![Pub Version](https://img.shields.io/pub/v/duxt_ui?color=00C0E8&label=pub.dev)](https://pub.dev/packages/duxt_ui)
+[![License: MIT](https://img.shields.io/badge/license-MIT-00C0E8.svg)](https://opensource.org/licenses/MIT)
+[![Dart](https://img.shields.io/badge/Dart-3.0+-00C0E8.svg)](https://dart.dev)
+
+**A comprehensive UI component library for [Jaspr](https://jaspr.dev)** — 100+ beautifully crafted, accessible components inspired by Nuxt UI.
+
+---
+
+## ✨ Highlights
+
+<table>
+<tr>
+<td align="center" width="25%">
+
+**🎨 Beautiful**
+
+Carefully designed components with attention to detail
+
+</td>
+<td align="center" width="25%">
+
+**🌙 Dark Mode**
+
+Full dark mode support out of the box
+
+</td>
+<td align="center" width="25%">
+
+**⚡ Tailwind**
+
+Built with Tailwind CSS for easy customization
+
+</td>
+<td align="center" width="25%">
+
+**🔒 Type Safe**
+
+Full Dart type safety with enums & classes
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🚀 Quick Start
+
+### Installation
+
+Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  duxt_ui: ^0.1.0
+  duxt_ui: ^0.2.0
 ```
 
-## Usage
+### Setup Tailwind
+
+In your `tailwind.config.js`:
+
+```js
+module.exports = {
+  content: [
+    './lib/**/*.dart',
+    './node_modules/duxt_ui/**/*.dart', // Include Duxt UI
+  ],
+  darkMode: 'class',
+  theme: {
+    extend: {},
+  },
+}
+```
+
+### Wrap Your App
 
 ```dart
 import 'package:duxt_ui/duxt_ui.dart';
 
-// Button
+class App extends StatelessComponent {
+  @override
+  Component build(BuildContext context) => DApp(
+    child: MyHomePage(),
+  );
+}
+```
+
+---
+
+## 🎯 Usage Examples
+
+### Buttons
+
+```dart
+// Solid button (default)
 DButton(
   label: 'Click me',
-  variant: DButtonVariant.solid,
+  onClick: () => print('Clicked!'),
+)
+
+// With variants
+DButton(
+  label: 'Outline',
+  variant: DButtonVariant.outline,
   color: DButtonColor.primary,
-  onClick: () => print('clicked'),
 )
 
-// Input
-DInput(
-  label: 'Email',
-  placeholder: 'Enter email',
-  type: InputType.email,
-  error: 'Invalid email',
+// With icon
+DButton(
+  label: 'Download',
+  leading: DIcon(icon: 'heroicons:arrow-down-tray'),
 )
 
-// Card
-DCard(
-  header: DCardHeader(title: 'Card Title'),
-  children: [Component.text('Card content')],
+// Loading state
+DButton(
+  label: 'Submitting...',
+  loading: true,
 )
 
-// Alert
-DAlert(
-  title: 'Success',
-  description: 'Your changes have been saved.',
-  color: DAlertColor.success,
-)
-
-// Modal
-DModal(
-  open: isOpen,
-  title: 'Confirm',
-  onClose: () => setState(() => isOpen = false),
-  children: [Component.text('Are you sure?')],
+// Icon only
+DButton(
+  icon: DIcon(icon: 'heroicons:heart'),
+  variant: DButtonVariant.ghost,
 )
 ```
 
-## Components
+### Inputs
 
-### Buttons & Inputs
+```dart
+// Basic input
+DInput(
+  label: 'Email',
+  placeholder: 'Enter your email',
+  type: InputType.email,
+)
+
+// With validation error
+DInput(
+  label: 'Password',
+  type: InputType.password,
+  error: 'Password must be at least 8 characters',
+)
+
+// With icons
+DInput(
+  label: 'Search',
+  placeholder: 'Search...',
+  leading: DIcon(icon: 'heroicons:magnifying-glass'),
+)
+```
+
+### Cards
+
+```dart
+DCard(
+  header: DCardHeader(
+    title: 'Card Title',
+    description: 'Card description here',
+  ),
+  children: [
+    p([text('Card content goes here.')]),
+  ],
+  footer: DCardFooter(
+    children: [
+      DButton(label: 'Cancel', variant: DButtonVariant.ghost),
+      DButton(label: 'Save'),
+    ],
+  ),
+)
+```
+
+### Alerts
+
+```dart
+DAlert(
+  title: 'Success!',
+  description: 'Your changes have been saved.',
+  color: DAlertColor.success,
+  icon: DIcon(icon: 'heroicons:check-circle'),
+)
+```
+
+### Modals
+
+```dart
+DModal(
+  open: isOpen,
+  title: 'Confirm Action',
+  description: 'Are you sure you want to continue?',
+  onClose: () => setState(() => isOpen = false),
+  children: [
+    p([text('This action cannot be undone.')]),
+  ],
+  footer: [
+    DButton(
+      label: 'Cancel',
+      variant: DButtonVariant.ghost,
+      onClick: () => setState(() => isOpen = false),
+    ),
+    DButton(
+      label: 'Confirm',
+      color: DButtonColor.error,
+      onClick: () => handleConfirm(),
+    ),
+  ],
+)
+```
+
+### Forms
+
+```dart
+DForm(
+  children: [
+    DFormField(
+      label: 'Full Name',
+      required: true,
+      children: [
+        DInput(placeholder: 'John Doe'),
+      ],
+    ),
+    DFormField(
+      label: 'Email',
+      required: true,
+      hint: 'We\'ll never share your email',
+      children: [
+        DInput(type: InputType.email, placeholder: 'john@example.com'),
+      ],
+    ),
+    DFormActions(
+      children: [
+        DButton(label: 'Submit', type: ButtonType.submit),
+      ],
+    ),
+  ],
+)
+```
+
+---
+
+## 🎨 Variants & Colors
+
+### Variants
+
+| Variant | Description |
+|---------|-------------|
+| `solid` | Filled background (default) |
+| `outline` | Border only with hover fill |
+| `soft` | Light background tint |
+| `subtle` | Light background with border |
+| `ghost` | Transparent with hover effect |
+| `link` | Text-only link style |
+
+### Colors
+
+| Color | Value | Usage |
+|-------|-------|-------|
+| `primary` | ![#22c55e](https://via.placeholder.com/12/22c55e/22c55e.png) Green | Primary actions |
+| `secondary` | ![#3b82f6](https://via.placeholder.com/12/3b82f6/3b82f6.png) Blue | Secondary actions |
+| `success` | ![#22c55e](https://via.placeholder.com/12/22c55e/22c55e.png) Green | Success states |
+| `info` | ![#3b82f6](https://via.placeholder.com/12/3b82f6/3b82f6.png) Blue | Informational |
+| `warning` | ![#f59e0b](https://via.placeholder.com/12/f59e0b/f59e0b.png) Amber | Warnings |
+| `error` | ![#ef4444](https://via.placeholder.com/12/ef4444/ef4444.png) Red | Errors & destructive |
+| `neutral` | ![#737373](https://via.placeholder.com/12/737373/737373.png) Gray | Neutral actions |
+
+### Sizes
+
+| Size | Description |
+|------|-------------|
+| `xs` | Extra small |
+| `sm` | Small |
+| `md` | Medium (default) |
+| `lg` | Large |
+| `xl` | Extra large |
+
+---
+
+## 📦 Component Library
+
+### Form Components
+
 | Component | Description |
 |-----------|-------------|
 | `DButton` | Button with variants, sizes, colors, loading states |
 | `DInput` | Text input with validation, icons, hints |
+| `DTextarea` | Multi-line text input |
 | `DInputNumber` | Numeric input with increment/decrement |
 | `DSelect` | Dropdown select with search, multi-select |
 | `DCheckbox` | Checkbox with indeterminate state |
@@ -70,6 +301,7 @@ DModal(
 | `DFileUpload` | File upload with drag & drop |
 
 ### Data Display
+
 | Component | Description |
 |-----------|-------------|
 | `DTable` | Data table with sorting, pagination |
@@ -85,10 +317,11 @@ DModal(
 | `DUser` | User card component |
 
 ### Feedback
+
 | Component | Description |
 |-----------|-------------|
 | `DAlert` | Alert message with variants |
-| `DToast` | Toast notifications |
+| `DToast` | Toast notification |
 | `DToaster` | Toast container/provider |
 | `DBanner` | Top banner announcements |
 | `DSpinner` | Loading spinner |
@@ -97,6 +330,7 @@ DModal(
 | `DError` | Error state display |
 
 ### Overlays
+
 | Component | Description |
 |-----------|-------------|
 | `DModal` | Modal dialog |
@@ -108,6 +342,7 @@ DModal(
 | `DContextMenu` | Right-click context menu |
 
 ### Navigation
+
 | Component | Description |
 |-----------|-------------|
 | `DTabs` | Tab navigation |
@@ -118,6 +353,7 @@ DModal(
 | `DKbd` | Keyboard shortcut display |
 
 ### Layout
+
 | Component | Description |
 |-----------|-------------|
 | `DContainer` | Centered container |
@@ -127,11 +363,12 @@ DModal(
 | `DSeparator` | Horizontal/vertical divider |
 
 ### Page Components
+
 | Component | Description |
 |-----------|-------------|
 | `DPage` | Page wrapper with aside |
-| `DPageHeader` | Page title section |
 | `DPageHero` | Hero section |
+| `DPageHeader` | Page title section |
 | `DPageSection` | Content section |
 | `DPageBody` | Page body |
 | `DPageAside` | Sidebar navigation |
@@ -141,6 +378,7 @@ DModal(
 | `DPageCTA` | Call-to-action section |
 
 ### Dashboard
+
 | Component | Description |
 |-----------|-------------|
 | `DDashboard` | Dashboard layout |
@@ -151,13 +389,17 @@ DModal(
 | `DDashboardSearch` | Search component |
 | `DDashboardGroup` | Group container |
 
-### Blog
+### Blog & Content
+
 | Component | Description |
 |-----------|-------------|
 | `DBlogPosts` | Blog post grid |
 | `DBlogPost` | Single blog post card |
+| `DAccordion` | Expandable accordion |
+| `DCollapsible` | Collapsible section |
 
 ### Pricing
+
 | Component | Description |
 |-----------|-------------|
 | `DPricingPlans` | Pricing plan cards |
@@ -165,6 +407,7 @@ DModal(
 | `DPricingTable` | Feature comparison table |
 
 ### Chat
+
 | Component | Description |
 |-----------|-------------|
 | `DChatMessage` | Single chat message |
@@ -173,16 +416,11 @@ DModal(
 | `DChatPromptSubmit` | Submit button |
 | `DChatPalette` | Command palette |
 
-### Content
-| Component | Description |
-|-----------|-------------|
-| `DAccordion` | Expandable accordion |
-| `DCollapsible` | Collapsible section |
-
 ### Utility
+
 | Component | Description |
 |-----------|-------------|
-| `DIcon` | Icon component (Iconify) |
+| `DIcon` | Icon component (Iconify support) |
 | `DCarousel` | Image/content carousel |
 | `DMarquee` | Scrolling marquee |
 | `DScrollArea` | Custom scrollbar area |
@@ -190,15 +428,17 @@ DModal(
 | `DCalendar` | Date calendar |
 
 ### Theme
+
 | Component | Description |
 |-----------|-------------|
+| `DApp` | App wrapper with theme |
 | `DThemeProvider` | Theme context provider |
 | `DColorModeButton` | Dark/light mode toggle |
 | `DColorModeSwitch` | Dark/light mode switch |
 | `DColorModeSelect` | Dark/light mode select |
-| `DApp` | App wrapper with theme |
 
 ### Forms
+
 | Component | Description |
 |-----------|-------------|
 | `DForm` | Form container |
@@ -209,21 +449,82 @@ DModal(
 | `DFormSection` | Form section |
 | `DValidators` | Built-in validators |
 
-## Variants & Colors
+---
 
-Most components support variants and colors:
+## 🌙 Dark Mode
 
-**Variants:** `solid`, `outline`, `soft`, `subtle`, `ghost`, `link`
+Duxt UI supports dark mode out of the box. Use the color mode components:
 
-**Colors:** `primary`, `secondary`, `success`, `info`, `warning`, `error`, `neutral`
+```dart
+// Toggle button
+DColorModeButton()
 
-**Sizes:** `xs`, `sm`, `md`, `lg`, `xl`
+// Switch
+DColorModeSwitch()
 
-## Requirements
+// Select dropdown
+DColorModeSelect()
+```
 
-- Jaspr ^0.22.1
-- Tailwind CSS (via jaspr_tailwind)
+Or control it programmatically:
 
-## License
+```dart
+// In your component
+DThemeProvider(
+  initialMode: ThemeMode.system, // auto, light, dark
+  child: MyApp(),
+)
+```
+
+---
+
+## 🎨 Theming
+
+### Custom Colors
+
+```dart
+DThemeProvider(
+  config: DThemeConfig(
+    primary: '#your-color',
+    secondary: '#your-color',
+  ),
+  child: MyApp(),
+)
+```
+
+---
+
+## 📦 Requirements
+
+- **Jaspr** ^0.22.1
+- **Tailwind CSS** (via jaspr_tailwind)
+
+---
+
+## 📚 Documentation
+
+Visit [duxt.dev](https://duxt.dev) for full documentation and interactive examples.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) first.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
 
 MIT License - see [LICENSE](LICENSE) for details.
+
+---
+
+<p align="center">
+  <sub>Built with 💙 by the <a href="https://github.com/base-al">Base.al</a> team</sub>
+</p>
