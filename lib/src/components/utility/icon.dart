@@ -77,40 +77,87 @@ class DIcon extends StatelessComponent {
   }
 }
 
-/// Common icon names for convenience
+/// Common icon names for convenience (using Lucide icons)
 class DIconNames {
   // Navigation
-  static const String chevronLeft = 'heroicons:chevron-left';
-  static const String chevronRight = 'heroicons:chevron-right';
-  static const String chevronUp = 'heroicons:chevron-up';
-  static const String chevronDown = 'heroicons:chevron-down';
-  static const String arrowLeft = 'heroicons:arrow-left';
-  static const String arrowRight = 'heroicons:arrow-right';
+  static const String chevronLeft = 'lucide:chevron-left';
+  static const String chevronRight = 'lucide:chevron-right';
+  static const String chevronUp = 'lucide:chevron-up';
+  static const String chevronDown = 'lucide:chevron-down';
+  static const String arrowLeft = 'lucide:arrow-left';
+  static const String arrowRight = 'lucide:arrow-right';
 
   // Actions
-  static const String plus = 'heroicons:plus';
-  static const String minus = 'heroicons:minus';
-  static const String close = 'heroicons:x-mark';
-  static const String check = 'heroicons:check';
-  static const String edit = 'heroicons:pencil';
-  static const String trash = 'heroicons:trash';
-  static const String search = 'heroicons:magnifying-glass';
+  static const String plus = 'lucide:plus';
+  static const String minus = 'lucide:minus';
+  static const String close = 'lucide:x';
+  static const String check = 'lucide:check';
+  static const String edit = 'lucide:pencil';
+  static const String trash = 'lucide:trash-2';
+  static const String search = 'lucide:search';
+  static const String copy = 'lucide:copy';
+  static const String download = 'lucide:download';
+  static const String upload = 'lucide:upload';
+  static const String refresh = 'lucide:refresh-cw';
+  static const String filter = 'lucide:filter';
+  static const String sort = 'lucide:arrow-up-down';
 
   // Theme
-  static const String sun = 'heroicons:sun';
-  static const String moon = 'heroicons:moon';
-  static const String system = 'heroicons:computer-desktop';
+  static const String sun = 'lucide:sun';
+  static const String moon = 'lucide:moon';
+  static const String system = 'lucide:monitor';
 
   // Status
-  static const String info = 'heroicons:information-circle';
-  static const String warning = 'heroicons:exclamation-triangle';
-  static const String error = 'heroicons:x-circle';
-  static const String success = 'heroicons:check-circle';
+  static const String info = 'lucide:info';
+  static const String warning = 'lucide:alert-triangle';
+  static const String error = 'lucide:x-circle';
+  static const String success = 'lucide:check-circle';
+
+  // Communication
+  static const String mail = 'lucide:mail';
+  static const String send = 'lucide:send';
+  static const String message = 'lucide:message-square';
+  static const String bell = 'lucide:bell';
+
+  // Files & Folders
+  static const String file = 'lucide:file';
+  static const String folder = 'lucide:folder';
+  static const String image = 'lucide:image';
+  static const String video = 'lucide:video';
 
   // Misc
-  static const String menu = 'heroicons:bars-3';
-  static const String home = 'heroicons:home';
-  static const String user = 'heroicons:user';
-  static const String settings = 'heroicons:cog-6-tooth';
-  static const String calendar = 'heroicons:calendar';
+  static const String menu = 'lucide:menu';
+  static const String home = 'lucide:home';
+  static const String user = 'lucide:user';
+  static const String users = 'lucide:users';
+  static const String settings = 'lucide:settings';
+  static const String calendar = 'lucide:calendar';
+  static const String clock = 'lucide:clock';
+  static const String link = 'lucide:link';
+  static const String externalLink = 'lucide:external-link';
+  static const String github = 'lucide:github';
+  static const String heart = 'lucide:heart';
+  static const String star = 'lucide:star';
+  static const String bookmark = 'lucide:bookmark';
+  static const String share = 'lucide:share-2';
+  static const String eye = 'lucide:eye';
+  static const String eyeOff = 'lucide:eye-off';
+  static const String lock = 'lucide:lock';
+  static const String unlock = 'lucide:unlock';
+  static const String loader = 'lucide:loader-2';
+  static const String moreHorizontal = 'lucide:more-horizontal';
+  static const String moreVertical = 'lucide:more-vertical';
+  static const String grip = 'lucide:grip-vertical';
+  static const String code = 'lucide:code';
+  static const String terminal = 'lucide:terminal';
+  static const String database = 'lucide:database';
+  static const String server = 'lucide:server';
+  static const String globe = 'lucide:globe';
+  static const String zap = 'lucide:zap';
+  static const String rocket = 'lucide:rocket';
+  static const String box = 'lucide:box';
+  static const String package = 'lucide:package';
+  static const String layers = 'lucide:layers';
+  static const String layout = 'lucide:layout';
+  static const String palette = 'lucide:palette';
 }
