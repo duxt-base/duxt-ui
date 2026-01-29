@@ -526,5 +526,5 @@ MIT License - see [LICENSE](LICENSE) for details.
 ---
 
 <p align="center">
-  <sub>Built by the <a href="https://github.com/duxt-base">Base.al</a> team</sub>
+  <sub>Built by the <a href="https://duxt.dev">duxt.dev</a> team</sub>
 </p>
