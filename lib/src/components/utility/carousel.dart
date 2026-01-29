@@ -3,12 +3,12 @@ import 'package:jaspr/dom.dart';
 import 'icon.dart';
 
 /// Carousel item data
-class UCarouselItem {
+class DCarouselItem {
   final String? image;
   final String? alt;
   final Component? content;
 
-  const UCarouselItem({
+  const DCarouselItem({
     this.image,
     this.alt,
     this.content,
@@ -19,9 +19,9 @@ class UCarouselItem {
 ///
 /// A responsive carousel with prev/next navigation and dot indicators.
 /// Uses CSS scroll-snap for smooth scrolling behavior.
-class UCarousel extends StatefulComponent {
+class DCarousel extends StatefulComponent {
   /// List of items to display
-  final List<UCarouselItem> items;
+  final List<DCarouselItem> items;
 
   /// Whether to show navigation arrows
   final bool showArrows;
@@ -38,7 +38,7 @@ class UCarousel extends StatefulComponent {
   /// Custom CSS classes
   final String? classes;
 
-  const UCarousel({
+  const DCarousel({
     super.key,
     required this.items,
     this.showArrows = true,
@@ -52,7 +52,7 @@ class UCarousel extends StatefulComponent {
   State createState() => _UCarouselState();
 }
 
-class _UCarouselState extends State<UCarousel> {
+class _UCarouselState extends State<DCarousel> {
   int _currentIndex = 0;
 
   void _goTo(int index) {
@@ -109,7 +109,7 @@ class _UCarouselState extends State<UCarousel> {
             classes: 'absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 dark:bg-gray-800/80 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white dark:hover:bg-gray-800',
             attributes: {'aria-label': 'Previous slide'},
             [
-              UIcon(name: UIconNames.chevronLeft, size: UIconSize.sm),
+              DIcon(name: DIconNames.chevronLeft, size: DIconSize.sm),
             ],
           ),
 
@@ -121,7 +121,7 @@ class _UCarouselState extends State<UCarousel> {
             classes: 'absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 dark:bg-gray-800/80 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white dark:hover:bg-gray-800',
             attributes: {'aria-label': 'Next slide'},
             [
-              UIcon(name: UIconNames.chevronRight, size: UIconSize.sm),
+              DIcon(name: DIconNames.chevronRight, size: DIconSize.sm),
             ],
           ),
 

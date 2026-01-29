@@ -2,16 +2,16 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Modal sizes matching Nuxt UI
-enum UModalSize { xs, sm, md, lg, xl, xxl, xxxl, xxxxl, xxxxxl, full }
+enum DModalSize { xs, sm, md, lg, xl, xxl, xxxl, xxxxl, xxxxxl, full }
 
 /// DuxtUI Modal component - Nuxt UI compatible
-class UModal extends StatelessComponent {
+class DModal extends StatelessComponent {
   final bool open;
   final String? title;
   final String? description;
   final Component? header;
   final Component? footer;
-  final UModalSize size;
+  final DModalSize size;
   final bool closeOnOverlay;
   final bool closeOnEscape;
   final bool preventClose;
@@ -19,14 +19,14 @@ class UModal extends StatelessComponent {
   final VoidCallback? onClose;
   final List<Component> children;
 
-  const UModal({
+  const DModal({
     super.key,
     required this.open,
     this.title,
     this.description,
     this.header,
     this.footer,
-    this.size = UModalSize.md,
+    this.size = DModalSize.md,
     this.closeOnOverlay = true,
     this.closeOnEscape = true,
     this.preventClose = false,
@@ -40,25 +40,25 @@ class UModal extends StatelessComponent {
       return 'w-screen h-screen max-w-none max-h-none m-0 rounded-none';
 
     switch (size) {
-      case UModalSize.xs:
+      case DModalSize.xs:
         return 'max-w-xs';
-      case UModalSize.sm:
+      case DModalSize.sm:
         return 'max-w-sm';
-      case UModalSize.md:
+      case DModalSize.md:
         return 'max-w-md';
-      case UModalSize.lg:
+      case DModalSize.lg:
         return 'max-w-lg';
-      case UModalSize.xl:
+      case DModalSize.xl:
         return 'max-w-xl';
-      case UModalSize.xxl:
+      case DModalSize.xxl:
         return 'max-w-2xl';
-      case UModalSize.xxxl:
+      case DModalSize.xxxl:
         return 'max-w-3xl';
-      case UModalSize.xxxxl:
+      case DModalSize.xxxxl:
         return 'max-w-4xl';
-      case UModalSize.xxxxxl:
+      case DModalSize.xxxxxl:
         return 'max-w-5xl';
-      case UModalSize.full:
+      case DModalSize.full:
         return 'max-w-full';
     }
   }
@@ -151,28 +151,28 @@ class UModal extends StatelessComponent {
 }
 
 /// Slideover (drawer) component
-enum USlideoverSide { left, right, top, bottom }
+enum DSlideoverSide { left, right, top, bottom }
 
-class USlideover extends StatelessComponent {
+class DSlideover extends StatelessComponent {
   final bool open;
   final String? title;
   final String? description;
   final Component? header;
   final Component? footer;
-  final USlideoverSide side;
+  final DSlideoverSide side;
   final bool closeOnOverlay;
   final bool preventClose;
   final VoidCallback? onClose;
   final List<Component> children;
 
-  const USlideover({
+  const DSlideover({
     super.key,
     required this.open,
     this.title,
     this.description,
     this.header,
     this.footer,
-    this.side = USlideoverSide.right,
+    this.side = DSlideoverSide.right,
     this.closeOnOverlay = true,
     this.preventClose = false,
     this.onClose,
@@ -181,24 +181,24 @@ class USlideover extends StatelessComponent {
 
   String get _positionClasses {
     switch (side) {
-      case USlideoverSide.left:
+      case DSlideoverSide.left:
         return 'inset-y-0 left-0';
-      case USlideoverSide.right:
+      case DSlideoverSide.right:
         return 'inset-y-0 right-0';
-      case USlideoverSide.top:
+      case DSlideoverSide.top:
         return 'inset-x-0 top-0';
-      case USlideoverSide.bottom:
+      case DSlideoverSide.bottom:
         return 'inset-x-0 bottom-0';
     }
   }
 
   String get _sizeClasses {
     switch (side) {
-      case USlideoverSide.left:
-      case USlideoverSide.right:
+      case DSlideoverSide.left:
+      case DSlideoverSide.right:
         return 'w-full max-w-md h-full';
-      case USlideoverSide.top:
-      case USlideoverSide.bottom:
+      case DSlideoverSide.top:
+      case DSlideoverSide.bottom:
         return 'w-full h-auto max-h-[80vh]';
     }
   }

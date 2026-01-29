@@ -2,13 +2,13 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Checkbox sizes
-enum UCheckboxSize { xs, sm, md, lg, xl }
+enum DCheckboxSize { xs, sm, md, lg, xl }
 
 /// Checkbox colors
-enum UCheckboxColor { primary, gray, success, warning, error }
+enum DCheckboxColor { primary, gray, success, warning, error }
 
 /// DuxtUI Checkbox component - Matches Nuxt UI styling
-class UCheckbox extends StatelessComponent {
+class DCheckbox extends StatelessComponent {
   final String? label;
   final String? description;
   final String? name;
@@ -16,13 +16,13 @@ class UCheckbox extends StatelessComponent {
   final bool disabled;
   final bool required;
   final bool indeterminate;
-  final UCheckboxSize size;
-  final UCheckboxColor color;
+  final DCheckboxSize size;
+  final DCheckboxColor color;
   final String? error;
   final String? hint;
   final ValueChanged<bool>? onChange;
 
-  const UCheckbox({
+  const DCheckbox({
     super.key,
     this.label,
     this.description,
@@ -31,8 +31,8 @@ class UCheckbox extends StatelessComponent {
     this.disabled = false,
     this.required = false,
     this.indeterminate = false,
-    this.size = UCheckboxSize.md,
-    this.color = UCheckboxColor.primary,
+    this.size = DCheckboxSize.md,
+    this.color = DCheckboxColor.primary,
     this.error,
     this.hint,
     this.onChange,
@@ -40,41 +40,41 @@ class UCheckbox extends StatelessComponent {
 
   String get _sizeClasses {
     switch (size) {
-      case UCheckboxSize.xs:
+      case DCheckboxSize.xs:
         return 'h-3 w-3';
-      case UCheckboxSize.sm:
+      case DCheckboxSize.sm:
         return 'h-3.5 w-3.5';
-      case UCheckboxSize.md:
+      case DCheckboxSize.md:
         return 'h-4 w-4';
-      case UCheckboxSize.lg:
+      case DCheckboxSize.lg:
         return 'h-5 w-5';
-      case UCheckboxSize.xl:
+      case DCheckboxSize.xl:
         return 'h-6 w-6';
     }
   }
 
   String get _labelSizeClasses {
     switch (size) {
-      case UCheckboxSize.xs:
+      case DCheckboxSize.xs:
         return 'text-xs';
-      case UCheckboxSize.sm:
+      case DCheckboxSize.sm:
         return 'text-xs';
-      case UCheckboxSize.md:
+      case DCheckboxSize.md:
         return 'text-sm';
-      case UCheckboxSize.lg:
+      case DCheckboxSize.lg:
         return 'text-base';
-      case UCheckboxSize.xl:
+      case DCheckboxSize.xl:
         return 'text-lg';
     }
   }
 
   String get _colorClasses {
     final baseColor = switch (color) {
-      UCheckboxColor.primary => 'indigo',
-      UCheckboxColor.gray => 'gray',
-      UCheckboxColor.success => 'green',
-      UCheckboxColor.warning => 'yellow',
-      UCheckboxColor.error => 'red',
+      DCheckboxColor.primary => 'indigo',
+      DCheckboxColor.gray => 'gray',
+      DCheckboxColor.success => 'green',
+      DCheckboxColor.warning => 'yellow',
+      DCheckboxColor.error => 'red',
     };
     return 'text-$baseColor-600 focus:ring-$baseColor-500/20';
   }

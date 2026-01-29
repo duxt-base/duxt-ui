@@ -7,11 +7,11 @@ library duxt_ui;
 
 // Components
 export 'src/components/button.dart';
-export 'src/components/input.dart' hide UInputVariant; // Hide - defined in variants.dart
-export 'src/components/card.dart' hide UCardVariant; // Hide - defined in variants.dart
-export 'src/components/badge.dart' hide UBadgeVariant; // Hide - defined in variants.dart
-export 'src/components/alert.dart' hide UAlertVariant; // Hide - defined in variants.dart
-export 'src/components/modal.dart' hide USlideoverSide; // Hide - defined in slideover.dart
+export 'src/components/input.dart' hide DInputVariant; // Hide - defined in variants.dart
+export 'src/components/card.dart' hide DCardVariant; // Hide - defined in variants.dart
+export 'src/components/badge.dart' hide DBadgeVariant; // Hide - defined in variants.dart
+export 'src/components/alert.dart' hide DAlertVariant; // Hide - defined in variants.dart
+export 'src/components/modal.dart' hide DSlideoverSide; // Hide - defined in slideover.dart
 export 'src/components/dropdown.dart';
 export 'src/components/tabs.dart';
 export 'src/components/table.dart';
@@ -32,13 +32,13 @@ export 'src/components/form/form.dart';
 export 'src/components/form/form_field.dart';
 
 // Overlay Components
-export 'src/components/overlay/overlay.dart' hide USlideover; // Hide - defined in modal.dart
+export 'src/components/overlay/overlay.dart' hide DSlideover; // Hide - defined in modal.dart
 
 // Layout Components
 export 'src/components/layout/container.dart';
 export 'src/components/layout/separator.dart';
 export 'src/components/layout/main.dart';
-export 'src/components/layout/header.dart' hide UPageHeader; // Hide - defined in page_header.dart
+export 'src/components/layout/header.dart' hide DPageHeader; // Hide - defined in page_header.dart
 export 'src/components/layout/footer.dart';
 
 // Navigation Components
@@ -89,7 +89,7 @@ export 'src/components/dashboard/dashboard_search.dart';
 export 'src/components/page/page.dart';
 export 'src/components/page/page_body.dart';
 export 'src/components/page/page_header.dart';
-export 'src/components/page/page_hero.dart' hide UPageHeaderAlign; // Hide - defined in page_header.dart
+export 'src/components/page/page_hero.dart' hide DPageHeaderAlign; // Hide - defined in page_header.dart
 export 'src/components/page/page_section.dart';
 export 'src/components/page/page_aside.dart';
 export 'src/components/page/page_card.dart';
@@ -117,5 +117,5 @@ export 'src/components/utility/calendar.dart';
 // Theme
 export 'src/theme/theme.dart';
 export 'src/theme/colors.dart';
-export 'src/theme/variants.dart' hide UButtonVariant; // Hide - defined in button.dart
+export 'src/theme/variants.dart' hide DButtonVariant; // Hide - defined in button.dart
 export 'src/theme/provider.dart';

@@ -2,7 +2,7 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Popover placement options
-enum UPopoverPlacement {
+enum DPopoverPlacement {
   top,
   topStart,
   topEnd,
@@ -18,18 +18,18 @@ enum UPopoverPlacement {
 }
 
 /// DuxtUI Popover component - floating content near trigger
-class UPopover extends StatefulComponent {
+class DPopover extends StatefulComponent {
   final Component trigger;
-  final UPopoverPlacement placement;
+  final DPopoverPlacement placement;
   final bool closeOnClickOutside;
   final VoidCallback? onOpen;
   final VoidCallback? onClose;
   final List<Component> children;
 
-  const UPopover({
+  const DPopover({
     super.key,
     required this.trigger,
-    this.placement = UPopoverPlacement.bottom,
+    this.placement = DPopoverPlacement.bottom,
     this.closeOnClickOutside = true,
     this.onOpen,
     this.onClose,
@@ -37,10 +37,10 @@ class UPopover extends StatefulComponent {
   });
 
   @override
-  State<UPopover> createState() => _UPopoverState();
+  State<DPopover> createState() => _UPopoverState();
 }
 
-class _UPopoverState extends State<UPopover> {
+class _UPopoverState extends State<DPopover> {
   bool _open = false;
 
   void _toggle() {
@@ -65,29 +65,29 @@ class _UPopoverState extends State<UPopover> {
 
   String get _positionClasses {
     switch (component.placement) {
-      case UPopoverPlacement.top:
+      case DPopoverPlacement.top:
         return 'bottom-full left-1/2 -translate-x-1/2 mb-2';
-      case UPopoverPlacement.topStart:
+      case DPopoverPlacement.topStart:
         return 'bottom-full left-0 mb-2';
-      case UPopoverPlacement.topEnd:
+      case DPopoverPlacement.topEnd:
         return 'bottom-full right-0 mb-2';
-      case UPopoverPlacement.bottom:
+      case DPopoverPlacement.bottom:
         return 'top-full left-1/2 -translate-x-1/2 mt-2';
-      case UPopoverPlacement.bottomStart:
+      case DPopoverPlacement.bottomStart:
         return 'top-full left-0 mt-2';
-      case UPopoverPlacement.bottomEnd:
+      case DPopoverPlacement.bottomEnd:
         return 'top-full right-0 mt-2';
-      case UPopoverPlacement.left:
+      case DPopoverPlacement.left:
         return 'right-full top-1/2 -translate-y-1/2 mr-2';
-      case UPopoverPlacement.leftStart:
+      case DPopoverPlacement.leftStart:
         return 'right-full top-0 mr-2';
-      case UPopoverPlacement.leftEnd:
+      case DPopoverPlacement.leftEnd:
         return 'right-full bottom-0 mr-2';
-      case UPopoverPlacement.right:
+      case DPopoverPlacement.right:
         return 'left-full top-1/2 -translate-y-1/2 ml-2';
-      case UPopoverPlacement.rightStart:
+      case DPopoverPlacement.rightStart:
         return 'left-full top-0 ml-2';
-      case UPopoverPlacement.rightEnd:
+      case DPopoverPlacement.rightEnd:
         return 'left-full bottom-0 ml-2';
     }
   }
@@ -124,19 +124,19 @@ class _UPopoverState extends State<UPopover> {
 }
 
 /// Controlled popover that accepts external open state
-class UPopoverControlled extends StatelessComponent {
+class DPopoverControlled extends StatelessComponent {
   final bool open;
   final Component trigger;
-  final UPopoverPlacement placement;
+  final DPopoverPlacement placement;
   final VoidCallback? onToggle;
   final VoidCallback? onClose;
   final List<Component> children;
 
-  const UPopoverControlled({
+  const DPopoverControlled({
     super.key,
     required this.open,
     required this.trigger,
-    this.placement = UPopoverPlacement.bottom,
+    this.placement = DPopoverPlacement.bottom,
     this.onToggle,
     this.onClose,
     this.children = const [],
@@ -144,29 +144,29 @@ class UPopoverControlled extends StatelessComponent {
 
   String get _positionClasses {
     switch (placement) {
-      case UPopoverPlacement.top:
+      case DPopoverPlacement.top:
         return 'bottom-full left-1/2 -translate-x-1/2 mb-2';
-      case UPopoverPlacement.topStart:
+      case DPopoverPlacement.topStart:
         return 'bottom-full left-0 mb-2';
-      case UPopoverPlacement.topEnd:
+      case DPopoverPlacement.topEnd:
         return 'bottom-full right-0 mb-2';
-      case UPopoverPlacement.bottom:
+      case DPopoverPlacement.bottom:
         return 'top-full left-1/2 -translate-x-1/2 mt-2';
-      case UPopoverPlacement.bottomStart:
+      case DPopoverPlacement.bottomStart:
         return 'top-full left-0 mt-2';
-      case UPopoverPlacement.bottomEnd:
+      case DPopoverPlacement.bottomEnd:
         return 'top-full right-0 mt-2';
-      case UPopoverPlacement.left:
+      case DPopoverPlacement.left:
         return 'right-full top-1/2 -translate-y-1/2 mr-2';
-      case UPopoverPlacement.leftStart:
+      case DPopoverPlacement.leftStart:
         return 'right-full top-0 mr-2';
-      case UPopoverPlacement.leftEnd:
+      case DPopoverPlacement.leftEnd:
         return 'right-full bottom-0 mr-2';
-      case UPopoverPlacement.right:
+      case DPopoverPlacement.right:
         return 'left-full top-1/2 -translate-y-1/2 ml-2';
-      case UPopoverPlacement.rightStart:
+      case DPopoverPlacement.rightStart:
         return 'left-full top-0 ml-2';
-      case UPopoverPlacement.rightEnd:
+      case DPopoverPlacement.rightEnd:
         return 'left-full bottom-0 ml-2';
     }
   }

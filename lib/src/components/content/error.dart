@@ -5,10 +5,10 @@ import '../../theme/variants.dart';
 import '../../theme/colors.dart';
 
 /// Error severity levels
-enum UErrorSeverity { warning, error, fatal }
+enum DErrorSeverity { warning, error, fatal }
 
 /// DuxtUI Error component - Error state display
-class UError extends StatelessComponent {
+class DError extends StatelessComponent {
   final String? icon;
   final Component? iconComponent;
   final String? title;
@@ -16,12 +16,12 @@ class UError extends StatelessComponent {
   final String? errorCode;
   final Component? action;
   final List<Component> children;
-  final USize size;
-  final UErrorSeverity severity;
+  final DSize size;
+  final DErrorSeverity severity;
   final bool padded;
   final VoidCallback? onRetry;
 
-  const UError({
+  const DError({
     super.key,
     this.icon,
     this.iconComponent,
@@ -30,64 +30,64 @@ class UError extends StatelessComponent {
     this.errorCode,
     this.action,
     this.children = const [],
-    this.size = USize.md,
-    this.severity = UErrorSeverity.error,
+    this.size = DSize.md,
+    this.severity = DErrorSeverity.error,
     this.padded = true,
     this.onRetry,
   });
 
   String get _severityColorClasses {
     switch (severity) {
-      case UErrorSeverity.warning:
+      case DErrorSeverity.warning:
         return 'text-yellow-500 dark:text-yellow-400';
-      case UErrorSeverity.error:
+      case DErrorSeverity.error:
         return 'text-red-500 dark:text-red-400';
-      case UErrorSeverity.fatal:
+      case DErrorSeverity.fatal:
         return 'text-red-600 dark:text-red-500';
     }
   }
 
   String get _iconSizeClasses {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'text-3xl';
-      case USize.sm:
+      case DSize.sm:
         return 'text-4xl';
-      case USize.md:
+      case DSize.md:
         return 'text-5xl';
-      case USize.lg:
+      case DSize.lg:
         return 'text-6xl';
-      case USize.xl:
+      case DSize.xl:
         return 'text-7xl';
     }
   }
 
   String get _titleSizeClasses {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'text-sm';
-      case USize.sm:
+      case DSize.sm:
         return 'text-base';
-      case USize.md:
+      case DSize.md:
         return 'text-lg';
-      case USize.lg:
+      case DSize.lg:
         return 'text-xl';
-      case USize.xl:
+      case DSize.xl:
         return 'text-2xl';
     }
   }
 
   String get _descriptionSizeClasses {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'text-xs';
-      case USize.sm:
+      case DSize.sm:
         return 'text-sm';
-      case USize.md:
+      case DSize.md:
         return 'text-sm';
-      case USize.lg:
+      case DSize.lg:
         return 'text-base';
-      case USize.xl:
+      case DSize.xl:
         return 'text-lg';
     }
   }
@@ -95,37 +95,37 @@ class UError extends StatelessComponent {
   String get _paddingClasses {
     if (!padded) return '';
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'py-6';
-      case USize.sm:
+      case DSize.sm:
         return 'py-8';
-      case USize.md:
+      case DSize.md:
         return 'py-12';
-      case USize.lg:
+      case DSize.lg:
         return 'py-16';
-      case USize.xl:
+      case DSize.xl:
         return 'py-20';
     }
   }
 
   String get _defaultIcon {
     switch (severity) {
-      case UErrorSeverity.warning:
+      case DErrorSeverity.warning:
         return '\u26A0\uFE0F'; // Warning sign
-      case UErrorSeverity.error:
+      case DErrorSeverity.error:
         return '\u274C'; // Cross mark
-      case UErrorSeverity.fatal:
+      case DErrorSeverity.fatal:
         return '\u{1F6A8}'; // Emergency light
     }
   }
 
   String get _defaultTitle {
     switch (severity) {
-      case UErrorSeverity.warning:
+      case DErrorSeverity.warning:
         return 'Warning';
-      case UErrorSeverity.error:
+      case DErrorSeverity.error:
         return 'Something went wrong';
-      case UErrorSeverity.fatal:
+      case DErrorSeverity.fatal:
         return 'Critical error';
     }
   }
@@ -158,7 +158,7 @@ class UError extends StatelessComponent {
           classes: cx([
             'font-semibold',
             _titleSizeClasses,
-            UTextColors.highlighted,
+            DTextColors.highlighted,
             'mb-2',
           ]),
           [Component.text(title ?? _defaultTitle)],
@@ -168,7 +168,7 @@ class UError extends StatelessComponent {
           p(
             classes: cx([
               _descriptionSizeClasses,
-              UTextColors.muted,
+              DTextColors.muted,
               'max-w-sm',
               'mb-2',
             ]),
@@ -180,7 +180,7 @@ class UError extends StatelessComponent {
             classes: cx([
               'text-xs',
               'font-mono',
-              UTextColors.dimmed,
+              DTextColors.dimmed,
               'mb-4',
             ]),
             [Component.text('Error code: $errorCode')],
@@ -217,14 +217,14 @@ class UError extends StatelessComponent {
 }
 
 /// Preset 404 error state
-class UError404 extends StatelessComponent {
+class DError404 extends StatelessComponent {
   final Component? action;
 
-  const UError404({super.key, this.action});
+  const DError404({super.key, this.action});
 
   @override
   Component build(BuildContext context) {
-    return UError(
+    return DError(
       icon: '\u{1F50D}', // Magnifying glass
       title: 'Page not found',
       description:
@@ -236,20 +236,20 @@ class UError404 extends StatelessComponent {
 }
 
 /// Preset 500 error state
-class UError500 extends StatelessComponent {
+class DError500 extends StatelessComponent {
   final VoidCallback? onRetry;
   final Component? action;
 
-  const UError500({super.key, this.onRetry, this.action});
+  const DError500({super.key, this.onRetry, this.action});
 
   @override
   Component build(BuildContext context) {
-    return UError(
+    return DError(
       icon: '\u{1F6A7}', // Construction
       title: 'Server error',
       description: 'An unexpected error occurred. Please try again later.',
       errorCode: '500',
-      severity: UErrorSeverity.fatal,
+      severity: DErrorSeverity.fatal,
       onRetry: onRetry,
       action: action,
     );
@@ -257,14 +257,14 @@ class UError500 extends StatelessComponent {
 }
 
 /// Preset network error state
-class UErrorNetwork extends StatelessComponent {
+class DErrorNetwork extends StatelessComponent {
   final VoidCallback? onRetry;
 
-  const UErrorNetwork({super.key, this.onRetry});
+  const DErrorNetwork({super.key, this.onRetry});
 
   @override
   Component build(BuildContext context) {
-    return UError(
+    return DError(
       icon: '\u{1F4F6}', // Signal bars
       title: 'Network error',
       description:

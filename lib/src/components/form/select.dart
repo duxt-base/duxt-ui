@@ -2,19 +2,19 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Select sizes
-enum USelectSize { xs, sm, md, lg, xl }
+enum DSelectSize { xs, sm, md, lg, xl }
 
 /// Select colors
-enum USelectColor { primary, gray, success, warning, error }
+enum DSelectColor { primary, gray, success, warning, error }
 
 /// Select option item
-class USelectOption<T> {
+class DSelectOption<T> {
   final T value;
   final String label;
   final bool disabled;
   final String? icon;
 
-  const USelectOption({
+  const DSelectOption({
     required this.value,
     required this.label,
     this.disabled = false,
@@ -23,38 +23,38 @@ class USelectOption<T> {
 }
 
 /// Select option group
-class USelectOptionGroup<T> {
+class DSelectOptionGroup<T> {
   final String label;
-  final List<USelectOption<T>> options;
+  final List<DSelectOption<T>> options;
 
-  const USelectOptionGroup({
+  const DSelectOptionGroup({
     required this.label,
     required this.options,
   });
 }
 
 /// DuxtUI Select component - Matches Nuxt UI styling
-class USelect<T> extends StatefulComponent {
+class DSelect<T> extends StatefulComponent {
   final String? label;
   final String? placeholder;
   final String? name;
   final T? value;
-  final List<USelectOption<T>> options;
-  final List<USelectOptionGroup<T>>? optionGroups;
+  final List<DSelectOption<T>> options;
+  final List<DSelectOptionGroup<T>>? optionGroups;
   final bool disabled;
   final bool required;
   final bool searchable;
   final bool clearable;
   final bool multiple;
-  final USelectSize size;
-  final USelectColor color;
+  final DSelectSize size;
+  final DSelectColor color;
   final Component? leadingIcon;
   final String? error;
   final String? hint;
   final ValueChanged<T?>? onChange;
   final ValueChanged<List<T>>? onChangeMultiple;
 
-  const USelect({
+  const DSelect({
     super.key,
     this.label,
     this.placeholder,
@@ -67,8 +67,8 @@ class USelect<T> extends StatefulComponent {
     this.searchable = false,
     this.clearable = false,
     this.multiple = false,
-    this.size = USelectSize.md,
-    this.color = USelectColor.primary,
+    this.size = DSelectSize.md,
+    this.color = DSelectColor.primary,
     this.leadingIcon,
     this.error,
     this.hint,
@@ -77,10 +77,10 @@ class USelect<T> extends StatefulComponent {
   });
 
   @override
-  State<USelect<T>> createState() => _USelectState<T>();
+  State<DSelect<T>> createState() => _USelectState<T>();
 }
 
-class _USelectState<T> extends State<USelect<T>> {
+class _USelectState<T> extends State<DSelect<T>> {
   bool _open = false;
   String _searchQuery = '';
 
@@ -97,7 +97,7 @@ class _USelectState<T> extends State<USelect<T>> {
     });
   }
 
-  void _selectOption(USelectOption<T> option) {
+  void _selectOption(DSelectOption<T> option) {
     if (option.disabled) return;
 
     if (component.onChange != null) {
@@ -130,8 +130,8 @@ class _USelectState<T> extends State<USelect<T>> {
     return null;
   }
 
-  List<USelectOption<T>> _getFilteredOptions() {
-    final allOptions = <USelectOption<T>>[...component.options];
+  List<DSelectOption<T>> _getFilteredOptions() {
+    final allOptions = <DSelectOption<T>>[...component.options];
     if (component.optionGroups != null) {
       for (final group in component.optionGroups!) {
         allOptions.addAll(group.options);
@@ -148,26 +148,26 @@ class _USelectState<T> extends State<USelect<T>> {
 
   String get _sizeClasses {
     switch (component.size) {
-      case USelectSize.xs:
+      case DSelectSize.xs:
         return 'px-2 py-1 text-xs';
-      case USelectSize.sm:
+      case DSelectSize.sm:
         return 'px-2.5 py-1.5 text-xs';
-      case USelectSize.md:
+      case DSelectSize.md:
         return 'px-3 py-2 text-sm';
-      case USelectSize.lg:
+      case DSelectSize.lg:
         return 'px-4 py-2.5 text-sm';
-      case USelectSize.xl:
+      case DSelectSize.xl:
         return 'px-4 py-3 text-base';
     }
   }
 
   String get _focusRingClasses {
     final baseColor = switch (component.color) {
-      USelectColor.primary => 'indigo',
-      USelectColor.gray => 'gray',
-      USelectColor.success => 'green',
-      USelectColor.warning => 'yellow',
-      USelectColor.error => 'red',
+      DSelectColor.primary => 'indigo',
+      DSelectColor.gray => 'gray',
+      DSelectColor.success => 'green',
+      DSelectColor.warning => 'yellow',
+      DSelectColor.error => 'red',
     };
     return 'focus:ring-$baseColor-500 focus:border-$baseColor-500';
   }
@@ -314,7 +314,7 @@ class _USelectState<T> extends State<USelect<T>> {
     ]);
   }
 
-  Component _buildOption(USelectOption<T> option) {
+  Component _buildOption(DSelectOption<T> option) {
     final isSelected = component.value == option.value;
 
     return button(

@@ -4,10 +4,10 @@ import '../../theme/variants.dart';
 import '../../theme/colors.dart';
 
 /// Progress animation types
-enum UProgressAnimation { none, pulse, indeterminate }
+enum DProgressAnimation { none, pulse, indeterminate }
 
 /// DuxtUI Progress Bar component
-class UProgress extends StatelessComponent {
+class DProgress extends StatelessComponent {
   /// Current progress value (0-100)
   final double value;
 
@@ -15,10 +15,10 @@ class UProgress extends StatelessComponent {
   final double max;
 
   /// Progress color
-  final UColor color;
+  final DColor color;
 
   /// Progress size
-  final USize size;
+  final DSize size;
 
   /// Whether to show percentage label
   final bool showLabel;
@@ -27,7 +27,7 @@ class UProgress extends StatelessComponent {
   final String? label;
 
   /// Animation type
-  final UProgressAnimation animation;
+  final DProgressAnimation animation;
 
   /// Whether the progress is indeterminate (unknown progress)
   final bool indeterminate;
@@ -38,15 +38,15 @@ class UProgress extends StatelessComponent {
   /// Custom indicator (fill) color class
   final String? indicatorColor;
 
-  const UProgress({
+  const DProgress({
     super.key,
     this.value = 0,
     this.max = 100,
-    this.color = UColor.primary,
-    this.size = USize.md,
+    this.color = DColor.primary,
+    this.size = DSize.md,
     this.showLabel = false,
     this.label,
-    this.animation = UProgressAnimation.none,
+    this.animation = DProgressAnimation.none,
     this.indeterminate = false,
     this.trackColor,
     this.indicatorColor,
@@ -56,15 +56,15 @@ class UProgress extends StatelessComponent {
 
   String get _heightClass {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'h-1';
-      case USize.sm:
+      case DSize.sm:
         return 'h-1.5';
-      case USize.md:
+      case DSize.md:
         return 'h-2';
-      case USize.lg:
+      case DSize.lg:
         return 'h-3';
-      case USize.xl:
+      case DSize.xl:
         return 'h-4';
     }
   }
@@ -85,11 +85,11 @@ class UProgress extends StatelessComponent {
       return 'animate-indeterminate';
     }
     switch (animation) {
-      case UProgressAnimation.none:
+      case DProgressAnimation.none:
         return '';
-      case UProgressAnimation.pulse:
+      case DProgressAnimation.pulse:
         return 'animate-pulse';
-      case UProgressAnimation.indeterminate:
+      case DProgressAnimation.indeterminate:
         return 'animate-indeterminate';
     }
   }
@@ -134,11 +134,11 @@ class UProgress extends StatelessComponent {
               [
                 if (label != null)
                   span(
-                    classes: 'text-sm font-medium ${UTextColors.defaultText}',
+                    classes: 'text-sm font-medium ${DTextColors.defaultText}',
                     [Component.text(label!)],
                   ),
                 span(
-                  classes: 'text-sm font-medium ${UTextColors.muted}',
+                  classes: 'text-sm font-medium ${DTextColors.muted}',
                   [Component.text('${_percentage.toInt()}%')],
                 ),
               ],
@@ -153,7 +153,7 @@ class UProgress extends StatelessComponent {
 }
 
 /// Circular Progress component
-class UProgressCircular extends StatelessComponent {
+class DProgressCircular extends StatelessComponent {
   /// Current progress value (0-100)
   final double value;
 
@@ -161,10 +161,10 @@ class UProgressCircular extends StatelessComponent {
   final double max;
 
   /// Progress color
-  final UColor color;
+  final DColor color;
 
   /// Size of the circle
-  final USize size;
+  final DSize size;
 
   /// Stroke width
   final double strokeWidth;
@@ -178,12 +178,12 @@ class UProgressCircular extends StatelessComponent {
   /// Whether the progress is indeterminate
   final bool indeterminate;
 
-  const UProgressCircular({
+  const DProgressCircular({
     super.key,
     this.value = 0,
     this.max = 100,
-    this.color = UColor.primary,
-    this.size = USize.md,
+    this.color = DColor.primary,
+    this.size = DSize.md,
     this.strokeWidth = 4,
     this.showLabel = true,
     this.label,
@@ -194,45 +194,45 @@ class UProgressCircular extends StatelessComponent {
 
   int get _sizePixels {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 24;
-      case USize.sm:
+      case DSize.sm:
         return 32;
-      case USize.md:
+      case DSize.md:
         return 48;
-      case USize.lg:
+      case DSize.lg:
         return 64;
-      case USize.xl:
+      case DSize.xl:
         return 80;
     }
   }
 
   String get _sizeClass {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'size-6';
-      case USize.sm:
+      case DSize.sm:
         return 'size-8';
-      case USize.md:
+      case DSize.md:
         return 'size-12';
-      case USize.lg:
+      case DSize.lg:
         return 'size-16';
-      case USize.xl:
+      case DSize.xl:
         return 'size-20';
     }
   }
 
   String get _textSizeClass {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'text-[8px]';
-      case USize.sm:
+      case DSize.sm:
         return 'text-[10px]';
-      case USize.md:
+      case DSize.md:
         return 'text-xs';
-      case USize.lg:
+      case DSize.lg:
         return 'text-sm';
-      case USize.xl:
+      case DSize.xl:
         return 'text-base';
     }
   }
@@ -295,7 +295,7 @@ class UProgressCircular extends StatelessComponent {
         if ((showLabel || label != null) && !indeterminate)
           span(
             classes:
-                'absolute $_textSizeClass font-medium ${UTextColors.defaultText}',
+                'absolute $_textSizeClass font-medium ${DTextColors.defaultText}',
             [Component.text(label ?? '${_percentage.toInt()}%')],
           ),
       ],
@@ -304,7 +304,7 @@ class UProgressCircular extends StatelessComponent {
 }
 
 /// Progress with steps/segments
-class UProgressSteps extends StatelessComponent {
+class DProgressSteps extends StatelessComponent {
   /// Current step (0-indexed)
   final int currentStep;
 
@@ -315,31 +315,31 @@ class UProgressSteps extends StatelessComponent {
   final List<String>? labels;
 
   /// Progress color
-  final UColor color;
+  final DColor color;
 
   /// Size
-  final USize size;
+  final DSize size;
 
-  const UProgressSteps({
+  const DProgressSteps({
     super.key,
     required this.currentStep,
     required this.totalSteps,
     this.labels,
-    this.color = UColor.primary,
-    this.size = USize.md,
+    this.color = DColor.primary,
+    this.size = DSize.md,
   });
 
   String get _heightClass {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'h-1';
-      case USize.sm:
+      case DSize.sm:
         return 'h-1.5';
-      case USize.md:
+      case DSize.md:
         return 'h-2';
-      case USize.lg:
+      case DSize.lg:
         return 'h-3';
-      case USize.xl:
+      case DSize.xl:
         return 'h-4';
     }
   }
@@ -380,8 +380,8 @@ class UProgressSteps extends StatelessComponent {
                   classes: cx([
                     'text-xs',
                     i <= currentStep
-                        ? UTextColors.defaultText
-                        : UTextColors.muted,
+                        ? DTextColors.defaultText
+                        : DTextColors.muted,
                   ]),
                   [Component.text(labels![i])],
                 ),

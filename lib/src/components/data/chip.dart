@@ -4,22 +4,22 @@ import '../../theme/variants.dart';
 import '../../theme/colors.dart';
 
 /// Chip variants
-enum UChipVariant { solid, soft, outline, subtle }
+enum DChipVariant { solid, soft, outline, subtle }
 
 /// DuxtUI Chip component - Small indicator badge
 /// Similar to Badge but designed for inline indicators with optional actions
-class UChip extends StatelessComponent {
+class DChip extends StatelessComponent {
   /// The label text to display
   final String label;
 
   /// Chip variant
-  final UChipVariant variant;
+  final DChipVariant variant;
 
   /// Chip color
-  final UColor color;
+  final DColor color;
 
   /// Chip size
-  final USize size;
+  final DSize size;
 
   /// Leading icon (optional)
   final String? leadingIcon;
@@ -39,12 +39,12 @@ class UChip extends StatelessComponent {
   /// Whether to show a dot indicator
   final bool showDot;
 
-  const UChip({
+  const DChip({
     super.key,
     required this.label,
-    this.variant = UChipVariant.soft,
-    this.color = UColor.primary,
-    this.size = USize.sm,
+    this.variant = DChipVariant.soft,
+    this.color = DColor.primary,
+    this.size = DSize.sm,
     this.leadingIcon,
     this.trailingIcon,
     this.onClick,
@@ -55,20 +55,20 @@ class UChip extends StatelessComponent {
 
   String get _sizeClasses {
     // Using badge size classes as reference
-    return badgeSizeClasses[size] ?? badgeSizeClasses[USize.sm]!;
+    return badgeSizeClasses[size] ?? badgeSizeClasses[DSize.sm]!;
   }
 
   String get _colorClasses {
     final baseColor = defaultColorMapping[color] ?? 'green';
 
     switch (variant) {
-      case UChipVariant.solid:
+      case DChipVariant.solid:
         return 'bg-$baseColor-500 text-white';
-      case UChipVariant.soft:
+      case DChipVariant.soft:
         return 'bg-$baseColor-50 text-$baseColor-700 dark:bg-$baseColor-950 dark:text-$baseColor-300';
-      case UChipVariant.outline:
+      case DChipVariant.outline:
         return 'bg-transparent text-$baseColor-500 ring-1 ring-inset ring-$baseColor-500 dark:text-$baseColor-400 dark:ring-$baseColor-400';
-      case UChipVariant.subtle:
+      case DChipVariant.subtle:
         return 'bg-$baseColor-50 text-$baseColor-500 dark:bg-$baseColor-950 dark:text-$baseColor-400';
     }
   }
@@ -76,41 +76,41 @@ class UChip extends StatelessComponent {
   String get _dotColor {
     final baseColor = defaultColorMapping[color] ?? 'green';
     switch (variant) {
-      case UChipVariant.solid:
+      case DChipVariant.solid:
         return 'bg-white';
-      case UChipVariant.soft:
-      case UChipVariant.outline:
-      case UChipVariant.subtle:
+      case DChipVariant.soft:
+      case DChipVariant.outline:
+      case DChipVariant.subtle:
         return 'bg-$baseColor-500 dark:bg-$baseColor-400';
     }
   }
 
   String get _iconSize {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'size-2.5';
-      case USize.sm:
+      case DSize.sm:
         return 'size-3';
-      case USize.md:
+      case DSize.md:
         return 'size-3.5';
-      case USize.lg:
+      case DSize.lg:
         return 'size-4';
-      case USize.xl:
+      case DSize.xl:
         return 'size-5';
     }
   }
 
   String get _dotSize {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'size-1';
-      case USize.sm:
+      case DSize.sm:
         return 'size-1.5';
-      case USize.md:
+      case DSize.md:
         return 'size-1.5';
-      case USize.lg:
+      case DSize.lg:
         return 'size-2';
-      case USize.xl:
+      case DSize.xl:
         return 'size-2';
     }
   }
@@ -170,9 +170,9 @@ class UChip extends StatelessComponent {
 }
 
 /// Chip Group - Display multiple chips in a row
-class UChipGroup extends StatelessComponent {
+class DChipGroup extends StatelessComponent {
   /// List of chips to display
-  final List<UChip> chips;
+  final List<DChip> chips;
 
   /// Gap between chips
   final String gap;
@@ -180,7 +180,7 @@ class UChipGroup extends StatelessComponent {
   /// Whether chips should wrap
   final bool wrap;
 
-  const UChipGroup({
+  const DChipGroup({
     super.key,
     required this.chips,
     this.gap = 'gap-1.5',

@@ -2,25 +2,25 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Input sizes matching Nuxt UI
-enum UInputSize { xs, sm, md, lg, xl }
+enum DInputSize { xs, sm, md, lg, xl }
 
 /// Input variants matching Nuxt UI
-enum UInputVariant { outline, soft, subtle, ghost, none }
+enum DInputVariant { outline, soft, subtle, ghost, none }
 
 /// Input colors matching Nuxt UI
-enum UInputColor { primary, secondary, success, info, warning, error, neutral }
+enum DInputColor { primary, secondary, success, info, warning, error, neutral }
 
 /// DuxtUI Input component - Nuxt UI compatible
-class UInput extends StatelessComponent {
+class DInput extends StatelessComponent {
   final String? label;
   final String? placeholder;
   final String? name;
   final String? value;
   final String? hint;
   final String? error;
-  final UInputSize size;
-  final UInputVariant variant;
-  final UInputColor? highlightColor;
+  final DInputSize size;
+  final DInputVariant variant;
+  final DInputColor? highlightColor;
   final bool disabled;
   final bool required;
   final bool readonly;
@@ -30,7 +30,7 @@ class UInput extends StatelessComponent {
   final Component? trailingIcon;
   final ValueChanged<String>? onInput;
 
-  const UInput({
+  const DInput({
     super.key,
     this.label,
     this.placeholder,
@@ -38,8 +38,8 @@ class UInput extends StatelessComponent {
     this.value,
     this.hint,
     this.error,
-    this.size = UInputSize.md,
-    this.variant = UInputVariant.outline,
+    this.size = DInputSize.md,
+    this.variant = DInputVariant.outline,
     this.highlightColor,
     this.disabled = false,
     this.required = false,
@@ -56,56 +56,56 @@ class UInput extends StatelessComponent {
 
   String get _sizeClasses {
     switch (size) {
-      case UInputSize.xs:
+      case DInputSize.xs:
         return 'px-2 py-1 text-xs';
-      case UInputSize.sm:
+      case DInputSize.sm:
         return 'px-2.5 py-1.5 text-xs';
-      case UInputSize.md:
+      case DInputSize.md:
         return 'px-2.5 py-1.5 text-sm';
-      case UInputSize.lg:
+      case DInputSize.lg:
         return 'px-3 py-2 text-sm';
-      case UInputSize.xl:
+      case DInputSize.xl:
         return 'px-3 py-2 text-base';
     }
   }
 
   String get _iconSizeClasses {
     switch (size) {
-      case UInputSize.xs:
-      case UInputSize.sm:
+      case DInputSize.xs:
+      case DInputSize.sm:
         return 'size-4';
-      case UInputSize.md:
-      case UInputSize.lg:
+      case DInputSize.md:
+      case DInputSize.lg:
         return 'size-5';
-      case UInputSize.xl:
+      case DInputSize.xl:
         return 'size-6';
     }
   }
 
   String get _leadingPadding {
     switch (size) {
-      case UInputSize.xs:
+      case DInputSize.xs:
         return 'ps-7';
-      case UInputSize.sm:
+      case DInputSize.sm:
         return 'ps-8';
-      case UInputSize.md:
-      case UInputSize.lg:
+      case DInputSize.md:
+      case DInputSize.lg:
         return 'ps-9';
-      case UInputSize.xl:
+      case DInputSize.xl:
         return 'ps-10';
     }
   }
 
   String get _trailingPadding {
     switch (size) {
-      case UInputSize.xs:
+      case DInputSize.xs:
         return 'pe-7';
-      case UInputSize.sm:
+      case DInputSize.sm:
         return 'pe-8';
-      case UInputSize.md:
-      case UInputSize.lg:
+      case DInputSize.md:
+      case DInputSize.lg:
         return 'pe-9';
-      case UInputSize.xl:
+      case DInputSize.xl:
         return 'pe-10';
     }
   }
@@ -117,15 +117,15 @@ class UInput extends StatelessComponent {
     }
 
     switch (variant) {
-      case UInputVariant.outline:
+      case DInputVariant.outline:
         return 'text-gray-900 dark:text-white bg-white dark:bg-gray-900 ring ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-green-500 dark:focus:ring-green-400';
-      case UInputVariant.soft:
+      case DInputVariant.soft:
         return 'text-gray-900 dark:text-white bg-gray-50/50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 focus:bg-gray-100 dark:focus:bg-gray-800';
-      case UInputVariant.subtle:
+      case DInputVariant.subtle:
         return 'text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800 ring ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-green-500';
-      case UInputVariant.ghost:
+      case DInputVariant.ghost:
         return 'text-gray-900 dark:text-white bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800 focus:bg-gray-50 dark:focus:bg-gray-800';
-      case UInputVariant.none:
+      case DInputVariant.none:
         return 'text-gray-900 dark:text-white bg-transparent';
     }
   }
@@ -195,7 +195,7 @@ class UInput extends StatelessComponent {
 }
 
 /// DuxtUI Textarea component - Nuxt UI compatible
-class UTextarea extends StatelessComponent {
+class DTextarea extends StatelessComponent {
   final String? label;
   final String? placeholder;
   final String? name;
@@ -203,14 +203,14 @@ class UTextarea extends StatelessComponent {
   final String? hint;
   final String? error;
   final int rows;
-  final UInputSize size;
-  final UInputVariant variant;
+  final DInputSize size;
+  final DInputVariant variant;
   final bool disabled;
   final bool required;
   final bool autoresize;
   final ValueChanged<String>? onInput;
 
-  const UTextarea({
+  const DTextarea({
     super.key,
     this.label,
     this.placeholder,
@@ -219,8 +219,8 @@ class UTextarea extends StatelessComponent {
     this.hint,
     this.error,
     this.rows = 3,
-    this.size = UInputSize.md,
-    this.variant = UInputVariant.outline,
+    this.size = DInputSize.md,
+    this.variant = DInputVariant.outline,
     this.disabled = false,
     this.required = false,
     this.autoresize = false,
@@ -232,15 +232,15 @@ class UTextarea extends StatelessComponent {
 
   String get _sizeClasses {
     switch (size) {
-      case UInputSize.xs:
+      case DInputSize.xs:
         return 'px-2 py-1 text-xs';
-      case UInputSize.sm:
+      case DInputSize.sm:
         return 'px-2.5 py-1.5 text-xs';
-      case UInputSize.md:
+      case DInputSize.md:
         return 'px-2.5 py-1.5 text-sm';
-      case UInputSize.lg:
+      case DInputSize.lg:
         return 'px-3 py-2 text-sm';
-      case UInputSize.xl:
+      case DInputSize.xl:
         return 'px-3 py-2 text-base';
     }
   }
@@ -252,15 +252,15 @@ class UTextarea extends StatelessComponent {
     }
 
     switch (variant) {
-      case UInputVariant.outline:
+      case DInputVariant.outline:
         return 'text-gray-900 dark:text-white bg-white dark:bg-gray-900 ring ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-green-500 dark:focus:ring-green-400';
-      case UInputVariant.soft:
+      case DInputVariant.soft:
         return 'text-gray-900 dark:text-white bg-gray-50/50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 focus:bg-gray-100 dark:focus:bg-gray-800';
-      case UInputVariant.subtle:
+      case DInputVariant.subtle:
         return 'text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800 ring ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-green-500';
-      case UInputVariant.ghost:
+      case DInputVariant.ghost:
         return 'text-gray-900 dark:text-white bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800 focus:bg-gray-50 dark:focus:bg-gray-800';
-      case UInputVariant.none:
+      case DInputVariant.none:
         return 'text-gray-900 dark:text-white bg-transparent';
     }
   }

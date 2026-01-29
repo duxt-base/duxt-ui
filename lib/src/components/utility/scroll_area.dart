@@ -2,21 +2,21 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Scroll orientation
-enum UScrollOrientation { vertical, horizontal, both }
+enum DScrollOrientation { vertical, horizontal, both }
 
 /// Scrollbar visibility
-enum UScrollbarVisibility { auto, always, hover, never }
+enum DScrollbarVisibility { auto, always, hover, never }
 
 /// DuxtUI ScrollArea component - Custom scrollbar styling
 ///
 /// Provides a scrollable container with customized scrollbar appearance.
 /// Supports both vertical and horizontal scrolling with thin scrollbars.
-class UScrollArea extends StatelessComponent {
+class DScrollArea extends StatelessComponent {
   /// Content to be scrolled
   final List<Component> children;
 
   /// Scroll orientation
-  final UScrollOrientation orientation;
+  final DScrollOrientation orientation;
 
   /// Maximum height (for vertical scroll)
   final String? maxHeight;
@@ -25,41 +25,41 @@ class UScrollArea extends StatelessComponent {
   final String? maxWidth;
 
   /// Scrollbar visibility behavior
-  final UScrollbarVisibility scrollbarVisibility;
+  final DScrollbarVisibility scrollbarVisibility;
 
   /// Custom CSS classes
   final String? classes;
 
-  const UScrollArea({
+  const DScrollArea({
     super.key,
     required this.children,
-    this.orientation = UScrollOrientation.vertical,
+    this.orientation = DScrollOrientation.vertical,
     this.maxHeight,
     this.maxWidth,
-    this.scrollbarVisibility = UScrollbarVisibility.auto,
+    this.scrollbarVisibility = DScrollbarVisibility.auto,
     this.classes,
   });
 
   String get _overflowClasses {
     switch (orientation) {
-      case UScrollOrientation.vertical:
+      case DScrollOrientation.vertical:
         return 'overflow-y-auto overflow-x-hidden';
-      case UScrollOrientation.horizontal:
+      case DScrollOrientation.horizontal:
         return 'overflow-x-auto overflow-y-hidden';
-      case UScrollOrientation.both:
+      case DScrollOrientation.both:
         return 'overflow-auto';
     }
   }
 
   String get _scrollbarClasses {
     switch (scrollbarVisibility) {
-      case UScrollbarVisibility.auto:
+      case DScrollbarVisibility.auto:
         return 'scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent';
-      case UScrollbarVisibility.always:
+      case DScrollbarVisibility.always:
         return 'scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-gray-100 dark:scrollbar-track-gray-800';
-      case UScrollbarVisibility.hover:
+      case DScrollbarVisibility.hover:
         return 'scrollbar-thin scrollbar-thumb-transparent hover:scrollbar-thumb-gray-300 dark:hover:scrollbar-thumb-gray-600 scrollbar-track-transparent';
-      case UScrollbarVisibility.never:
+      case DScrollbarVisibility.never:
         return 'scrollbar-none';
     }
   }

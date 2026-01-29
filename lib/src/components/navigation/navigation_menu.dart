@@ -2,29 +2,29 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Navigation menu orientation
-enum UNavigationOrientation { horizontal, vertical }
+enum DNavigationOrientation { horizontal, vertical }
 
 /// Navigation item variant
-enum UNavigationItemVariant { default_, active, disabled }
+enum DNavigationItemVariant { default_, active, disabled }
 
 /// DuxtUI NavigationMenu component
-class UNavigationMenu extends StatelessComponent {
-  final List<UNavigationItem> items;
-  final UNavigationOrientation orientation;
+class DNavigationMenu extends StatelessComponent {
+  final List<DNavigationItem> items;
+  final DNavigationOrientation orientation;
   final String? classes;
 
-  const UNavigationMenu({
+  const DNavigationMenu({
     super.key,
     required this.items,
-    this.orientation = UNavigationOrientation.horizontal,
+    this.orientation = DNavigationOrientation.horizontal,
     this.classes,
   });
 
   String get _orientationClasses {
     switch (orientation) {
-      case UNavigationOrientation.horizontal:
+      case DNavigationOrientation.horizontal:
         return 'flex items-center gap-1';
-      case UNavigationOrientation.vertical:
+      case DNavigationOrientation.vertical:
         return 'flex flex-col gap-1';
     }
   }
@@ -45,7 +45,7 @@ class UNavigationMenu extends StatelessComponent {
 }
 
 /// Navigation menu item
-class UNavigationItem extends StatelessComponent {
+class DNavigationItem extends StatelessComponent {
   final String label;
   final String? href;
   final Component? icon;
@@ -53,10 +53,10 @@ class UNavigationItem extends StatelessComponent {
   final bool active;
   final bool disabled;
   final VoidCallback? onClick;
-  final List<UNavigationItem>? children;
+  final List<DNavigationItem>? children;
   final String? classes;
 
-  const UNavigationItem({
+  const DNavigationItem({
     super.key,
     required this.label,
     this.href,
@@ -138,11 +138,11 @@ class UNavigationItem extends StatelessComponent {
 }
 
 /// DuxtUI Vertical Navigation component
-class UVerticalNavigation extends StatelessComponent {
-  final List<UNavigationGroup> groups;
+class DVerticalNavigation extends StatelessComponent {
+  final List<DNavigationGroup> groups;
   final String? classes;
 
-  const UVerticalNavigation({
+  const DVerticalNavigation({
     super.key,
     required this.groups,
     this.classes,
@@ -159,12 +159,12 @@ class UVerticalNavigation extends StatelessComponent {
 }
 
 /// Navigation group (for vertical navigation)
-class UNavigationGroup extends StatelessComponent {
+class DNavigationGroup extends StatelessComponent {
   final String? title;
-  final List<UNavigationItem> items;
+  final List<DNavigationItem> items;
   final String? classes;
 
-  const UNavigationGroup({
+  const DNavigationGroup({
     super.key,
     this.title,
     required this.items,

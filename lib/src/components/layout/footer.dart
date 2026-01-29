@@ -2,25 +2,25 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Footer style variants
-enum UFooterVariant { simple, columns, centered }
+enum DFooterVariant { simple, columns, centered }
 
 /// DuxtUI Footer component
-class UFooter extends StatelessComponent {
+class DFooter extends StatelessComponent {
   final List<Component> children;
   final Component? left;
   final Component? center;
   final Component? right;
-  final UFooterVariant variant;
+  final DFooterVariant variant;
   final bool bordered;
   final String? classes;
 
-  const UFooter({
+  const DFooter({
     super.key,
     this.children = const [],
     this.left,
     this.center,
     this.right,
-    this.variant = UFooterVariant.simple,
+    this.variant = DFooterVariant.simple,
     this.bordered = true,
     this.classes,
   });
@@ -76,12 +76,12 @@ class UFooter extends StatelessComponent {
 }
 
 /// DuxtUI Footer Links section
-class UFooterLinks extends StatelessComponent {
+class DFooterLinks extends StatelessComponent {
   final String? title;
-  final List<UFooterLink> links;
+  final List<DFooterLink> links;
   final String? classes;
 
-  const UFooterLinks({
+  const DFooterLinks({
     super.key,
     this.title,
     this.links = const [],
@@ -108,13 +108,13 @@ class UFooterLinks extends StatelessComponent {
 }
 
 /// DuxtUI Footer Link item
-class UFooterLink extends StatelessComponent {
+class DFooterLink extends StatelessComponent {
   final String label;
   final String href;
   final bool external;
   final String? classes;
 
-  const UFooterLink({
+  const DFooterLink({
     super.key,
     required this.label,
     required this.href,
@@ -144,12 +144,12 @@ class UFooterLink extends StatelessComponent {
 }
 
 /// DuxtUI Copyright text
-class UCopyright extends StatelessComponent {
+class DCopyright extends StatelessComponent {
   final String text;
   final int? year;
   final String? classes;
 
-  const UCopyright({
+  const DCopyright({
     super.key,
     required this.text,
     this.year,

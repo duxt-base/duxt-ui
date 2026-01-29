@@ -3,7 +3,7 @@ import 'package:jaspr/dom.dart';
 import '../avatar.dart';
 
 /// Role for chat messages
-enum UChatMessageRole { user, assistant }
+enum DChatMessageRole { user, assistant }
 
 /// Chat message data model
 class ChatMessageData {
@@ -21,20 +21,20 @@ class ChatMessageData {
     this.isLoading = false,
   });
 
-  UChatMessageRole get roleEnum =>
-      role == 'user' ? UChatMessageRole.user : UChatMessageRole.assistant;
+  DChatMessageRole get roleEnum =>
+      role == 'user' ? DChatMessageRole.user : DChatMessageRole.assistant;
 }
 
 /// DuxtUI ChatMessage component - displays a single chat message
-class UChatMessage extends StatelessComponent {
+class DChatMessage extends StatelessComponent {
   final ChatMessageData message;
-  final UAvatar? avatar;
+  final DAvatar? avatar;
   final bool showAvatar;
   final bool showTimestamp;
   final String? userBgColor;
   final String? assistantBgColor;
 
-  const UChatMessage({
+  const DChatMessage({
     super.key,
     required this.message,
     this.avatar,
@@ -52,7 +52,7 @@ class UChatMessage extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
-    final isUser = message.roleEnum == UChatMessageRole.user;
+    final isUser = message.roleEnum == DChatMessageRole.user;
 
     // Message bubble classes
     final bubbleClasses = isUser
@@ -87,8 +87,8 @@ class UChatMessage extends StatelessComponent {
             // Avatar
             if (showAvatar)
               avatar ??
-                  UAvatar(
-                    size: UAvatarSize.sm,
+                  DAvatar(
+                    size: DAvatarSize.sm,
                     text: isUser ? 'U' : 'A',
                   ),
             // Message bubble and timestamp

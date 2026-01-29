@@ -4,24 +4,24 @@ import '../../theme/variants.dart';
 import '../../theme/colors.dart';
 
 /// Slider sizes
-enum USliderSize { xs, sm, md, lg, xl }
+enum DSliderSize { xs, sm, md, lg, xl }
 
 /// DuxtUI Slider component - Range input with Nuxt UI styling
-class USlider extends StatefulComponent {
+class DSlider extends StatefulComponent {
   final String? label;
   final double value;
   final double min;
   final double max;
   final double step;
   final String? name;
-  final USliderSize size;
-  final UColor color;
+  final DSliderSize size;
+  final DColor color;
   final bool disabled;
   final bool showValue;
   final String? hint;
   final ValueChanged<double>? onChange;
 
-  const USlider({
+  const DSlider({
     super.key,
     this.label,
     this.value = 0,
@@ -29,8 +29,8 @@ class USlider extends StatefulComponent {
     this.max = 100,
     this.step = 1,
     this.name,
-    this.size = USliderSize.md,
-    this.color = UColor.primary,
+    this.size = DSliderSize.md,
+    this.color = DColor.primary,
     this.disabled = false,
     this.showValue = false,
     this.hint,
@@ -38,10 +38,10 @@ class USlider extends StatefulComponent {
   });
 
   @override
-  State<USlider> createState() => _USliderState();
+  State<DSlider> createState() => _USliderState();
 }
 
-class _USliderState extends State<USlider> {
+class _USliderState extends State<DSlider> {
   late double _value;
 
   @override
@@ -52,34 +52,34 @@ class _USliderState extends State<USlider> {
 
   String get _trackHeightClass {
     switch (component.size) {
-      case USliderSize.xs:
+      case DSliderSize.xs:
         return 'h-1';
-      case USliderSize.sm:
+      case DSliderSize.sm:
         return 'h-1.5';
-      case USliderSize.md:
+      case DSliderSize.md:
         return 'h-2';
-      case USliderSize.lg:
+      case DSliderSize.lg:
         return 'h-2.5';
-      case USliderSize.xl:
+      case DSliderSize.xl:
         return 'h-3';
     }
   }
 
   String get _accentColor {
     switch (component.color) {
-      case UColor.primary:
+      case DColor.primary:
         return 'accent-green-500';
-      case UColor.secondary:
+      case DColor.secondary:
         return 'accent-blue-500';
-      case UColor.success:
+      case DColor.success:
         return 'accent-green-500';
-      case UColor.info:
+      case DColor.info:
         return 'accent-blue-500';
-      case UColor.warning:
+      case DColor.warning:
         return 'accent-yellow-500';
-      case UColor.error:
+      case DColor.error:
         return 'accent-red-500';
-      case UColor.neutral:
+      case DColor.neutral:
         return 'accent-slate-500';
     }
   }

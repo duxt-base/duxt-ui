@@ -6,114 +6,114 @@ import 'package:duxt_ui/src/theme/variants.dart';
 import 'package:duxt_ui/src/theme/provider.dart';
 
 void main() {
-  group('UColor', () {
+  group('DColor', () {
     test('has all semantic color values', () {
-      expect(UColor.values.length, equals(7));
-      expect(UColor.values, contains(UColor.primary));
-      expect(UColor.values, contains(UColor.secondary));
-      expect(UColor.values, contains(UColor.success));
-      expect(UColor.values, contains(UColor.info));
-      expect(UColor.values, contains(UColor.warning));
-      expect(UColor.values, contains(UColor.error));
-      expect(UColor.values, contains(UColor.neutral));
+      expect(DColor.values.length, equals(7));
+      expect(DColor.values, contains(DColor.primary));
+      expect(DColor.values, contains(DColor.secondary));
+      expect(DColor.values, contains(DColor.success));
+      expect(DColor.values, contains(DColor.info));
+      expect(DColor.values, contains(DColor.warning));
+      expect(DColor.values, contains(DColor.error));
+      expect(DColor.values, contains(DColor.neutral));
     });
   });
 
-  group('UColorShade', () {
+  group('DColorShade', () {
     test('has all shade levels', () {
-      expect(UColorShade.values.length, equals(11));
-      expect(UColorShade.values, contains(UColorShade.s50));
-      expect(UColorShade.values, contains(UColorShade.s100));
-      expect(UColorShade.values, contains(UColorShade.s200));
-      expect(UColorShade.values, contains(UColorShade.s300));
-      expect(UColorShade.values, contains(UColorShade.s400));
-      expect(UColorShade.values, contains(UColorShade.s500));
-      expect(UColorShade.values, contains(UColorShade.s600));
-      expect(UColorShade.values, contains(UColorShade.s700));
-      expect(UColorShade.values, contains(UColorShade.s800));
-      expect(UColorShade.values, contains(UColorShade.s900));
-      expect(UColorShade.values, contains(UColorShade.s950));
+      expect(DColorShade.values.length, equals(11));
+      expect(DColorShade.values, contains(DColorShade.s50));
+      expect(DColorShade.values, contains(DColorShade.s100));
+      expect(DColorShade.values, contains(DColorShade.s200));
+      expect(DColorShade.values, contains(DColorShade.s300));
+      expect(DColorShade.values, contains(DColorShade.s400));
+      expect(DColorShade.values, contains(DColorShade.s500));
+      expect(DColorShade.values, contains(DColorShade.s600));
+      expect(DColorShade.values, contains(DColorShade.s700));
+      expect(DColorShade.values, contains(DColorShade.s800));
+      expect(DColorShade.values, contains(DColorShade.s900));
+      expect(DColorShade.values, contains(DColorShade.s950));
     });
   });
 
   group('defaultColorMapping', () {
     test('maps all semantic colors', () {
-      expect(defaultColorMapping[UColor.primary], equals('green'));
-      expect(defaultColorMapping[UColor.secondary], equals('blue'));
-      expect(defaultColorMapping[UColor.success], equals('green'));
-      expect(defaultColorMapping[UColor.info], equals('blue'));
-      expect(defaultColorMapping[UColor.warning], equals('yellow'));
-      expect(defaultColorMapping[UColor.error], equals('red'));
-      expect(defaultColorMapping[UColor.neutral], equals('slate'));
+      expect(defaultColorMapping[DColor.primary], equals('green'));
+      expect(defaultColorMapping[DColor.secondary], equals('blue'));
+      expect(defaultColorMapping[DColor.success], equals('green'));
+      expect(defaultColorMapping[DColor.info], equals('blue'));
+      expect(defaultColorMapping[DColor.warning], equals('yellow'));
+      expect(defaultColorMapping[DColor.error], equals('red'));
+      expect(defaultColorMapping[DColor.neutral], equals('slate'));
     });
   });
 
   group('colorClass', () {
     test('generates color class with default shade', () {
-      expect(colorClass(UColor.primary), equals('green-500'));
-      expect(colorClass(UColor.secondary), equals('blue-500'));
-      expect(colorClass(UColor.error), equals('red-500'));
+      expect(colorClass(DColor.primary), equals('green-500'));
+      expect(colorClass(DColor.secondary), equals('blue-500'));
+      expect(colorClass(DColor.error), equals('red-500'));
     });
 
     test('generates color class with custom shade', () {
-      expect(colorClass(UColor.primary, 100), equals('green-100'));
-      expect(colorClass(UColor.primary, 900), equals('green-900'));
-      expect(colorClass(UColor.error, 600), equals('red-600'));
+      expect(colorClass(DColor.primary, 100), equals('green-100'));
+      expect(colorClass(DColor.primary, 900), equals('green-900'));
+      expect(colorClass(DColor.error, 600), equals('red-600'));
     });
   });
 
   group('bgColor', () {
     test('generates background color class', () {
-      expect(bgColor(UColor.primary), equals('bg-green-500'));
-      expect(bgColor(UColor.error, 100), equals('bg-red-100'));
+      expect(bgColor(DColor.primary), equals('bg-green-500'));
+      expect(bgColor(DColor.error, 100), equals('bg-red-100'));
     });
   });
 
   group('textColor', () {
     test('generates text color class', () {
-      expect(textColor(UColor.primary), equals('text-green-500'));
-      expect(textColor(UColor.warning, 600), equals('text-yellow-600'));
+      expect(textColor(DColor.primary), equals('text-green-500'));
+      expect(textColor(DColor.warning, 600), equals('text-yellow-600'));
     });
   });
 
   group('ringColor', () {
     test('generates ring color class', () {
-      expect(ringColor(UColor.primary), equals('ring-green-500'));
-      expect(ringColor(UColor.info, 400), equals('ring-blue-400'));
+      expect(ringColor(DColor.primary), equals('ring-green-500'));
+      expect(ringColor(DColor.info, 400), equals('ring-blue-400'));
     });
   });
 
-  group('UTextColors', () {
+  group('DTextColors', () {
     test('has semantic text color classes', () {
-      expect(UTextColors.highlighted, equals('text-gray-900 dark:text-white'));
-      expect(UTextColors.muted, equals('text-gray-500 dark:text-gray-400'));
-      expect(UTextColors.dimmed, equals('text-gray-400 dark:text-gray-500'));
-      expect(UTextColors.inverted, equals('text-white dark:text-gray-900'));
+      expect(DTextColors.highlighted, equals('text-gray-900 dark:text-white'));
+      expect(DTextColors.muted, equals('text-gray-500 dark:text-gray-400'));
+      expect(DTextColors.dimmed, equals('text-gray-400 dark:text-gray-500'));
+      expect(DTextColors.inverted, equals('text-white dark:text-gray-900'));
       expect(
-          UTextColors.defaultText, equals('text-gray-700 dark:text-gray-200'));
+          DTextColors.defaultText, equals('text-gray-700 dark:text-gray-200'));
     });
   });
 
-  group('UBgColors', () {
+  group('DBgColors', () {
     test('has semantic background color classes', () {
-      expect(UBgColors.defaultBg, equals('bg-white dark:bg-gray-900'));
-      expect(UBgColors.elevated, equals('bg-gray-50 dark:bg-gray-800'));
-      expect(UBgColors.inverted, equals('bg-gray-900 dark:bg-white'));
-      expect(UBgColors.muted, equals('bg-gray-100 dark:bg-gray-800'));
+      expect(DBgColors.defaultBg, equals('bg-white dark:bg-gray-900'));
+      expect(DBgColors.elevated, equals('bg-gray-50 dark:bg-gray-800'));
+      expect(DBgColors.inverted, equals('bg-gray-900 dark:bg-white'));
+      expect(DBgColors.muted, equals('bg-gray-100 dark:bg-gray-800'));
     });
   });
 
-  group('URingColors', () {
+  group('DRingColors', () {
     test('has semantic ring color classes', () {
       expect(
-          URingColors.defaultRing, equals('ring-gray-200 dark:ring-gray-800'));
-      expect(URingColors.accented, equals('ring-gray-300 dark:ring-gray-700'));
+          DRingColors.defaultRing, equals('ring-gray-200 dark:ring-gray-800'));
+      expect(DRingColors.accented, equals('ring-gray-300 dark:ring-gray-700'));
     });
   });
 
-  group('UDivideColors', () {
+  group('DDivideColors', () {
     test('has semantic divide color classes', () {
-      expect(UDivideColors.defaultDivide,
+      expect(DDivideColors.defaultDivide,
           equals('divide-gray-200 dark:divide-gray-800'));
     });
   });
@@ -166,79 +166,79 @@ void main() {
   });
 
   // Variant tests
-  group('USize', () {
+  group('DSize', () {
     test('has all size values', () {
-      expect(USize.values.length, equals(5));
-      expect(USize.values, contains(USize.xs));
-      expect(USize.values, contains(USize.sm));
-      expect(USize.values, contains(USize.md));
-      expect(USize.values, contains(USize.lg));
-      expect(USize.values, contains(USize.xl));
+      expect(DSize.values.length, equals(5));
+      expect(DSize.values, contains(DSize.xs));
+      expect(DSize.values, contains(DSize.sm));
+      expect(DSize.values, contains(DSize.md));
+      expect(DSize.values, contains(DSize.lg));
+      expect(DSize.values, contains(DSize.xl));
     });
   });
 
-  group('UVariant', () {
+  group('DVariant', () {
     test('has all variant values', () {
-      expect(UVariant.values.length, equals(7));
-      expect(UVariant.values, contains(UVariant.solid));
-      expect(UVariant.values, contains(UVariant.outline));
-      expect(UVariant.values, contains(UVariant.soft));
-      expect(UVariant.values, contains(UVariant.subtle));
-      expect(UVariant.values, contains(UVariant.ghost));
-      expect(UVariant.values, contains(UVariant.link));
-      expect(UVariant.values, contains(UVariant.none));
+      expect(DVariant.values.length, equals(7));
+      expect(DVariant.values, contains(DVariant.solid));
+      expect(DVariant.values, contains(DVariant.outline));
+      expect(DVariant.values, contains(DVariant.soft));
+      expect(DVariant.values, contains(DVariant.subtle));
+      expect(DVariant.values, contains(DVariant.ghost));
+      expect(DVariant.values, contains(DVariant.link));
+      expect(DVariant.values, contains(DVariant.none));
     });
   });
 
   group('buttonSizeClasses', () {
     test('has classes for all sizes', () {
-      expect(buttonSizeClasses[USize.xs], isNotNull);
-      expect(buttonSizeClasses[USize.sm], isNotNull);
-      expect(buttonSizeClasses[USize.md], isNotNull);
-      expect(buttonSizeClasses[USize.lg], isNotNull);
-      expect(buttonSizeClasses[USize.xl], isNotNull);
+      expect(buttonSizeClasses[DSize.xs], isNotNull);
+      expect(buttonSizeClasses[DSize.sm], isNotNull);
+      expect(buttonSizeClasses[DSize.md], isNotNull);
+      expect(buttonSizeClasses[DSize.lg], isNotNull);
+      expect(buttonSizeClasses[DSize.xl], isNotNull);
     });
 
     test('classes contain expected tailwind utilities', () {
-      expect(buttonSizeClasses[USize.xs], contains('px-2'));
-      expect(buttonSizeClasses[USize.xs], contains('text-xs'));
-      expect(buttonSizeClasses[USize.md], contains('text-sm'));
-      expect(buttonSizeClasses[USize.xl], contains('text-base'));
+      expect(buttonSizeClasses[DSize.xs], contains('px-2'));
+      expect(buttonSizeClasses[DSize.xs], contains('text-xs'));
+      expect(buttonSizeClasses[DSize.md], contains('text-sm'));
+      expect(buttonSizeClasses[DSize.xl], contains('text-base'));
     });
   });
 
   group('buttonIconSizeClasses', () {
     test('has classes for all sizes', () {
-      expect(buttonIconSizeClasses[USize.xs], equals('size-4'));
-      expect(buttonIconSizeClasses[USize.sm], equals('size-4'));
-      expect(buttonIconSizeClasses[USize.md], equals('size-5'));
-      expect(buttonIconSizeClasses[USize.lg], equals('size-5'));
-      expect(buttonIconSizeClasses[USize.xl], equals('size-6'));
+      expect(buttonIconSizeClasses[DSize.xs], equals('size-4'));
+      expect(buttonIconSizeClasses[DSize.sm], equals('size-4'));
+      expect(buttonIconSizeClasses[DSize.md], equals('size-5'));
+      expect(buttonIconSizeClasses[DSize.lg], equals('size-5'));
+      expect(buttonIconSizeClasses[DSize.xl], equals('size-6'));
     });
   });
 
   group('inputSizeClasses', () {
     test('has classes for all sizes', () {
-      expect(inputSizeClasses[USize.xs], isNotNull);
-      expect(inputSizeClasses[USize.sm], isNotNull);
-      expect(inputSizeClasses[USize.md], isNotNull);
-      expect(inputSizeClasses[USize.lg], isNotNull);
-      expect(inputSizeClasses[USize.xl], isNotNull);
+      expect(inputSizeClasses[DSize.xs], isNotNull);
+      expect(inputSizeClasses[DSize.sm], isNotNull);
+      expect(inputSizeClasses[DSize.md], isNotNull);
+      expect(inputSizeClasses[DSize.lg], isNotNull);
+      expect(inputSizeClasses[DSize.xl], isNotNull);
     });
   });
 
   group('badgeSizeClasses', () {
     test('has classes for all sizes', () {
-      expect(badgeSizeClasses[USize.xs], isNotNull);
-      expect(badgeSizeClasses[USize.sm], isNotNull);
-      expect(badgeSizeClasses[USize.md], isNotNull);
-      expect(badgeSizeClasses[USize.lg], isNotNull);
-      expect(badgeSizeClasses[USize.xl], isNotNull);
+      expect(badgeSizeClasses[DSize.xs], isNotNull);
+      expect(badgeSizeClasses[DSize.sm], isNotNull);
+      expect(badgeSizeClasses[DSize.md], isNotNull);
+      expect(badgeSizeClasses[DSize.lg], isNotNull);
+      expect(badgeSizeClasses[DSize.xl], isNotNull);
     });
 
     test('includes rounded classes', () {
-      expect(badgeSizeClasses[USize.xs], contains('rounded-sm'));
-      expect(badgeSizeClasses[USize.md], contains('rounded-md'));
+      expect(badgeSizeClasses[DSize.xs], contains('rounded-sm'));
+      expect(badgeSizeClasses[DSize.md], contains('rounded-md'));
     });
   });
 
@@ -265,45 +265,45 @@ void main() {
   });
 
   // Theme provider tests
-  group('UThemeMode', () {
+  group('DThemeMode', () {
     test('has all mode values', () {
-      expect(UThemeMode.values.length, equals(3));
-      expect(UThemeMode.values, contains(UThemeMode.light));
-      expect(UThemeMode.values, contains(UThemeMode.dark));
-      expect(UThemeMode.values, contains(UThemeMode.system));
+      expect(DThemeMode.values.length, equals(3));
+      expect(DThemeMode.values, contains(DThemeMode.light));
+      expect(DThemeMode.values, contains(DThemeMode.dark));
+      expect(DThemeMode.values, contains(DThemeMode.system));
     });
   });
 
-  group('UThemeConfig', () {
+  group('DThemeConfig', () {
     test('has default configuration', () {
-      const config = UThemeConfig();
-      expect(config.primaryColor, equals(UColor.primary));
-      expect(config.secondaryColor, equals(UColor.secondary));
-      expect(config.successColor, equals(UColor.success));
-      expect(config.infoColor, equals(UColor.info));
-      expect(config.warningColor, equals(UColor.warning));
-      expect(config.errorColor, equals(UColor.error));
-      expect(config.mode, equals(UThemeMode.system));
+      const config = DThemeConfig();
+      expect(config.primaryColor, equals(DColor.primary));
+      expect(config.secondaryColor, equals(DColor.secondary));
+      expect(config.successColor, equals(DColor.success));
+      expect(config.infoColor, equals(DColor.info));
+      expect(config.warningColor, equals(DColor.warning));
+      expect(config.errorColor, equals(DColor.error));
+      expect(config.mode, equals(DThemeMode.system));
     });
 
     test('default config constant is accessible', () {
-      expect(UThemeConfig.defaultConfig.mode, equals(UThemeMode.system));
+      expect(DThemeConfig.defaultConfig.mode, equals(DThemeMode.system));
     });
 
     test('allows custom configuration', () {
-      const config = UThemeConfig(
-        primaryColor: UColor.secondary,
-        mode: UThemeMode.dark,
+      const config = DThemeConfig(
+        primaryColor: DColor.secondary,
+        mode: DThemeMode.dark,
       );
-      expect(config.primaryColor, equals(UColor.secondary));
-      expect(config.mode, equals(UThemeMode.dark));
+      expect(config.primaryColor, equals(DColor.secondary));
+      expect(config.mode, equals(DThemeMode.dark));
     });
   });
 
-  group('UThemeProvider', () {
+  group('DThemeProvider', () {
     testComponents('renders with default config', (tester) async {
       tester.pumpComponent(
-        UThemeProvider(
+        DThemeProvider(
           child: div([Component.text('Content')]),
         ),
       );
@@ -313,8 +313,8 @@ void main() {
 
     testComponents('renders with custom config', (tester) async {
       tester.pumpComponent(
-        UThemeProvider(
-          config: const UThemeConfig(mode: UThemeMode.dark),
+        DThemeProvider(
+          config: const DThemeConfig(mode: DThemeMode.dark),
           child: div([Component.text('Dark mode')]),
         ),
       );
@@ -323,10 +323,10 @@ void main() {
     });
   });
 
-  group('UApp', () {
+  group('DApp', () {
     testComponents('renders with default theme', (tester) async {
       tester.pumpComponent(
-        UApp(
+        DApp(
           child: div([Component.text('App content')]),
         ),
       );
@@ -336,8 +336,8 @@ void main() {
 
     testComponents('renders with custom theme', (tester) async {
       tester.pumpComponent(
-        UApp(
-          theme: const UThemeConfig(mode: UThemeMode.dark),
+        DApp(
+          theme: const DThemeConfig(mode: DThemeMode.dark),
           child: div([Component.text('Dark app')]),
         ),
       );
@@ -348,14 +348,14 @@ void main() {
 
   // Integration with components
   group('Theme integration', () {
-    testComponents('components work within UApp', (tester) async {
+    testComponents('components work within DApp', (tester) async {
       tester.pumpComponent(
-        UApp(
+        DApp(
           child: div([
             span(
-                classes: UTextColors.highlighted,
+                classes: DTextColors.highlighted,
                 [Component.text('Highlighted')]),
-            div(classes: UBgColors.elevated, [Component.text('Elevated')]),
+            div(classes: DBgColors.elevated, [Component.text('Elevated')]),
           ]),
         ),
       );

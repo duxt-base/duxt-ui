@@ -2,17 +2,17 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Grid column configurations
-enum UPageGridColumns { one, two, three, four, five, six }
+enum DPageGridColumns { one, two, three, four, five, six }
 
 /// DuxtUI PageGrid component - Responsive grid layout
 ///
 /// A responsive grid for displaying cards or other content.
-class UPageGrid extends StatelessComponent {
+class DPageGrid extends StatelessComponent {
   /// Grid items
   final List<Component> children;
 
   /// Number of columns on large screens
-  final UPageGridColumns columns;
+  final DPageGridColumns columns;
 
   /// Gap between items
   final String gap;
@@ -20,27 +20,27 @@ class UPageGrid extends StatelessComponent {
   /// Additional CSS classes
   final String? classes;
 
-  const UPageGrid({
+  const DPageGrid({
     super.key,
     this.children = const [],
-    this.columns = UPageGridColumns.three,
+    this.columns = DPageGridColumns.three,
     this.gap = '6',
     this.classes,
   });
 
   String get _columnsClasses {
     switch (columns) {
-      case UPageGridColumns.one:
+      case DPageGridColumns.one:
         return 'grid-cols-1';
-      case UPageGridColumns.two:
+      case DPageGridColumns.two:
         return 'grid-cols-1 sm:grid-cols-2';
-      case UPageGridColumns.three:
+      case DPageGridColumns.three:
         return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3';
-      case UPageGridColumns.four:
+      case DPageGridColumns.four:
         return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4';
-      case UPageGridColumns.five:
+      case DPageGridColumns.five:
         return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5';
-      case UPageGridColumns.six:
+      case DPageGridColumns.six:
         return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6';
     }
   }

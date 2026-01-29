@@ -2,7 +2,7 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// A plan column in the pricing table
-class UPricingTablePlan {
+class DPricingTablePlan {
   /// Plan name
   final String name;
 
@@ -27,7 +27,7 @@ class UPricingTablePlan {
   /// Button click handler
   final VoidCallback? onButtonClick;
 
-  const UPricingTablePlan({
+  const DPricingTablePlan({
     required this.name,
     required this.price,
     this.period,
@@ -40,7 +40,7 @@ class UPricingTablePlan {
 }
 
 /// A feature row in the pricing table
-class UPricingTableFeature {
+class DPricingTableFeature {
   /// Feature name
   final String name;
 
@@ -50,7 +50,7 @@ class UPricingTableFeature {
   /// Values for each plan (can be bool, String, or Component)
   final List<dynamic> values;
 
-  const UPricingTableFeature({
+  const DPricingTableFeature({
     required this.name,
     this.description,
     required this.values,
@@ -58,14 +58,14 @@ class UPricingTableFeature {
 }
 
 /// Feature category/group
-class UPricingTableCategory {
+class DPricingTableCategory {
   /// Category name
   final String name;
 
   /// Features in this category
-  final List<UPricingTableFeature> features;
+  final List<DPricingTableFeature> features;
 
-  const UPricingTableCategory({
+  const DPricingTableCategory({
     required this.name,
     required this.features,
   });
@@ -75,15 +75,15 @@ class UPricingTableCategory {
 ///
 /// Displays a detailed feature comparison table with plans as columns
 /// and features as rows. Supports categories, checkmarks, and custom values.
-class UPricingTable extends StatelessComponent {
+class DPricingTable extends StatelessComponent {
   /// List of plans (columns)
-  final List<UPricingTablePlan> plans;
+  final List<DPricingTablePlan> plans;
 
   /// List of feature categories
-  final List<UPricingTableCategory> categories;
+  final List<DPricingTableCategory> categories;
 
   /// Optional ungrouped features (shown at top if no categories)
-  final List<UPricingTableFeature> features;
+  final List<DPricingTableFeature> features;
 
   /// Additional CSS classes
   final String? classes;
@@ -94,7 +94,7 @@ class UPricingTable extends StatelessComponent {
   /// Whether to make table horizontally scrollable on mobile
   final bool scrollable;
 
-  const UPricingTable({
+  const DPricingTable({
     super.key,
     required this.plans,
     this.categories = const [],
@@ -152,7 +152,7 @@ class UPricingTable extends StatelessComponent {
     );
   }
 
-  Component _buildPlanHeader(UPricingTablePlan plan) {
+  Component _buildPlanHeader(DPricingTablePlan plan) {
     final bgClass = plan.highlighted
         ? 'bg-primary-50 dark:bg-primary-900/20'
         : 'bg-gray-50 dark:bg-gray-800';
@@ -196,7 +196,7 @@ class UPricingTable extends StatelessComponent {
     );
   }
 
-  Component _buildCategoryRow(UPricingTableCategory category) {
+  Component _buildCategoryRow(DPricingTableCategory category) {
     return tr(
       classes: 'border-t border-gray-200 dark:border-gray-700',
       [
@@ -215,7 +215,7 @@ class UPricingTable extends StatelessComponent {
     );
   }
 
-  Component _buildFeatureRow(UPricingTableFeature feature) {
+  Component _buildFeatureRow(DPricingTableFeature feature) {
     return tr(
       classes:
           'border-t border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/50',
@@ -316,7 +316,7 @@ class UPricingTable extends StatelessComponent {
     );
   }
 
-  Component _buildPlanFooter(UPricingTablePlan plan) {
+  Component _buildPlanFooter(DPricingTablePlan plan) {
     final bgClass =
         plan.highlighted ? 'bg-primary-50/50 dark:bg-primary-900/10' : '';
 

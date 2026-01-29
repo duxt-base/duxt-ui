@@ -2,18 +2,18 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Icon sizes matching Nuxt UI
-enum UIconSize { xs, sm, md, lg, xl }
+enum DIconSize { xs, sm, md, lg, xl }
 
 /// DuxtUI Icon component - Iconify icon wrapper
 ///
 /// Renders inline icons using Iconify icon names.
 /// Supports size variants matching Nuxt UI specifications.
-class UIcon extends StatelessComponent {
+class DIcon extends StatelessComponent {
   /// The icon name in Iconify format (e.g., 'heroicons:sun', 'mdi:home')
   final String name;
 
   /// Size of the icon
-  final UIconSize size;
+  final DIconSize size;
 
   /// Custom CSS classes to apply
   final String? classes;
@@ -21,25 +21,25 @@ class UIcon extends StatelessComponent {
   /// Custom color class (e.g., 'text-red-500')
   final String? color;
 
-  const UIcon({
+  const DIcon({
     super.key,
     required this.name,
-    this.size = UIconSize.md,
+    this.size = DIconSize.md,
     this.classes,
     this.color,
   });
 
   String get _sizeClasses {
     switch (size) {
-      case UIconSize.xs:
+      case DIconSize.xs:
         return 'size-4'; // 16px
-      case UIconSize.sm:
+      case DIconSize.sm:
         return 'size-5'; // 20px
-      case UIconSize.md:
+      case DIconSize.md:
         return 'size-6'; // 24px
-      case UIconSize.lg:
+      case DIconSize.lg:
         return 'size-8'; // 32px
-      case UIconSize.xl:
+      case DIconSize.xl:
         return 'size-10'; // 40px
     }
   }
@@ -78,7 +78,7 @@ class UIcon extends StatelessComponent {
 }
 
 /// Common icon names for convenience
-class UIconNames {
+class DIconNames {
   // Navigation
   static const String chevronLeft = 'heroicons:chevron-left';
   static const String chevronRight = 'heroicons:chevron-right';

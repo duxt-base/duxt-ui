@@ -2,7 +2,7 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// DuxtUI ChatPrompt component - input textarea for chat messages
-class UChatPrompt extends StatefulComponent {
+class DChatPrompt extends StatefulComponent {
   final String? placeholder;
   final String? value;
   final bool disabled;
@@ -14,7 +14,7 @@ class UChatPrompt extends StatefulComponent {
   final Component? leadingSlot;
   final Component? trailingSlot;
 
-  const UChatPrompt({
+  const DChatPrompt({
     super.key,
     this.placeholder,
     this.value,
@@ -29,10 +29,10 @@ class UChatPrompt extends StatefulComponent {
   });
 
   @override
-  State<UChatPrompt> createState() => _UChatPromptState();
+  State<DChatPrompt> createState() => _UChatPromptState();
 }
 
-class _UChatPromptState extends State<UChatPrompt> {
+class _UChatPromptState extends State<DChatPrompt> {
   String _value = '';
 
   @override
@@ -42,7 +42,7 @@ class _UChatPromptState extends State<UChatPrompt> {
   }
 
   @override
-  void didUpdateComponent(UChatPrompt oldComponent) {
+  void didUpdateComponent(DChatPrompt oldComponent) {
     super.didUpdateComponent(oldComponent);
     if (component.value != null && component.value != _value) {
       _value = component.value!;

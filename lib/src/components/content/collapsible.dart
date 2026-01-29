@@ -5,14 +5,14 @@ import '../../theme/variants.dart';
 import '../../theme/colors.dart';
 
 /// DuxtUI Collapsible component - Single collapse panel
-class UCollapsible extends StatefulComponent {
+class DCollapsible extends StatefulComponent {
   final Component trigger;
   final List<Component> children;
   final bool defaultOpen;
   final bool disabled;
   final VoidCallback? onOpenChange;
 
-  const UCollapsible({
+  const DCollapsible({
     super.key,
     required this.trigger,
     required this.children,
@@ -22,10 +22,10 @@ class UCollapsible extends StatefulComponent {
   });
 
   @override
-  State<UCollapsible> createState() => _UCollapsibleState();
+  State<DCollapsible> createState() => _UCollapsibleState();
 }
 
-class _UCollapsibleState extends State<UCollapsible> {
+class _UCollapsibleState extends State<DCollapsible> {
   late bool _open;
 
   @override
@@ -69,12 +69,12 @@ class _UCollapsibleState extends State<UCollapsible> {
 }
 
 /// Collapsible trigger helper component with chevron
-class UCollapsibleTrigger extends StatelessComponent {
+class DCollapsibleTrigger extends StatelessComponent {
   final String label;
   final bool open;
   final Component? icon;
 
-  const UCollapsibleTrigger({
+  const DCollapsibleTrigger({
     super.key,
     required this.label,
     this.open = false,
@@ -88,7 +88,7 @@ class UCollapsibleTrigger extends StatelessComponent {
         'flex items-center justify-between',
         'px-4 py-3',
         'font-medium',
-        UTextColors.highlighted,
+        DTextColors.highlighted,
         'hover:bg-gray-50 dark:hover:bg-gray-800/50',
         'transition-colors',
         'rounded-lg',
@@ -112,10 +112,10 @@ class UCollapsibleTrigger extends StatelessComponent {
 }
 
 /// Collapsible content wrapper with padding
-class UCollapsibleContent extends StatelessComponent {
+class DCollapsibleContent extends StatelessComponent {
   final List<Component> children;
 
-  const UCollapsibleContent({
+  const DCollapsibleContent({
     super.key,
     required this.children,
   });
@@ -125,7 +125,7 @@ class UCollapsibleContent extends StatelessComponent {
     return div(
       classes: cx([
         'px-4 py-3',
-        UTextColors.defaultText,
+        DTextColors.defaultText,
       ]),
       children,
     );

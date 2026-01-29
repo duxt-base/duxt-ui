@@ -2,21 +2,21 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Switch sizes
-enum USwitchSize { xs, sm, md, lg, xl }
+enum DSwitchSize { xs, sm, md, lg, xl }
 
 /// Switch colors
-enum USwitchColor { primary, gray, success, warning, error }
+enum DSwitchColor { primary, gray, success, warning, error }
 
 /// DuxtUI Switch component - Matches Nuxt UI styling
-class USwitch extends StatelessComponent {
+class DSwitch extends StatelessComponent {
   final String? label;
   final String? description;
   final String? name;
   final bool checked;
   final bool disabled;
   final bool required;
-  final USwitchSize size;
-  final USwitchColor color;
+  final DSwitchSize size;
+  final DSwitchColor color;
   final String? onLabel;
   final String? offLabel;
   final Component? onIcon;
@@ -25,7 +25,7 @@ class USwitch extends StatelessComponent {
   final String? hint;
   final ValueChanged<bool>? onChange;
 
-  const USwitch({
+  const DSwitch({
     super.key,
     this.label,
     this.description,
@@ -33,8 +33,8 @@ class USwitch extends StatelessComponent {
     this.checked = false,
     this.disabled = false,
     this.required = false,
-    this.size = USwitchSize.md,
-    this.color = USwitchColor.primary,
+    this.size = DSwitchSize.md,
+    this.color = DSwitchColor.primary,
     this.onLabel,
     this.offLabel,
     this.onIcon,
@@ -46,78 +46,78 @@ class USwitch extends StatelessComponent {
 
   String get _trackSizeClasses {
     switch (size) {
-      case USwitchSize.xs:
+      case DSwitchSize.xs:
         return 'h-4 w-7';
-      case USwitchSize.sm:
+      case DSwitchSize.sm:
         return 'h-5 w-9';
-      case USwitchSize.md:
+      case DSwitchSize.md:
         return 'h-6 w-11';
-      case USwitchSize.lg:
+      case DSwitchSize.lg:
         return 'h-7 w-14';
-      case USwitchSize.xl:
+      case DSwitchSize.xl:
         return 'h-8 w-16';
     }
   }
 
   String get _thumbSizeClasses {
     switch (size) {
-      case USwitchSize.xs:
+      case DSwitchSize.xs:
         return 'h-3 w-3';
-      case USwitchSize.sm:
+      case DSwitchSize.sm:
         return 'h-4 w-4';
-      case USwitchSize.md:
+      case DSwitchSize.md:
         return 'h-5 w-5';
-      case USwitchSize.lg:
+      case DSwitchSize.lg:
         return 'h-6 w-6';
-      case USwitchSize.xl:
+      case DSwitchSize.xl:
         return 'h-7 w-7';
     }
   }
 
   String get _thumbTranslateClasses {
     final translateOn = switch (size) {
-      USwitchSize.xs => 'translate-x-3',
-      USwitchSize.sm => 'translate-x-4',
-      USwitchSize.md => 'translate-x-5',
-      USwitchSize.lg => 'translate-x-7',
-      USwitchSize.xl => 'translate-x-8',
+      DSwitchSize.xs => 'translate-x-3',
+      DSwitchSize.sm => 'translate-x-4',
+      DSwitchSize.md => 'translate-x-5',
+      DSwitchSize.lg => 'translate-x-7',
+      DSwitchSize.xl => 'translate-x-8',
     };
     return checked ? translateOn : 'translate-x-0.5';
   }
 
   String get _labelSizeClasses {
     switch (size) {
-      case USwitchSize.xs:
+      case DSwitchSize.xs:
         return 'text-xs';
-      case USwitchSize.sm:
+      case DSwitchSize.sm:
         return 'text-xs';
-      case USwitchSize.md:
+      case DSwitchSize.md:
         return 'text-sm';
-      case USwitchSize.lg:
+      case DSwitchSize.lg:
         return 'text-base';
-      case USwitchSize.xl:
+      case DSwitchSize.xl:
         return 'text-lg';
     }
   }
 
   String get _trackColorClasses {
     final baseColor = switch (color) {
-      USwitchColor.primary => 'indigo',
-      USwitchColor.gray => 'gray',
-      USwitchColor.success => 'green',
-      USwitchColor.warning => 'yellow',
-      USwitchColor.error => 'red',
+      DSwitchColor.primary => 'indigo',
+      DSwitchColor.gray => 'gray',
+      DSwitchColor.success => 'green',
+      DSwitchColor.warning => 'yellow',
+      DSwitchColor.error => 'red',
     };
     return checked ? 'bg-$baseColor-600' : 'bg-gray-200 dark:bg-gray-700';
   }
 
   String get _focusRingClasses {
     final baseColor = switch (color) {
-      USwitchColor.primary => 'indigo',
-      USwitchColor.gray => 'gray',
-      USwitchColor.success => 'green',
-      USwitchColor.warning => 'yellow',
-      USwitchColor.error => 'red',
+      DSwitchColor.primary => 'indigo',
+      DSwitchColor.gray => 'gray',
+      DSwitchColor.success => 'green',
+      DSwitchColor.warning => 'yellow',
+      DSwitchColor.error => 'red',
     };
     return 'focus:ring-$baseColor-500/20';
   }

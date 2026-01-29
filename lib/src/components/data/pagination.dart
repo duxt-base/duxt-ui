@@ -4,10 +4,10 @@ import '../../theme/variants.dart';
 import '../../theme/colors.dart';
 
 /// Pagination variants
-enum UPaginationVariant { solid, outline, soft, subtle, ghost }
+enum DPaginationVariant { solid, outline, soft, subtle, ghost }
 
 /// DuxtUI Pagination component
-class UPagination extends StatelessComponent {
+class DPagination extends StatelessComponent {
   /// Current active page (1-indexed)
   final int currentPage;
 
@@ -27,13 +27,13 @@ class UPagination extends StatelessComponent {
   final bool showPrevNext;
 
   /// Pagination variant
-  final UPaginationVariant variant;
+  final DPaginationVariant variant;
 
   /// Pagination color
-  final UColor color;
+  final DColor color;
 
   /// Pagination size
-  final USize size;
+  final DSize size;
 
   /// Whether pagination is disabled
   final bool disabled;
@@ -50,7 +50,7 @@ class UPagination extends StatelessComponent {
   /// Custom last button text/icon
   final String lastLabel;
 
-  const UPagination({
+  const DPagination({
     super.key,
     required this.currentPage,
     required this.totalPages,
@@ -58,9 +58,9 @@ class UPagination extends StatelessComponent {
     this.siblingCount = 1,
     this.showFirstLast = false,
     this.showPrevNext = true,
-    this.variant = UPaginationVariant.outline,
-    this.color = UColor.primary,
-    this.size = USize.sm,
+    this.variant = DPaginationVariant.outline,
+    this.color = DColor.primary,
+    this.size = DSize.sm,
     this.disabled = false,
     this.prevLabel = 'i-lucide-chevron-left',
     this.nextLabel = 'i-lucide-chevron-right',
@@ -70,30 +70,30 @@ class UPagination extends StatelessComponent {
 
   String get _sizeClasses {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'h-7 min-w-7 text-xs';
-      case USize.sm:
+      case DSize.sm:
         return 'h-8 min-w-8 text-sm';
-      case USize.md:
+      case DSize.md:
         return 'h-9 min-w-9 text-sm';
-      case USize.lg:
+      case DSize.lg:
         return 'h-10 min-w-10 text-base';
-      case USize.xl:
+      case DSize.xl:
         return 'h-11 min-w-11 text-base';
     }
   }
 
   String get _iconSize {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'size-3.5';
-      case USize.sm:
+      case DSize.sm:
         return 'size-4';
-      case USize.md:
+      case DSize.md:
         return 'size-4';
-      case USize.lg:
+      case DSize.lg:
         return 'size-5';
-      case USize.xl:
+      case DSize.xl:
         return 'size-5';
     }
   }
@@ -110,29 +110,29 @@ class UPagination extends StatelessComponent {
 
     if (isActive) {
       switch (variant) {
-        case UPaginationVariant.solid:
+        case DPaginationVariant.solid:
           return '$baseClasses bg-$baseColor-500 text-white';
-        case UPaginationVariant.outline:
+        case DPaginationVariant.outline:
           return '$baseClasses ring-1 ring-inset ring-$baseColor-500 text-$baseColor-500 bg-$baseColor-50 dark:bg-$baseColor-950';
-        case UPaginationVariant.soft:
+        case DPaginationVariant.soft:
           return '$baseClasses bg-$baseColor-100 text-$baseColor-700 dark:bg-$baseColor-900 dark:text-$baseColor-300';
-        case UPaginationVariant.subtle:
+        case DPaginationVariant.subtle:
           return '$baseClasses bg-$baseColor-50 text-$baseColor-500 dark:bg-$baseColor-950 dark:text-$baseColor-400';
-        case UPaginationVariant.ghost:
+        case DPaginationVariant.ghost:
           return '$baseClasses text-$baseColor-500 bg-$baseColor-50 dark:bg-$baseColor-950';
       }
     }
 
     switch (variant) {
-      case UPaginationVariant.solid:
+      case DPaginationVariant.solid:
         return '$baseClasses bg-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800';
-      case UPaginationVariant.outline:
+      case DPaginationVariant.outline:
         return '$baseClasses ring-1 ring-inset ring-gray-200 dark:ring-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800';
-      case UPaginationVariant.soft:
+      case DPaginationVariant.soft:
         return '$baseClasses bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700';
-      case UPaginationVariant.subtle:
+      case DPaginationVariant.subtle:
         return '$baseClasses text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800';
-      case UPaginationVariant.ghost:
+      case DPaginationVariant.ghost:
         return '$baseClasses text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800';
     }
   }
@@ -229,7 +229,7 @@ class UPagination extends StatelessComponent {
         children.add(
           span(
             classes:
-                '$_sizeClasses inline-flex items-center justify-center ${UTextColors.muted}',
+                '$_sizeClasses inline-flex items-center justify-center ${DTextColors.muted}',
             [Component.text('...')],
           ),
         );
@@ -290,7 +290,7 @@ class UPagination extends StatelessComponent {
 }
 
 /// Simple pagination with only prev/next buttons and page info
-class UPaginationSimple extends StatelessComponent {
+class DPaginationSimple extends StatelessComponent {
   /// Current page (1-indexed)
   final int currentPage;
 
@@ -301,17 +301,17 @@ class UPaginationSimple extends StatelessComponent {
   final void Function(int page)? onPageChange;
 
   /// Size
-  final USize size;
+  final DSize size;
 
   /// Whether pagination is disabled
   final bool disabled;
 
-  const UPaginationSimple({
+  const DPaginationSimple({
     super.key,
     required this.currentPage,
     required this.totalPages,
     this.onPageChange,
-    this.size = USize.sm,
+    this.size = DSize.sm,
     this.disabled = false,
   });
 
@@ -339,7 +339,7 @@ class UPaginationSimple extends StatelessComponent {
           [Component.text('Previous')],
         ),
         span(
-          classes: 'text-sm ${UTextColors.muted}',
+          classes: 'text-sm ${DTextColors.muted}',
           [Component.text('Page $currentPage of $totalPages')],
         ),
         button(

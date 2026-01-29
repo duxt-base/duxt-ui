@@ -2,14 +2,14 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Dropdown item
-class UDropdownItem {
+class DDropdownItem {
   final String label;
   final String? icon;
   final bool disabled;
   final bool divider;
   final VoidCallback? onClick;
 
-  const UDropdownItem({
+  const DDropdownItem({
     required this.label,
     this.icon,
     this.disabled = false,
@@ -17,7 +17,7 @@ class UDropdownItem {
     this.onClick,
   });
 
-  const UDropdownItem.divider()
+  const DDropdownItem.divider()
       : label = '',
         icon = null,
         disabled = false,
@@ -26,21 +26,21 @@ class UDropdownItem {
 }
 
 /// DuxtUI Dropdown component
-class UDropdown extends StatefulComponent {
+class DDropdown extends StatefulComponent {
   final Component trigger;
-  final List<UDropdownItem> items;
+  final List<DDropdownItem> items;
 
-  const UDropdown({
+  const DDropdown({
     super.key,
     required this.trigger,
     required this.items,
   });
 
   @override
-  State<UDropdown> createState() => _UDropdownState();
+  State<DDropdown> createState() => _UDropdownState();
 }
 
-class _UDropdownState extends State<UDropdown> {
+class _UDropdownState extends State<DDropdown> {
   bool _open = false;
 
   void _toggle() {

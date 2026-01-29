@@ -4,7 +4,7 @@ import 'package:jaspr/dom.dart';
 /// DuxtUI PageAside component - Sticky sidebar navigation
 ///
 /// A sticky sidebar for navigation, typically used for docs navigation or TOC.
-class UPageAside extends StatelessComponent {
+class DPageAside extends StatelessComponent {
   /// The sidebar content
   final List<Component> children;
 
@@ -20,7 +20,7 @@ class UPageAside extends StatelessComponent {
   /// Optional title for the aside
   final String? title;
 
-  const UPageAside({
+  const DPageAside({
     super.key,
     this.children = const [],
     this.classes,
@@ -60,7 +60,7 @@ class UPageAside extends StatelessComponent {
 }
 
 /// DuxtUI PageAsideLink component - Link item for page aside
-class UPageAsideLink extends StatelessComponent {
+class DPageAsideLink extends StatelessComponent {
   /// Link text
   final String label;
 
@@ -76,7 +76,7 @@ class UPageAsideLink extends StatelessComponent {
   /// Additional CSS classes
   final String? classes;
 
-  const UPageAsideLink({
+  const DPageAsideLink({
     super.key,
     required this.label,
     required this.href,
@@ -102,7 +102,7 @@ class UPageAsideLink extends StatelessComponent {
 }
 
 /// DuxtUI PageAsideGroup component - Group of links with optional title
-class UPageAsideGroup extends StatelessComponent {
+class DPageAsideGroup extends StatelessComponent {
   /// Group title
   final String? title;
 
@@ -118,7 +118,7 @@ class UPageAsideGroup extends StatelessComponent {
   /// Additional CSS classes
   final String? classes;
 
-  const UPageAsideGroup({
+  const DPageAsideGroup({
     super.key,
     this.title,
     this.children = const [],

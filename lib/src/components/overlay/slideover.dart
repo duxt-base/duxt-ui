@@ -2,16 +2,16 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Slideover slide direction
-enum USlideoverSide { left, right }
+enum DSlideoverSide { left, right }
 
 /// Slideover sizes
-enum USlideoverSize { sm, md, lg, xl, full }
+enum DSlideoverSize { sm, md, lg, xl, full }
 
 /// DuxtUI Slideover component - panel that slides over content from side
-class USlideover extends StatefulComponent {
+class DSlideover extends StatefulComponent {
   final bool open;
-  final USlideoverSide side;
-  final USlideoverSize size;
+  final DSlideoverSide side;
+  final DSlideoverSize size;
   final String? title;
   final String? description;
   final Component? footer;
@@ -20,11 +20,11 @@ class USlideover extends StatefulComponent {
   final VoidCallback? onClose;
   final List<Component> children;
 
-  const USlideover({
+  const DSlideover({
     super.key,
     required this.open,
-    this.side = USlideoverSide.right,
-    this.size = USlideoverSize.md,
+    this.side = DSlideoverSide.right,
+    this.size = DSlideoverSize.md,
     this.title,
     this.description,
     this.footer,
@@ -35,32 +35,32 @@ class USlideover extends StatefulComponent {
   });
 
   @override
-  State<USlideover> createState() => _USlideoverState();
+  State<DSlideover> createState() => _USlideoverState();
 }
 
-class _USlideoverState extends State<USlideover> {
+class _USlideoverState extends State<DSlideover> {
   bool _wasOpen = false;
 
   String get _sizeClasses {
     switch (component.size) {
-      case USlideoverSize.sm:
+      case DSlideoverSize.sm:
         return 'max-w-sm';
-      case USlideoverSize.md:
+      case DSlideoverSize.md:
         return 'max-w-md';
-      case USlideoverSize.lg:
+      case DSlideoverSize.lg:
         return 'max-w-lg';
-      case USlideoverSize.xl:
+      case DSlideoverSize.xl:
         return 'max-w-xl';
-      case USlideoverSize.full:
+      case DSlideoverSize.full:
         return 'max-w-full';
     }
   }
 
   String get _positionClasses {
     switch (component.side) {
-      case USlideoverSide.left:
+      case DSlideoverSide.left:
         return 'inset-y-0 left-0';
-      case USlideoverSide.right:
+      case DSlideoverSide.right:
         return 'inset-y-0 right-0';
     }
   }
@@ -68,9 +68,9 @@ class _USlideoverState extends State<USlideover> {
   String get _transformClasses {
     if (!component.open) {
       switch (component.side) {
-        case USlideoverSide.left:
+        case DSlideoverSide.left:
           return '-translate-x-full';
-        case USlideoverSide.right:
+        case DSlideoverSide.right:
           return 'translate-x-full';
       }
     }

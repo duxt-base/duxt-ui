@@ -2,30 +2,30 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Link color variants
-enum ULinkColor { primary, neutral, inherit }
+enum DLinkColor { primary, neutral, inherit }
 
 /// DuxtUI Link component - styled anchor
-class ULink extends StatelessComponent {
+class DLink extends StatelessComponent {
   final String? label;
   final String href;
   final bool external;
   final bool active;
   final bool disabled;
-  final ULinkColor color;
+  final DLinkColor color;
   final bool underline;
   final Component? icon;
   final Component? trailingIcon;
   final List<Component> children;
   final String? classes;
 
-  const ULink({
+  const DLink({
     super.key,
     this.label,
     required this.href,
     this.external = false,
     this.active = false,
     this.disabled = false,
-    this.color = ULinkColor.primary,
+    this.color = DLinkColor.primary,
     this.underline = false,
     this.icon,
     this.trailingIcon,
@@ -35,15 +35,15 @@ class ULink extends StatelessComponent {
 
   String get _colorClasses {
     switch (color) {
-      case ULinkColor.primary:
+      case DLinkColor.primary:
         return active
             ? 'text-primary-600 dark:text-primary-400'
             : 'text-primary-500 dark:text-primary-400 hover:text-primary-600 dark:hover:text-primary-300';
-      case ULinkColor.neutral:
+      case DLinkColor.neutral:
         return active
             ? 'text-gray-900 dark:text-white'
             : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white';
-      case ULinkColor.inherit:
+      case DLinkColor.inherit:
         return 'text-inherit hover:opacity-80';
     }
   }
@@ -81,7 +81,7 @@ class ULink extends StatelessComponent {
 }
 
 /// DuxtUI NavLink component - navigation-specific link styling
-class UNavLink extends StatelessComponent {
+class DNavLink extends StatelessComponent {
   final String label;
   final String href;
   final bool active;
@@ -89,7 +89,7 @@ class UNavLink extends StatelessComponent {
   final Component? icon;
   final String? classes;
 
-  const UNavLink({
+  const DNavLink({
     super.key,
     required this.label,
     required this.href,
@@ -119,14 +119,14 @@ class UNavLink extends StatelessComponent {
 }
 
 /// DuxtUI SocialLink component - for social media links
-class USocialLink extends StatelessComponent {
+class DSocialLink extends StatelessComponent {
   final String href;
   final Component icon;
   final String? label;
   final String? ariaLabel;
   final String? classes;
 
-  const USocialLink({
+  const DSocialLink({
     super.key,
     required this.href,
     required this.icon,

@@ -2,17 +2,17 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Tab orientation
-enum UTabsOrientation { horizontal, vertical }
+enum DTabsOrientation { horizontal, vertical }
 
 /// Tab item data
-class UTabItem {
+class DTabItem {
   final String label;
   final String value;
   final Component? icon;
   final Component? content;
   final bool disabled;
 
-  const UTabItem({
+  const DTabItem({
     required this.label,
     required this.value,
     this.icon,
@@ -26,27 +26,27 @@ class UTabItem {
 /// A stateful component that manages tab selection internally.
 /// Use [defaultValue] to set the initial selected tab.
 /// Use [onSelect] callback to respond to tab changes.
-class UTabs extends StatefulComponent {
-  final List<UTabItem> items;
+class DTabs extends StatefulComponent {
+  final List<DTabItem> items;
   final String? defaultValue;
-  final UTabsOrientation orientation;
+  final DTabsOrientation orientation;
   final bool unmountOnHide;
   final ValueChanged<String>? onSelect;
 
-  const UTabs({
+  const DTabs({
     super.key,
     required this.items,
     this.defaultValue,
-    this.orientation = UTabsOrientation.horizontal,
+    this.orientation = DTabsOrientation.horizontal,
     this.unmountOnHide = true,
     this.onSelect,
   });
 
   @override
-  State<UTabs> createState() => _UTabsState();
+  State<DTabs> createState() => _UTabsState();
 }
 
-class _UTabsState extends State<UTabs> {
+class _UTabsState extends State<DTabs> {
   late String _selected;
 
   @override
@@ -65,7 +65,7 @@ class _UTabsState extends State<UTabs> {
 
   @override
   Component build(BuildContext context) {
-    final isVertical = component.orientation == UTabsOrientation.vertical;
+    final isVertical = component.orientation == DTabsOrientation.vertical;
 
     if (isVertical) {
       return div(classes: 'flex gap-4', [
@@ -108,7 +108,7 @@ class _UTabsState extends State<UTabs> {
     ]);
   }
 
-  Component _buildTab(UTabItem item, bool isVertical) {
+  Component _buildTab(DTabItem item, bool isVertical) {
     final isActive = item.value == _selected;
 
     final baseClasses =
@@ -140,25 +140,25 @@ class _UTabsState extends State<UTabs> {
 }
 
 /// Controlled tabs variant that allows external state management
-class UControlledTabs extends StatelessComponent {
-  final List<UTabItem> items;
+class DControlledTabs extends StatelessComponent {
+  final List<DTabItem> items;
   final String selected;
-  final UTabsOrientation orientation;
+  final DTabsOrientation orientation;
   final bool unmountOnHide;
   final ValueChanged<String>? onSelect;
 
-  const UControlledTabs({
+  const DControlledTabs({
     super.key,
     required this.items,
     required this.selected,
-    this.orientation = UTabsOrientation.horizontal,
+    this.orientation = DTabsOrientation.horizontal,
     this.unmountOnHide = true,
     this.onSelect,
   });
 
   @override
   Component build(BuildContext context) {
-    final isVertical = orientation == UTabsOrientation.vertical;
+    final isVertical = orientation == DTabsOrientation.vertical;
 
     if (isVertical) {
       return div(classes: 'flex gap-4', [
@@ -197,7 +197,7 @@ class UControlledTabs extends StatelessComponent {
     ]);
   }
 
-  Component _buildTab(UTabItem item, bool isVertical) {
+  Component _buildTab(DTabItem item, bool isVertical) {
     final isActive = item.value == selected;
 
     final baseClasses =

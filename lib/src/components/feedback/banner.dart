@@ -4,34 +4,34 @@ import 'package:jaspr/dom.dart';
 import '../../theme/variants.dart';
 
 /// Banner color variants
-enum UBannerColor { primary, secondary, success, info, warning, error }
+enum DBannerColor { primary, secondary, success, info, warning, error }
 
 /// Banner variant styles
-enum UBannerVariant { solid, outline, soft, subtle }
+enum DBannerVariant { solid, outline, soft, subtle }
 
 /// Banner position
-enum UBannerPosition { top, bottom }
+enum DBannerPosition { top, bottom }
 
 /// DuxtUI Banner component - Top/bottom banner message
-class UBanner extends StatelessComponent {
+class DBanner extends StatelessComponent {
   final String? title;
   final String? description;
-  final UBannerColor color;
-  final UBannerVariant variant;
-  final UBannerPosition position;
+  final DBannerColor color;
+  final DBannerVariant variant;
+  final DBannerPosition position;
   final Component? icon;
   final List<Component> actions;
   final bool closable;
   final VoidCallback? onClose;
   final bool sticky;
 
-  const UBanner({
+  const DBanner({
     super.key,
     this.title,
     this.description,
-    this.color = UBannerColor.primary,
-    this.variant = UBannerVariant.solid,
-    this.position = UBannerPosition.top,
+    this.color = DBannerColor.primary,
+    this.variant = DBannerVariant.solid,
+    this.position = DBannerPosition.top,
     this.icon,
     this.actions = const [],
     this.closable = true,
@@ -41,17 +41,17 @@ class UBanner extends StatelessComponent {
 
   String get _colorName {
     switch (color) {
-      case UBannerColor.primary:
+      case DBannerColor.primary:
         return 'green';
-      case UBannerColor.secondary:
+      case DBannerColor.secondary:
         return 'blue';
-      case UBannerColor.success:
+      case DBannerColor.success:
         return 'green';
-      case UBannerColor.info:
+      case DBannerColor.info:
         return 'blue';
-      case UBannerColor.warning:
+      case DBannerColor.warning:
         return 'yellow';
-      case UBannerColor.error:
+      case DBannerColor.error:
         return 'red';
     }
   }
@@ -59,13 +59,13 @@ class UBanner extends StatelessComponent {
   String get _variantClasses {
     final c = _colorName;
     switch (variant) {
-      case UBannerVariant.solid:
+      case DBannerVariant.solid:
         return 'bg-$c-500 text-white';
-      case UBannerVariant.outline:
+      case DBannerVariant.outline:
         return 'bg-white dark:bg-gray-900 border-b border-$c-500 text-$c-600 dark:text-$c-400';
-      case UBannerVariant.soft:
+      case DBannerVariant.soft:
         return 'bg-$c-50 dark:bg-$c-950 text-$c-700 dark:text-$c-300';
-      case UBannerVariant.subtle:
+      case DBannerVariant.subtle:
         return 'bg-$c-50 dark:bg-$c-950 border-b border-$c-200 dark:border-$c-800 text-$c-700 dark:text-$c-300';
     }
   }
@@ -73,31 +73,31 @@ class UBanner extends StatelessComponent {
   String get _positionClasses {
     final stickyClass = sticky ? 'sticky z-40' : '';
     switch (position) {
-      case UBannerPosition.top:
+      case DBannerPosition.top:
         return '$stickyClass ${sticky ? "top-0" : ""}';
-      case UBannerPosition.bottom:
+      case DBannerPosition.bottom:
         return '$stickyClass ${sticky ? "bottom-0" : ""}';
     }
   }
 
   String get _closeButtonClasses {
     switch (variant) {
-      case UBannerVariant.solid:
+      case DBannerVariant.solid:
         return 'text-white/80 hover:text-white hover:bg-white/10';
-      case UBannerVariant.outline:
-      case UBannerVariant.soft:
-      case UBannerVariant.subtle:
+      case DBannerVariant.outline:
+      case DBannerVariant.soft:
+      case DBannerVariant.subtle:
         return 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800';
     }
   }
 
   String get _actionButtonClasses {
     switch (variant) {
-      case UBannerVariant.solid:
+      case DBannerVariant.solid:
         return 'text-white underline-offset-2 hover:underline';
-      case UBannerVariant.outline:
-      case UBannerVariant.soft:
-      case UBannerVariant.subtle:
+      case DBannerVariant.outline:
+      case DBannerVariant.soft:
+      case DBannerVariant.subtle:
         return 'font-medium hover:underline';
     }
   }
@@ -172,12 +172,12 @@ class UBanner extends StatelessComponent {
 }
 
 /// Banner link action
-class UBannerAction extends StatelessComponent {
+class DBannerAction extends StatelessComponent {
   final String label;
   final VoidCallback? onClick;
   final String? href;
 
-  const UBannerAction({
+  const DBannerAction({
     super.key,
     required this.label,
     this.onClick,
@@ -203,13 +203,13 @@ class UBannerAction extends StatelessComponent {
 }
 
 /// Preset announcement banner
-class UBannerAnnouncement extends StatelessComponent {
+class DBannerAnnouncement extends StatelessComponent {
   final String message;
   final String? linkText;
   final String? linkHref;
   final VoidCallback? onClose;
 
-  const UBannerAnnouncement({
+  const DBannerAnnouncement({
     super.key,
     required this.message,
     this.linkText,
@@ -219,25 +219,25 @@ class UBannerAnnouncement extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
-    return UBanner(
+    return DBanner(
       description: message,
-      color: UBannerColor.primary,
-      variant: UBannerVariant.solid,
+      color: DBannerColor.primary,
+      variant: DBannerVariant.solid,
       closable: onClose != null,
       onClose: onClose,
       actions: linkText != null
-          ? [UBannerAction(label: linkText!, href: linkHref)]
+          ? [DBannerAction(label: linkText!, href: linkHref)]
           : [],
     );
   }
 }
 
 /// Preset maintenance banner
-class UBannerMaintenance extends StatelessComponent {
+class DBannerMaintenance extends StatelessComponent {
   final String? message;
   final VoidCallback? onClose;
 
-  const UBannerMaintenance({
+  const DBannerMaintenance({
     super.key,
     this.message,
     this.onClose,
@@ -245,13 +245,13 @@ class UBannerMaintenance extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
-    return UBanner(
+    return DBanner(
       icon: div([Component.text('\u{1F6A7}')]), // Construction emoji
       title: 'Maintenance',
       description: message ??
           'We are currently performing maintenance. Some features may be unavailable.',
-      color: UBannerColor.warning,
-      variant: UBannerVariant.soft,
+      color: DBannerColor.warning,
+      variant: DBannerVariant.soft,
       closable: onClose != null,
       onClose: onClose,
     );
@@ -259,12 +259,12 @@ class UBannerMaintenance extends StatelessComponent {
 }
 
 /// Preset cookie consent banner
-class UBannerCookieConsent extends StatelessComponent {
+class DBannerCookieConsent extends StatelessComponent {
   final VoidCallback? onAccept;
   final VoidCallback? onDecline;
   final String? privacyPolicyHref;
 
-  const UBannerCookieConsent({
+  const DBannerCookieConsent({
     super.key,
     this.onAccept,
     this.onDecline,
@@ -273,16 +273,16 @@ class UBannerCookieConsent extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
-    return UBanner(
+    return DBanner(
       description: 'We use cookies to enhance your browsing experience.',
-      color: UBannerColor.info,
-      variant: UBannerVariant.subtle,
-      position: UBannerPosition.bottom,
+      color: DBannerColor.info,
+      variant: DBannerVariant.subtle,
+      position: DBannerPosition.bottom,
       sticky: true,
       closable: false,
       actions: [
         if (privacyPolicyHref != null)
-          UBannerAction(label: 'Learn more', href: privacyPolicyHref),
+          DBannerAction(label: 'Learn more', href: privacyPolicyHref),
         button(
           type: ButtonType.button,
           onClick: onDecline,

@@ -5,7 +5,7 @@ import 'package:jaspr/dom.dart';
 ///
 /// A horizontal toolbar for dashboard panels.
 /// Typically used for page-level actions, filters, or secondary navigation.
-class UDashboardToolbar extends StatelessComponent {
+class DDashboardToolbar extends StatelessComponent {
   /// Custom CSS classes
   final String? classes;
 
@@ -19,43 +19,43 @@ class UDashboardToolbar extends StatelessComponent {
   final bool bordered;
 
   /// Background variant
-  final UToolbarBackground background;
+  final DToolbarBackground background;
 
   /// Height variant
-  final UToolbarHeight height;
+  final DToolbarHeight height;
 
   /// Child components (rendered in the center)
   final List<Component> children;
 
-  const UDashboardToolbar({
+  const DDashboardToolbar({
     super.key,
     this.classes,
     this.leading,
     this.trailing,
     this.bordered = true,
-    this.background = UToolbarBackground.white,
-    this.height = UToolbarHeight.md,
+    this.background = DToolbarBackground.white,
+    this.height = DToolbarHeight.md,
     this.children = const [],
   });
 
   String get _heightClasses {
     switch (height) {
-      case UToolbarHeight.sm:
+      case DToolbarHeight.sm:
         return 'h-10';
-      case UToolbarHeight.md:
+      case DToolbarHeight.md:
         return 'h-12';
-      case UToolbarHeight.lg:
+      case DToolbarHeight.lg:
         return 'h-14';
     }
   }
 
   String get _backgroundClasses {
     switch (background) {
-      case UToolbarBackground.white:
+      case DToolbarBackground.white:
         return 'bg-white dark:bg-gray-900';
-      case UToolbarBackground.gray:
+      case DToolbarBackground.gray:
         return 'bg-gray-50 dark:bg-gray-900';
-      case UToolbarBackground.transparent:
+      case DToolbarBackground.transparent:
         return 'bg-transparent';
     }
   }
@@ -84,14 +84,14 @@ class UDashboardToolbar extends StatelessComponent {
 }
 
 /// Toolbar background variants
-enum UToolbarBackground { white, gray, transparent }
+enum DToolbarBackground { white, gray, transparent }
 
 /// Toolbar height variants
-enum UToolbarHeight { sm, md, lg }
+enum DToolbarHeight { sm, md, lg }
 
 /// Toolbar separator
-class UToolbarSeparator extends StatelessComponent {
-  const UToolbarSeparator({super.key});
+class DToolbarSeparator extends StatelessComponent {
+  const DToolbarSeparator({super.key});
 
   @override
   Component build(BuildContext context) {
@@ -103,8 +103,8 @@ class UToolbarSeparator extends StatelessComponent {
 }
 
 /// Toolbar spacer (pushes items to opposite sides)
-class UToolbarSpacer extends StatelessComponent {
-  const UToolbarSpacer({super.key});
+class DToolbarSpacer extends StatelessComponent {
+  const DToolbarSpacer({super.key});
 
   @override
   Component build(BuildContext context) {

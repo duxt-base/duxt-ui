@@ -4,13 +4,13 @@ import '../../theme/variants.dart';
 import '../../theme/colors.dart';
 
 /// Timeline item status
-enum UTimelineStatus { pending, current, completed }
+enum DTimelineStatus { pending, current, completed }
 
 /// Timeline orientation
-enum UTimelineOrientation { vertical, horizontal }
+enum DTimelineOrientation { vertical, horizontal }
 
 /// Timeline item data
-class UTimelineItem {
+class DTimelineItem {
   /// Unique identifier
   final String? id;
 
@@ -27,125 +27,125 @@ class UTimelineItem {
   final String? time;
 
   /// Item status
-  final UTimelineStatus status;
+  final DTimelineStatus status;
 
   /// Custom color (overrides status color)
-  final UColor? color;
+  final DColor? color;
 
   /// Custom content widget (optional)
   final Component? content;
 
-  const UTimelineItem({
+  const DTimelineItem({
     this.id,
     required this.title,
     this.description,
     this.icon,
     this.time,
-    this.status = UTimelineStatus.pending,
+    this.status = DTimelineStatus.pending,
     this.color,
     this.content,
   });
 }
 
 /// DuxtUI Timeline component
-class UTimeline extends StatelessComponent {
+class DTimeline extends StatelessComponent {
   /// List of timeline items
-  final List<UTimelineItem> items;
+  final List<DTimelineItem> items;
 
   /// Timeline orientation
-  final UTimelineOrientation orientation;
+  final DTimelineOrientation orientation;
 
   /// Default color for items
-  final UColor color;
+  final DColor color;
 
   /// Size of the timeline dots/icons
-  final USize size;
+  final DSize size;
 
   /// Whether to show connecting lines
   final bool showConnectors;
 
   /// Whether items are clickable
-  final void Function(UTimelineItem item, int index)? onItemClick;
+  final void Function(DTimelineItem item, int index)? onItemClick;
 
-  const UTimeline({
+  const DTimeline({
     super.key,
     required this.items,
-    this.orientation = UTimelineOrientation.vertical,
-    this.color = UColor.primary,
-    this.size = USize.md,
+    this.orientation = DTimelineOrientation.vertical,
+    this.color = DColor.primary,
+    this.size = DSize.md,
     this.showConnectors = true,
     this.onItemClick,
   });
 
   String get _dotSize {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'size-2';
-      case USize.sm:
+      case DSize.sm:
         return 'size-2.5';
-      case USize.md:
+      case DSize.md:
         return 'size-3';
-      case USize.lg:
+      case DSize.lg:
         return 'size-4';
-      case USize.xl:
+      case DSize.xl:
         return 'size-5';
     }
   }
 
   String get _iconContainerSize {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'size-5';
-      case USize.sm:
+      case DSize.sm:
         return 'size-6';
-      case USize.md:
+      case DSize.md:
         return 'size-8';
-      case USize.lg:
+      case DSize.lg:
         return 'size-10';
-      case USize.xl:
+      case DSize.xl:
         return 'size-12';
     }
   }
 
   String get _iconSize {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'size-2.5';
-      case USize.sm:
+      case DSize.sm:
         return 'size-3';
-      case USize.md:
+      case DSize.md:
         return 'size-4';
-      case USize.lg:
+      case DSize.lg:
         return 'size-5';
-      case USize.xl:
+      case DSize.xl:
         return 'size-6';
     }
   }
 
-  String _getDotColor(UTimelineItem item) {
+  String _getDotColor(DTimelineItem item) {
     final itemColor = item.color ?? color;
     final baseColor = defaultColorMapping[itemColor] ?? 'green';
 
     switch (item.status) {
-      case UTimelineStatus.completed:
+      case DTimelineStatus.completed:
         return 'bg-$baseColor-500';
-      case UTimelineStatus.current:
+      case DTimelineStatus.current:
         return 'bg-$baseColor-500 ring-4 ring-$baseColor-100 dark:ring-$baseColor-900';
-      case UTimelineStatus.pending:
+      case DTimelineStatus.pending:
         return 'bg-gray-300 dark:bg-gray-600';
     }
   }
 
-  String _getIconContainerColor(UTimelineItem item) {
+  String _getIconContainerColor(DTimelineItem item) {
     final itemColor = item.color ?? color;
     final baseColor = defaultColorMapping[itemColor] ?? 'green';
 
     switch (item.status) {
-      case UTimelineStatus.completed:
+      case DTimelineStatus.completed:
         return 'bg-$baseColor-500 text-white';
-      case UTimelineStatus.current:
+      case DTimelineStatus.current:
         return 'bg-$baseColor-100 text-$baseColor-600 dark:bg-$baseColor-900 dark:text-$baseColor-400 ring-4 ring-$baseColor-50 dark:ring-$baseColor-950';
-      case UTimelineStatus.pending:
+      case DTimelineStatus.pending:
         return 'bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400';
     }
   }
@@ -154,7 +154,7 @@ class UTimeline extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
-    if (orientation == UTimelineOrientation.horizontal) {
+    if (orientation == DTimelineOrientation.horizontal) {
       return _buildHorizontal(context);
     }
     return _buildVertical(context);
@@ -169,7 +169,7 @@ class UTimeline extends StatelessComponent {
     );
   }
 
-  Component _buildVerticalItem(UTimelineItem item, int index) {
+  Component _buildVerticalItem(DTimelineItem item, int index) {
     final isLast = index == items.length - 1;
     final hasIcon = item.icon != null;
 
@@ -224,15 +224,15 @@ class UTimeline extends StatelessComponent {
                 span(
                   classes: cx([
                     'font-medium',
-                    item.status == UTimelineStatus.pending
-                        ? UTextColors.muted
-                        : UTextColors.defaultText,
+                    item.status == DTimelineStatus.pending
+                        ? DTextColors.muted
+                        : DTextColors.defaultText,
                   ]),
                   [Component.text(item.title)],
                 ),
                 if (item.time != null)
                   span(
-                    classes: 'text-sm ${UTextColors.muted} shrink-0',
+                    classes: 'text-sm ${DTextColors.muted} shrink-0',
                     [Component.text(item.time!)],
                   ),
               ],
@@ -240,7 +240,7 @@ class UTimeline extends StatelessComponent {
             // Description
             if (item.description != null)
               p(
-                classes: 'mt-1 text-sm ${UTextColors.muted}',
+                classes: 'mt-1 text-sm ${DTextColors.muted}',
                 [Component.text(item.description!)],
               ),
             // Custom content
@@ -279,7 +279,7 @@ class UTimeline extends StatelessComponent {
     );
   }
 
-  Component _buildHorizontalItem(UTimelineItem item, int index) {
+  Component _buildHorizontalItem(DTimelineItem item, int index) {
     final isLast = index == items.length - 1;
     final hasIcon = item.icon != null;
 
@@ -324,15 +324,15 @@ class UTimeline extends StatelessComponent {
             span(
               classes: cx([
                 'font-medium text-sm',
-                item.status == UTimelineStatus.pending
-                    ? UTextColors.muted
-                    : UTextColors.defaultText,
+                item.status == DTimelineStatus.pending
+                    ? DTextColors.muted
+                    : DTextColors.defaultText,
               ]),
               [Component.text(item.title)],
             ),
             if (item.time != null)
               p(
-                classes: 'mt-0.5 text-xs ${UTextColors.muted}',
+                classes: 'mt-0.5 text-xs ${DTextColors.muted}',
                 [Component.text(item.time!)],
               ),
           ],
@@ -343,7 +343,7 @@ class UTimeline extends StatelessComponent {
 }
 
 /// Simple timeline with just text items
-class UTimelineSimple extends StatelessComponent {
+class DTimelineSimple extends StatelessComponent {
   /// List of text items
   final List<String> items;
 
@@ -351,13 +351,13 @@ class UTimelineSimple extends StatelessComponent {
   final int? activeIndex;
 
   /// Timeline color
-  final UColor color;
+  final DColor color;
 
-  const UTimelineSimple({
+  const DTimelineSimple({
     super.key,
     required this.items,
     this.activeIndex,
-    this.color = UColor.primary,
+    this.color = DColor.primary,
   });
 
   @override
@@ -402,11 +402,11 @@ class UTimelineSimple extends StatelessComponent {
                 classes: cx([
                   'text-sm',
                   if (activeIndex != null && i == activeIndex!)
-                    'font-medium ${UTextColors.defaultText}'
+                    'font-medium ${DTextColors.defaultText}'
                   else if (activeIndex != null && i < activeIndex!)
-                    UTextColors.defaultText
+                    DTextColors.defaultText
                   else
-                    UTextColors.muted,
+                    DTextColors.muted,
                 ]),
                 [Component.text(items[i])],
               ),

@@ -3,18 +3,18 @@ import 'package:jaspr/dom.dart';
 import 'pricing_plan.dart';
 
 /// Grid column configuration for pricing plans
-enum UPricingPlansColumns { two, three, four }
+enum DPricingPlansColumns { two, three, four }
 
 /// DuxtUI PricingPlans component - Grid of pricing plan cards
 ///
-/// Displays a responsive grid of UPricingPlan components.
+/// Displays a responsive grid of DPricingPlan components.
 /// Typically used for side-by-side plan comparison.
-class UPricingPlans extends StatelessComponent {
+class DPricingPlans extends StatelessComponent {
   /// List of pricing plans
-  final List<UPricingPlan> plans;
+  final List<DPricingPlan> plans;
 
   /// Number of columns at large breakpoint
-  final UPricingPlansColumns columns;
+  final DPricingPlansColumns columns;
 
   /// Gap between plans
   final String gap;
@@ -34,10 +34,10 @@ class UPricingPlans extends StatelessComponent {
   /// Billing toggle component (monthly/yearly)
   final Component? billingToggle;
 
-  const UPricingPlans({
+  const DPricingPlans({
     super.key,
     required this.plans,
-    this.columns = UPricingPlansColumns.three,
+    this.columns = DPricingPlansColumns.three,
     this.gap = 'gap-8',
     this.classes,
     this.title,
@@ -48,11 +48,11 @@ class UPricingPlans extends StatelessComponent {
 
   String get _columnClasses {
     switch (columns) {
-      case UPricingPlansColumns.two:
+      case DPricingPlansColumns.two:
         return 'grid-cols-1 md:grid-cols-2';
-      case UPricingPlansColumns.three:
+      case DPricingPlansColumns.three:
         return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3';
-      case UPricingPlansColumns.four:
+      case DPricingPlansColumns.four:
         return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4';
     }
   }
@@ -98,7 +98,7 @@ class UPricingPlans extends StatelessComponent {
 }
 
 /// Billing toggle component for switching between monthly/yearly pricing
-class UBillingToggle extends StatelessComponent {
+class DBillingToggle extends StatelessComponent {
   /// Currently selected option (true = yearly, false = monthly)
   final bool isYearly;
 
@@ -114,7 +114,7 @@ class UBillingToggle extends StatelessComponent {
   /// Change callback
   final void Function(bool isYearly)? onChange;
 
-  const UBillingToggle({
+  const DBillingToggle({
     super.key,
     required this.isYearly,
     this.monthlyLabel = 'Monthly',

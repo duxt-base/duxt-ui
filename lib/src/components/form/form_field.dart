@@ -3,24 +3,24 @@ import 'package:jaspr/dom.dart';
 import '../../theme/variants.dart';
 
 /// Form field sizes
-enum UFormFieldSize { sm, md, lg }
+enum DFormFieldSize { sm, md, lg }
 
 /// Validation rule
-class UValidationRule {
+class DValidationRule {
   final String message;
   final bool Function(dynamic value) validator;
 
-  const UValidationRule({
+  const DValidationRule({
     required this.message,
     required this.validator,
   });
 }
 
 /// Common validation rules
-class UValidators {
+class DValidators {
   /// Required field validator
-  static UValidationRule required([String? message]) {
-    return UValidationRule(
+  static DValidationRule required([String? message]) {
+    return DValidationRule(
       message: message ?? 'This field is required',
       validator: (value) {
         if (value == null) return false;
@@ -32,8 +32,8 @@ class UValidators {
   }
 
   /// Email validator
-  static UValidationRule email([String? message]) {
-    return UValidationRule(
+  static DValidationRule email([String? message]) {
+    return DValidationRule(
       message: message ?? 'Please enter a valid email address',
       validator: (value) {
         if (value == null || value is! String || value.isEmpty) return true;
@@ -44,8 +44,8 @@ class UValidators {
   }
 
   /// Minimum length validator
-  static UValidationRule minLength(int length, [String? message]) {
-    return UValidationRule(
+  static DValidationRule minLength(int length, [String? message]) {
+    return DValidationRule(
       message: message ?? 'Must be at least $length characters',
       validator: (value) {
         if (value == null || value is! String) return true;
@@ -55,8 +55,8 @@ class UValidators {
   }
 
   /// Maximum length validator
-  static UValidationRule maxLength(int length, [String? message]) {
-    return UValidationRule(
+  static DValidationRule maxLength(int length, [String? message]) {
+    return DValidationRule(
       message: message ?? 'Must be no more than $length characters',
       validator: (value) {
         if (value == null || value is! String) return true;
@@ -66,8 +66,8 @@ class UValidators {
   }
 
   /// Minimum value validator (for numbers)
-  static UValidationRule min(num minValue, [String? message]) {
-    return UValidationRule(
+  static DValidationRule min(num minValue, [String? message]) {
+    return DValidationRule(
       message: message ?? 'Must be at least $minValue',
       validator: (value) {
         if (value == null) return true;
@@ -79,8 +79,8 @@ class UValidators {
   }
 
   /// Maximum value validator (for numbers)
-  static UValidationRule max(num maxValue, [String? message]) {
-    return UValidationRule(
+  static DValidationRule max(num maxValue, [String? message]) {
+    return DValidationRule(
       message: message ?? 'Must be no more than $maxValue',
       validator: (value) {
         if (value == null) return true;
@@ -92,8 +92,8 @@ class UValidators {
   }
 
   /// Pattern validator (regex)
-  static UValidationRule pattern(RegExp regex, [String? message]) {
-    return UValidationRule(
+  static DValidationRule pattern(RegExp regex, [String? message]) {
+    return DValidationRule(
       message: message ?? 'Invalid format',
       validator: (value) {
         if (value == null || value is! String || value.isEmpty) return true;
@@ -103,11 +103,11 @@ class UValidators {
   }
 
   /// Custom validator
-  static UValidationRule custom(
+  static DValidationRule custom(
     bool Function(dynamic value) validator,
     String message,
   ) {
-    return UValidationRule(
+    return DValidationRule(
       message: message,
       validator: validator,
     );
@@ -115,20 +115,20 @@ class UValidators {
 }
 
 /// DuxtUI FormField component - Field wrapper with label, validation, and error display
-class UFormField extends StatefulComponent {
+class DFormField extends StatefulComponent {
   final String? name;
   final String? label;
   final String? hint;
   final String? error;
   final bool required;
   final bool disabled;
-  final UFormFieldSize size;
-  final List<UValidationRule> rules;
+  final DFormFieldSize size;
+  final List<DValidationRule> rules;
   final List<Component> children;
   final bool validateOnBlur;
   final bool validateOnChange;
 
-  const UFormField({
+  const DFormField({
     super.key,
     this.name,
     this.label,
@@ -136,7 +136,7 @@ class UFormField extends StatefulComponent {
     this.error,
     this.required = false,
     this.disabled = false,
-    this.size = UFormFieldSize.md,
+    this.size = DFormFieldSize.md,
     this.rules = const [],
     required this.children,
     this.validateOnBlur = true,
@@ -144,31 +144,31 @@ class UFormField extends StatefulComponent {
   });
 
   @override
-  State<UFormField> createState() => _UFormFieldState();
+  State<DFormField> createState() => _UFormFieldState();
 }
 
-class _UFormFieldState extends State<UFormField> {
+class _UFormFieldState extends State<DFormField> {
   String? _error;
   bool _touched = false;
 
   String get _labelSizeClasses {
     switch (component.size) {
-      case UFormFieldSize.sm:
+      case DFormFieldSize.sm:
         return 'text-xs';
-      case UFormFieldSize.md:
+      case DFormFieldSize.md:
         return 'text-sm';
-      case UFormFieldSize.lg:
+      case DFormFieldSize.lg:
         return 'text-base';
     }
   }
 
   String get _hintSizeClasses {
     switch (component.size) {
-      case UFormFieldSize.sm:
+      case DFormFieldSize.sm:
         return 'text-xs';
-      case UFormFieldSize.md:
+      case DFormFieldSize.md:
         return 'text-sm';
-      case UFormFieldSize.lg:
+      case DFormFieldSize.lg:
         return 'text-sm';
     }
   }
@@ -176,7 +176,7 @@ class _UFormFieldState extends State<UFormField> {
   String? validate(dynamic value) {
     // Check required first
     if (component.required) {
-      final requiredRule = UValidators.required();
+      final requiredRule = DValidators.required();
       if (!requiredRule.validator(value)) {
         return requiredRule.message;
       }
@@ -277,7 +277,7 @@ class _UFormFieldState extends State<UFormField> {
 }
 
 /// Form field group for grouping related fields (e.g., radio buttons)
-class UFormFieldGroup extends StatelessComponent {
+class DFormFieldGroup extends StatelessComponent {
   final String? label;
   final String? hint;
   final String? error;
@@ -285,7 +285,7 @@ class UFormFieldGroup extends StatelessComponent {
   final List<Component> children;
   final bool inline;
 
-  const UFormFieldGroup({
+  const DFormFieldGroup({
     super.key,
     this.label,
     this.hint,
@@ -335,10 +335,10 @@ class UFormFieldGroup extends StatelessComponent {
 }
 
 /// Helper component for displaying field errors
-class UFieldError extends StatelessComponent {
+class DFieldError extends StatelessComponent {
   final String? error;
 
-  const UFieldError({super.key, this.error});
+  const DFieldError({super.key, this.error});
 
   @override
   Component build(BuildContext context) {
@@ -354,10 +354,10 @@ class UFieldError extends StatelessComponent {
 }
 
 /// Helper component for displaying field hints
-class UFieldHint extends StatelessComponent {
+class DFieldHint extends StatelessComponent {
   final String hint;
 
-  const UFieldHint({super.key, required this.hint});
+  const DFieldHint({super.key, required this.hint});
 
   @override
   Component build(BuildContext context) {

@@ -4,17 +4,17 @@ import 'package:jaspr/dom.dart';
 import 'package:duxt_ui/src/components/badge.dart';
 
 void main() {
-  group('UBadge', () {
+  group('DBadge', () {
     group('rendering', () {
       testComponents('renders with required label', (tester) async {
-        tester.pumpComponent(UBadge(label: 'New'));
+        tester.pumpComponent(DBadge(label: 'New'));
 
         expect(find.text('New'), findsOneComponent);
         expect(find.tag('span'), findsComponents);
       });
 
       testComponents('renders label text correctly', (tester) async {
-        tester.pumpComponent(UBadge(label: 'Beta'));
+        tester.pumpComponent(DBadge(label: 'Beta'));
 
         expect(find.text('Beta'), findsOneComponent);
       });
@@ -23,7 +23,7 @@ void main() {
     group('variants', () {
       testComponents('renders solid variant', (tester) async {
         tester.pumpComponent(
-          UBadge(label: 'Solid', variant: UBadgeVariant.solid),
+          DBadge(label: 'Solid', variant: DBadgeVariant.solid),
         );
 
         expect(find.text('Solid'), findsOneComponent);
@@ -31,7 +31,7 @@ void main() {
 
       testComponents('renders outline variant', (tester) async {
         tester.pumpComponent(
-          UBadge(label: 'Outline', variant: UBadgeVariant.outline),
+          DBadge(label: 'Outline', variant: DBadgeVariant.outline),
         );
 
         expect(find.text('Outline'), findsOneComponent);
@@ -39,7 +39,7 @@ void main() {
 
       testComponents('renders soft variant (default)', (tester) async {
         tester.pumpComponent(
-          UBadge(label: 'Soft', variant: UBadgeVariant.soft),
+          DBadge(label: 'Soft', variant: DBadgeVariant.soft),
         );
 
         expect(find.text('Soft'), findsOneComponent);
@@ -47,7 +47,7 @@ void main() {
 
       testComponents('renders subtle variant', (tester) async {
         tester.pumpComponent(
-          UBadge(label: 'Subtle', variant: UBadgeVariant.subtle),
+          DBadge(label: 'Subtle', variant: DBadgeVariant.subtle),
         );
 
         expect(find.text('Subtle'), findsOneComponent);
@@ -57,7 +57,7 @@ void main() {
     group('sizes', () {
       testComponents('renders xs size', (tester) async {
         tester.pumpComponent(
-          UBadge(label: 'XS', size: UBadgeSize.xs),
+          DBadge(label: 'XS', size: DBadgeSize.xs),
         );
 
         expect(find.text('XS'), findsOneComponent);
@@ -65,7 +65,7 @@ void main() {
 
       testComponents('renders sm size', (tester) async {
         tester.pumpComponent(
-          UBadge(label: 'SM', size: UBadgeSize.sm),
+          DBadge(label: 'SM', size: DBadgeSize.sm),
         );
 
         expect(find.text('SM'), findsOneComponent);
@@ -73,7 +73,7 @@ void main() {
 
       testComponents('renders md size (default)', (tester) async {
         tester.pumpComponent(
-          UBadge(label: 'MD', size: UBadgeSize.md),
+          DBadge(label: 'MD', size: DBadgeSize.md),
         );
 
         expect(find.text('MD'), findsOneComponent);
@@ -81,7 +81,7 @@ void main() {
 
       testComponents('renders lg size', (tester) async {
         tester.pumpComponent(
-          UBadge(label: 'LG', size: UBadgeSize.lg),
+          DBadge(label: 'LG', size: DBadgeSize.lg),
         );
 
         expect(find.text('LG'), findsOneComponent);
@@ -89,7 +89,7 @@ void main() {
 
       testComponents('renders xl size', (tester) async {
         tester.pumpComponent(
-          UBadge(label: 'XL', size: UBadgeSize.xl),
+          DBadge(label: 'XL', size: DBadgeSize.xl),
         );
 
         expect(find.text('XL'), findsOneComponent);
@@ -99,7 +99,7 @@ void main() {
     group('colors', () {
       testComponents('renders primary color (default)', (tester) async {
         tester.pumpComponent(
-          UBadge(label: 'Primary', color: UBadgeColor.primary),
+          DBadge(label: 'Primary', color: DBadgeColor.primary),
         );
 
         expect(find.text('Primary'), findsOneComponent);
@@ -107,7 +107,7 @@ void main() {
 
       testComponents('renders secondary color', (tester) async {
         tester.pumpComponent(
-          UBadge(label: 'Secondary', color: UBadgeColor.secondary),
+          DBadge(label: 'Secondary', color: DBadgeColor.secondary),
         );
 
         expect(find.text('Secondary'), findsOneComponent);
@@ -115,7 +115,7 @@ void main() {
 
       testComponents('renders success color', (tester) async {
         tester.pumpComponent(
-          UBadge(label: 'Success', color: UBadgeColor.success),
+          DBadge(label: 'Success', color: DBadgeColor.success),
         );
 
         expect(find.text('Success'), findsOneComponent);
@@ -123,7 +123,7 @@ void main() {
 
       testComponents('renders info color', (tester) async {
         tester.pumpComponent(
-          UBadge(label: 'Info', color: UBadgeColor.info),
+          DBadge(label: 'Info', color: DBadgeColor.info),
         );
 
         expect(find.text('Info'), findsOneComponent);
@@ -131,7 +131,7 @@ void main() {
 
       testComponents('renders warning color', (tester) async {
         tester.pumpComponent(
-          UBadge(label: 'Warning', color: UBadgeColor.warning),
+          DBadge(label: 'Warning', color: DBadgeColor.warning),
         );
 
         expect(find.text('Warning'), findsOneComponent);
@@ -139,7 +139,7 @@ void main() {
 
       testComponents('renders error color', (tester) async {
         tester.pumpComponent(
-          UBadge(label: 'Error', color: UBadgeColor.error),
+          DBadge(label: 'Error', color: DBadgeColor.error),
         );
 
         expect(find.text('Error'), findsOneComponent);
@@ -147,7 +147,7 @@ void main() {
 
       testComponents('renders neutral color', (tester) async {
         tester.pumpComponent(
-          UBadge(label: 'Neutral', color: UBadgeColor.neutral),
+          DBadge(label: 'Neutral', color: DBadgeColor.neutral),
         );
 
         expect(find.text('Neutral'), findsOneComponent);
@@ -157,7 +157,7 @@ void main() {
     group('icons', () {
       testComponents('renders with leading icon', (tester) async {
         tester.pumpComponent(
-          UBadge(
+          DBadge(
             label: 'Badge',
             leadingIcon: span([Component.text('*')]),
           ),
@@ -169,7 +169,7 @@ void main() {
 
       testComponents('renders with trailing icon', (tester) async {
         tester.pumpComponent(
-          UBadge(
+          DBadge(
             label: 'Badge',
             trailingIcon: span([Component.text('x')]),
           ),
@@ -181,7 +181,7 @@ void main() {
 
       testComponents('renders with both icons', (tester) async {
         tester.pumpComponent(
-          UBadge(
+          DBadge(
             label: 'Badge',
             leadingIcon: span([Component.text('<')]),
             trailingIcon: span([Component.text('>')]),
@@ -197,10 +197,10 @@ void main() {
     group('variant + color combinations', () {
       testComponents('solid + error', (tester) async {
         tester.pumpComponent(
-          UBadge(
+          DBadge(
             label: 'Rejected',
-            variant: UBadgeVariant.solid,
-            color: UBadgeColor.error,
+            variant: DBadgeVariant.solid,
+            color: DBadgeColor.error,
           ),
         );
 
@@ -209,10 +209,10 @@ void main() {
 
       testComponents('outline + success', (tester) async {
         tester.pumpComponent(
-          UBadge(
+          DBadge(
             label: 'Approved',
-            variant: UBadgeVariant.outline,
-            color: UBadgeColor.success,
+            variant: DBadgeVariant.outline,
+            color: DBadgeColor.success,
           ),
         );
 
@@ -221,10 +221,10 @@ void main() {
 
       testComponents('soft + warning', (tester) async {
         tester.pumpComponent(
-          UBadge(
+          DBadge(
             label: 'Pending',
-            variant: UBadgeVariant.soft,
-            color: UBadgeColor.warning,
+            variant: DBadgeVariant.soft,
+            color: DBadgeColor.warning,
           ),
         );
 
@@ -233,10 +233,10 @@ void main() {
 
       testComponents('subtle + info', (tester) async {
         tester.pumpComponent(
-          UBadge(
+          DBadge(
             label: 'Draft',
-            variant: UBadgeVariant.subtle,
-            color: UBadgeColor.info,
+            variant: DBadgeVariant.subtle,
+            color: DBadgeColor.info,
           ),
         );
 
@@ -245,10 +245,10 @@ void main() {
 
       testComponents('solid + neutral', (tester) async {
         tester.pumpComponent(
-          UBadge(
+          DBadge(
             label: 'Default',
-            variant: UBadgeVariant.solid,
-            color: UBadgeColor.neutral,
+            variant: DBadgeVariant.solid,
+            color: DBadgeColor.neutral,
           ),
         );
 
@@ -259,10 +259,10 @@ void main() {
     group('size + variant combinations', () {
       testComponents('xs + solid', (tester) async {
         tester.pumpComponent(
-          UBadge(
+          DBadge(
             label: 'XS',
-            size: UBadgeSize.xs,
-            variant: UBadgeVariant.solid,
+            size: DBadgeSize.xs,
+            variant: DBadgeVariant.solid,
           ),
         );
 
@@ -271,10 +271,10 @@ void main() {
 
       testComponents('xl + outline', (tester) async {
         tester.pumpComponent(
-          UBadge(
+          DBadge(
             label: 'XL',
-            size: UBadgeSize.xl,
-            variant: UBadgeVariant.outline,
+            size: DBadgeSize.xl,
+            variant: DBadgeVariant.outline,
           ),
         );
 

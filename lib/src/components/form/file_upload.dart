@@ -4,15 +4,15 @@ import '../../theme/variants.dart';
 import '../../theme/colors.dart';
 
 /// File upload sizes
-enum UFileUploadSize { sm, md, lg }
+enum DFileUploadSize { sm, md, lg }
 
 /// Represents an uploaded file
-class UUploadedFile {
+class DUploadedFile {
   final String name;
   final int size;
   final String type;
 
-  const UUploadedFile({
+  const DUploadedFile({
     required this.name,
     required this.size,
     required this.type,
@@ -26,15 +26,15 @@ class UUploadedFile {
 }
 
 /// DuxtUI FileUpload component - Drag and drop file upload area
-class UFileUpload extends StatefulComponent {
+class DFileUpload extends StatefulComponent {
   final String? label;
   final String? name;
   final String? accept;
   final bool multiple;
   final bool disabled;
   final bool required;
-  final UFileUploadSize size;
-  final UColor color;
+  final DFileUploadSize size;
+  final DColor color;
   final String? hint;
   final String? error;
   final int? maxSize; // in bytes
@@ -42,9 +42,9 @@ class UFileUpload extends StatefulComponent {
   final Component? icon;
   final String? dropzoneText;
   final String? browseText;
-  final ValueChanged<List<UUploadedFile>>? onChange;
+  final ValueChanged<List<DUploadedFile>>? onChange;
 
-  const UFileUpload({
+  const DFileUpload({
     super.key,
     this.label,
     this.name,
@@ -52,8 +52,8 @@ class UFileUpload extends StatefulComponent {
     this.multiple = false,
     this.disabled = false,
     this.required = false,
-    this.size = UFileUploadSize.md,
-    this.color = UColor.primary,
+    this.size = DFileUploadSize.md,
+    this.color = DColor.primary,
     this.hint,
     this.error,
     this.maxSize,
@@ -65,42 +65,42 @@ class UFileUpload extends StatefulComponent {
   });
 
   @override
-  State<UFileUpload> createState() => _UFileUploadState();
+  State<DFileUpload> createState() => _UFileUploadState();
 }
 
-class _UFileUploadState extends State<UFileUpload> {
+class _UFileUploadState extends State<DFileUpload> {
   bool _isDragOver = false;
-  List<UUploadedFile> _files = [];
+  List<DUploadedFile> _files = [];
 
   String get _paddingClasses {
     switch (component.size) {
-      case UFileUploadSize.sm:
+      case DFileUploadSize.sm:
         return 'p-4';
-      case UFileUploadSize.md:
+      case DFileUploadSize.md:
         return 'p-6';
-      case UFileUploadSize.lg:
+      case DFileUploadSize.lg:
         return 'p-8';
     }
   }
 
   String get _textSizeClasses {
     switch (component.size) {
-      case UFileUploadSize.sm:
+      case DFileUploadSize.sm:
         return 'text-sm';
-      case UFileUploadSize.md:
+      case DFileUploadSize.md:
         return 'text-base';
-      case UFileUploadSize.lg:
+      case DFileUploadSize.lg:
         return 'text-lg';
     }
   }
 
   String get _iconSizeClasses {
     switch (component.size) {
-      case UFileUploadSize.sm:
+      case DFileUploadSize.sm:
         return 'w-8 h-8';
-      case UFileUploadSize.md:
+      case DFileUploadSize.md:
         return 'w-10 h-10';
-      case UFileUploadSize.lg:
+      case DFileUploadSize.lg:
         return 'w-12 h-12';
     }
   }
@@ -108,19 +108,19 @@ class _UFileUploadState extends State<UFileUpload> {
   String get _colorClasses {
     if (_isDragOver) {
       switch (component.color) {
-        case UColor.primary:
+        case DColor.primary:
           return 'border-green-500 bg-green-50 dark:bg-green-950';
-        case UColor.secondary:
+        case DColor.secondary:
           return 'border-blue-500 bg-blue-50 dark:bg-blue-950';
-        case UColor.success:
+        case DColor.success:
           return 'border-green-500 bg-green-50 dark:bg-green-950';
-        case UColor.info:
+        case DColor.info:
           return 'border-blue-500 bg-blue-50 dark:bg-blue-950';
-        case UColor.warning:
+        case DColor.warning:
           return 'border-yellow-500 bg-yellow-50 dark:bg-yellow-950';
-        case UColor.error:
+        case DColor.error:
           return 'border-red-500 bg-red-50 dark:bg-red-950';
-        case UColor.neutral:
+        case DColor.neutral:
           return 'border-slate-500 bg-slate-50 dark:bg-slate-950';
       }
     }
@@ -129,19 +129,19 @@ class _UFileUploadState extends State<UFileUpload> {
 
   String get _linkColorClasses {
     switch (component.color) {
-      case UColor.primary:
+      case DColor.primary:
         return 'text-green-600 hover:text-green-700 dark:text-green-400';
-      case UColor.secondary:
+      case DColor.secondary:
         return 'text-blue-600 hover:text-blue-700 dark:text-blue-400';
-      case UColor.success:
+      case DColor.success:
         return 'text-green-600 hover:text-green-700 dark:text-green-400';
-      case UColor.info:
+      case DColor.info:
         return 'text-blue-600 hover:text-blue-700 dark:text-blue-400';
-      case UColor.warning:
+      case DColor.warning:
         return 'text-yellow-600 hover:text-yellow-700 dark:text-yellow-400';
-      case UColor.error:
+      case DColor.error:
         return 'text-red-600 hover:text-red-700 dark:text-red-400';
-      case UColor.neutral:
+      case DColor.neutral:
         return 'text-slate-600 hover:text-slate-700 dark:text-slate-400';
     }
   }
@@ -154,12 +154,12 @@ class _UFileUploadState extends State<UFileUpload> {
   void _handleFiles(dynamic fileList) {
     if (component.disabled) return;
 
-    final files = <UUploadedFile>[];
+    final files = <DUploadedFile>[];
     final length = fileList.length as int;
 
     for (var i = 0; i < length; i++) {
       final file = fileList[i];
-      final uploadedFile = UUploadedFile(
+      final uploadedFile = DUploadedFile(
         name: file.name as String,
         size: file.size as int,
         type: file.type as String,

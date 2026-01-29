@@ -2,31 +2,31 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Keyboard key size variants
-enum UKbdSize { xs, sm, md }
+enum DKbdSize { xs, sm, md }
 
 /// DuxtUI Kbd component - keyboard key display
-class UKbd extends StatelessComponent {
+class DKbd extends StatelessComponent {
   final String? value;
   final List<String>? keys;
-  final UKbdSize size;
+  final DKbdSize size;
   final String? classes;
 
-  const UKbd({
+  const DKbd({
     super.key,
     this.value,
     this.keys,
-    this.size = UKbdSize.sm,
+    this.size = DKbdSize.sm,
     this.classes,
   }) : assert(value != null || keys != null,
             'Either value or keys must be provided');
 
   String get _sizeClasses {
     switch (size) {
-      case UKbdSize.xs:
+      case DKbdSize.xs:
         return 'px-1 py-0.5 text-[10px]';
-      case UKbdSize.sm:
+      case DKbdSize.sm:
         return 'px-1.5 py-0.5 text-xs';
-      case UKbdSize.md:
+      case DKbdSize.md:
         return 'px-2 py-1 text-sm';
     }
   }
@@ -106,21 +106,21 @@ class UKbd extends StatelessComponent {
 }
 
 /// DuxtUI Shortcut component - display keyboard shortcuts
-class UShortcut extends StatelessComponent {
+class DShortcut extends StatelessComponent {
   final List<String> keys;
-  final UKbdSize size;
+  final DKbdSize size;
   final String? classes;
 
-  const UShortcut({
+  const DShortcut({
     super.key,
     required this.keys,
-    this.size = UKbdSize.sm,
+    this.size = DKbdSize.sm,
     this.classes,
   });
 
   @override
   Component build(BuildContext context) {
-    return UKbd(
+    return DKbd(
       keys: keys,
       size: size,
       classes: classes,
@@ -129,19 +129,19 @@ class UShortcut extends StatelessComponent {
 }
 
 /// Platform-aware shortcut that shows Cmd on Mac, Ctrl on others
-class UPlatformShortcut extends StatelessComponent {
+class DPlatformShortcut extends StatelessComponent {
   final String keyName;
   final bool withShift;
   final bool withAlt;
-  final UKbdSize size;
+  final DKbdSize size;
   final String? classes;
 
-  const UPlatformShortcut({
+  const DPlatformShortcut({
     super.key,
     required this.keyName,
     this.withShift = false,
     this.withAlt = false,
-    this.size = UKbdSize.sm,
+    this.size = DKbdSize.sm,
     this.classes,
   });
 
@@ -156,7 +156,7 @@ class UPlatformShortcut extends StatelessComponent {
       keyName,
     ];
 
-    return UKbd(
+    return DKbd(
       keys: keys,
       size: size,
       classes: classes,

@@ -5,17 +5,17 @@ import '../../theme/variants.dart';
 import '../../theme/colors.dart';
 
 /// DuxtUI Empty component - Empty state display
-class UEmpty extends StatelessComponent {
+class DEmpty extends StatelessComponent {
   final String? icon;
   final Component? iconComponent;
   final String? title;
   final String? description;
   final Component? action;
   final List<Component> children;
-  final USize size;
+  final DSize size;
   final bool padded;
 
-  const UEmpty({
+  const DEmpty({
     super.key,
     this.icon,
     this.iconComponent,
@@ -23,51 +23,51 @@ class UEmpty extends StatelessComponent {
     this.description,
     this.action,
     this.children = const [],
-    this.size = USize.md,
+    this.size = DSize.md,
     this.padded = true,
   });
 
   String get _iconSizeClasses {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'text-3xl';
-      case USize.sm:
+      case DSize.sm:
         return 'text-4xl';
-      case USize.md:
+      case DSize.md:
         return 'text-5xl';
-      case USize.lg:
+      case DSize.lg:
         return 'text-6xl';
-      case USize.xl:
+      case DSize.xl:
         return 'text-7xl';
     }
   }
 
   String get _titleSizeClasses {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'text-sm';
-      case USize.sm:
+      case DSize.sm:
         return 'text-base';
-      case USize.md:
+      case DSize.md:
         return 'text-lg';
-      case USize.lg:
+      case DSize.lg:
         return 'text-xl';
-      case USize.xl:
+      case DSize.xl:
         return 'text-2xl';
     }
   }
 
   String get _descriptionSizeClasses {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'text-xs';
-      case USize.sm:
+      case DSize.sm:
         return 'text-sm';
-      case USize.md:
+      case DSize.md:
         return 'text-sm';
-      case USize.lg:
+      case DSize.lg:
         return 'text-base';
-      case USize.xl:
+      case DSize.xl:
         return 'text-lg';
     }
   }
@@ -75,15 +75,15 @@ class UEmpty extends StatelessComponent {
   String get _paddingClasses {
     if (!padded) return '';
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'py-6';
-      case USize.sm:
+      case DSize.sm:
         return 'py-8';
-      case USize.md:
+      case DSize.md:
         return 'py-12';
-      case USize.lg:
+      case DSize.lg:
         return 'py-16';
-      case USize.xl:
+      case DSize.xl:
         return 'py-20';
     }
   }
@@ -101,7 +101,7 @@ class UEmpty extends StatelessComponent {
           div(
             classes: cx([
               'mb-4',
-              UTextColors.muted,
+              DTextColors.muted,
             ]),
             [iconComponent!],
           )
@@ -110,7 +110,7 @@ class UEmpty extends StatelessComponent {
             classes: cx([
               'mb-4',
               _iconSizeClasses,
-              UTextColors.muted,
+              DTextColors.muted,
             ]),
             [Component.text(icon!)],
           )
@@ -120,7 +120,7 @@ class UEmpty extends StatelessComponent {
             classes: cx([
               'mb-4',
               _iconSizeClasses,
-              UTextColors.muted,
+              DTextColors.muted,
             ]),
             [Component.text('\u{1F4ED}')], // Empty mailbox emoji as default
           ),
@@ -130,7 +130,7 @@ class UEmpty extends StatelessComponent {
             classes: cx([
               'font-semibold',
               _titleSizeClasses,
-              UTextColors.highlighted,
+              DTextColors.highlighted,
               'mb-2',
             ]),
             [Component.text(title!)],
@@ -140,7 +140,7 @@ class UEmpty extends StatelessComponent {
           p(
             classes: cx([
               _descriptionSizeClasses,
-              UTextColors.muted,
+              DTextColors.muted,
               'max-w-sm',
               'mb-4',
             ]),
@@ -156,14 +156,14 @@ class UEmpty extends StatelessComponent {
 }
 
 /// Preset empty state for no data
-class UEmptyNoData extends StatelessComponent {
+class DEmptyNoData extends StatelessComponent {
   final Component? action;
 
-  const UEmptyNoData({super.key, this.action});
+  const DEmptyNoData({super.key, this.action});
 
   @override
   Component build(BuildContext context) {
-    return UEmpty(
+    return DEmpty(
       icon: '\u{1F4C2}', // Open folder
       title: 'No data',
       description: 'There is no data to display at the moment.',
@@ -173,15 +173,15 @@ class UEmptyNoData extends StatelessComponent {
 }
 
 /// Preset empty state for no results
-class UEmptyNoResults extends StatelessComponent {
+class DEmptyNoResults extends StatelessComponent {
   final String? searchTerm;
   final Component? action;
 
-  const UEmptyNoResults({super.key, this.searchTerm, this.action});
+  const DEmptyNoResults({super.key, this.searchTerm, this.action});
 
   @override
   Component build(BuildContext context) {
-    return UEmpty(
+    return DEmpty(
       icon: '\u{1F50D}', // Magnifying glass
       title: 'No results found',
       description: searchTerm != null

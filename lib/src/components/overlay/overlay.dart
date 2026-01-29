@@ -1,11 +1,11 @@
 /// DuxtUI Overlay Components
 ///
 /// This library exports all overlay-related components including:
-/// - UDrawer: Slides from edge of screen
-/// - USlideover: Panel that slides over content
-/// - UPopover: Floating content near trigger
-/// - UTooltip: Hover hint
-/// - UContextMenu: Right-click menu
+/// - DDrawer: Slides from edge of screen
+/// - DSlideover: Panel that slides over content
+/// - DPopover: Floating content near trigger
+/// - DTooltip: Hover hint
+/// - DContextMenu: Right-click menu
 
 export 'drawer.dart';
 export 'slideover.dart';

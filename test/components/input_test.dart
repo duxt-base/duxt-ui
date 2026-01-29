@@ -4,17 +4,17 @@ import 'package:jaspr/dom.dart';
 import 'package:duxt_ui/src/components/input.dart';
 
 void main() {
-  group('UInput', () {
+  group('DInput', () {
     group('rendering', () {
       testComponents('renders with default props', (tester) async {
-        tester.pumpComponent(UInput());
+        tester.pumpComponent(DInput());
 
         expect(find.tag('input'), findsOneComponent);
       });
 
       testComponents('renders with label', (tester) async {
         tester.pumpComponent(
-          UInput(label: 'Email'),
+          DInput(label: 'Email'),
         );
 
         expect(find.text('Email'), findsOneComponent);
@@ -23,7 +23,7 @@ void main() {
 
       testComponents('renders with placeholder', (tester) async {
         tester.pumpComponent(
-          UInput(placeholder: 'Enter your email'),
+          DInput(placeholder: 'Enter your email'),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -31,7 +31,7 @@ void main() {
 
       testComponents('renders with value', (tester) async {
         tester.pumpComponent(
-          UInput(value: 'test@example.com'),
+          DInput(value: 'test@example.com'),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -39,7 +39,7 @@ void main() {
 
       testComponents('renders with hint text', (tester) async {
         tester.pumpComponent(
-          UInput(
+          DInput(
             label: 'Password',
             hint: 'Must be at least 8 characters',
           ),
@@ -52,7 +52,7 @@ void main() {
 
       testComponents('renders with error message', (tester) async {
         tester.pumpComponent(
-          UInput(
+          DInput(
             label: 'Email',
             error: 'Invalid email format',
           ),
@@ -64,7 +64,7 @@ void main() {
 
       testComponents('renders required indicator', (tester) async {
         tester.pumpComponent(
-          UInput(label: 'Name', required: true),
+          DInput(label: 'Name', required: true),
         );
 
         expect(find.text('Name'), findsOneComponent);
@@ -75,7 +75,7 @@ void main() {
     group('variants', () {
       testComponents('renders outline variant (default)', (tester) async {
         tester.pumpComponent(
-          UInput(variant: UInputVariant.outline),
+          DInput(variant: DInputVariant.outline),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -83,7 +83,7 @@ void main() {
 
       testComponents('renders soft variant', (tester) async {
         tester.pumpComponent(
-          UInput(variant: UInputVariant.soft),
+          DInput(variant: DInputVariant.soft),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -91,7 +91,7 @@ void main() {
 
       testComponents('renders subtle variant', (tester) async {
         tester.pumpComponent(
-          UInput(variant: UInputVariant.subtle),
+          DInput(variant: DInputVariant.subtle),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -99,7 +99,7 @@ void main() {
 
       testComponents('renders ghost variant', (tester) async {
         tester.pumpComponent(
-          UInput(variant: UInputVariant.ghost),
+          DInput(variant: DInputVariant.ghost),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -107,7 +107,7 @@ void main() {
 
       testComponents('renders none variant', (tester) async {
         tester.pumpComponent(
-          UInput(variant: UInputVariant.none),
+          DInput(variant: DInputVariant.none),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -117,7 +117,7 @@ void main() {
     group('sizes', () {
       testComponents('renders xs size', (tester) async {
         tester.pumpComponent(
-          UInput(size: UInputSize.xs),
+          DInput(size: DInputSize.xs),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -125,7 +125,7 @@ void main() {
 
       testComponents('renders sm size', (tester) async {
         tester.pumpComponent(
-          UInput(size: UInputSize.sm),
+          DInput(size: DInputSize.sm),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -133,7 +133,7 @@ void main() {
 
       testComponents('renders md size (default)', (tester) async {
         tester.pumpComponent(
-          UInput(size: UInputSize.md),
+          DInput(size: DInputSize.md),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -141,7 +141,7 @@ void main() {
 
       testComponents('renders lg size', (tester) async {
         tester.pumpComponent(
-          UInput(size: UInputSize.lg),
+          DInput(size: DInputSize.lg),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -149,7 +149,7 @@ void main() {
 
       testComponents('renders xl size', (tester) async {
         tester.pumpComponent(
-          UInput(size: UInputSize.xl),
+          DInput(size: DInputSize.xl),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -159,7 +159,7 @@ void main() {
     group('input types', () {
       testComponents('renders text type (default)', (tester) async {
         tester.pumpComponent(
-          UInput(type: InputType.text),
+          DInput(type: InputType.text),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -167,7 +167,7 @@ void main() {
 
       testComponents('renders email type', (tester) async {
         tester.pumpComponent(
-          UInput(type: InputType.email),
+          DInput(type: InputType.email),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -175,7 +175,7 @@ void main() {
 
       testComponents('renders password type', (tester) async {
         tester.pumpComponent(
-          UInput(type: InputType.password),
+          DInput(type: InputType.password),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -183,7 +183,7 @@ void main() {
 
       testComponents('renders number type', (tester) async {
         tester.pumpComponent(
-          UInput(type: InputType.number),
+          DInput(type: InputType.number),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -191,7 +191,7 @@ void main() {
 
       testComponents('renders tel type', (tester) async {
         tester.pumpComponent(
-          UInput(type: InputType.tel),
+          DInput(type: InputType.tel),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -199,7 +199,7 @@ void main() {
 
       testComponents('renders url type', (tester) async {
         tester.pumpComponent(
-          UInput(type: InputType.url),
+          DInput(type: InputType.url),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -209,7 +209,7 @@ void main() {
     group('states', () {
       testComponents('renders disabled state', (tester) async {
         tester.pumpComponent(
-          UInput(disabled: true),
+          DInput(disabled: true),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -217,7 +217,7 @@ void main() {
 
       testComponents('renders readonly state', (tester) async {
         tester.pumpComponent(
-          UInput(readonly: true, value: 'Read only'),
+          DInput(readonly: true, value: 'Read only'),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -225,7 +225,7 @@ void main() {
 
       testComponents('renders loading state', (tester) async {
         tester.pumpComponent(
-          UInput(loading: true),
+          DInput(loading: true),
         );
 
         expect(find.tag('input'), findsOneComponent);
@@ -237,7 +237,7 @@ void main() {
     group('icons', () {
       testComponents('renders with leading icon', (tester) async {
         tester.pumpComponent(
-          UInput(
+          DInput(
             leadingIcon: span([Component.text('@')]),
           ),
         );
@@ -248,7 +248,7 @@ void main() {
 
       testComponents('renders with trailing icon', (tester) async {
         tester.pumpComponent(
-          UInput(
+          DInput(
             trailingIcon: span([Component.text('x')]),
           ),
         );
@@ -259,7 +259,7 @@ void main() {
 
       testComponents('renders with both icons', (tester) async {
         tester.pumpComponent(
-          UInput(
+          DInput(
             leadingIcon: span([Component.text('@')]),
             trailingIcon: span([Component.text('x')]),
           ),
@@ -273,7 +273,7 @@ void main() {
     group('interactions', () {
       testComponents('onInput callback fires', (tester) async {
         tester.pumpComponent(
-          UInput(
+          DInput(
             onInput: (value) {},
           ),
         );
@@ -287,7 +287,7 @@ void main() {
       testComponents('shows error instead of hint when error present',
           (tester) async {
         tester.pumpComponent(
-          UInput(
+          DInput(
             hint: 'Helper text',
             error: 'Error message',
           ),
@@ -299,17 +299,17 @@ void main() {
     });
   });
 
-  group('UTextarea', () {
+  group('DTextarea', () {
     group('rendering', () {
       testComponents('renders with default props', (tester) async {
-        tester.pumpComponent(UTextarea());
+        tester.pumpComponent(DTextarea());
 
         expect(find.tag('textarea'), findsOneComponent);
       });
 
       testComponents('renders with label', (tester) async {
         tester.pumpComponent(
-          UTextarea(label: 'Description'),
+          DTextarea(label: 'Description'),
         );
 
         expect(find.text('Description'), findsOneComponent);
@@ -317,7 +317,7 @@ void main() {
 
       testComponents('renders with placeholder', (tester) async {
         tester.pumpComponent(
-          UTextarea(placeholder: 'Enter description...'),
+          DTextarea(placeholder: 'Enter description...'),
         );
 
         expect(find.tag('textarea'), findsOneComponent);
@@ -325,7 +325,7 @@ void main() {
 
       testComponents('renders with value', (tester) async {
         tester.pumpComponent(
-          UTextarea(value: 'Initial content'),
+          DTextarea(value: 'Initial content'),
         );
 
         expect(find.text('Initial content'), findsOneComponent);
@@ -333,7 +333,7 @@ void main() {
 
       testComponents('renders with hint', (tester) async {
         tester.pumpComponent(
-          UTextarea(
+          DTextarea(
             label: 'Bio',
             hint: 'Max 500 characters',
           ),
@@ -345,7 +345,7 @@ void main() {
 
       testComponents('renders with error', (tester) async {
         tester.pumpComponent(
-          UTextarea(
+          DTextarea(
             label: 'Message',
             error: 'This field is required',
           ),
@@ -358,7 +358,7 @@ void main() {
 
       testComponents('renders required indicator', (tester) async {
         tester.pumpComponent(
-          UTextarea(label: 'Comments', required: true),
+          DTextarea(label: 'Comments', required: true),
         );
 
         expect(find.text('Comments'), findsOneComponent);
@@ -369,7 +369,7 @@ void main() {
     group('variants', () {
       testComponents('renders outline variant (default)', (tester) async {
         tester.pumpComponent(
-          UTextarea(variant: UInputVariant.outline),
+          DTextarea(variant: DInputVariant.outline),
         );
 
         expect(find.tag('textarea'), findsOneComponent);
@@ -377,7 +377,7 @@ void main() {
 
       testComponents('renders soft variant', (tester) async {
         tester.pumpComponent(
-          UTextarea(variant: UInputVariant.soft),
+          DTextarea(variant: DInputVariant.soft),
         );
 
         expect(find.tag('textarea'), findsOneComponent);
@@ -385,7 +385,7 @@ void main() {
 
       testComponents('renders subtle variant', (tester) async {
         tester.pumpComponent(
-          UTextarea(variant: UInputVariant.subtle),
+          DTextarea(variant: DInputVariant.subtle),
         );
 
         expect(find.tag('textarea'), findsOneComponent);
@@ -393,7 +393,7 @@ void main() {
 
       testComponents('renders ghost variant', (tester) async {
         tester.pumpComponent(
-          UTextarea(variant: UInputVariant.ghost),
+          DTextarea(variant: DInputVariant.ghost),
         );
 
         expect(find.tag('textarea'), findsOneComponent);
@@ -402,9 +402,9 @@ void main() {
 
     group('sizes', () {
       testComponents('renders all sizes', (tester) async {
-        for (final size in UInputSize.values) {
+        for (final size in DInputSize.values) {
           tester.pumpComponent(
-            UTextarea(size: size),
+            DTextarea(size: size),
           );
 
           expect(find.tag('textarea'), findsOneComponent);
@@ -415,7 +415,7 @@ void main() {
     group('states', () {
       testComponents('renders disabled state', (tester) async {
         tester.pumpComponent(
-          UTextarea(disabled: true),
+          DTextarea(disabled: true),
         );
 
         expect(find.tag('textarea'), findsOneComponent);

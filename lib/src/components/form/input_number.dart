@@ -4,10 +4,10 @@ import '../../theme/variants.dart';
 import '../../theme/colors.dart';
 
 /// Input number sizes
-enum UInputNumberSize { xs, sm, md, lg, xl }
+enum DInputNumberSize { xs, sm, md, lg, xl }
 
 /// DuxtUI InputNumber component - Numeric input with increment/decrement buttons
-class UInputNumber extends StatefulComponent {
+class DInputNumber extends StatefulComponent {
   final String? label;
   final double value;
   final double min;
@@ -15,15 +15,15 @@ class UInputNumber extends StatefulComponent {
   final double step;
   final String? name;
   final String? placeholder;
-  final UInputNumberSize size;
-  final UColor color;
+  final DInputNumberSize size;
+  final DColor color;
   final bool disabled;
   final bool required;
   final String? hint;
   final String? error;
   final ValueChanged<double>? onChange;
 
-  const UInputNumber({
+  const DInputNumber({
     super.key,
     this.label,
     this.value = 0,
@@ -32,8 +32,8 @@ class UInputNumber extends StatefulComponent {
     this.step = 1,
     this.name,
     this.placeholder,
-    this.size = UInputNumberSize.md,
-    this.color = UColor.primary,
+    this.size = DInputNumberSize.md,
+    this.color = DColor.primary,
     this.disabled = false,
     this.required = false,
     this.hint,
@@ -42,10 +42,10 @@ class UInputNumber extends StatefulComponent {
   });
 
   @override
-  State<UInputNumber> createState() => _UInputNumberState();
+  State<DInputNumber> createState() => _UInputNumberState();
 }
 
-class _UInputNumberState extends State<UInputNumber> {
+class _UInputNumberState extends State<DInputNumber> {
   late double _value;
 
   @override
@@ -56,49 +56,49 @@ class _UInputNumberState extends State<UInputNumber> {
 
   String get _sizeClasses {
     switch (component.size) {
-      case UInputNumberSize.xs:
+      case DInputNumberSize.xs:
         return 'px-2 py-1 text-xs';
-      case UInputNumberSize.sm:
+      case DInputNumberSize.sm:
         return 'px-2.5 py-1.5 text-xs';
-      case UInputNumberSize.md:
+      case DInputNumberSize.md:
         return 'px-2.5 py-1.5 text-sm';
-      case UInputNumberSize.lg:
+      case DInputNumberSize.lg:
         return 'px-3 py-2 text-sm';
-      case UInputNumberSize.xl:
+      case DInputNumberSize.xl:
         return 'px-3 py-2 text-base';
     }
   }
 
   String get _buttonSizeClasses {
     switch (component.size) {
-      case UInputNumberSize.xs:
+      case DInputNumberSize.xs:
         return 'px-2 py-1';
-      case UInputNumberSize.sm:
+      case DInputNumberSize.sm:
         return 'px-2.5 py-1.5';
-      case UInputNumberSize.md:
+      case DInputNumberSize.md:
         return 'px-3 py-1.5';
-      case UInputNumberSize.lg:
+      case DInputNumberSize.lg:
         return 'px-3.5 py-2';
-      case UInputNumberSize.xl:
+      case DInputNumberSize.xl:
         return 'px-4 py-2';
     }
   }
 
   String get _colorClasses {
     switch (component.color) {
-      case UColor.primary:
+      case DColor.primary:
         return 'focus:ring-green-500 focus:border-green-500';
-      case UColor.secondary:
+      case DColor.secondary:
         return 'focus:ring-blue-500 focus:border-blue-500';
-      case UColor.success:
+      case DColor.success:
         return 'focus:ring-green-500 focus:border-green-500';
-      case UColor.info:
+      case DColor.info:
         return 'focus:ring-blue-500 focus:border-blue-500';
-      case UColor.warning:
+      case DColor.warning:
         return 'focus:ring-yellow-500 focus:border-yellow-500';
-      case UColor.error:
+      case DColor.error:
         return 'focus:ring-red-500 focus:border-red-500';
-      case UColor.neutral:
+      case DColor.neutral:
         return 'focus:ring-slate-500 focus:border-slate-500';
     }
   }

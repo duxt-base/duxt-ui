@@ -4,15 +4,15 @@ import 'package:jaspr/dom.dart';
 import 'package:duxt_ui/src/components/tabs.dart';
 
 void main() {
-  group('UTabs', () {
+  group('DTabs', () {
     group('rendering', () {
       testComponents('renders with items', (tester) async {
         tester.pumpComponent(
-          UTabs(
+          DTabs(
             items: [
-              UTabItem(label: 'Tab 1', value: 'tab1'),
-              UTabItem(label: 'Tab 2', value: 'tab2'),
-              UTabItem(label: 'Tab 3', value: 'tab3'),
+              DTabItem(label: 'Tab 1', value: 'tab1'),
+              DTabItem(label: 'Tab 2', value: 'tab2'),
+              DTabItem(label: 'Tab 3', value: 'tab3'),
             ],
           ),
         );
@@ -24,14 +24,14 @@ void main() {
 
       testComponents('renders tab content', (tester) async {
         tester.pumpComponent(
-          UTabs(
+          DTabs(
             items: [
-              UTabItem(
+              DTabItem(
                 label: 'First',
                 value: 'first',
                 content: span([Component.text('First tab content')]),
               ),
-              UTabItem(
+              DTabItem(
                 label: 'Second',
                 value: 'second',
                 content: span([Component.text('Second tab content')]),
@@ -46,15 +46,15 @@ void main() {
 
       testComponents('renders with default value', (tester) async {
         tester.pumpComponent(
-          UTabs(
+          DTabs(
             defaultValue: 'second',
             items: [
-              UTabItem(
+              DTabItem(
                 label: 'First',
                 value: 'first',
                 content: span([Component.text('First content')]),
               ),
-              UTabItem(
+              DTabItem(
                 label: 'Second',
                 value: 'second',
                 content: span([Component.text('Second content')]),
@@ -71,9 +71,9 @@ void main() {
 
       testComponents('renders with icons', (tester) async {
         tester.pumpComponent(
-          UTabs(
+          DTabs(
             items: [
-              UTabItem(
+              DTabItem(
                 label: 'Settings',
                 value: 'settings',
                 icon: span([Component.text('*')]),
@@ -91,11 +91,11 @@ void main() {
       testComponents('renders horizontal orientation (default)',
           (tester) async {
         tester.pumpComponent(
-          UTabs(
-            orientation: UTabsOrientation.horizontal,
+          DTabs(
+            orientation: DTabsOrientation.horizontal,
             items: [
-              UTabItem(label: 'Tab A', value: 'a'),
-              UTabItem(label: 'Tab B', value: 'b'),
+              DTabItem(label: 'Tab A', value: 'a'),
+              DTabItem(label: 'Tab B', value: 'b'),
             ],
           ),
         );
@@ -106,11 +106,11 @@ void main() {
 
       testComponents('renders vertical orientation', (tester) async {
         tester.pumpComponent(
-          UTabs(
-            orientation: UTabsOrientation.vertical,
+          DTabs(
+            orientation: DTabsOrientation.vertical,
             items: [
-              UTabItem(label: 'Tab A', value: 'a'),
-              UTabItem(label: 'Tab B', value: 'b'),
+              DTabItem(label: 'Tab A', value: 'a'),
+              DTabItem(label: 'Tab B', value: 'b'),
             ],
           ),
         );
@@ -123,10 +123,10 @@ void main() {
     group('disabled tabs', () {
       testComponents('renders disabled tab', (tester) async {
         tester.pumpComponent(
-          UTabs(
+          DTabs(
             items: [
-              UTabItem(label: 'Active', value: 'active'),
-              UTabItem(label: 'Disabled', value: 'disabled', disabled: true),
+              DTabItem(label: 'Active', value: 'active'),
+              DTabItem(label: 'Disabled', value: 'disabled', disabled: true),
             ],
           ),
         );
@@ -137,10 +137,10 @@ void main() {
 
       testComponents('disabled tab cannot be clicked', (tester) async {
         tester.pumpComponent(
-          UTabs(
+          DTabs(
             items: [
-              UTabItem(label: 'Active', value: 'active'),
-              UTabItem(label: 'Disabled', value: 'disabled', disabled: true),
+              DTabItem(label: 'Active', value: 'active'),
+              DTabItem(label: 'Disabled', value: 'disabled', disabled: true),
             ],
             onSelect: (value) {},
           ),
@@ -156,10 +156,10 @@ void main() {
       testComponents('onSelect callback fires when tab clicked',
           (tester) async {
         tester.pumpComponent(
-          UTabs(
+          DTabs(
             items: [
-              UTabItem(label: 'First', value: 'first'),
-              UTabItem(label: 'Second', value: 'second'),
+              DTabItem(label: 'First', value: 'first'),
+              DTabItem(label: 'Second', value: 'second'),
             ],
             onSelect: (value) {},
           ),
@@ -173,15 +173,15 @@ void main() {
       testComponents('unmounts hidden content when true (default)',
           (tester) async {
         tester.pumpComponent(
-          UTabs(
+          DTabs(
             unmountOnHide: true,
             items: [
-              UTabItem(
+              DTabItem(
                 label: 'First',
                 value: 'first',
                 content: span([Component.text('First')]),
               ),
-              UTabItem(
+              DTabItem(
                 label: 'Second',
                 value: 'second',
                 content: span([Component.text('Second')]),
@@ -195,15 +195,15 @@ void main() {
 
       testComponents('keeps hidden content mounted when false', (tester) async {
         tester.pumpComponent(
-          UTabs(
+          DTabs(
             unmountOnHide: false,
             items: [
-              UTabItem(
+              DTabItem(
                 label: 'First',
                 value: 'first',
                 content: span([Component.text('First content')]),
               ),
-              UTabItem(
+              DTabItem(
                 label: 'Second',
                 value: 'second',
                 content: span([Component.text('Second content')]),
@@ -219,18 +219,18 @@ void main() {
     });
   });
 
-  group('UControlledTabs', () {
+  group('DControlledTabs', () {
     testComponents('renders with controlled selected value', (tester) async {
       tester.pumpComponent(
-        UControlledTabs(
+        DControlledTabs(
           selected: 'second',
           items: [
-            UTabItem(
+            DTabItem(
               label: 'First',
               value: 'first',
               content: span([Component.text('First content')]),
             ),
-            UTabItem(
+            DTabItem(
               label: 'Second',
               value: 'second',
               content: span([Component.text('Second content')]),
@@ -246,12 +246,12 @@ void main() {
 
     testComponents('renders horizontal orientation', (tester) async {
       tester.pumpComponent(
-        UControlledTabs(
+        DControlledTabs(
           selected: 'a',
-          orientation: UTabsOrientation.horizontal,
+          orientation: DTabsOrientation.horizontal,
           items: [
-            UTabItem(label: 'A', value: 'a'),
-            UTabItem(label: 'B', value: 'b'),
+            DTabItem(label: 'A', value: 'a'),
+            DTabItem(label: 'B', value: 'b'),
           ],
         ),
       );
@@ -262,12 +262,12 @@ void main() {
 
     testComponents('renders vertical orientation', (tester) async {
       tester.pumpComponent(
-        UControlledTabs(
+        DControlledTabs(
           selected: 'a',
-          orientation: UTabsOrientation.vertical,
+          orientation: DTabsOrientation.vertical,
           items: [
-            UTabItem(label: 'A', value: 'a'),
-            UTabItem(label: 'B', value: 'b'),
+            DTabItem(label: 'A', value: 'a'),
+            DTabItem(label: 'B', value: 'b'),
           ],
         ),
       );
@@ -278,11 +278,11 @@ void main() {
 
     testComponents('onSelect callback fires', (tester) async {
       tester.pumpComponent(
-        UControlledTabs(
+        DControlledTabs(
           selected: 'first',
           items: [
-            UTabItem(label: 'First', value: 'first'),
-            UTabItem(label: 'Second', value: 'second'),
+            DTabItem(label: 'First', value: 'first'),
+            DTabItem(label: 'Second', value: 'second'),
           ],
           onSelect: (value) {},
         ),
@@ -292,9 +292,9 @@ void main() {
     });
   });
 
-  group('UTabItem', () {
+  group('DTabItem', () {
     testComponents('creates item with required props', (tester) async {
-      final item = UTabItem(label: 'Test', value: 'test');
+      final item = DTabItem(label: 'Test', value: 'test');
 
       expect(item.label, equals('Test'));
       expect(item.value, equals('test'));
@@ -304,7 +304,7 @@ void main() {
     });
 
     testComponents('creates item with all props', (tester) async {
-      final item = UTabItem(
+      final item = DTabItem(
         label: 'Settings',
         value: 'settings',
         icon: span([Component.text('icon')]),

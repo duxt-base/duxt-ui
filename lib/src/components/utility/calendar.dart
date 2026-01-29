@@ -6,7 +6,7 @@ import 'icon.dart';
 ///
 /// A calendar component for date selection with month/year navigation.
 /// Supports single date selection with visual feedback.
-class UCalendar extends StatefulComponent {
+class DCalendar extends StatefulComponent {
   /// Currently selected date
   final DateTime? selectedDate;
 
@@ -25,7 +25,7 @@ class UCalendar extends StatefulComponent {
   /// Custom CSS classes
   final String? classes;
 
-  const UCalendar({
+  const DCalendar({
     super.key,
     this.selectedDate,
     this.onDateSelect,
@@ -39,7 +39,7 @@ class UCalendar extends StatefulComponent {
   State createState() => _UCalendarState();
 }
 
-class _UCalendarState extends State<UCalendar> {
+class _UCalendarState extends State<DCalendar> {
   late int _displayMonth;
   late int _displayYear;
 
@@ -161,7 +161,7 @@ class _UCalendarState extends State<UCalendar> {
                   'p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors',
               attributes: {'aria-label': 'Previous month'},
               [
-                UIcon(name: UIconNames.chevronLeft, size: UIconSize.sm),
+                DIcon(name: DIconNames.chevronLeft, size: DIconSize.sm),
               ],
             ),
             span(
@@ -175,7 +175,7 @@ class _UCalendarState extends State<UCalendar> {
                   'p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors',
               attributes: {'aria-label': 'Next month'},
               [
-                UIcon(name: UIconNames.chevronRight, size: UIconSize.sm),
+                DIcon(name: DIconNames.chevronRight, size: DIconSize.sm),
               ],
             ),
           ],

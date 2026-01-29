@@ -5,7 +5,7 @@ import 'package:jaspr/dom.dart';
 ///
 /// Provides a responsive grid layout with optional sidebar.
 /// On large screens, uses a 10-column grid with aside and main areas.
-class UPage extends StatelessComponent {
+class DPage extends StatelessComponent {
   /// The main content of the page
   final List<Component> children;
 
@@ -18,7 +18,7 @@ class UPage extends StatelessComponent {
   /// Additional CSS classes
   final String? classes;
 
-  const UPage({
+  const DPage({
     super.key,
     this.children = const [],
     this.left,

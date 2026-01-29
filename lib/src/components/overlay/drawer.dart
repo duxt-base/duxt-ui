@@ -2,27 +2,27 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Drawer slide direction
-enum UDrawerSide { left, right, top, bottom }
+enum DDrawerSide { left, right, top, bottom }
 
 /// Drawer sizes
-enum UDrawerSize { sm, md, lg, xl, full }
+enum DDrawerSize { sm, md, lg, xl, full }
 
 /// DuxtUI Drawer component - slides from edge of screen
-class UDrawer extends StatefulComponent {
+class DDrawer extends StatefulComponent {
   final bool open;
-  final UDrawerSide side;
-  final UDrawerSize size;
+  final DDrawerSide side;
+  final DDrawerSize size;
   final String? title;
   final bool closeOnOverlay;
   final VoidCallback? onOpen;
   final VoidCallback? onClose;
   final List<Component> children;
 
-  const UDrawer({
+  const DDrawer({
     super.key,
     required this.open,
-    this.side = UDrawerSide.left,
-    this.size = UDrawerSize.md,
+    this.side = DDrawerSide.left,
+    this.size = DDrawerSize.md,
     this.title,
     this.closeOnOverlay = true,
     this.onOpen,
@@ -31,40 +31,40 @@ class UDrawer extends StatefulComponent {
   });
 
   @override
-  State<UDrawer> createState() => _UDrawerState();
+  State<DDrawer> createState() => _UDrawerState();
 }
 
-class _UDrawerState extends State<UDrawer> {
+class _UDrawerState extends State<DDrawer> {
   bool _wasOpen = false;
 
   String get _sizeClasses {
-    final isHorizontal = component.side == UDrawerSide.left ||
-        component.side == UDrawerSide.right;
+    final isHorizontal = component.side == DDrawerSide.left ||
+        component.side == DDrawerSide.right;
 
     if (isHorizontal) {
       switch (component.size) {
-        case UDrawerSize.sm:
+        case DDrawerSize.sm:
           return 'w-64';
-        case UDrawerSize.md:
+        case DDrawerSize.md:
           return 'w-80';
-        case UDrawerSize.lg:
+        case DDrawerSize.lg:
           return 'w-96';
-        case UDrawerSize.xl:
+        case DDrawerSize.xl:
           return 'w-[28rem]';
-        case UDrawerSize.full:
+        case DDrawerSize.full:
           return 'w-screen';
       }
     } else {
       switch (component.size) {
-        case UDrawerSize.sm:
+        case DDrawerSize.sm:
           return 'h-48';
-        case UDrawerSize.md:
+        case DDrawerSize.md:
           return 'h-64';
-        case UDrawerSize.lg:
+        case DDrawerSize.lg:
           return 'h-80';
-        case UDrawerSize.xl:
+        case DDrawerSize.xl:
           return 'h-96';
-        case UDrawerSize.full:
+        case DDrawerSize.full:
           return 'h-screen';
       }
     }
@@ -72,13 +72,13 @@ class _UDrawerState extends State<UDrawer> {
 
   String get _positionClasses {
     switch (component.side) {
-      case UDrawerSide.left:
+      case DDrawerSide.left:
         return 'inset-y-0 left-0';
-      case UDrawerSide.right:
+      case DDrawerSide.right:
         return 'inset-y-0 right-0';
-      case UDrawerSide.top:
+      case DDrawerSide.top:
         return 'inset-x-0 top-0';
-      case UDrawerSide.bottom:
+      case DDrawerSide.bottom:
         return 'inset-x-0 bottom-0';
     }
   }
@@ -86,13 +86,13 @@ class _UDrawerState extends State<UDrawer> {
   String get _transformClasses {
     if (!component.open) {
       switch (component.side) {
-        case UDrawerSide.left:
+        case DDrawerSide.left:
           return '-translate-x-full';
-        case UDrawerSide.right:
+        case DDrawerSide.right:
           return 'translate-x-full';
-        case UDrawerSide.top:
+        case DDrawerSide.top:
           return '-translate-y-full';
-        case UDrawerSide.bottom:
+        case DDrawerSide.bottom:
           return 'translate-y-full';
       }
     }

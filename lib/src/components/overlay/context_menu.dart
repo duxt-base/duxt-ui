@@ -2,16 +2,16 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Context menu item
-class UContextMenuItem {
+class DContextMenuItem {
   final String label;
   final String? icon;
   final String? shortcut;
   final bool disabled;
   final bool divider;
   final VoidCallback? onClick;
-  final List<UContextMenuItem>? submenu;
+  final List<DContextMenuItem>? submenu;
 
-  const UContextMenuItem({
+  const DContextMenuItem({
     required this.label,
     this.icon,
     this.shortcut,
@@ -21,7 +21,7 @@ class UContextMenuItem {
     this.submenu,
   });
 
-  const UContextMenuItem.divider()
+  const DContextMenuItem.divider()
       : label = '',
         icon = null,
         shortcut = null,
@@ -32,13 +32,13 @@ class UContextMenuItem {
 }
 
 /// DuxtUI Context Menu component - right-click menu
-class UContextMenu extends StatefulComponent {
+class DContextMenu extends StatefulComponent {
   final Component child;
-  final List<UContextMenuItem> items;
+  final List<DContextMenuItem> items;
   final VoidCallback? onOpen;
   final VoidCallback? onClose;
 
-  const UContextMenu({
+  const DContextMenu({
     super.key,
     required this.child,
     required this.items,
@@ -47,10 +47,10 @@ class UContextMenu extends StatefulComponent {
   });
 
   @override
-  State<UContextMenu> createState() => _UContextMenuState();
+  State<DContextMenu> createState() => _UContextMenuState();
 }
 
-class _UContextMenuState extends State<UContextMenu> {
+class _UContextMenuState extends State<DContextMenu> {
   bool _open = false;
   double _x = 0;
   double _y = 0;
@@ -80,14 +80,14 @@ class _UContextMenuState extends State<UContextMenu> {
     }
   }
 
-  void _handleItemClick(UContextMenuItem item) {
+  void _handleItemClick(DContextMenuItem item) {
     if (!item.disabled && item.onClick != null) {
       _close();
       item.onClick!();
     }
   }
 
-  Component _buildMenuItem(UContextMenuItem item) {
+  Component _buildMenuItem(DContextMenuItem item) {
     if (item.divider) {
       return div(
         classes: 'border-t border-gray-200 dark:border-gray-700 my-1',
@@ -175,14 +175,14 @@ class _UContextMenuState extends State<UContextMenu> {
 }
 
 /// Controlled context menu that can be triggered programmatically
-class UContextMenuControlled extends StatelessComponent {
+class DContextMenuControlled extends StatelessComponent {
   final bool open;
   final double x;
   final double y;
-  final List<UContextMenuItem> items;
+  final List<DContextMenuItem> items;
   final VoidCallback? onClose;
 
-  const UContextMenuControlled({
+  const DContextMenuControlled({
     super.key,
     required this.open,
     required this.x,
@@ -191,7 +191,7 @@ class UContextMenuControlled extends StatelessComponent {
     this.onClose,
   });
 
-  Component _buildMenuItem(UContextMenuItem item, VoidCallback close) {
+  Component _buildMenuItem(DContextMenuItem item, VoidCallback close) {
     if (item.divider) {
       return div(
         classes: 'border-t border-gray-200 dark:border-gray-700 my-1',

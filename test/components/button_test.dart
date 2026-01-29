@@ -4,24 +4,24 @@ import 'package:jaspr/dom.dart';
 import 'package:duxt_ui/src/components/button.dart';
 
 void main() {
-  group('UButton', () {
+  group('DButton', () {
     group('rendering', () {
       testComponents('renders with default props', (tester) async {
-        tester.pumpComponent(UButton(label: 'Click me'));
+        tester.pumpComponent(DButton(label: 'Click me'));
 
         expect(find.text('Click me'), findsOneComponent);
         expect(find.tag('button'), findsOneComponent);
       });
 
       testComponents('renders with label', (tester) async {
-        tester.pumpComponent(UButton(label: 'Submit'));
+        tester.pumpComponent(DButton(label: 'Submit'));
 
         expect(find.text('Submit'), findsOneComponent);
       });
 
       testComponents('renders children when provided', (tester) async {
         tester.pumpComponent(
-          UButton(children: [Component.text('Child content')]),
+          DButton(children: [Component.text('Child content')]),
         );
 
         expect(find.text('Child content'), findsOneComponent);
@@ -29,7 +29,7 @@ void main() {
 
       testComponents('renders without label when none provided',
           (tester) async {
-        tester.pumpComponent(UButton());
+        tester.pumpComponent(DButton());
 
         expect(find.tag('button'), findsOneComponent);
       });
@@ -38,7 +38,7 @@ void main() {
     group('variants', () {
       testComponents('renders solid variant', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'Solid', variant: UButtonVariant.solid),
+          DButton(label: 'Solid', variant: DButtonVariant.solid),
         );
 
         final button = find.tag('button');
@@ -47,7 +47,7 @@ void main() {
 
       testComponents('renders outline variant', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'Outline', variant: UButtonVariant.outline),
+          DButton(label: 'Outline', variant: DButtonVariant.outline),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -56,7 +56,7 @@ void main() {
 
       testComponents('renders soft variant', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'Soft', variant: UButtonVariant.soft),
+          DButton(label: 'Soft', variant: DButtonVariant.soft),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -65,7 +65,7 @@ void main() {
 
       testComponents('renders subtle variant', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'Subtle', variant: UButtonVariant.subtle),
+          DButton(label: 'Subtle', variant: DButtonVariant.subtle),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -74,7 +74,7 @@ void main() {
 
       testComponents('renders ghost variant', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'Ghost', variant: UButtonVariant.ghost),
+          DButton(label: 'Ghost', variant: DButtonVariant.ghost),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -83,7 +83,7 @@ void main() {
 
       testComponents('renders link variant', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'Link', variant: UButtonVariant.link),
+          DButton(label: 'Link', variant: DButtonVariant.link),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -94,7 +94,7 @@ void main() {
     group('sizes', () {
       testComponents('renders xs size', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'XS', size: UButtonSize.xs),
+          DButton(label: 'XS', size: DButtonSize.xs),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -102,7 +102,7 @@ void main() {
 
       testComponents('renders sm size', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'SM', size: UButtonSize.sm),
+          DButton(label: 'SM', size: DButtonSize.sm),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -110,7 +110,7 @@ void main() {
 
       testComponents('renders md size (default)', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'MD', size: UButtonSize.md),
+          DButton(label: 'MD', size: DButtonSize.md),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -118,7 +118,7 @@ void main() {
 
       testComponents('renders lg size', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'LG', size: UButtonSize.lg),
+          DButton(label: 'LG', size: DButtonSize.lg),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -126,7 +126,7 @@ void main() {
 
       testComponents('renders xl size', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'XL', size: UButtonSize.xl),
+          DButton(label: 'XL', size: DButtonSize.xl),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -136,7 +136,7 @@ void main() {
     group('colors', () {
       testComponents('renders primary color (default)', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'Primary', color: UButtonColor.primary),
+          DButton(label: 'Primary', color: DButtonColor.primary),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -144,7 +144,7 @@ void main() {
 
       testComponents('renders secondary color', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'Secondary', color: UButtonColor.secondary),
+          DButton(label: 'Secondary', color: DButtonColor.secondary),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -152,7 +152,7 @@ void main() {
 
       testComponents('renders success color', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'Success', color: UButtonColor.success),
+          DButton(label: 'Success', color: DButtonColor.success),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -160,7 +160,7 @@ void main() {
 
       testComponents('renders info color', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'Info', color: UButtonColor.info),
+          DButton(label: 'Info', color: DButtonColor.info),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -168,7 +168,7 @@ void main() {
 
       testComponents('renders warning color', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'Warning', color: UButtonColor.warning),
+          DButton(label: 'Warning', color: DButtonColor.warning),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -176,7 +176,7 @@ void main() {
 
       testComponents('renders error color', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'Error', color: UButtonColor.error),
+          DButton(label: 'Error', color: DButtonColor.error),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -184,7 +184,7 @@ void main() {
 
       testComponents('renders neutral color', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'Neutral', color: UButtonColor.neutral),
+          DButton(label: 'Neutral', color: DButtonColor.neutral),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -194,7 +194,7 @@ void main() {
     group('states', () {
       testComponents('renders disabled state', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'Disabled', disabled: true),
+          DButton(label: 'Disabled', disabled: true),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -202,7 +202,7 @@ void main() {
 
       testComponents('renders loading state', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'Loading', loading: true),
+          DButton(label: 'Loading', loading: true),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -212,7 +212,7 @@ void main() {
 
       testComponents('renders block (full-width) state', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'Block', block: true),
+          DButton(label: 'Block', block: true),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -220,7 +220,7 @@ void main() {
 
       testComponents('renders square state', (tester) async {
         tester.pumpComponent(
-          UButton(label: 'S', square: true),
+          DButton(label: 'S', square: true),
         );
 
         expect(find.tag('button'), findsOneComponent);
@@ -230,7 +230,7 @@ void main() {
     group('icons', () {
       testComponents('renders with leading icon', (tester) async {
         tester.pumpComponent(
-          UButton(
+          DButton(
             label: 'With Icon',
             leadingIcon: span([Component.text('+')]),
           ),
@@ -242,7 +242,7 @@ void main() {
 
       testComponents('renders with trailing icon', (tester) async {
         tester.pumpComponent(
-          UButton(
+          DButton(
             label: 'With Icon',
             trailingIcon: span([Component.text('>')]),
           ),
@@ -254,7 +254,7 @@ void main() {
 
       testComponents('renders with both icons', (tester) async {
         tester.pumpComponent(
-          UButton(
+          DButton(
             label: 'Both Icons',
             leadingIcon: span([Component.text('<')]),
             trailingIcon: span([Component.text('>')]),
@@ -270,7 +270,7 @@ void main() {
       testComponents('onClick callback fires when clicked', (tester) async {
         var clicked = false;
         tester.pumpComponent(
-          UButton(
+          DButton(
             label: 'Click',
             onClick: () => clicked = true,
           ),
@@ -283,7 +283,7 @@ void main() {
       testComponents('onClick does not fire when disabled', (tester) async {
         var clicked = false;
         tester.pumpComponent(
-          UButton(
+          DButton(
             label: 'Disabled',
             disabled: true,
             onClick: () => clicked = true,
@@ -297,7 +297,7 @@ void main() {
       testComponents('onClick does not fire when loading', (tester) async {
         var clicked = false;
         tester.pumpComponent(
-          UButton(
+          DButton(
             label: 'Loading',
             loading: true,
             onClick: () => clicked = true,
@@ -312,10 +312,10 @@ void main() {
     group('variant + color combinations', () {
       testComponents('solid + error', (tester) async {
         tester.pumpComponent(
-          UButton(
+          DButton(
             label: 'Delete',
-            variant: UButtonVariant.solid,
-            color: UButtonColor.error,
+            variant: DButtonVariant.solid,
+            color: DButtonColor.error,
           ),
         );
 
@@ -324,10 +324,10 @@ void main() {
 
       testComponents('outline + secondary', (tester) async {
         tester.pumpComponent(
-          UButton(
+          DButton(
             label: 'Secondary',
-            variant: UButtonVariant.outline,
-            color: UButtonColor.secondary,
+            variant: DButtonVariant.outline,
+            color: DButtonColor.secondary,
           ),
         );
 
@@ -336,10 +336,10 @@ void main() {
 
       testComponents('soft + success', (tester) async {
         tester.pumpComponent(
-          UButton(
+          DButton(
             label: 'Done',
-            variant: UButtonVariant.soft,
-            color: UButtonColor.success,
+            variant: DButtonVariant.soft,
+            color: DButtonColor.success,
           ),
         );
 
@@ -348,10 +348,10 @@ void main() {
 
       testComponents('ghost + neutral', (tester) async {
         tester.pumpComponent(
-          UButton(
+          DButton(
             label: 'Cancel',
-            variant: UButtonVariant.ghost,
-            color: UButtonColor.neutral,
+            variant: DButtonVariant.ghost,
+            color: DButtonColor.neutral,
           ),
         );
 
@@ -360,14 +360,14 @@ void main() {
     });
   });
 
-  group('UButtonGroup', () {
+  group('DButtonGroup', () {
     testComponents('renders multiple buttons horizontally', (tester) async {
       tester.pumpComponent(
-        UButtonGroup(
+        DButtonGroup(
           children: [
-            UButton(label: 'One'),
-            UButton(label: 'Two'),
-            UButton(label: 'Three'),
+            DButton(label: 'One'),
+            DButton(label: 'Two'),
+            DButton(label: 'Three'),
           ],
         ),
       );
@@ -379,11 +379,11 @@ void main() {
 
     testComponents('renders vertically when orientation set', (tester) async {
       tester.pumpComponent(
-        UButtonGroup(
+        DButtonGroup(
           orientation: 'vertical',
           children: [
-            UButton(label: 'Top'),
-            UButton(label: 'Bottom'),
+            DButton(label: 'Top'),
+            DButton(label: 'Bottom'),
           ],
         ),
       );

@@ -5,7 +5,7 @@ import '../../theme/variants.dart';
 import 'toast.dart';
 
 /// Toast position on screen
-enum UToasterPosition {
+enum DToasterPosition {
   topLeft,
   topCenter,
   topRight,
@@ -15,49 +15,49 @@ enum UToasterPosition {
 }
 
 /// DuxtUI Toaster component - Toast container/manager
-class UToaster extends StatefulComponent {
-  final UToasterPosition position;
+class DToaster extends StatefulComponent {
+  final DToasterPosition position;
   final List<ToastData> toasts;
   final ValueChanged<String>? onToastClose;
 
-  const UToaster({
+  const DToaster({
     super.key,
-    this.position = UToasterPosition.topRight,
+    this.position = DToasterPosition.topRight,
     this.toasts = const [],
     this.onToastClose,
   });
 
   @override
-  State<UToaster> createState() => _UToasterState();
+  State<DToaster> createState() => _UToasterState();
 }
 
-class _UToasterState extends State<UToaster> {
+class _UToasterState extends State<DToaster> {
   String get _positionClasses {
     switch (component.position) {
-      case UToasterPosition.topLeft:
+      case DToasterPosition.topLeft:
         return 'top-4 left-4';
-      case UToasterPosition.topCenter:
+      case DToasterPosition.topCenter:
         return 'top-4 left-1/2 -translate-x-1/2';
-      case UToasterPosition.topRight:
+      case DToasterPosition.topRight:
         return 'top-4 right-4';
-      case UToasterPosition.bottomLeft:
+      case DToasterPosition.bottomLeft:
         return 'bottom-4 left-4';
-      case UToasterPosition.bottomCenter:
+      case DToasterPosition.bottomCenter:
         return 'bottom-4 left-1/2 -translate-x-1/2';
-      case UToasterPosition.bottomRight:
+      case DToasterPosition.bottomRight:
         return 'bottom-4 right-4';
     }
   }
 
   String get _stackDirection {
     switch (component.position) {
-      case UToasterPosition.topLeft:
-      case UToasterPosition.topCenter:
-      case UToasterPosition.topRight:
+      case DToasterPosition.topLeft:
+      case DToasterPosition.topCenter:
+      case DToasterPosition.topRight:
         return 'flex-col';
-      case UToasterPosition.bottomLeft:
-      case UToasterPosition.bottomCenter:
-      case UToasterPosition.bottomRight:
+      case DToasterPosition.bottomLeft:
+      case DToasterPosition.bottomCenter:
+      case DToasterPosition.bottomRight:
         return 'flex-col-reverse';
     }
   }
@@ -80,7 +80,7 @@ class _UToasterState extends State<UToaster> {
           div(
             classes: 'pointer-events-auto',
             [
-              UToast(
+              DToast(
                 id: toast.id,
                 title: toast.title,
                 description: toast.description,
@@ -200,21 +200,21 @@ class ToastManager {
 }
 
 /// Provider component that manages toast state
-class UToasterProvider extends StatefulComponent {
+class DToasterProvider extends StatefulComponent {
   final Component child;
-  final UToasterPosition position;
+  final DToasterPosition position;
 
-  const UToasterProvider({
+  const DToasterProvider({
     super.key,
     required this.child,
-    this.position = UToasterPosition.topRight,
+    this.position = DToasterPosition.topRight,
   });
 
   @override
-  State<UToasterProvider> createState() => _UToasterProviderState();
+  State<DToasterProvider> createState() => _UToasterProviderState();
 }
 
-class _UToasterProviderState extends State<UToasterProvider> {
+class _UToasterProviderState extends State<DToasterProvider> {
   @override
   void initState() {
     super.initState();
@@ -235,7 +235,7 @@ class _UToasterProviderState extends State<UToasterProvider> {
   Component build(BuildContext context) {
     return Component.fragment([
       component.child,
-      UToaster(
+      DToaster(
         position: component.position,
         toasts: ToastManager.toasts,
         onToastClose: (id) => ToastManager.dismiss(id),

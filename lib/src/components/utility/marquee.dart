@@ -2,18 +2,18 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Marquee direction
-enum UMarqueeDirection { left, right }
+enum DMarqueeDirection { left, right }
 
 /// DuxtUI Marquee component - Scrolling content animation
 ///
 /// Creates a smooth scrolling animation for content.
 /// Content is duplicated to create seamless infinite scroll effect.
-class UMarquee extends StatelessComponent {
+class DMarquee extends StatelessComponent {
   /// Content to scroll
   final List<Component> children;
 
   /// Scroll direction
-  final UMarqueeDirection direction;
+  final DMarqueeDirection direction;
 
   /// Animation duration in seconds
   final int duration;
@@ -27,10 +27,10 @@ class UMarquee extends StatelessComponent {
   /// Custom CSS classes
   final String? classes;
 
-  const UMarquee({
+  const DMarquee({
     super.key,
     required this.children,
-    this.direction = UMarqueeDirection.left,
+    this.direction = DMarqueeDirection.left,
     this.duration = 20,
     this.pauseOnHover = true,
     this.gap = 'gap-8',
@@ -38,7 +38,7 @@ class UMarquee extends StatelessComponent {
   });
 
   String get _animationName {
-    return direction == UMarqueeDirection.left
+    return direction == DMarqueeDirection.left
         ? 'marquee-left'
         : 'marquee-right';
   }
@@ -90,11 +90,11 @@ class UMarquee extends StatelessComponent {
 }
 
 /// Helper component for marquee items
-class UMarqueeItem extends StatelessComponent {
+class DMarqueeItem extends StatelessComponent {
   final Component child;
   final String? classes;
 
-  const UMarqueeItem({
+  const DMarqueeItem({
     super.key,
     required this.child,
     this.classes,

@@ -4,7 +4,7 @@ import 'package:jaspr/dom.dart';
 /// DuxtUI PageSection component - Section with optional background
 ///
 /// A page section with responsive padding and optional background styling.
-class UPageSection extends StatelessComponent {
+class DPageSection extends StatelessComponent {
   /// Section ID for anchor links
   final String? id;
 
@@ -18,7 +18,7 @@ class UPageSection extends StatelessComponent {
   final String? headline;
 
   /// Content alignment for header
-  final UPageSectionAlign align;
+  final DPageSectionAlign align;
 
   /// Section content
   final List<Component> children;
@@ -41,13 +41,13 @@ class UPageSection extends StatelessComponent {
   /// Custom slot for section header
   final Component? headerSlot;
 
-  const UPageSection({
+  const DPageSection({
     super.key,
     this.id,
     this.title,
     this.description,
     this.headline,
-    this.align = UPageSectionAlign.center,
+    this.align = DPageSectionAlign.center,
     this.children = const [],
     this.background = false,
     this.backgroundClasses,
@@ -59,11 +59,11 @@ class UPageSection extends StatelessComponent {
 
   String get _alignClasses {
     switch (align) {
-      case UPageSectionAlign.left:
+      case DPageSectionAlign.left:
         return 'text-left';
-      case UPageSectionAlign.center:
+      case DPageSectionAlign.center:
         return 'text-center mx-auto';
-      case UPageSectionAlign.right:
+      case DPageSectionAlign.right:
         return 'text-right ml-auto';
     }
   }
@@ -95,7 +95,7 @@ class UPageSection extends StatelessComponent {
                     if (icon != null)
                       div(
                         classes:
-                            'mb-4 ${align == UPageSectionAlign.center ? "flex justify-center" : ""}',
+                            'mb-4 ${align == DPageSectionAlign.center ? "flex justify-center" : ""}',
                         [icon!],
                       ),
                     // Headline/eyebrow
@@ -123,7 +123,7 @@ class UPageSection extends StatelessComponent {
                     if (links.isNotEmpty)
                       div(
                         classes:
-                            'mt-6 flex flex-wrap gap-3 ${align == UPageSectionAlign.center ? "justify-center" : ""}',
+                            'mt-6 flex flex-wrap gap-3 ${align == DPageSectionAlign.center ? "justify-center" : ""}',
                         links,
                       ),
                   ],
@@ -139,4 +139,4 @@ class UPageSection extends StatelessComponent {
 }
 
 /// Alignment options for page section content
-enum UPageSectionAlign { left, center, right }
+enum DPageSectionAlign { left, center, right }

@@ -3,21 +3,21 @@ import 'package:jaspr/dom.dart';
 import '../../theme/colors.dart';
 import '../avatar.dart';
 
-// Re-export UAvatar for convenience (hide UAvatarGroup to avoid conflict)
-export '../avatar.dart' show UAvatar, UAvatarSize;
+// Re-export DAvatar for convenience (hide DAvatarGroup to avoid conflict)
+export '../avatar.dart' show DAvatar, DAvatarSize;
 
 /// DuxtUI Avatar Group component (enhanced version)
 /// Displays a stack of overlapping avatars with optional overflow indicator
 /// This is an enhanced version with more customization options
-class UAvatarGroupEnhanced extends StatelessComponent {
+class DAvatarGroupEnhanced extends StatelessComponent {
   /// List of avatars to display
-  final List<UAvatar> avatars;
+  final List<DAvatar> avatars;
 
   /// Maximum number of avatars to show before truncating
   final int max;
 
   /// Size of avatars in the group
-  final UAvatarSize size;
+  final DAvatarSize size;
 
   /// Spacing between avatars (negative for overlap)
   final String spacing;
@@ -31,11 +31,11 @@ class UAvatarGroupEnhanced extends StatelessComponent {
   /// Whether to reverse the stacking order (last avatar on top)
   final bool reverse;
 
-  const UAvatarGroupEnhanced({
+  const DAvatarGroupEnhanced({
     super.key,
     required this.avatars,
     this.max = 4,
-    this.size = UAvatarSize.md,
+    this.size = DAvatarSize.md,
     this.spacing = '-space-x-2',
     this.ringColor = 'ring-white dark:ring-gray-900',
     this.ringWidth = 'ring-2',
@@ -44,15 +44,15 @@ class UAvatarGroupEnhanced extends StatelessComponent {
 
   String get _sizeClasses {
     switch (size) {
-      case UAvatarSize.xs:
+      case DAvatarSize.xs:
         return 'h-6 w-6 text-[10px]';
-      case UAvatarSize.sm:
+      case DAvatarSize.sm:
         return 'h-8 w-8 text-xs';
-      case UAvatarSize.md:
+      case DAvatarSize.md:
         return 'h-10 w-10 text-sm';
-      case UAvatarSize.lg:
+      case DAvatarSize.lg:
         return 'h-12 w-12 text-base';
-      case UAvatarSize.xl:
+      case DAvatarSize.xl:
         return 'h-16 w-16 text-lg';
       default:
         return 'h-10 w-10 text-sm';
@@ -81,7 +81,7 @@ class UAvatarGroupEnhanced extends StatelessComponent {
       avatarWidgets.add(
         div(
           classes:
-              '$_sizeClasses rounded-full ${UBgColors.muted} flex items-center justify-center font-medium ${UTextColors.muted} $ringWidth $ringColor',
+              '$_sizeClasses rounded-full ${DBgColors.muted} flex items-center justify-center font-medium ${DTextColors.muted} $ringWidth $ringColor',
           [Component.text('+$remaining')],
         ),
       );
@@ -95,34 +95,34 @@ class UAvatarGroupEnhanced extends StatelessComponent {
 }
 
 /// Avatar Stack - Alternative layout with vertical stacking
-class UAvatarStack extends StatelessComponent {
+class DAvatarStack extends StatelessComponent {
   /// List of avatars to display
-  final List<UAvatar> avatars;
+  final List<DAvatar> avatars;
 
   /// Maximum number of avatars to show
   final int max;
 
   /// Size of avatars
-  final UAvatarSize size;
+  final DAvatarSize size;
 
-  const UAvatarStack({
+  const DAvatarStack({
     super.key,
     required this.avatars,
     this.max = 4,
-    this.size = UAvatarSize.md,
+    this.size = DAvatarSize.md,
   });
 
   String get _sizeClasses {
     switch (size) {
-      case UAvatarSize.xs:
+      case DAvatarSize.xs:
         return 'h-6 w-6 text-[10px]';
-      case UAvatarSize.sm:
+      case DAvatarSize.sm:
         return 'h-8 w-8 text-xs';
-      case UAvatarSize.md:
+      case DAvatarSize.md:
         return 'h-10 w-10 text-sm';
-      case UAvatarSize.lg:
+      case DAvatarSize.lg:
         return 'h-12 w-12 text-base';
-      case UAvatarSize.xl:
+      case DAvatarSize.xl:
         return 'h-16 w-16 text-lg';
       default:
         return 'h-10 w-10 text-sm';
@@ -145,7 +145,7 @@ class UAvatarStack extends StatelessComponent {
         if (remaining > 0)
           div(
             classes:
-                '$_sizeClasses rounded-full ${UBgColors.muted} flex items-center justify-center font-medium ${UTextColors.muted} ring-2 ring-white dark:ring-gray-900',
+                '$_sizeClasses rounded-full ${DBgColors.muted} flex items-center justify-center font-medium ${DTextColors.muted} ring-2 ring-white dark:ring-gray-900',
             [Component.text('+$remaining')],
           ),
       ],

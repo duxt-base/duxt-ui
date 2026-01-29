@@ -5,11 +5,11 @@ import 'package:duxt_ui/src/components/button.dart';
 import 'package:duxt_ui/src/components/modal.dart';
 
 void main() {
-  group('UModal', () {
+  group('DModal', () {
     group('rendering', () {
       testComponents('renders nothing when closed', (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
             open: false,
             children: [Component.text('Modal content')],
           ),
@@ -20,7 +20,7 @@ void main() {
 
       testComponents('renders content when open', (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
             open: true,
             children: [Component.text('Modal content')],
           ),
@@ -31,7 +31,7 @@ void main() {
 
       testComponents('renders with title', (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
             open: true,
             title: 'Modal Title',
             children: [Component.text('Body')],
@@ -44,7 +44,7 @@ void main() {
 
       testComponents('renders with description', (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
             open: true,
             title: 'Title',
             description: 'Modal description text',
@@ -58,7 +58,7 @@ void main() {
 
       testComponents('renders with custom header', (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
             open: true,
             header: div([Component.text('Custom Header')]),
             children: [Component.text('Body')],
@@ -70,12 +70,12 @@ void main() {
 
       testComponents('renders with footer', (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
             open: true,
             children: [Component.text('Body')],
             footer: div([
-              UButton(label: 'Cancel'),
-              UButton(label: 'Save'),
+              DButton(label: 'Cancel'),
+              DButton(label: 'Save'),
             ]),
           ),
         );
@@ -87,7 +87,7 @@ void main() {
       testComponents('renders close button when onClose provided',
           (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
             open: true,
             title: 'Title',
             onClose: () {},
@@ -102,7 +102,7 @@ void main() {
       testComponents('does not render close button when preventClose',
           (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
             open: true,
             title: 'Title',
             preventClose: true,
@@ -118,9 +118,9 @@ void main() {
     group('sizes', () {
       testComponents('renders xs size', (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
               open: true,
-              size: UModalSize.xs,
+              size: DModalSize.xs,
               children: [Component.text('XS')]),
         );
 
@@ -129,9 +129,9 @@ void main() {
 
       testComponents('renders sm size', (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
               open: true,
-              size: UModalSize.sm,
+              size: DModalSize.sm,
               children: [Component.text('SM')]),
         );
 
@@ -140,9 +140,9 @@ void main() {
 
       testComponents('renders md size (default)', (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
               open: true,
-              size: UModalSize.md,
+              size: DModalSize.md,
               children: [Component.text('MD')]),
         );
 
@@ -151,9 +151,9 @@ void main() {
 
       testComponents('renders lg size', (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
               open: true,
-              size: UModalSize.lg,
+              size: DModalSize.lg,
               children: [Component.text('LG')]),
         );
 
@@ -162,9 +162,9 @@ void main() {
 
       testComponents('renders xl size', (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
               open: true,
-              size: UModalSize.xl,
+              size: DModalSize.xl,
               children: [Component.text('XL')]),
         );
 
@@ -173,9 +173,9 @@ void main() {
 
       testComponents('renders xxl size', (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
               open: true,
-              size: UModalSize.xxl,
+              size: DModalSize.xxl,
               children: [Component.text('XXL')]),
         );
 
@@ -184,9 +184,9 @@ void main() {
 
       testComponents('renders xxxl size', (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
               open: true,
-              size: UModalSize.xxxl,
+              size: DModalSize.xxxl,
               children: [Component.text('XXXL')]),
         );
 
@@ -195,9 +195,9 @@ void main() {
 
       testComponents('renders xxxxl size', (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
               open: true,
-              size: UModalSize.xxxxl,
+              size: DModalSize.xxxxl,
               children: [Component.text('XXXXL')]),
         );
 
@@ -206,9 +206,9 @@ void main() {
 
       testComponents('renders xxxxxl size', (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
               open: true,
-              size: UModalSize.xxxxxl,
+              size: DModalSize.xxxxxl,
               children: [Component.text('XXXXXL')]),
         );
 
@@ -217,9 +217,9 @@ void main() {
 
       testComponents('renders full size', (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
               open: true,
-              size: UModalSize.full,
+              size: DModalSize.full,
               children: [Component.text('Full')]),
         );
 
@@ -230,7 +230,7 @@ void main() {
     group('fullscreen mode', () {
       testComponents('renders fullscreen modal', (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
             open: true,
             fullscreen: true,
             children: [Component.text('Fullscreen content')],
@@ -244,7 +244,7 @@ void main() {
     group('interactions', () {
       testComponents('onClose fires when close button clicked', (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
             open: true,
             title: 'Test',
             onClose: () {},
@@ -259,7 +259,7 @@ void main() {
       testComponents('overlay click closes when closeOnOverlay true',
           (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
             open: true,
             closeOnOverlay: true,
             onClose: () {},
@@ -273,7 +273,7 @@ void main() {
       testComponents('overlay click does not close when closeOnOverlay false',
           (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
             open: true,
             closeOnOverlay: false,
             onClose: () {},
@@ -286,7 +286,7 @@ void main() {
 
       testComponents('preventClose prevents closing', (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
             open: true,
             preventClose: true,
             onClose: () {},
@@ -299,11 +299,11 @@ void main() {
     });
   });
 
-  group('USlideover', () {
+  group('DSlideover', () {
     group('rendering', () {
       testComponents('renders nothing when closed', (tester) async {
         tester.pumpComponent(
-          USlideover(
+          DSlideover(
             open: false,
             children: [Component.text('Slideover content')],
           ),
@@ -314,7 +314,7 @@ void main() {
 
       testComponents('renders content when open', (tester) async {
         tester.pumpComponent(
-          USlideover(
+          DSlideover(
             open: true,
             children: [Component.text('Slideover content')],
           ),
@@ -325,7 +325,7 @@ void main() {
 
       testComponents('renders with title', (tester) async {
         tester.pumpComponent(
-          USlideover(
+          DSlideover(
             open: true,
             title: 'Slideover Title',
             children: [Component.text('Body')],
@@ -337,7 +337,7 @@ void main() {
 
       testComponents('renders with description', (tester) async {
         tester.pumpComponent(
-          USlideover(
+          DSlideover(
             open: true,
             title: 'Title',
             description: 'Description text',
@@ -350,7 +350,7 @@ void main() {
 
       testComponents('renders with custom header', (tester) async {
         tester.pumpComponent(
-          USlideover(
+          DSlideover(
             open: true,
             header: div([Component.text('Custom Header')]),
             children: [Component.text('Body')],
@@ -362,10 +362,10 @@ void main() {
 
       testComponents('renders with footer', (tester) async {
         tester.pumpComponent(
-          USlideover(
+          DSlideover(
             open: true,
             children: [Component.text('Body')],
-            footer: div([UButton(label: 'Action')]),
+            footer: div([DButton(label: 'Action')]),
           ),
         );
 
@@ -376,9 +376,9 @@ void main() {
     group('sides', () {
       testComponents('renders from right (default)', (tester) async {
         tester.pumpComponent(
-          USlideover(
+          DSlideover(
             open: true,
-            side: USlideoverSide.right,
+            side: DSlideoverSide.right,
             children: [Component.text('Right')],
           ),
         );
@@ -388,9 +388,9 @@ void main() {
 
       testComponents('renders from left', (tester) async {
         tester.pumpComponent(
-          USlideover(
+          DSlideover(
             open: true,
-            side: USlideoverSide.left,
+            side: DSlideoverSide.left,
             children: [Component.text('Left')],
           ),
         );
@@ -400,9 +400,9 @@ void main() {
 
       testComponents('renders from top', (tester) async {
         tester.pumpComponent(
-          USlideover(
+          DSlideover(
             open: true,
-            side: USlideoverSide.top,
+            side: DSlideoverSide.top,
             children: [Component.text('Top')],
           ),
         );
@@ -412,9 +412,9 @@ void main() {
 
       testComponents('renders from bottom', (tester) async {
         tester.pumpComponent(
-          USlideover(
+          DSlideover(
             open: true,
-            side: USlideoverSide.bottom,
+            side: DSlideoverSide.bottom,
             children: [Component.text('Bottom')],
           ),
         );
@@ -426,7 +426,7 @@ void main() {
     group('interactions', () {
       testComponents('renders close button', (tester) async {
         tester.pumpComponent(
-          USlideover(
+          DSlideover(
             open: true,
             title: 'Title',
             onClose: () {},
@@ -439,7 +439,7 @@ void main() {
 
       testComponents('preventClose hides close button', (tester) async {
         tester.pumpComponent(
-          USlideover(
+          DSlideover(
             open: true,
             title: 'Title',
             preventClose: true,
@@ -456,7 +456,7 @@ void main() {
   group('Modal integration', () {
     testComponents('renders complete modal with all parts', (tester) async {
       tester.pumpComponent(
-        UModal(
+        DModal(
           open: true,
           title: 'Confirm Action',
           description: 'Are you sure you want to proceed?',
@@ -465,8 +465,8 @@ void main() {
             p([Component.text('This action cannot be undone.')]),
           ],
           footer: div([
-            UButton(label: 'Cancel', variant: UButtonVariant.ghost),
-            UButton(label: 'Confirm', color: UButtonColor.error),
+            DButton(label: 'Cancel', variant: DButtonVariant.ghost),
+            DButton(label: 'Confirm', color: DButtonColor.error),
           ]),
         ),
       );

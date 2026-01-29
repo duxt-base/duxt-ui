@@ -7,19 +7,19 @@ import 'provider.dart';
 ///
 /// A toggle switch with sun and moon icons for theme switching.
 /// Shows current mode visually with animated transition.
-class UColorModeSwitch extends StatefulComponent {
+class DColorModeSwitch extends StatefulComponent {
   /// Initial mode
-  final UThemeMode initialMode;
+  final DThemeMode initialMode;
 
   /// Callback when mode changes
-  final ValueChanged<UThemeMode>? onModeChange;
+  final ValueChanged<DThemeMode>? onModeChange;
 
   /// Custom CSS classes
   final String? classes;
 
-  const UColorModeSwitch({
+  const DColorModeSwitch({
     super.key,
-    this.initialMode = UThemeMode.light,
+    this.initialMode = DThemeMode.light,
     this.onModeChange,
     this.classes,
   });
@@ -28,20 +28,20 @@ class UColorModeSwitch extends StatefulComponent {
   State createState() => _UColorModeSwitchState();
 }
 
-class _UColorModeSwitchState extends State<UColorModeSwitch> {
+class _UColorModeSwitchState extends State<DColorModeSwitch> {
   late bool _isDark;
 
   @override
   void initState() {
     super.initState();
-    _isDark = component.initialMode == UThemeMode.dark;
+    _isDark = component.initialMode == DThemeMode.dark;
   }
 
   void _toggle() {
     setState(() {
       _isDark = !_isDark;
     });
-    final newMode = _isDark ? UThemeMode.dark : UThemeMode.light;
+    final newMode = _isDark ? DThemeMode.dark : DThemeMode.light;
     component.onModeChange?.call(newMode);
   }
 
@@ -79,7 +79,7 @@ class _UColorModeSwitchState extends State<UColorModeSwitch> {
             _isDark ? 'opacity-100' : 'opacity-40',
           ].join(' '),
           [
-            UIcon(name: UIconNames.sun, size: UIconSize.xs),
+            DIcon(name: DIconNames.sun, size: DIconSize.xs),
           ],
         ),
 
@@ -91,7 +91,7 @@ class _UColorModeSwitchState extends State<UColorModeSwitch> {
             _isDark ? 'opacity-40' : 'opacity-100',
           ].join(' '),
           [
-            UIcon(name: UIconNames.moon, size: UIconSize.xs),
+            DIcon(name: DIconNames.moon, size: DIconSize.xs),
           ],
         ),
 

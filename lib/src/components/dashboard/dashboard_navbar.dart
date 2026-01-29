@@ -5,7 +5,7 @@ import 'package:jaspr/dom.dart';
 ///
 /// A horizontal navigation bar for dashboard layouts.
 /// Typically placed at the top of a dashboard panel.
-class UDashboardNavbar extends StatelessComponent {
+class DDashboardNavbar extends StatelessComponent {
   /// Custom CSS classes to apply to the navbar
   final String? classes;
 
@@ -25,12 +25,12 @@ class UDashboardNavbar extends StatelessComponent {
   final bool bordered;
 
   /// Background variant
-  final UNavbarBackground background;
+  final DNavbarBackground background;
 
   /// Child components (rendered in the center if center is not provided)
   final List<Component> children;
 
-  const UDashboardNavbar({
+  const DDashboardNavbar({
     super.key,
     this.classes,
     this.leading,
@@ -38,17 +38,17 @@ class UDashboardNavbar extends StatelessComponent {
     this.center,
     this.trailing,
     this.bordered = true,
-    this.background = UNavbarBackground.white,
+    this.background = DNavbarBackground.white,
     this.children = const [],
   });
 
   String get _backgroundClasses {
     switch (background) {
-      case UNavbarBackground.white:
+      case DNavbarBackground.white:
         return 'bg-white dark:bg-gray-900';
-      case UNavbarBackground.gray:
+      case DNavbarBackground.gray:
         return 'bg-gray-50 dark:bg-gray-900';
-      case UNavbarBackground.transparent:
+      case DNavbarBackground.transparent:
         return 'bg-transparent';
     }
   }
@@ -87,4 +87,4 @@ class UDashboardNavbar extends StatelessComponent {
 }
 
 /// Navbar background variants
-enum UNavbarBackground { white, gray, transparent }
+enum DNavbarBackground { white, gray, transparent }

@@ -1,13 +1,13 @@
 import 'package:jaspr/jaspr.dart';
 
 /// DuxtUI Main component - main content wrapper
-class UMain extends StatelessComponent {
+class DMain extends StatelessComponent {
   final List<Component> children;
   final String? classes;
   final bool padded;
   final bool centered;
 
-  const UMain({
+  const DMain({
     super.key,
     this.children = const [],
     this.classes,
@@ -30,13 +30,13 @@ class UMain extends StatelessComponent {
 }
 
 /// DuxtUI Section component - semantic section wrapper
-class USection extends StatelessComponent {
+class DSection extends StatelessComponent {
   final List<Component> children;
   final String? classes;
   final String? id;
   final bool padded;
 
-  const USection({
+  const DSection({
     super.key,
     this.children = const [],
     this.classes,
@@ -58,12 +58,12 @@ class USection extends StatelessComponent {
 }
 
 /// DuxtUI Aside component - sidebar wrapper
-class UAside extends StatelessComponent {
+class DAside extends StatelessComponent {
   final List<Component> children;
   final String? classes;
   final bool sticky;
 
-  const UAside({
+  const DAside({
     super.key,
     this.children = const [],
     this.classes,

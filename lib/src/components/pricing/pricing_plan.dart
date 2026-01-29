@@ -2,12 +2,12 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Feature item for pricing plan
-class UPricingFeature {
+class DPricingFeature {
   final String text;
   final bool included;
   final String? tooltip;
 
-  const UPricingFeature({
+  const DPricingFeature({
     required this.text,
     this.included = true,
     this.tooltip,
@@ -18,7 +18,7 @@ class UPricingFeature {
 ///
 /// Displays a pricing plan with name, description, price, features, and CTA.
 /// Supports highlighting for popular/recommended plans.
-class UPricingPlan extends StatelessComponent {
+class DPricingPlan extends StatelessComponent {
   /// Plan name
   final String name;
 
@@ -44,7 +44,7 @@ class UPricingPlan extends StatelessComponent {
   final String? badgeColor;
 
   /// List of features
-  final List<UPricingFeature> features;
+  final List<DPricingFeature> features;
 
   /// CTA button text
   final String buttonText;
@@ -73,7 +73,7 @@ class UPricingPlan extends StatelessComponent {
   /// Custom footer content
   final Component? footer;
 
-  const UPricingPlan({
+  const DPricingPlan({
     super.key,
     required this.name,
     this.description,
@@ -209,7 +209,7 @@ class UPricingPlan extends StatelessComponent {
     ]);
   }
 
-  Component _buildFeatureItem(UPricingFeature feature) {
+  Component _buildFeatureItem(DPricingFeature feature) {
     final iconClasses = feature.included
         ? 'text-primary-500'
         : 'text-gray-300 dark:text-gray-600';

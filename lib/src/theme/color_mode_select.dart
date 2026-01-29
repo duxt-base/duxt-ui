@@ -7,19 +7,19 @@ import 'provider.dart';
 ///
 /// A dropdown select that allows choosing between Light, Dark, and System
 /// theme modes. Shows current selection with icon.
-class UColorModeSelect extends StatefulComponent {
+class DColorModeSelect extends StatefulComponent {
   /// Currently selected mode
-  final UThemeMode selectedMode;
+  final DThemeMode selectedMode;
 
   /// Callback when mode changes
-  final ValueChanged<UThemeMode>? onModeChange;
+  final ValueChanged<DThemeMode>? onModeChange;
 
   /// Custom CSS classes
   final String? classes;
 
-  const UColorModeSelect({
+  const DColorModeSelect({
     super.key,
-    this.selectedMode = UThemeMode.system,
+    this.selectedMode = DThemeMode.system,
     this.onModeChange,
     this.classes,
   });
@@ -28,8 +28,8 @@ class UColorModeSelect extends StatefulComponent {
   State createState() => _UColorModeSelectState();
 }
 
-class _UColorModeSelectState extends State<UColorModeSelect> {
-  late UThemeMode _currentMode;
+class _UColorModeSelectState extends State<DColorModeSelect> {
+  late DThemeMode _currentMode;
   bool _isOpen = false;
 
   @override
@@ -44,7 +44,7 @@ class _UColorModeSelectState extends State<UColorModeSelect> {
     });
   }
 
-  void _selectMode(UThemeMode mode) {
+  void _selectMode(DThemeMode mode) {
     setState(() {
       _currentMode = mode;
       _isOpen = false;
@@ -52,25 +52,25 @@ class _UColorModeSelectState extends State<UColorModeSelect> {
     component.onModeChange?.call(mode);
   }
 
-  String _getModeLabel(UThemeMode mode) {
+  String _getModeLabel(DThemeMode mode) {
     switch (mode) {
-      case UThemeMode.light:
+      case DThemeMode.light:
         return 'Light';
-      case UThemeMode.dark:
+      case DThemeMode.dark:
         return 'Dark';
-      case UThemeMode.system:
+      case DThemeMode.system:
         return 'System';
     }
   }
 
-  String _getModeIcon(UThemeMode mode) {
+  String _getModeIcon(DThemeMode mode) {
     switch (mode) {
-      case UThemeMode.light:
-        return UIconNames.sun;
-      case UThemeMode.dark:
-        return UIconNames.moon;
-      case UThemeMode.system:
-        return UIconNames.system;
+      case DThemeMode.light:
+        return DIconNames.sun;
+      case DThemeMode.dark:
+        return DIconNames.moon;
+      case DThemeMode.system:
+        return DIconNames.system;
     }
   }
 
@@ -101,18 +101,18 @@ class _UColorModeSelectState extends State<UColorModeSelect> {
             span(
               classes: 'flex items-center gap-2',
               [
-                UIcon(
+                DIcon(
                   name: _getModeIcon(_currentMode),
-                  size: UIconSize.sm,
+                  size: DIconSize.sm,
                   color: 'text-gray-500 dark:text-gray-400',
                 ),
                 Component.text(_getModeLabel(_currentMode)),
               ],
             ),
             // Dropdown arrow
-            UIcon(
-              name: UIconNames.chevronDown,
-              size: UIconSize.xs,
+            DIcon(
+              name: DIconNames.chevronDown,
+              size: DIconSize.xs,
               classes: [
                 'transition-transform',
                 if (_isOpen) 'rotate-180',
@@ -133,14 +133,14 @@ class _UColorModeSelectState extends State<UColorModeSelect> {
             ].join(' '),
             attributes: {'role': 'listbox'},
             [
-              for (final mode in UThemeMode.values) _buildOption(mode),
+              for (final mode in DThemeMode.values) _buildOption(mode),
             ],
           ),
       ],
     );
   }
 
-  Component _buildOption(UThemeMode mode) {
+  Component _buildOption(DThemeMode mode) {
     final isSelected = mode == _currentMode;
 
     return button(
@@ -159,9 +159,9 @@ class _UColorModeSelectState extends State<UColorModeSelect> {
         'aria-selected': isSelected ? 'true' : 'false',
       },
       [
-        UIcon(
+        DIcon(
           name: _getModeIcon(mode),
-          size: UIconSize.sm,
+          size: DIconSize.sm,
           color: isSelected
               ? 'text-indigo-500'
               : 'text-gray-400 dark:text-gray-500',
@@ -171,9 +171,9 @@ class _UColorModeSelectState extends State<UColorModeSelect> {
           span(
             classes: 'ml-auto',
             [
-              UIcon(
-                name: UIconNames.check,
-                size: UIconSize.sm,
+              DIcon(
+                name: DIconNames.check,
+                size: DIconSize.sm,
                 color: 'text-indigo-500',
               ),
             ],

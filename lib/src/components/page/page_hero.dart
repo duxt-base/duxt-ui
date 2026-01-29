@@ -4,7 +4,7 @@ import 'package:jaspr/dom.dart';
 /// DuxtUI PageHero component - Full-width hero section
 ///
 /// A prominent hero section with optional gradient background.
-class UPageHero extends StatelessComponent {
+class DPageHero extends StatelessComponent {
   /// The main title
   final String? title;
 
@@ -15,7 +15,7 @@ class UPageHero extends StatelessComponent {
   final String? headline;
 
   /// Content alignment
-  final UPageHeaderAlign align;
+  final DPageHeaderAlign align;
 
   /// Optional icon component
   final Component? icon;
@@ -35,12 +35,12 @@ class UPageHero extends StatelessComponent {
   /// Custom content slot (overrides title/description)
   final List<Component> children;
 
-  const UPageHero({
+  const DPageHero({
     super.key,
     this.title,
     this.description,
     this.headline,
-    this.align = UPageHeaderAlign.center,
+    this.align = DPageHeaderAlign.center,
     this.icon,
     this.links = const [],
     this.gradient = false,
@@ -51,11 +51,11 @@ class UPageHero extends StatelessComponent {
 
   String get _alignClasses {
     switch (align) {
-      case UPageHeaderAlign.left:
+      case DPageHeaderAlign.left:
         return 'text-left items-start';
-      case UPageHeaderAlign.center:
+      case DPageHeaderAlign.center:
         return 'text-center items-center';
-      case UPageHeaderAlign.right:
+      case DPageHeaderAlign.right:
         return 'text-right items-end';
     }
   }
@@ -92,7 +92,7 @@ class UPageHero extends StatelessComponent {
           [
             div(
               classes:
-                  'flex flex-col $_alignClasses max-w-4xl ${align == UPageHeaderAlign.center ? "mx-auto" : ""}',
+                  'flex flex-col $_alignClasses max-w-4xl ${align == DPageHeaderAlign.center ? "mx-auto" : ""}',
               [
                 // Custom children (if provided)
                 if (children.isNotEmpty)
@@ -125,7 +125,7 @@ class UPageHero extends StatelessComponent {
                   if (links.isNotEmpty)
                     div(
                       classes:
-                          'mt-10 flex flex-wrap gap-4 ${align == UPageHeaderAlign.center ? "justify-center" : ""}',
+                          'mt-10 flex flex-wrap gap-4 ${align == DPageHeaderAlign.center ? "justify-center" : ""}',
                       links,
                     ),
                 ],
@@ -139,4 +139,4 @@ class UPageHero extends StatelessComponent {
 }
 
 /// Re-export align enum for convenience
-enum UPageHeaderAlign { left, center, right }
+enum DPageHeaderAlign { left, center, right }

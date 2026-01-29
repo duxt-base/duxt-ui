@@ -2,28 +2,28 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Spinner sizes
-enum USpinnerSize { xs, sm, md, lg }
+enum DSpinnerSize { xs, sm, md, lg }
 
 /// DuxtUI Spinner component
-class USpinner extends StatelessComponent {
-  final USpinnerSize size;
+class DSpinner extends StatelessComponent {
+  final DSpinnerSize size;
   final String? color;
 
-  const USpinner({
+  const DSpinner({
     super.key,
-    this.size = USpinnerSize.md,
+    this.size = DSpinnerSize.md,
     this.color,
   });
 
   String get _sizeClasses {
     switch (size) {
-      case USpinnerSize.xs:
+      case DSpinnerSize.xs:
         return 'h-3 w-3 border';
-      case USpinnerSize.sm:
+      case DSpinnerSize.sm:
         return 'h-4 w-4 border-2';
-      case USpinnerSize.md:
+      case DSpinnerSize.md:
         return 'h-6 w-6 border-2';
-      case USpinnerSize.lg:
+      case DSpinnerSize.lg:
         return 'h-8 w-8 border-2';
     }
   }
@@ -39,11 +39,11 @@ class USpinner extends StatelessComponent {
 }
 
 /// DuxtUI Loading overlay
-class ULoading extends StatelessComponent {
+class DLoading extends StatelessComponent {
   final String? message;
   final bool overlay;
 
-  const ULoading({
+  const DLoading({
     super.key,
     this.message,
     this.overlay = false,
@@ -54,7 +54,7 @@ class ULoading extends StatelessComponent {
     final content = div(
       classes: 'flex flex-col items-center justify-center gap-3',
       [
-        USpinner(size: USpinnerSize.lg),
+        DSpinner(size: DSpinnerSize.lg),
         if (message != null)
           p(classes: 'text-sm text-gray-600', [Component.text(message!)]),
       ],

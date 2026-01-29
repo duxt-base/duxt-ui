@@ -3,14 +3,14 @@ import 'package:jaspr/dom.dart';
 import '../../theme/variants.dart';
 
 /// Form validation state
-enum UFormState { initial, validating, valid, invalid }
+enum DFormState { initial, validating, valid, invalid }
 
 /// Form validation result
-class UFormValidationResult {
+class DFormValidationResult {
   final bool isValid;
   final Map<String, String?> errors;
 
-  const UFormValidationResult({
+  const DFormValidationResult({
     required this.isValid,
     this.errors = const {},
   });
@@ -22,10 +22,10 @@ class UFormValidationResult {
 typedef FormSubmitCallback = void Function(Map<String, dynamic> data);
 
 /// Form validation callback
-typedef FormValidateCallback = UFormValidationResult Function(Map<String, dynamic> data);
+typedef FormValidateCallback = DFormValidationResult Function(Map<String, dynamic> data);
 
 /// DuxtUI Form component - Form wrapper with validation support
-class UForm extends StatefulComponent {
+class DForm extends StatefulComponent {
   final String? id;
   final String? name;
   final List<Component> children;
@@ -37,7 +37,7 @@ class UForm extends StatefulComponent {
   final FormSubmitCallback? onSubmit;
   final VoidCallback? onReset;
 
-  const UForm({
+  const DForm({
     super.key,
     this.id,
     this.name,
@@ -52,11 +52,11 @@ class UForm extends StatefulComponent {
   });
 
   @override
-  State<UForm> createState() => _UFormState();
+  State<DForm> createState() => _UFormState();
 }
 
-class _UFormState extends State<UForm> {
-  UFormState _state = UFormState.initial;
+class _UFormState extends State<DForm> {
+  DFormState _state = DFormState.initial;
   Map<String, String?> _errors = {};
 
   void _handleSubmit(dynamic event) {
@@ -68,13 +68,13 @@ class _UFormState extends State<UForm> {
     final formData = _getFormData(formElement);
 
     if (component.validateOnSubmit && component.onValidate != null) {
-      setState(() => _state = UFormState.validating);
+      setState(() => _state = DFormState.validating);
 
       final result = component.onValidate!(formData);
 
       setState(() {
         _errors = result.errors;
-        _state = result.isValid ? UFormState.valid : UFormState.invalid;
+        _state = result.isValid ? DFormState.valid : DFormState.invalid;
       });
 
       if (!result.isValid) return;
@@ -85,7 +85,7 @@ class _UFormState extends State<UForm> {
 
   void _handleReset() {
     setState(() {
-      _state = UFormState.initial;
+      _state = DFormState.initial;
       _errors = {};
     });
     component.onReset?.call();
@@ -156,7 +156,7 @@ class _UFormState extends State<UForm> {
 
 /// Internal form context wrapper
 class _UFormContext extends StatelessComponent {
-  final UFormState state;
+  final DFormState state;
   final Map<String, String?> errors;
   final Component child;
 
@@ -173,11 +173,11 @@ class _UFormContext extends StatelessComponent {
 }
 
 /// Form actions container for submit/reset buttons
-class UFormActions extends StatelessComponent {
+class DFormActions extends StatelessComponent {
   final List<Component> children;
   final MainAxisAlignment alignment;
 
-  const UFormActions({
+  const DFormActions({
     super.key,
     required this.children,
     this.alignment = MainAxisAlignment.end,
@@ -220,11 +220,11 @@ enum MainAxisAlignment {
 }
 
 /// Form row for horizontal field layout
-class UFormRow extends StatelessComponent {
+class DFormRow extends StatelessComponent {
   final List<Component> children;
   final int columns;
 
-  const UFormRow({
+  const DFormRow({
     super.key,
     required this.children,
     this.columns = 2,
@@ -240,12 +240,12 @@ class UFormRow extends StatelessComponent {
 }
 
 /// Form section with optional title
-class UFormSection extends StatelessComponent {
+class DFormSection extends StatelessComponent {
   final String? title;
   final String? description;
   final List<Component> children;
 
-  const UFormSection({
+  const DFormSection({
     super.key,
     this.title,
     this.description,

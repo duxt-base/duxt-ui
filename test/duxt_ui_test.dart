@@ -5,13 +5,13 @@
 ///
 /// Test structure:
 /// - test/components/ - Individual component tests
-///   - button_test.dart - UButton, UButtonGroup tests
-///   - card_test.dart - UCard, UCardHeader, UCardBody, UCardFooter tests
-///   - badge_test.dart - UBadge tests
-///   - input_test.dart - UInput, UTextarea tests
-///   - tabs_test.dart - UTabs, UControlledTabs, UTabItem tests
-///   - modal_test.dart - UModal, USlideover tests
-///   - alert_test.dart - UAlert tests
+///   - button_test.dart - DButton, DButtonGroup tests
+///   - card_test.dart - DCard, DCardHeader, DCardBody, DCardFooter tests
+///   - badge_test.dart - DBadge tests
+///   - input_test.dart - DInput, DTextarea tests
+///   - tabs_test.dart - DTabs, DControlledTabs, DTabItem tests
+///   - modal_test.dart - DModal, DSlideover tests
+///   - alert_test.dart - DAlert tests
 /// - test/theme/ - Theme system tests
 ///   - theme_test.dart - Colors, Variants, Provider tests
 library;
@@ -61,29 +61,29 @@ void main() {
     group('Integration', () {
       testComponents('form with multiple components', (tester) async {
         tester.pumpComponent(
-          UCard(
-            header: UCardHeader(
+          DCard(
+            header: DCardHeader(
               title: 'Sign Up',
               description: 'Create your account',
             ),
             children: [
-              UInput(
+              DInput(
                 label: 'Email',
                 type: InputType.email,
                 placeholder: 'you@example.com',
                 required: true,
               ),
-              UInput(
+              DInput(
                 label: 'Password',
                 type: InputType.password,
                 placeholder: 'Enter password',
                 required: true,
               ),
             ],
-            footer: UCardFooter(
+            footer: DCardFooter(
               children: [
-                UButton(label: 'Cancel', variant: UButtonVariant.ghost),
-                UButton(label: 'Sign Up'),
+                DButton(label: 'Cancel', variant: DButtonVariant.ghost),
+                DButton(label: 'Sign Up'),
               ],
             ),
           ),
@@ -98,16 +98,16 @@ void main() {
 
       testComponents('modal with form', (tester) async {
         tester.pumpComponent(
-          UModal(
+          DModal(
             open: true,
             title: 'Edit Profile',
             children: [
-              UInput(label: 'Name', value: 'John Doe'),
-              UTextarea(label: 'Bio', placeholder: 'Tell us about yourself'),
+              DInput(label: 'Name', value: 'John Doe'),
+              DTextarea(label: 'Bio', placeholder: 'Tell us about yourself'),
             ],
             footer: div([
-              UButton(label: 'Cancel', variant: UButtonVariant.outline),
-              UButton(label: 'Save Changes'),
+              DButton(label: 'Cancel', variant: DButtonVariant.outline),
+              DButton(label: 'Save Changes'),
             ]),
           ),
         );
@@ -121,22 +121,22 @@ void main() {
 
       testComponents('alert with action buttons', (tester) async {
         tester.pumpComponent(
-          UAlert(
-            variant: UAlertVariant.soft,
-            color: UAlertColor.warning,
+          DAlert(
+            variant: DAlertVariant.soft,
+            color: DAlertColor.warning,
             title: 'Update Available',
             description: 'A new version is ready to install.',
             actions: [
-              UButton(
+              DButton(
                 label: 'Later',
-                variant: UButtonVariant.ghost,
-                size: UButtonSize.sm,
+                variant: DButtonVariant.ghost,
+                size: DButtonSize.sm,
               ),
-              UButton(
+              DButton(
                 label: 'Update Now',
-                variant: UButtonVariant.soft,
-                color: UButtonColor.warning,
-                size: UButtonSize.sm,
+                variant: DButtonVariant.soft,
+                color: DButtonColor.warning,
+                size: DButtonSize.sm,
               ),
             ],
           ),
@@ -151,21 +151,21 @@ void main() {
 
       testComponents('tabs with cards', (tester) async {
         tester.pumpComponent(
-          UTabs(
+          DTabs(
             items: [
-              UTabItem(
+              DTabItem(
                 label: 'Overview',
                 value: 'overview',
-                content: UCard(
+                content: DCard(
                   children: [Component.text('Overview content')],
                 ),
               ),
-              UTabItem(
+              DTabItem(
                 label: 'Settings',
                 value: 'settings',
-                content: UCard(
+                content: DCard(
                   children: [
-                    UInput(label: 'Theme'),
+                    DInput(label: 'Theme'),
                   ],
                 ),
               ),
@@ -181,10 +181,10 @@ void main() {
       testComponents('badge collection', (tester) async {
         tester.pumpComponent(
           div(classes: 'flex gap-2', [
-            UBadge(label: 'New', color: UBadgeColor.success),
-            UBadge(label: 'Featured', color: UBadgeColor.primary),
-            UBadge(label: 'Sale', color: UBadgeColor.error),
-            UBadge(label: 'Limited', color: UBadgeColor.warning),
+            DBadge(label: 'New', color: DBadgeColor.success),
+            DBadge(label: 'Featured', color: DBadgeColor.primary),
+            DBadge(label: 'Sale', color: DBadgeColor.error),
+            DBadge(label: 'Limited', color: DBadgeColor.warning),
           ]),
         );
 
@@ -197,19 +197,19 @@ void main() {
       testComponents('nested modals pattern', (tester) async {
         tester.pumpComponent(
           div([
-            UButton(label: 'Open Modal'),
-            UModal(
+            DButton(label: 'Open Modal'),
+            DModal(
               open: true,
               title: 'Confirm Delete',
               description: 'This action cannot be undone.',
               footer: div([
-                UButton(label: 'Cancel', variant: UButtonVariant.ghost),
-                UButton(label: 'Delete', color: UButtonColor.error),
+                DButton(label: 'Cancel', variant: DButtonVariant.ghost),
+                DButton(label: 'Delete', color: DButtonColor.error),
               ]),
               children: [
-                UAlert(
-                  color: UAlertColor.error,
-                  variant: UAlertVariant.soft,
+                DAlert(
+                  color: DAlertColor.error,
+                  variant: DAlertVariant.soft,
                   title: 'Warning',
                   description: 'All data will be permanently removed.',
                 ),
@@ -229,108 +229,108 @@ void main() {
   // Smoke tests - quick checks that components render without errors
   group('Smoke Tests', () {
     testComponents('all button variants render', (tester) async {
-      for (final variant in UButtonVariant.values) {
+      for (final variant in DButtonVariant.values) {
         tester.pumpComponent(
-          UButton(label: variant.name, variant: variant),
+          DButton(label: variant.name, variant: variant),
         );
         expect(find.text(variant.name), findsOneComponent);
       }
     });
 
     testComponents('all button colors render', (tester) async {
-      for (final color in UButtonColor.values) {
+      for (final color in DButtonColor.values) {
         tester.pumpComponent(
-          UButton(label: color.name, color: color),
+          DButton(label: color.name, color: color),
         );
         expect(find.text(color.name), findsOneComponent);
       }
     });
 
     testComponents('all button sizes render', (tester) async {
-      for (final size in UButtonSize.values) {
+      for (final size in DButtonSize.values) {
         tester.pumpComponent(
-          UButton(label: size.name, size: size),
+          DButton(label: size.name, size: size),
         );
         expect(find.text(size.name), findsOneComponent);
       }
     });
 
     testComponents('all badge variants render', (tester) async {
-      for (final variant in UBadgeVariant.values) {
+      for (final variant in DBadgeVariant.values) {
         tester.pumpComponent(
-          UBadge(label: variant.name, variant: variant),
+          DBadge(label: variant.name, variant: variant),
         );
         expect(find.text(variant.name), findsOneComponent);
       }
     });
 
     testComponents('all badge colors render', (tester) async {
-      for (final color in UBadgeColor.values) {
+      for (final color in DBadgeColor.values) {
         tester.pumpComponent(
-          UBadge(label: color.name, color: color),
+          DBadge(label: color.name, color: color),
         );
         expect(find.text(color.name), findsOneComponent);
       }
     });
 
     testComponents('all alert variants render', (tester) async {
-      for (final variant in UAlertVariant.values) {
+      for (final variant in DAlertVariant.values) {
         tester.pumpComponent(
-          UAlert(title: variant.name, variant: variant),
+          DAlert(title: variant.name, variant: variant),
         );
         expect(find.text(variant.name), findsOneComponent);
       }
     });
 
     testComponents('all alert colors render', (tester) async {
-      for (final color in UAlertColor.values) {
+      for (final color in DAlertColor.values) {
         tester.pumpComponent(
-          UAlert(title: color.name, color: color),
+          DAlert(title: color.name, color: color),
         );
         expect(find.text(color.name), findsOneComponent);
       }
     });
 
     testComponents('all card variants render', (tester) async {
-      for (final variant in UCardVariant.values) {
+      for (final variant in DCardVariant.values) {
         tester.pumpComponent(
-          UCard(variant: variant, children: [Component.text(variant.name)]),
+          DCard(variant: variant, children: [Component.text(variant.name)]),
         );
         expect(find.text(variant.name), findsOneComponent);
       }
     });
 
     testComponents('all input variants render', (tester) async {
-      for (final variant in UInputVariant.values) {
+      for (final variant in DInputVariant.values) {
         tester.pumpComponent(
-          UInput(label: variant.name, variant: variant),
+          DInput(label: variant.name, variant: variant),
         );
         expect(find.text(variant.name), findsOneComponent);
       }
     });
 
     testComponents('all input sizes render', (tester) async {
-      for (final size in UInputSize.values) {
+      for (final size in DInputSize.values) {
         tester.pumpComponent(
-          UInput(label: size.name, size: size),
+          DInput(label: size.name, size: size),
         );
         expect(find.text(size.name), findsOneComponent);
       }
     });
 
     testComponents('all modal sizes render', (tester) async {
-      for (final size in UModalSize.values) {
+      for (final size in DModalSize.values) {
         tester.pumpComponent(
-          UModal(open: true, size: size, children: [Component.text(size.name)]),
+          DModal(open: true, size: size, children: [Component.text(size.name)]),
         );
         expect(find.text(size.name), findsOneComponent);
       }
     });
 
     testComponents('all slideover sides render', (tester) async {
-      for (final side in USlideoverSide.values) {
+      for (final side in DSlideoverSide.values) {
         tester.pumpComponent(
-          USlideover(
+          DSlideover(
               open: true, side: side, children: [Component.text(side.name)]),
         );
         expect(find.text(side.name), findsOneComponent);

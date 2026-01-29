@@ -6,16 +6,16 @@ import 'chat_prompt.dart';
 import 'chat_prompt_submit.dart';
 
 /// Chat palette position
-enum UChatPalettePosition { bottomRight, bottomLeft, topRight, topLeft }
+enum DChatPalettePosition { bottomRight, bottomLeft, topRight, topLeft }
 
 /// DuxtUI ChatPalette component - floating chat overlay/modal
-class UChatPalette extends StatefulComponent {
+class DChatPalette extends StatefulComponent {
   final bool open;
   final String? title;
   final List<ChatMessageData> messages;
   final bool loading;
   final String? placeholder;
-  final UChatPalettePosition position;
+  final DChatPalettePosition position;
   final String? width;
   final String? height;
   final VoidCallback? onClose;
@@ -23,14 +23,14 @@ class UChatPalette extends StatefulComponent {
   final Component? headerSlot;
   final Component? emptyState;
 
-  const UChatPalette({
+  const DChatPalette({
     super.key,
     required this.open,
     this.title,
     this.messages = const [],
     this.loading = false,
     this.placeholder,
-    this.position = UChatPalettePosition.bottomRight,
+    this.position = DChatPalettePosition.bottomRight,
     this.width,
     this.height,
     this.onClose,
@@ -40,21 +40,21 @@ class UChatPalette extends StatefulComponent {
   });
 
   @override
-  State<UChatPalette> createState() => _UChatPaletteState();
+  State<DChatPalette> createState() => _UChatPaletteState();
 }
 
-class _UChatPaletteState extends State<UChatPalette> {
+class _UChatPaletteState extends State<DChatPalette> {
   String _inputValue = '';
 
   String get _positionClasses {
     switch (component.position) {
-      case UChatPalettePosition.bottomRight:
+      case DChatPalettePosition.bottomRight:
         return 'bottom-4 right-4';
-      case UChatPalettePosition.bottomLeft:
+      case DChatPalettePosition.bottomLeft:
         return 'bottom-4 left-4';
-      case UChatPalettePosition.topRight:
+      case DChatPalettePosition.topRight:
         return 'top-4 right-4';
-      case UChatPalettePosition.topLeft:
+      case DChatPalettePosition.topLeft:
         return 'top-4 left-4';
     }
   }
@@ -93,7 +93,7 @@ class _UChatPaletteState extends State<UChatPalette> {
             div(
               classes: 'flex-1 overflow-hidden flex flex-col',
               [
-                UChatMessages(
+                DChatMessages(
                   messages: component.messages,
                   autoScrollToBottom: true,
                   emptyState: component.emptyState,
@@ -162,13 +162,13 @@ class _UChatPaletteState extends State<UChatPalette> {
     return div(
       classes: 'border-t border-gray-200 dark:border-gray-700',
       [
-        UChatPrompt(
+        DChatPrompt(
           placeholder: component.placeholder ?? 'Type a message...',
           value: _inputValue,
           disabled: component.loading,
           onInput: _handleInput,
           onSubmit: _handleSubmit,
-          trailingSlot: UChatPromptSubmit(
+          trailingSlot: DChatPromptSubmit(
             disabled: _inputValue.trim().isEmpty,
             loading: component.loading,
             onSubmit: _handleSubmit,
@@ -181,14 +181,14 @@ class _UChatPaletteState extends State<UChatPalette> {
 }
 
 /// Floating action button to toggle chat palette
-class UChatPaletteTrigger extends StatelessComponent {
+class DChatPaletteTrigger extends StatelessComponent {
   final bool isOpen;
   final VoidCallback? onToggle;
   final String? tooltip;
   final Component? icon;
   final String? bgColor;
 
-  const UChatPaletteTrigger({
+  const DChatPaletteTrigger({
     super.key,
     this.isOpen = false,
     this.onToggle,

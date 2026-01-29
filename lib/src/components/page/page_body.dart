@@ -4,7 +4,7 @@ import 'package:jaspr/dom.dart';
 /// DuxtUI PageBody component - Main content section with optional TOC
 ///
 /// Provides a flex layout with optional table of contents sidebar.
-class UPageBody extends StatelessComponent {
+class DPageBody extends StatelessComponent {
   /// Prose content (main text content)
   final List<Component> prose;
 
@@ -17,7 +17,7 @@ class UPageBody extends StatelessComponent {
   /// Additional CSS classes for the prose section
   final String? proseClasses;
 
-  const UPageBody({
+  const DPageBody({
     super.key,
     this.prose = const [],
     this.toc,

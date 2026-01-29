@@ -4,25 +4,25 @@ import '../components/utility/icon.dart';
 import 'provider.dart';
 
 /// Button sizes for color mode toggle
-enum UColorModeButtonSize { xs, sm, md, lg, xl }
+enum DColorModeButtonSize { xs, sm, md, lg, xl }
 
 /// DuxtUI ColorModeButton component - Toggle dark/light mode
 ///
 /// An icon button that toggles between light and dark themes.
 /// Shows sun icon in dark mode and moon icon in light mode.
-class UColorModeButton extends StatefulComponent {
+class DColorModeButton extends StatefulComponent {
   /// Size of the button
-  final UColorModeButtonSize size;
+  final DColorModeButtonSize size;
 
   /// Custom CSS classes
   final String? classes;
 
   /// Callback when theme changes
-  final ValueChanged<UThemeMode>? onModeChange;
+  final ValueChanged<DThemeMode>? onModeChange;
 
-  const UColorModeButton({
+  const DColorModeButton({
     super.key,
-    this.size = UColorModeButtonSize.md,
+    this.size = DColorModeButtonSize.md,
     this.classes,
     this.onModeChange,
   });
@@ -31,7 +31,7 @@ class UColorModeButton extends StatefulComponent {
   State createState() => _UColorModeButtonState();
 }
 
-class _UColorModeButtonState extends State<UColorModeButton> {
+class _UColorModeButtonState extends State<DColorModeButton> {
   bool _isDark = false;
 
   @override
@@ -51,7 +51,7 @@ class _UColorModeButtonState extends State<UColorModeButton> {
     setState(() {
       _isDark = !_isDark;
     });
-    final newMode = _isDark ? UThemeMode.dark : UThemeMode.light;
+    final newMode = _isDark ? DThemeMode.dark : DThemeMode.light;
     component.onModeChange?.call(newMode);
 
     // Toggle dark class on document
@@ -61,31 +61,31 @@ class _UColorModeButtonState extends State<UColorModeButton> {
 
   String get _buttonSizeClasses {
     switch (component.size) {
-      case UColorModeButtonSize.xs:
+      case DColorModeButtonSize.xs:
         return 'p-1';
-      case UColorModeButtonSize.sm:
+      case DColorModeButtonSize.sm:
         return 'p-1.5';
-      case UColorModeButtonSize.md:
+      case DColorModeButtonSize.md:
         return 'p-2';
-      case UColorModeButtonSize.lg:
+      case DColorModeButtonSize.lg:
         return 'p-2.5';
-      case UColorModeButtonSize.xl:
+      case DColorModeButtonSize.xl:
         return 'p-3';
     }
   }
 
-  UIconSize get _iconSize {
+  DIconSize get _iconSize {
     switch (component.size) {
-      case UColorModeButtonSize.xs:
-        return UIconSize.xs;
-      case UColorModeButtonSize.sm:
-        return UIconSize.sm;
-      case UColorModeButtonSize.md:
-        return UIconSize.md;
-      case UColorModeButtonSize.lg:
-        return UIconSize.lg;
-      case UColorModeButtonSize.xl:
-        return UIconSize.xl;
+      case DColorModeButtonSize.xs:
+        return DIconSize.xs;
+      case DColorModeButtonSize.sm:
+        return DIconSize.sm;
+      case DColorModeButtonSize.md:
+        return DIconSize.md;
+      case DColorModeButtonSize.lg:
+        return DIconSize.lg;
+      case DColorModeButtonSize.xl:
+        return DIconSize.xl;
     }
   }
 
@@ -109,9 +109,9 @@ class _UColorModeButtonState extends State<UColorModeButton> {
       [
         // Show sun in dark mode (to switch to light), moon in light mode (to switch to dark)
         if (_isDark)
-          UIcon(name: UIconNames.sun, size: _iconSize)
+          DIcon(name: DIconNames.sun, size: _iconSize)
         else
-          UIcon(name: UIconNames.moon, size: _iconSize),
+          DIcon(name: DIconNames.moon, size: _iconSize),
       ],
     );
   }

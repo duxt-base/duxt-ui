@@ -5,7 +5,7 @@ import 'package:jaspr/dom.dart';
 ///
 /// A flexible panel component that can be resizable.
 /// Used as the main content area in dashboard layouts.
-class UDashboardPanel extends StatefulComponent {
+class DDashboardPanel extends StatefulComponent {
   /// Custom CSS classes to apply to the panel
   final String? classes;
 
@@ -13,7 +13,7 @@ class UDashboardPanel extends StatefulComponent {
   final bool resizable;
 
   /// Resize direction (only applicable when resizable is true)
-  final UPanelResizeDirection resizeDirection;
+  final DPanelResizeDirection resizeDirection;
 
   /// Initial width (for horizontal resize)
   final double? initialWidth;
@@ -30,11 +30,11 @@ class UDashboardPanel extends StatefulComponent {
   /// Child components
   final List<Component> children;
 
-  const UDashboardPanel({
+  const DDashboardPanel({
     super.key,
     this.classes,
     this.resizable = false,
-    this.resizeDirection = UPanelResizeDirection.right,
+    this.resizeDirection = DPanelResizeDirection.right,
     this.initialWidth,
     this.minWidth = 200,
     this.maxWidth = 600,
@@ -43,10 +43,10 @@ class UDashboardPanel extends StatefulComponent {
   });
 
   @override
-  State<UDashboardPanel> createState() => _UDashboardPanelState();
+  State<DDashboardPanel> createState() => _UDashboardPanelState();
 }
 
-class _UDashboardPanelState extends State<UDashboardPanel> {
+class _UDashboardPanelState extends State<DDashboardPanel> {
   double? _width;
   bool _isResizing = false;
 
@@ -63,9 +63,9 @@ class _UDashboardPanelState extends State<UDashboardPanel> {
 
   String get _resizeHandleClasses {
     switch (component.resizeDirection) {
-      case UPanelResizeDirection.left:
+      case DPanelResizeDirection.left:
         return 'absolute left-0 top-0 bottom-0 w-1 cursor-col-resize hover:bg-indigo-500 transition-colors';
-      case UPanelResizeDirection.right:
+      case DPanelResizeDirection.right:
         return 'absolute right-0 top-0 bottom-0 w-1 cursor-col-resize hover:bg-indigo-500 transition-colors';
     }
   }
@@ -116,4 +116,4 @@ class _UDashboardPanelState extends State<UDashboardPanel> {
 }
 
 /// Panel resize direction
-enum UPanelResizeDirection { left, right }
+enum DPanelResizeDirection { left, right }

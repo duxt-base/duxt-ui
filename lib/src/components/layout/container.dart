@@ -2,38 +2,38 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Container max-width variants
-enum UContainerSize { xs, sm, md, lg, xl, xxl, full }
+enum DContainerSize { xs, sm, md, lg, xl, xxl, full }
 
 /// DuxtUI Container component - max-width wrapper with responsive padding
-class UContainer extends StatelessComponent {
+class DContainer extends StatelessComponent {
   final List<Component> children;
-  final UContainerSize size;
+  final DContainerSize size;
   final bool padded;
   final String? classes;
 
-  const UContainer({
+  const DContainer({
     super.key,
     this.children = const [],
-    this.size = UContainerSize.xl,
+    this.size = DContainerSize.xl,
     this.padded = true,
     this.classes,
   });
 
   String get _maxWidthClasses {
     switch (size) {
-      case UContainerSize.xs:
+      case DContainerSize.xs:
         return 'max-w-xs';
-      case UContainerSize.sm:
+      case DContainerSize.sm:
         return 'max-w-sm';
-      case UContainerSize.md:
+      case DContainerSize.md:
         return 'max-w-md';
-      case UContainerSize.lg:
+      case DContainerSize.lg:
         return 'max-w-4xl';
-      case UContainerSize.xl:
+      case DContainerSize.xl:
         return 'max-w-6xl';
-      case UContainerSize.xxl:
+      case DContainerSize.xxl:
         return 'max-w-7xl';
-      case UContainerSize.full:
+      case DContainerSize.full:
         return 'max-w-full';
     }
   }

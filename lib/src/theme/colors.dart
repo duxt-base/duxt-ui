@@ -2,7 +2,7 @@
 library;
 
 /// Semantic color names used throughout DuxtUI
-enum UColor {
+enum DColor {
   primary,
   secondary,
   success,
@@ -13,7 +13,7 @@ enum UColor {
 }
 
 /// Color shade levels (50-950)
-enum UColorShade {
+enum DColorShade {
   s50,
   s100,
   s200,
@@ -29,33 +29,33 @@ enum UColorShade {
 
 /// Default color palette mapping to Tailwind colors
 /// Primary = Green, Secondary = Blue, etc (matches Nuxt UI defaults)
-const Map<UColor, String> defaultColorMapping = {
-  UColor.primary: 'green',
-  UColor.secondary: 'blue',
-  UColor.success: 'green',
-  UColor.info: 'blue',
-  UColor.warning: 'yellow',
-  UColor.error: 'red',
-  UColor.neutral: 'slate',
+const Map<DColor, String> defaultColorMapping = {
+  DColor.primary: 'green',
+  DColor.secondary: 'blue',
+  DColor.success: 'green',
+  DColor.info: 'blue',
+  DColor.warning: 'yellow',
+  DColor.error: 'red',
+  DColor.neutral: 'slate',
 };
 
 /// Get Tailwind class for a semantic color
-String colorClass(UColor color, [int shade = 500]) {
+String colorClass(DColor color, [int shade = 500]) {
   final base = defaultColorMapping[color] ?? 'gray';
   return '$base-$shade';
 }
 
 /// Get background class for a color
-String bgColor(UColor color, [int shade = 500]) => 'bg-${colorClass(color, shade)}';
+String bgColor(DColor color, [int shade = 500]) => 'bg-${colorClass(color, shade)}';
 
 /// Get text class for a color
-String textColor(UColor color, [int shade = 500]) => 'text-${colorClass(color, shade)}';
+String textColor(DColor color, [int shade = 500]) => 'text-${colorClass(color, shade)}';
 
 /// Get border/ring class for a color
-String ringColor(UColor color, [int shade = 500]) => 'ring-${colorClass(color, shade)}';
+String ringColor(DColor color, [int shade = 500]) => 'ring-${colorClass(color, shade)}';
 
 /// Semantic text colors based on Nuxt UI
-class UTextColors {
+class DTextColors {
   static const String highlighted = 'text-gray-900 dark:text-white';
   static const String muted = 'text-gray-500 dark:text-gray-400';
   static const String dimmed = 'text-gray-400 dark:text-gray-500';
@@ -64,7 +64,7 @@ class UTextColors {
 }
 
 /// Semantic background colors based on Nuxt UI
-class UBgColors {
+class DBgColors {
   static const String defaultBg = 'bg-white dark:bg-gray-900';
   static const String elevated = 'bg-gray-50 dark:bg-gray-800';
   static const String inverted = 'bg-gray-900 dark:bg-white';
@@ -72,13 +72,13 @@ class UBgColors {
 }
 
 /// Semantic ring/border colors based on Nuxt UI
-class URingColors {
+class DRingColors {
   static const String defaultRing = 'ring-gray-200 dark:ring-gray-800';
   static const String accented = 'ring-gray-300 dark:ring-gray-700';
 }
 
 /// Semantic divide colors
-class UDivideColors {
+class DDivideColors {
   static const String defaultDivide = 'divide-gray-200 dark:divide-gray-800';
 }
 

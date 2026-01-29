@@ -2,86 +2,86 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Avatar sizes matching Nuxt UI
-enum UAvatarSize { xxxs, xxs, xs, sm, md, lg, xl, xxl, xxxl }
+enum DAvatarSize { xxxs, xxs, xs, sm, md, lg, xl, xxl, xxxl }
 
 /// Avatar chip position
-enum UAvatarChipPosition { topRight, bottomRight, topLeft, bottomLeft }
+enum DAvatarChipPosition { topRight, bottomRight, topLeft, bottomLeft }
 
 /// DuxtUI Avatar component - Nuxt UI compatible
-class UAvatar extends StatelessComponent {
+class DAvatar extends StatelessComponent {
   final String? src;
   final String? alt;
   final String? text;
   final Component? icon;
-  final UAvatarSize size;
+  final DAvatarSize size;
   final bool? chipColor;
   final String? chipText;
-  final UAvatarChipPosition chipPosition;
+  final DAvatarChipPosition chipPosition;
 
-  const UAvatar({
+  const DAvatar({
     super.key,
     this.src,
     this.alt,
     this.text,
     this.icon,
-    this.size = UAvatarSize.md,
+    this.size = DAvatarSize.md,
     this.chipColor,
     this.chipText,
-    this.chipPosition = UAvatarChipPosition.topRight,
+    this.chipPosition = DAvatarChipPosition.topRight,
   });
 
   String get _sizeClasses {
     switch (size) {
-      case UAvatarSize.xxxs:
+      case DAvatarSize.xxxs:
         return 'size-4 text-[8px]';
-      case UAvatarSize.xxs:
+      case DAvatarSize.xxs:
         return 'size-5 text-[10px]';
-      case UAvatarSize.xs:
+      case DAvatarSize.xs:
         return 'size-6 text-xs';
-      case UAvatarSize.sm:
+      case DAvatarSize.sm:
         return 'size-8 text-sm';
-      case UAvatarSize.md:
+      case DAvatarSize.md:
         return 'size-10 text-base';
-      case UAvatarSize.lg:
+      case DAvatarSize.lg:
         return 'size-12 text-lg';
-      case UAvatarSize.xl:
+      case DAvatarSize.xl:
         return 'size-14 text-xl';
-      case UAvatarSize.xxl:
+      case DAvatarSize.xxl:
         return 'size-16 text-2xl';
-      case UAvatarSize.xxxl:
+      case DAvatarSize.xxxl:
         return 'size-20 text-3xl';
     }
   }
 
   String get _iconSizeClasses {
     switch (size) {
-      case UAvatarSize.xxxs:
-      case UAvatarSize.xxs:
+      case DAvatarSize.xxxs:
+      case DAvatarSize.xxs:
         return 'size-2';
-      case UAvatarSize.xs:
+      case DAvatarSize.xs:
         return 'size-3';
-      case UAvatarSize.sm:
+      case DAvatarSize.sm:
         return 'size-4';
-      case UAvatarSize.md:
+      case DAvatarSize.md:
         return 'size-5';
-      case UAvatarSize.lg:
+      case DAvatarSize.lg:
         return 'size-6';
-      case UAvatarSize.xl:
-      case UAvatarSize.xxl:
-      case UAvatarSize.xxxl:
+      case DAvatarSize.xl:
+      case DAvatarSize.xxl:
+      case DAvatarSize.xxxl:
         return 'size-8';
     }
   }
 
   String get _chipPositionClasses {
     switch (chipPosition) {
-      case UAvatarChipPosition.topRight:
+      case DAvatarChipPosition.topRight:
         return 'top-0 right-0';
-      case UAvatarChipPosition.bottomRight:
+      case DAvatarChipPosition.bottomRight:
         return 'bottom-0 right-0';
-      case UAvatarChipPosition.topLeft:
+      case DAvatarChipPosition.topLeft:
         return 'top-0 left-0';
-      case UAvatarChipPosition.bottomLeft:
+      case DAvatarChipPosition.bottomLeft:
         return 'bottom-0 left-0';
     }
   }
@@ -141,37 +141,37 @@ class UAvatar extends StatelessComponent {
 }
 
 /// DuxtUI Avatar Group - Nuxt UI compatible
-class UAvatarGroup extends StatelessComponent {
-  final List<UAvatar> avatars;
+class DAvatarGroup extends StatelessComponent {
+  final List<DAvatar> avatars;
   final int max;
-  final UAvatarSize size;
+  final DAvatarSize size;
 
-  const UAvatarGroup({
+  const DAvatarGroup({
     super.key,
     required this.avatars,
     this.max = 4,
-    this.size = UAvatarSize.md,
+    this.size = DAvatarSize.md,
   });
 
   String get _sizeClasses {
     switch (size) {
-      case UAvatarSize.xxxs:
+      case DAvatarSize.xxxs:
         return 'size-4 text-[8px]';
-      case UAvatarSize.xxs:
+      case DAvatarSize.xxs:
         return 'size-5 text-[10px]';
-      case UAvatarSize.xs:
+      case DAvatarSize.xs:
         return 'size-6 text-xs';
-      case UAvatarSize.sm:
+      case DAvatarSize.sm:
         return 'size-8 text-sm';
-      case UAvatarSize.md:
+      case DAvatarSize.md:
         return 'size-10 text-base';
-      case UAvatarSize.lg:
+      case DAvatarSize.lg:
         return 'size-12 text-lg';
-      case UAvatarSize.xl:
+      case DAvatarSize.xl:
         return 'size-14 text-xl';
-      case UAvatarSize.xxl:
+      case DAvatarSize.xxl:
         return 'size-16 text-2xl';
-      case UAvatarSize.xxxl:
+      case DAvatarSize.xxxl:
         return 'size-20 text-3xl';
     }
   }

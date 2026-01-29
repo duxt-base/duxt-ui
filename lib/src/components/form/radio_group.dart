@@ -2,22 +2,22 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Radio group sizes
-enum URadioGroupSize { xs, sm, md, lg, xl }
+enum DRadioGroupSize { xs, sm, md, lg, xl }
 
 /// Radio group colors
-enum URadioGroupColor { primary, gray, success, warning, error }
+enum DRadioGroupColor { primary, gray, success, warning, error }
 
 /// Radio group orientation
-enum URadioGroupOrientation { horizontal, vertical }
+enum DRadioGroupOrientation { horizontal, vertical }
 
 /// Radio option item
-class URadioOption<T> {
+class DRadioOption<T> {
   final T value;
   final String label;
   final String? description;
   final bool disabled;
 
-  const URadioOption({
+  const DRadioOption({
     required this.value,
     required this.label,
     this.description,
@@ -26,21 +26,21 @@ class URadioOption<T> {
 }
 
 /// DuxtUI Radio Group component - Matches Nuxt UI styling
-class URadioGroup<T> extends StatelessComponent {
+class DRadioGroup<T> extends StatelessComponent {
   final String? label;
-  final List<URadioOption<T>> options;
+  final List<DRadioOption<T>> options;
   final T? value;
   final String name;
   final bool disabled;
   final bool required;
-  final URadioGroupSize size;
-  final URadioGroupColor color;
-  final URadioGroupOrientation orientation;
+  final DRadioGroupSize size;
+  final DRadioGroupColor color;
+  final DRadioGroupOrientation orientation;
   final String? error;
   final String? hint;
   final ValueChanged<T>? onChange;
 
-  const URadioGroup({
+  const DRadioGroup({
     super.key,
     this.label,
     required this.options,
@@ -48,9 +48,9 @@ class URadioGroup<T> extends StatelessComponent {
     this.value,
     this.disabled = false,
     this.required = false,
-    this.size = URadioGroupSize.md,
-    this.color = URadioGroupColor.primary,
-    this.orientation = URadioGroupOrientation.vertical,
+    this.size = DRadioGroupSize.md,
+    this.color = DRadioGroupColor.primary,
+    this.orientation = DRadioGroupOrientation.vertical,
     this.error,
     this.hint,
     this.onChange,
@@ -58,50 +58,50 @@ class URadioGroup<T> extends StatelessComponent {
 
   String get _sizeClasses {
     switch (size) {
-      case URadioGroupSize.xs:
+      case DRadioGroupSize.xs:
         return 'h-3 w-3';
-      case URadioGroupSize.sm:
+      case DRadioGroupSize.sm:
         return 'h-3.5 w-3.5';
-      case URadioGroupSize.md:
+      case DRadioGroupSize.md:
         return 'h-4 w-4';
-      case URadioGroupSize.lg:
+      case DRadioGroupSize.lg:
         return 'h-5 w-5';
-      case URadioGroupSize.xl:
+      case DRadioGroupSize.xl:
         return 'h-6 w-6';
     }
   }
 
   String get _labelSizeClasses {
     switch (size) {
-      case URadioGroupSize.xs:
+      case DRadioGroupSize.xs:
         return 'text-xs';
-      case URadioGroupSize.sm:
+      case DRadioGroupSize.sm:
         return 'text-xs';
-      case URadioGroupSize.md:
+      case DRadioGroupSize.md:
         return 'text-sm';
-      case URadioGroupSize.lg:
+      case DRadioGroupSize.lg:
         return 'text-base';
-      case URadioGroupSize.xl:
+      case DRadioGroupSize.xl:
         return 'text-lg';
     }
   }
 
   String get _colorClasses {
     final baseColor = switch (color) {
-      URadioGroupColor.primary => 'indigo',
-      URadioGroupColor.gray => 'gray',
-      URadioGroupColor.success => 'green',
-      URadioGroupColor.warning => 'yellow',
-      URadioGroupColor.error => 'red',
+      DRadioGroupColor.primary => 'indigo',
+      DRadioGroupColor.gray => 'gray',
+      DRadioGroupColor.success => 'green',
+      DRadioGroupColor.warning => 'yellow',
+      DRadioGroupColor.error => 'red',
     };
     return 'text-$baseColor-600 focus:ring-$baseColor-500/20';
   }
 
   String get _orientationClasses {
     switch (orientation) {
-      case URadioGroupOrientation.horizontal:
+      case DRadioGroupOrientation.horizontal:
         return 'flex flex-row flex-wrap gap-4';
-      case URadioGroupOrientation.vertical:
+      case DRadioGroupOrientation.vertical:
         return 'flex flex-col gap-2';
     }
   }

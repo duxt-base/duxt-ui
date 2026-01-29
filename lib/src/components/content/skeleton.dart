@@ -4,19 +4,19 @@ import 'package:jaspr/dom.dart';
 import '../../theme/variants.dart';
 
 /// Skeleton variants matching common UI patterns
-enum USkeletonVariant { text, circular, rectangular }
+enum DSkeletonVariant { text, circular, rectangular }
 
 /// DuxtUI Skeleton component - Loading placeholder
-class USkeleton extends StatelessComponent {
-  final USkeletonVariant variant;
+class DSkeleton extends StatelessComponent {
+  final DSkeletonVariant variant;
   final String? width;
   final String? height;
   final bool animate;
   final String? classes;
 
-  const USkeleton({
+  const DSkeleton({
     super.key,
-    this.variant = USkeletonVariant.text,
+    this.variant = DSkeletonVariant.text,
     this.width,
     this.height,
     this.animate = true,
@@ -24,32 +24,32 @@ class USkeleton extends StatelessComponent {
   });
 
   /// Creates a text line skeleton
-  const USkeleton.text({
+  const DSkeleton.text({
     super.key,
     this.width,
     this.animate = true,
     this.classes,
-  })  : variant = USkeletonVariant.text,
+  })  : variant = DSkeletonVariant.text,
         height = null;
 
   /// Creates a circular skeleton (for avatars)
-  const USkeleton.circular({
+  const DSkeleton.circular({
     super.key,
     String? size,
     this.animate = true,
     this.classes,
-  })  : variant = USkeletonVariant.circular,
+  })  : variant = DSkeletonVariant.circular,
         width = size ?? '2.5rem',
         height = size ?? '2.5rem';
 
   /// Creates a rectangular skeleton (for images/cards)
-  const USkeleton.rectangular({
+  const DSkeleton.rectangular({
     super.key,
     this.width,
     this.height,
     this.animate = true,
     this.classes,
-  }) : variant = USkeletonVariant.rectangular;
+  }) : variant = DSkeletonVariant.rectangular;
 
   String get _baseClasses {
     return cx([
@@ -60,11 +60,11 @@ class USkeleton extends StatelessComponent {
 
   String get _shapeClasses {
     switch (variant) {
-      case USkeletonVariant.text:
+      case DSkeletonVariant.text:
         return 'h-4 rounded';
-      case USkeletonVariant.circular:
+      case DSkeletonVariant.circular:
         return 'rounded-full';
-      case USkeletonVariant.rectangular:
+      case DSkeletonVariant.rectangular:
         return 'rounded-lg';
     }
   }
@@ -85,12 +85,12 @@ class USkeleton extends StatelessComponent {
 }
 
 /// Skeleton group for multiple lines
-class USkeletonGroup extends StatelessComponent {
+class DSkeletonGroup extends StatelessComponent {
   final int lines;
   final String? spacing;
   final bool animate;
 
-  const USkeletonGroup({
+  const DSkeletonGroup({
     super.key,
     this.lines = 3,
     this.spacing,
@@ -103,7 +103,7 @@ class USkeletonGroup extends StatelessComponent {
       classes: 'space-y-${spacing ?? "3"}',
       [
         for (int i = 0; i < lines; i++)
-          USkeleton.text(
+          DSkeleton.text(
             animate: animate,
             // Make last line shorter for natural look
             width: i == lines - 1 ? '75%' : null,
@@ -114,13 +114,13 @@ class USkeletonGroup extends StatelessComponent {
 }
 
 /// Skeleton card for card placeholders
-class USkeletonCard extends StatelessComponent {
+class DSkeletonCard extends StatelessComponent {
   final bool showImage;
   final bool showAvatar;
   final int textLines;
   final bool animate;
 
-  const USkeletonCard({
+  const DSkeletonCard({
     super.key,
     this.showImage = true,
     this.showAvatar = false,
@@ -135,7 +135,7 @@ class USkeletonCard extends StatelessComponent {
       [
         // Image placeholder
         if (showImage)
-          USkeleton.rectangular(
+          DSkeleton.rectangular(
             width: '100%',
             height: '12rem',
             animate: animate,
@@ -150,18 +150,18 @@ class USkeletonCard extends StatelessComponent {
               div(
                 classes: 'flex items-center gap-3',
                 [
-                  USkeleton.circular(animate: animate),
+                  DSkeleton.circular(animate: animate),
                   div(
                     classes: 'flex-1 space-y-2',
                     [
-                      USkeleton.text(width: '50%', animate: animate),
-                      USkeleton.text(width: '30%', animate: animate),
+                      DSkeleton.text(width: '50%', animate: animate),
+                      DSkeleton.text(width: '30%', animate: animate),
                     ],
                   ),
                 ],
               ),
             // Text lines
-            USkeletonGroup(lines: textLines, animate: animate),
+            DSkeletonGroup(lines: textLines, animate: animate),
           ],
         ),
       ],

@@ -4,7 +4,7 @@ import 'package:jaspr/dom.dart';
 /// DuxtUI PageCTA component - Call-to-action section
 ///
 /// A centered call-to-action section with title, description, and buttons.
-class UPageCTA extends StatelessComponent {
+class DPageCTA extends StatelessComponent {
   /// The main title
   final String? title;
 
@@ -33,9 +33,9 @@ class UPageCTA extends StatelessComponent {
   final Component? icon;
 
   /// Content alignment
-  final UPageCTAAlign align;
+  final DPageCTAAlign align;
 
-  const UPageCTA({
+  const DPageCTA({
     super.key,
     this.title,
     this.description,
@@ -46,16 +46,16 @@ class UPageCTA extends StatelessComponent {
     this.card = false,
     this.cardClasses,
     this.icon,
-    this.align = UPageCTAAlign.center,
+    this.align = DPageCTAAlign.center,
   });
 
   String get _alignClasses {
     switch (align) {
-      case UPageCTAAlign.left:
+      case DPageCTAAlign.left:
         return 'text-left items-start';
-      case UPageCTAAlign.center:
+      case DPageCTAAlign.center:
         return 'text-center items-center';
-      case UPageCTAAlign.right:
+      case DPageCTAAlign.right:
         return 'text-right items-end';
     }
   }
@@ -87,7 +87,7 @@ class UPageCTA extends StatelessComponent {
               [
                 div(
                   classes:
-                      'flex flex-col $_alignClasses max-w-3xl ${align == UPageCTAAlign.center ? "mx-auto" : ""}',
+                      'flex flex-col $_alignClasses max-w-3xl ${align == DPageCTAAlign.center ? "mx-auto" : ""}',
                   [
                     // Icon
                     if (icon != null)
@@ -113,7 +113,7 @@ class UPageCTA extends StatelessComponent {
                     if (links.isNotEmpty)
                       div(
                         classes:
-                            'mt-8 flex flex-wrap gap-4 ${align == UPageCTAAlign.center ? "justify-center" : ""}',
+                            'mt-8 flex flex-wrap gap-4 ${align == DPageCTAAlign.center ? "justify-center" : ""}',
                         links,
                       ),
                   ],
@@ -128,4 +128,4 @@ class UPageCTA extends StatelessComponent {
 }
 
 /// Alignment options for CTA content
-enum UPageCTAAlign { left, center, right }
+enum DPageCTAAlign { left, center, right }

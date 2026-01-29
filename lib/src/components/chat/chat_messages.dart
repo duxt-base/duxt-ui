@@ -3,7 +3,7 @@ import 'package:jaspr/dom.dart';
 import 'chat_message.dart';
 
 /// DuxtUI ChatMessages component - displays a scrollable list of chat messages
-class UChatMessages extends StatefulComponent {
+class DChatMessages extends StatefulComponent {
   final List<ChatMessageData> messages;
   final bool autoScrollToBottom;
   final bool showAvatars;
@@ -12,7 +12,7 @@ class UChatMessages extends StatefulComponent {
   final String? userBgColor;
   final String? assistantBgColor;
 
-  const UChatMessages({
+  const DChatMessages({
     super.key,
     required this.messages,
     this.autoScrollToBottom = true,
@@ -24,12 +24,12 @@ class UChatMessages extends StatefulComponent {
   });
 
   @override
-  State<UChatMessages> createState() => _UChatMessagesState();
+  State<DChatMessages> createState() => _UChatMessagesState();
 }
 
-class _UChatMessagesState extends State<UChatMessages> {
+class _UChatMessagesState extends State<DChatMessages> {
   @override
-  void didUpdateComponent(UChatMessages oldComponent) {
+  void didUpdateComponent(DChatMessages oldComponent) {
     super.didUpdateComponent(oldComponent);
     // Auto-scroll logic would be handled via JavaScript interop in a real implementation
     // The scroll behavior is managed via CSS scroll-snap and overflow-anchor
@@ -72,7 +72,7 @@ class _UChatMessagesState extends State<UChatMessages> {
       id: 'chat-messages-container',
       [
         for (final message in component.messages)
-          UChatMessage(
+          DChatMessage(
             key: ValueKey(message.id),
             message: message,
             showAvatar: component.showAvatars,

@@ -4,29 +4,29 @@ import 'package:jaspr/dom.dart';
 import '../../theme/variants.dart';
 
 /// Toast color variants
-enum UToastColor { primary, secondary, success, info, warning, error }
+enum DToastColor { primary, secondary, success, info, warning, error }
 
 /// Toast variant styles
-enum UToastVariant { solid, outline, soft, subtle }
+enum DToastVariant { solid, outline, soft, subtle }
 
 /// DuxtUI Toast component - Notification message
-class UToast extends StatelessComponent {
+class DToast extends StatelessComponent {
   final String? title;
   final String? description;
-  final UToastColor color;
-  final UToastVariant variant;
+  final DToastColor color;
+  final DToastVariant variant;
   final Component? icon;
   final Component? action;
   final bool closable;
   final VoidCallback? onClose;
   final String? id;
 
-  const UToast({
+  const DToast({
     super.key,
     this.title,
     this.description,
-    this.color = UToastColor.primary,
-    this.variant = UToastVariant.solid,
+    this.color = DToastColor.primary,
+    this.variant = DToastVariant.solid,
     this.icon,
     this.action,
     this.closable = true,
@@ -36,17 +36,17 @@ class UToast extends StatelessComponent {
 
   String get _colorName {
     switch (color) {
-      case UToastColor.primary:
+      case DToastColor.primary:
         return 'green';
-      case UToastColor.secondary:
+      case DToastColor.secondary:
         return 'blue';
-      case UToastColor.success:
+      case DToastColor.success:
         return 'green';
-      case UToastColor.info:
+      case DToastColor.info:
         return 'blue';
-      case UToastColor.warning:
+      case DToastColor.warning:
         return 'yellow';
-      case UToastColor.error:
+      case DToastColor.error:
         return 'red';
     }
   }
@@ -54,37 +54,37 @@ class UToast extends StatelessComponent {
   String get _variantClasses {
     final c = _colorName;
     switch (variant) {
-      case UToastVariant.solid:
+      case DToastVariant.solid:
         return 'bg-$c-500 text-white';
-      case UToastVariant.outline:
+      case DToastVariant.outline:
         return 'bg-white dark:bg-gray-900 ring-1 ring-inset ring-$c-500 text-$c-600 dark:text-$c-400';
-      case UToastVariant.soft:
+      case DToastVariant.soft:
         return 'bg-$c-50 dark:bg-$c-950 text-$c-700 dark:text-$c-300';
-      case UToastVariant.subtle:
+      case DToastVariant.subtle:
         return 'bg-$c-50 dark:bg-$c-950 ring-1 ring-inset ring-$c-200 dark:ring-$c-800 text-$c-700 dark:text-$c-300';
     }
   }
 
   String get _closeButtonClasses {
     switch (variant) {
-      case UToastVariant.solid:
+      case DToastVariant.solid:
         return 'text-white/80 hover:text-white';
-      case UToastVariant.outline:
-      case UToastVariant.soft:
-      case UToastVariant.subtle:
+      case DToastVariant.outline:
+      case DToastVariant.soft:
+      case DToastVariant.subtle:
         return 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300';
     }
   }
 
   String get _defaultIcon {
     switch (color) {
-      case UToastColor.success:
+      case DToastColor.success:
         return '\u2714'; // Check mark
-      case UToastColor.error:
+      case DToastColor.error:
         return '\u2716'; // Cross mark
-      case UToastColor.warning:
+      case DToastColor.warning:
         return '\u26A0'; // Warning
-      case UToastColor.info:
+      case DToastColor.info:
         return '\u2139'; // Info
       default:
         return '\u{1F514}'; // Bell
@@ -156,8 +156,8 @@ class ToastData {
   final String id;
   final String? title;
   final String? description;
-  final UToastColor color;
-  final UToastVariant variant;
+  final DToastColor color;
+  final DToastVariant variant;
   final int duration;
   final bool closable;
 
@@ -165,8 +165,8 @@ class ToastData {
     required this.id,
     this.title,
     this.description,
-    this.color = UToastColor.primary,
-    this.variant = UToastVariant.solid,
+    this.color = DToastColor.primary,
+    this.variant = DToastVariant.solid,
     this.duration = 5000,
     this.closable = true,
   });
@@ -182,7 +182,7 @@ class ToastData {
       id: id,
       title: title ?? 'Success',
       description: description,
-      color: UToastColor.success,
+      color: DToastColor.success,
       duration: duration,
     );
   }
@@ -198,7 +198,7 @@ class ToastData {
       id: id,
       title: title ?? 'Error',
       description: description,
-      color: UToastColor.error,
+      color: DToastColor.error,
       duration: duration,
     );
   }
@@ -214,7 +214,7 @@ class ToastData {
       id: id,
       title: title ?? 'Warning',
       description: description,
-      color: UToastColor.warning,
+      color: DToastColor.warning,
       duration: duration,
     );
   }
@@ -230,7 +230,7 @@ class ToastData {
       id: id,
       title: title ?? 'Info',
       description: description,
-      color: UToastColor.info,
+      color: DToastColor.info,
       duration: duration,
     );
   }

@@ -2,12 +2,12 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Alignment options for page header content
-enum UPageHeaderAlign { left, center, right }
+enum DPageHeaderAlign { left, center, right }
 
 /// DuxtUI PageHeader component - Responsive page header
 ///
 /// Displays a page header with title, description, and optional links/actions.
-class UPageHeader extends StatelessComponent {
+class DPageHeader extends StatelessComponent {
   /// The main title
   final String? title;
 
@@ -18,7 +18,7 @@ class UPageHeader extends StatelessComponent {
   final String? headline;
 
   /// Content alignment
-  final UPageHeaderAlign align;
+  final DPageHeaderAlign align;
 
   /// Optional icon component
   final Component? icon;
@@ -35,12 +35,12 @@ class UPageHeader extends StatelessComponent {
   /// Custom description component (overrides description string)
   final Component? descriptionSlot;
 
-  const UPageHeader({
+  const DPageHeader({
     super.key,
     this.title,
     this.description,
     this.headline,
-    this.align = UPageHeaderAlign.left,
+    this.align = DPageHeaderAlign.left,
     this.icon,
     this.links = const [],
     this.classes,
@@ -50,22 +50,22 @@ class UPageHeader extends StatelessComponent {
 
   String get _alignClasses {
     switch (align) {
-      case UPageHeaderAlign.left:
+      case DPageHeaderAlign.left:
         return 'text-left';
-      case UPageHeaderAlign.center:
+      case DPageHeaderAlign.center:
         return 'text-center';
-      case UPageHeaderAlign.right:
+      case DPageHeaderAlign.right:
         return 'text-right';
     }
   }
 
   String get _linksAlignClasses {
     switch (align) {
-      case UPageHeaderAlign.left:
+      case DPageHeaderAlign.left:
         return 'justify-start';
-      case UPageHeaderAlign.center:
+      case DPageHeaderAlign.center:
         return 'justify-center';
-      case UPageHeaderAlign.right:
+      case DPageHeaderAlign.right:
         return 'justify-end';
     }
   }
@@ -77,13 +77,13 @@ class UPageHeader extends StatelessComponent {
       [
         div(
           classes:
-              'max-w-4xl ${align == UPageHeaderAlign.center ? "mx-auto" : ""}',
+              'max-w-4xl ${align == DPageHeaderAlign.center ? "mx-auto" : ""}',
           [
             // Icon (if provided)
             if (icon != null)
               div(
                 classes:
-                    'mb-6 ${align == UPageHeaderAlign.center ? "flex justify-center" : ""}',
+                    'mb-6 ${align == DPageHeaderAlign.center ? "flex justify-center" : ""}',
                 [icon!],
               ),
             // Headline/eyebrow

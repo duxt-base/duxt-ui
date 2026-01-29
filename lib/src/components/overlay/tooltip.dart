@@ -2,7 +2,7 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Tooltip placement options
-enum UTooltipPlacement {
+enum DTooltipPlacement {
   top,
   topStart,
   topEnd,
@@ -14,29 +14,29 @@ enum UTooltipPlacement {
 }
 
 /// DuxtUI Tooltip component - hover hint
-class UTooltip extends StatefulComponent {
+class DTooltip extends StatefulComponent {
   final Component child;
   final String text;
-  final UTooltipPlacement placement;
+  final DTooltipPlacement placement;
   final int delayMs;
   final VoidCallback? onOpen;
   final VoidCallback? onClose;
 
-  const UTooltip({
+  const DTooltip({
     super.key,
     required this.child,
     required this.text,
-    this.placement = UTooltipPlacement.top,
+    this.placement = DTooltipPlacement.top,
     this.delayMs = 0,
     this.onOpen,
     this.onClose,
   });
 
   @override
-  State<UTooltip> createState() => _UTooltipState();
+  State<DTooltip> createState() => _UTooltipState();
 }
 
-class _UTooltipState extends State<UTooltip> {
+class _UTooltipState extends State<DTooltip> {
   bool _visible = false;
 
   void _show() {
@@ -55,38 +55,38 @@ class _UTooltipState extends State<UTooltip> {
 
   String get _positionClasses {
     switch (component.placement) {
-      case UTooltipPlacement.top:
+      case DTooltipPlacement.top:
         return 'bottom-full left-1/2 -translate-x-1/2 mb-2';
-      case UTooltipPlacement.topStart:
+      case DTooltipPlacement.topStart:
         return 'bottom-full left-0 mb-2';
-      case UTooltipPlacement.topEnd:
+      case DTooltipPlacement.topEnd:
         return 'bottom-full right-0 mb-2';
-      case UTooltipPlacement.bottom:
+      case DTooltipPlacement.bottom:
         return 'top-full left-1/2 -translate-x-1/2 mt-2';
-      case UTooltipPlacement.bottomStart:
+      case DTooltipPlacement.bottomStart:
         return 'top-full left-0 mt-2';
-      case UTooltipPlacement.bottomEnd:
+      case DTooltipPlacement.bottomEnd:
         return 'top-full right-0 mt-2';
-      case UTooltipPlacement.left:
+      case DTooltipPlacement.left:
         return 'right-full top-1/2 -translate-y-1/2 mr-2';
-      case UTooltipPlacement.right:
+      case DTooltipPlacement.right:
         return 'left-full top-1/2 -translate-y-1/2 ml-2';
     }
   }
 
   String get _arrowClasses {
     switch (component.placement) {
-      case UTooltipPlacement.top:
-      case UTooltipPlacement.topStart:
-      case UTooltipPlacement.topEnd:
+      case DTooltipPlacement.top:
+      case DTooltipPlacement.topStart:
+      case DTooltipPlacement.topEnd:
         return 'top-full left-1/2 -translate-x-1/2 border-t-gray-900 dark:border-t-gray-100 border-t-4 border-x-4 border-x-transparent border-b-0';
-      case UTooltipPlacement.bottom:
-      case UTooltipPlacement.bottomStart:
-      case UTooltipPlacement.bottomEnd:
+      case DTooltipPlacement.bottom:
+      case DTooltipPlacement.bottomStart:
+      case DTooltipPlacement.bottomEnd:
         return 'bottom-full left-1/2 -translate-x-1/2 border-b-gray-900 dark:border-b-gray-100 border-b-4 border-x-4 border-x-transparent border-t-0';
-      case UTooltipPlacement.left:
+      case DTooltipPlacement.left:
         return 'left-full top-1/2 -translate-y-1/2 border-l-gray-900 dark:border-l-gray-100 border-l-4 border-y-4 border-y-transparent border-r-0';
-      case UTooltipPlacement.right:
+      case DTooltipPlacement.right:
         return 'right-full top-1/2 -translate-y-1/2 border-r-gray-900 dark:border-r-gray-100 border-r-4 border-y-4 border-y-transparent border-l-0';
     }
   }
@@ -126,27 +126,27 @@ class _UTooltipState extends State<UTooltip> {
 }
 
 /// Tooltip with custom content instead of just text
-class UTooltipCustom extends StatefulComponent {
+class DTooltipCustom extends StatefulComponent {
   final Component child;
   final Component content;
-  final UTooltipPlacement placement;
+  final DTooltipPlacement placement;
   final VoidCallback? onOpen;
   final VoidCallback? onClose;
 
-  const UTooltipCustom({
+  const DTooltipCustom({
     super.key,
     required this.child,
     required this.content,
-    this.placement = UTooltipPlacement.top,
+    this.placement = DTooltipPlacement.top,
     this.onOpen,
     this.onClose,
   });
 
   @override
-  State<UTooltipCustom> createState() => _UTooltipCustomState();
+  State<DTooltipCustom> createState() => _UTooltipCustomState();
 }
 
-class _UTooltipCustomState extends State<UTooltipCustom> {
+class _UTooltipCustomState extends State<DTooltipCustom> {
   bool _visible = false;
 
   void _show() {
@@ -165,21 +165,21 @@ class _UTooltipCustomState extends State<UTooltipCustom> {
 
   String get _positionClasses {
     switch (component.placement) {
-      case UTooltipPlacement.top:
+      case DTooltipPlacement.top:
         return 'bottom-full left-1/2 -translate-x-1/2 mb-2';
-      case UTooltipPlacement.topStart:
+      case DTooltipPlacement.topStart:
         return 'bottom-full left-0 mb-2';
-      case UTooltipPlacement.topEnd:
+      case DTooltipPlacement.topEnd:
         return 'bottom-full right-0 mb-2';
-      case UTooltipPlacement.bottom:
+      case DTooltipPlacement.bottom:
         return 'top-full left-1/2 -translate-x-1/2 mt-2';
-      case UTooltipPlacement.bottomStart:
+      case DTooltipPlacement.bottomStart:
         return 'top-full left-0 mt-2';
-      case UTooltipPlacement.bottomEnd:
+      case DTooltipPlacement.bottomEnd:
         return 'top-full right-0 mt-2';
-      case UTooltipPlacement.left:
+      case DTooltipPlacement.left:
         return 'right-full top-1/2 -translate-y-1/2 mr-2';
-      case UTooltipPlacement.right:
+      case DTooltipPlacement.right:
         return 'left-full top-1/2 -translate-y-1/2 ml-2';
     }
   }

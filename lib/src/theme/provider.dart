@@ -3,39 +3,39 @@ import 'package:jaspr/dom.dart';
 import 'colors.dart';
 
 /// Theme mode for dark/light switching
-enum UThemeMode { light, dark, system }
+enum DThemeMode { light, dark, system }
 
 /// Theme configuration for DuxtUI
-class UThemeConfig {
-  final UColor primaryColor;
-  final UColor secondaryColor;
-  final UColor successColor;
-  final UColor infoColor;
-  final UColor warningColor;
-  final UColor errorColor;
-  final UThemeMode mode;
+class DThemeConfig {
+  final DColor primaryColor;
+  final DColor secondaryColor;
+  final DColor successColor;
+  final DColor infoColor;
+  final DColor warningColor;
+  final DColor errorColor;
+  final DThemeMode mode;
 
-  const UThemeConfig({
-    this.primaryColor = UColor.primary,
-    this.secondaryColor = UColor.secondary,
-    this.successColor = UColor.success,
-    this.infoColor = UColor.info,
-    this.warningColor = UColor.warning,
-    this.errorColor = UColor.error,
-    this.mode = UThemeMode.system,
+  const DThemeConfig({
+    this.primaryColor = DColor.primary,
+    this.secondaryColor = DColor.secondary,
+    this.successColor = DColor.success,
+    this.infoColor = DColor.info,
+    this.warningColor = DColor.warning,
+    this.errorColor = DColor.error,
+    this.mode = DThemeMode.system,
   });
 
-  static const UThemeConfig defaultConfig = UThemeConfig();
+  static const DThemeConfig defaultConfig = DThemeConfig();
 }
 
 /// Theme provider that wraps the app and provides theme context
-class UThemeProvider extends StatefulComponent {
-  final UThemeConfig config;
+class DThemeProvider extends StatefulComponent {
+  final DThemeConfig config;
   final Component child;
 
-  const UThemeProvider({
+  const DThemeProvider({
     super.key,
-    this.config = UThemeConfig.defaultConfig,
+    this.config = DThemeConfig.defaultConfig,
     required this.child,
   });
 
@@ -43,8 +43,8 @@ class UThemeProvider extends StatefulComponent {
   State createState() => _UThemeProviderState();
 }
 
-class _UThemeProviderState extends State<UThemeProvider> {
-  late UThemeMode _currentMode;
+class _UThemeProviderState extends State<DThemeProvider> {
+  late DThemeMode _currentMode;
 
   @override
   void initState() {
@@ -54,11 +54,11 @@ class _UThemeProviderState extends State<UThemeProvider> {
 
   String get _themeClass {
     switch (_currentMode) {
-      case UThemeMode.dark:
+      case DThemeMode.dark:
         return 'dark';
-      case UThemeMode.light:
+      case DThemeMode.light:
         return '';
-      case UThemeMode.system:
+      case DThemeMode.system:
         // In browser, this would check prefers-color-scheme
         // For now, default to light
         return '';
@@ -67,11 +67,11 @@ class _UThemeProviderState extends State<UThemeProvider> {
 
   void toggleTheme() {
     setState(() {
-      _currentMode = _currentMode == UThemeMode.dark ? UThemeMode.light : UThemeMode.dark;
+      _currentMode = _currentMode == DThemeMode.dark ? DThemeMode.light : DThemeMode.dark;
     });
   }
 
-  void setTheme(UThemeMode mode) {
+  void setTheme(DThemeMode mode) {
     setState(() {
       _currentMode = mode;
     });
@@ -87,19 +87,19 @@ class _UThemeProviderState extends State<UThemeProvider> {
 }
 
 /// App wrapper component that sets up the theme and base styles
-class UApp extends StatelessComponent {
-  final UThemeConfig theme;
+class DApp extends StatelessComponent {
+  final DThemeConfig theme;
   final Component child;
 
-  const UApp({
+  const DApp({
     super.key,
-    this.theme = UThemeConfig.defaultConfig,
+    this.theme = DThemeConfig.defaultConfig,
     required this.child,
   });
 
   @override
   Component build(BuildContext context) {
-    return UThemeProvider(
+    return DThemeProvider(
       config: theme,
       child: div(
         classes: 'min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased',

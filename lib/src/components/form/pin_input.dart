@@ -4,19 +4,19 @@ import '../../theme/variants.dart';
 import '../../theme/colors.dart';
 
 /// Pin input sizes
-enum UPinInputSize { xs, sm, md, lg, xl }
+enum DPinInputSize { xs, sm, md, lg, xl }
 
 /// Pin input types
-enum UPinInputType { text, number, password }
+enum DPinInputType { text, number, password }
 
 /// DuxtUI PinInput component - PIN/OTP entry with individual digit inputs
-class UPinInput extends StatefulComponent {
+class DPinInput extends StatefulComponent {
   final int length;
   final String? label;
   final String value;
-  final UPinInputSize size;
-  final UPinInputType type;
-  final UColor color;
+  final DPinInputSize size;
+  final DPinInputType type;
+  final DColor color;
   final bool disabled;
   final bool required;
   final bool autofocus;
@@ -27,14 +27,14 @@ class UPinInput extends StatefulComponent {
   final ValueChanged<String>? onChange;
   final VoidCallback? onComplete;
 
-  const UPinInput({
+  const DPinInput({
     super.key,
     this.length = 4,
     this.label,
     this.value = '',
-    this.size = UPinInputSize.md,
-    this.type = UPinInputType.number,
-    this.color = UColor.primary,
+    this.size = DPinInputSize.md,
+    this.type = DPinInputType.number,
+    this.color = DColor.primary,
     this.disabled = false,
     this.required = false,
     this.autofocus = false,
@@ -47,10 +47,10 @@ class UPinInput extends StatefulComponent {
   });
 
   @override
-  State<UPinInput> createState() => _UPinInputState();
+  State<DPinInput> createState() => _UPinInputState();
 }
 
-class _UPinInputState extends State<UPinInput> {
+class _UPinInputState extends State<DPinInput> {
   late List<String> _digits;
 
   @override
@@ -64,61 +64,61 @@ class _UPinInputState extends State<UPinInput> {
 
   String get _sizeClasses {
     switch (component.size) {
-      case UPinInputSize.xs:
+      case DPinInputSize.xs:
         return 'w-8 h-8 text-sm';
-      case UPinInputSize.sm:
+      case DPinInputSize.sm:
         return 'w-10 h-10 text-base';
-      case UPinInputSize.md:
+      case DPinInputSize.md:
         return 'w-12 h-12 text-lg';
-      case UPinInputSize.lg:
+      case DPinInputSize.lg:
         return 'w-14 h-14 text-xl';
-      case UPinInputSize.xl:
+      case DPinInputSize.xl:
         return 'w-16 h-16 text-2xl';
     }
   }
 
   String get _gapClasses {
     switch (component.size) {
-      case UPinInputSize.xs:
+      case DPinInputSize.xs:
         return 'gap-1';
-      case UPinInputSize.sm:
+      case DPinInputSize.sm:
         return 'gap-1.5';
-      case UPinInputSize.md:
+      case DPinInputSize.md:
         return 'gap-2';
-      case UPinInputSize.lg:
+      case DPinInputSize.lg:
         return 'gap-2.5';
-      case UPinInputSize.xl:
+      case DPinInputSize.xl:
         return 'gap-3';
     }
   }
 
   String get _colorClasses {
     switch (component.color) {
-      case UColor.primary:
+      case DColor.primary:
         return 'focus:ring-green-500 focus:border-green-500';
-      case UColor.secondary:
+      case DColor.secondary:
         return 'focus:ring-blue-500 focus:border-blue-500';
-      case UColor.success:
+      case DColor.success:
         return 'focus:ring-green-500 focus:border-green-500';
-      case UColor.info:
+      case DColor.info:
         return 'focus:ring-blue-500 focus:border-blue-500';
-      case UColor.warning:
+      case DColor.warning:
         return 'focus:ring-yellow-500 focus:border-yellow-500';
-      case UColor.error:
+      case DColor.error:
         return 'focus:ring-red-500 focus:border-red-500';
-      case UColor.neutral:
+      case DColor.neutral:
         return 'focus:ring-slate-500 focus:border-slate-500';
     }
   }
 
   InputType get _inputType {
     switch (component.type) {
-      case UPinInputType.text:
+      case DPinInputType.text:
         return InputType.text;
-      case UPinInputType.number:
+      case DPinInputType.number:
         return InputType
             .text; // Use text with inputmode for better mobile support
-      case UPinInputType.password:
+      case DPinInputType.password:
         return InputType.password;
     }
   }
@@ -211,9 +211,9 @@ class _UPinInputState extends State<UPinInput> {
             ]),
             attributes: {
               'maxlength': '1',
-              if (component.type == UPinInputType.number)
+              if (component.type == DPinInputType.number)
                 'inputmode': 'numeric',
-              if (component.type == UPinInputType.number) 'pattern': '[0-9]*',
+              if (component.type == DPinInputType.number) 'pattern': '[0-9]*',
               if (component.placeholder != null)
                 'placeholder': component.placeholder!,
               if (component.autofocus && i == 0) 'autofocus': 'true',

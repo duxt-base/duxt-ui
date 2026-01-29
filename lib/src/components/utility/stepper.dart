@@ -3,18 +3,18 @@ import 'package:jaspr/dom.dart';
 import 'icon.dart';
 
 /// Stepper orientation
-enum UStepperOrientation { horizontal, vertical }
+enum DStepperOrientation { horizontal, vertical }
 
 /// Step status
-enum UStepStatus { upcoming, current, completed }
+enum DStepStatus { upcoming, current, completed }
 
 /// Step item data
-class UStepItem {
+class DStepItem {
   final String title;
   final String? description;
   final Component? icon;
 
-  const UStepItem({
+  const DStepItem({
     required this.title,
     this.description,
     this.icon,
@@ -25,15 +25,15 @@ class UStepItem {
 ///
 /// Displays progress through a multi-step process with numbered
 /// circles and connecting lines.
-class UStepper extends StatelessComponent {
+class DStepper extends StatelessComponent {
   /// List of steps
-  final List<UStepItem> steps;
+  final List<DStepItem> steps;
 
   /// Current active step index (0-based)
   final int currentStep;
 
   /// Orientation of the stepper
-  final UStepperOrientation orientation;
+  final DStepperOrientation orientation;
 
   /// Whether clicking on steps is allowed
   final bool clickable;
@@ -44,39 +44,39 @@ class UStepper extends StatelessComponent {
   /// Custom CSS classes
   final String? classes;
 
-  const UStepper({
+  const DStepper({
     super.key,
     required this.steps,
     this.currentStep = 0,
-    this.orientation = UStepperOrientation.horizontal,
+    this.orientation = DStepperOrientation.horizontal,
     this.clickable = false,
     this.onStepClick,
     this.classes,
   });
 
-  UStepStatus _getStepStatus(int index) {
-    if (index < currentStep) return UStepStatus.completed;
-    if (index == currentStep) return UStepStatus.current;
-    return UStepStatus.upcoming;
+  DStepStatus _getStepStatus(int index) {
+    if (index < currentStep) return DStepStatus.completed;
+    if (index == currentStep) return DStepStatus.current;
+    return DStepStatus.upcoming;
   }
 
-  String _getStepCircleClasses(UStepStatus status) {
+  String _getStepCircleClasses(DStepStatus status) {
     switch (status) {
-      case UStepStatus.completed:
+      case DStepStatus.completed:
         return 'bg-green-600 text-white border-green-600';
-      case UStepStatus.current:
+      case DStepStatus.current:
         return 'bg-indigo-600 text-white border-indigo-600';
-      case UStepStatus.upcoming:
+      case DStepStatus.upcoming:
         return 'bg-white dark:bg-gray-900 text-gray-400 border-gray-300 dark:border-gray-600';
     }
   }
 
-  String _getLineClasses(UStepStatus status) {
+  String _getLineClasses(DStepStatus status) {
     switch (status) {
-      case UStepStatus.completed:
+      case DStepStatus.completed:
         return 'bg-green-600';
-      case UStepStatus.current:
-      case UStepStatus.upcoming:
+      case DStepStatus.current:
+      case DStepStatus.upcoming:
         return 'bg-gray-300 dark:bg-gray-600';
     }
   }
@@ -87,7 +87,7 @@ class UStepper extends StatelessComponent {
       return div([]);
     }
 
-    final isHorizontal = orientation == UStepperOrientation.horizontal;
+    final isHorizontal = orientation == DStepperOrientation.horizontal;
 
     return div(
       classes: [
@@ -103,7 +103,7 @@ class UStepper extends StatelessComponent {
     );
   }
 
-  Component _buildStep(int index, UStepItem step, bool isHorizontal) {
+  Component _buildStep(int index, DStepItem step, bool isHorizontal) {
     final status = _getStepStatus(index);
     final circleClasses = _getStepCircleClasses(status);
 
@@ -126,8 +126,8 @@ class UStepper extends StatelessComponent {
               'cursor-default',
           ].join(' '),
           [
-            if (status == UStepStatus.completed)
-              UIcon(name: UIconNames.check, size: UIconSize.sm)
+            if (status == DStepStatus.completed)
+              DIcon(name: DIconNames.check, size: DIconSize.sm)
             else if (step.icon != null)
               step.icon!
             else
@@ -145,7 +145,7 @@ class UStepper extends StatelessComponent {
             span(
               classes: [
                 'block font-medium text-sm',
-                status == UStepStatus.upcoming
+                status == DStepStatus.upcoming
                     ? 'text-gray-400 dark:text-gray-500'
                     : 'text-gray-900 dark:text-white',
               ].join(' '),

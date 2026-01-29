@@ -5,10 +5,10 @@ import '../../theme/colors.dart';
 import '../avatar.dart';
 
 /// User layout orientation
-enum UUserOrientation { horizontal, vertical }
+enum DUserOrientation { horizontal, vertical }
 
 /// DuxtUI User component - Avatar with name and description
-class UUser extends StatelessComponent {
+class DUser extends StatelessComponent {
   /// User's display name
   final String name;
 
@@ -25,10 +25,10 @@ class UUser extends StatelessComponent {
   final String? avatarColor;
 
   /// User component size
-  final USize size;
+  final DSize size;
 
   /// Layout orientation
-  final UUserOrientation orientation;
+  final DUserOrientation orientation;
 
   /// Whether to reverse the layout (avatar on right)
   final bool reverse;
@@ -45,15 +45,15 @@ class UUser extends StatelessComponent {
   /// Additional actions (e.g., buttons/icons)
   final List<Component>? actions;
 
-  const UUser({
+  const DUser({
     super.key,
     required this.name,
     this.description,
     this.avatarSrc,
     this.avatarInitials,
     this.avatarColor,
-    this.size = USize.md,
-    this.orientation = UUserOrientation.horizontal,
+    this.size = DSize.md,
+    this.orientation = DUserOrientation.horizontal,
     this.reverse = false,
     this.onClick,
     this.online,
@@ -61,77 +61,77 @@ class UUser extends StatelessComponent {
     this.actions,
   });
 
-  UAvatarSize get _avatarSize {
+  DAvatarSize get _avatarSize {
     switch (size) {
-      case USize.xs:
-        return UAvatarSize.xs;
-      case USize.sm:
-        return UAvatarSize.sm;
-      case USize.md:
-        return UAvatarSize.md;
-      case USize.lg:
-        return UAvatarSize.lg;
-      case USize.xl:
-        return UAvatarSize.xl;
+      case DSize.xs:
+        return DAvatarSize.xs;
+      case DSize.sm:
+        return DAvatarSize.sm;
+      case DSize.md:
+        return DAvatarSize.md;
+      case DSize.lg:
+        return DAvatarSize.lg;
+      case DSize.xl:
+        return DAvatarSize.xl;
     }
   }
 
   String get _nameTextSize {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'text-xs';
-      case USize.sm:
+      case DSize.sm:
         return 'text-sm';
-      case USize.md:
+      case DSize.md:
         return 'text-sm';
-      case USize.lg:
+      case DSize.lg:
         return 'text-base';
-      case USize.xl:
+      case DSize.xl:
         return 'text-lg';
     }
   }
 
   String get _descriptionTextSize {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'text-[10px]';
-      case USize.sm:
+      case DSize.sm:
         return 'text-xs';
-      case USize.md:
+      case DSize.md:
         return 'text-xs';
-      case USize.lg:
+      case DSize.lg:
         return 'text-sm';
-      case USize.xl:
+      case DSize.xl:
         return 'text-base';
     }
   }
 
   String get _gap {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'gap-1.5';
-      case USize.sm:
+      case DSize.sm:
         return 'gap-2';
-      case USize.md:
+      case DSize.md:
         return 'gap-3';
-      case USize.lg:
+      case DSize.lg:
         return 'gap-3';
-      case USize.xl:
+      case DSize.xl:
         return 'gap-4';
     }
   }
 
   String get _statusDotSize {
     switch (size) {
-      case USize.xs:
+      case DSize.xs:
         return 'size-1.5';
-      case USize.sm:
+      case DSize.sm:
         return 'size-2';
-      case USize.md:
+      case DSize.md:
         return 'size-2.5';
-      case USize.lg:
+      case DSize.lg:
         return 'size-3';
-      case USize.xl:
+      case DSize.xl:
         return 'size-3.5';
     }
   }
@@ -152,7 +152,7 @@ class UUser extends StatelessComponent {
     final avatar = _buildAvatar();
     final info = _buildInfo();
 
-    final isVertical = orientation == UUserOrientation.vertical;
+    final isVertical = orientation == DUserOrientation.vertical;
 
     final content = div(
       classes: cx([
@@ -189,7 +189,7 @@ class UUser extends StatelessComponent {
     return div(
       classes: 'relative shrink-0',
       [
-        UAvatar(
+        DAvatar(
           src: avatarSrc,
           text: _initials,
           size: _avatarSize,
@@ -209,7 +209,7 @@ class UUser extends StatelessComponent {
   }
 
   Component _buildInfo() {
-    final isVertical = orientation == UUserOrientation.vertical;
+    final isVertical = orientation == DUserOrientation.vertical;
 
     return div(
       classes: cx([
@@ -222,7 +222,7 @@ class UUser extends StatelessComponent {
           classes: cx([
             _nameTextSize,
             'font-medium truncate',
-            UTextColors.defaultText,
+            DTextColors.defaultText,
           ]),
           [Component.text(name)],
         ),
@@ -232,7 +232,7 @@ class UUser extends StatelessComponent {
             classes: cx([
               _descriptionTextSize,
               'truncate',
-              UTextColors.muted,
+              DTextColors.muted,
             ]),
             [Component.text(status ?? description ?? '')],
           ),
@@ -242,7 +242,7 @@ class UUser extends StatelessComponent {
 }
 
 /// User card with additional content
-class UUserCard extends StatelessComponent {
+class DUserCard extends StatelessComponent {
   /// User's display name
   final String name;
 
@@ -264,7 +264,7 @@ class UUserCard extends StatelessComponent {
   /// Whether the card is clickable
   final void Function()? onClick;
 
-  const UUserCard({
+  const DUserCard({
     super.key,
     required this.name,
     this.description,
@@ -279,14 +279,14 @@ class UUserCard extends StatelessComponent {
   Component build(BuildContext context) {
     final cardContent = div(
       classes:
-          'p-4 rounded-lg border border-gray-200 dark:border-gray-700 ${UBgColors.defaultBg}',
+          'p-4 rounded-lg border border-gray-200 dark:border-gray-700 ${DBgColors.defaultBg}',
       [
-        UUser(
+        DUser(
           name: name,
           description: description,
           avatarSrc: avatarSrc,
           avatarInitials: avatarInitials,
-          size: USize.lg,
+          size: DSize.lg,
         ),
         if (content != null) div(classes: 'mt-3', [content!]),
         if (actions != null && actions!.isNotEmpty)
@@ -312,7 +312,7 @@ class UUserCard extends StatelessComponent {
 }
 
 /// User list item (optimized for lists)
-class UUserListItem extends StatelessComponent {
+class DUserListItem extends StatelessComponent {
   /// User's display name
   final String name;
 
@@ -334,7 +334,7 @@ class UUserListItem extends StatelessComponent {
   /// Click handler
   final void Function()? onClick;
 
-  const UUserListItem({
+  const DUserListItem({
     super.key,
     required this.name,
     this.description,
@@ -355,12 +355,12 @@ class UUserListItem extends StatelessComponent {
           'hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer',
       ]),
       [
-        UUser(
+        DUser(
           name: name,
           description: description,
           avatarSrc: avatarSrc,
           avatarInitials: avatarInitials,
-          size: USize.sm,
+          size: DSize.sm,
         ),
         if (trailing != null) trailing!,
       ],

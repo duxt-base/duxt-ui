@@ -2,26 +2,26 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Header style variants
-enum UHeaderVariant { solid, transparent, blur }
+enum DHeaderVariant { solid, transparent, blur }
 
 /// DuxtUI Header component - sticky header with backdrop blur
-class UHeader extends StatelessComponent {
+class DHeader extends StatelessComponent {
   final List<Component> children;
   final Component? left;
   final Component? center;
   final Component? right;
-  final UHeaderVariant variant;
+  final DHeaderVariant variant;
   final bool sticky;
   final bool bordered;
   final String? classes;
 
-  const UHeader({
+  const DHeader({
     super.key,
     this.children = const [],
     this.left,
     this.center,
     this.right,
-    this.variant = UHeaderVariant.blur,
+    this.variant = DHeaderVariant.blur,
     this.sticky = true,
     this.bordered = true,
     this.classes,
@@ -29,11 +29,11 @@ class UHeader extends StatelessComponent {
 
   String get _variantClasses {
     switch (variant) {
-      case UHeaderVariant.solid:
+      case DHeaderVariant.solid:
         return 'bg-white dark:bg-gray-900';
-      case UHeaderVariant.transparent:
+      case DHeaderVariant.transparent:
         return 'bg-transparent';
-      case UHeaderVariant.blur:
+      case DHeaderVariant.blur:
         return 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg backdrop-saturate-150';
     }
   }
@@ -103,14 +103,14 @@ class UHeader extends StatelessComponent {
 }
 
 /// DuxtUI Page Header - header for page content (not sticky nav)
-class UPageHeader extends StatelessComponent {
+class DPageHeader extends StatelessComponent {
   final String? title;
   final String? description;
   final Component? actions;
   final List<Component> children;
   final String? classes;
 
-  const UPageHeader({
+  const DPageHeader({
     super.key,
     this.title,
     this.description,

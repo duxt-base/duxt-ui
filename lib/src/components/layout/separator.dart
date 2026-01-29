@@ -2,42 +2,42 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Separator orientation
-enum USeparatorOrientation { horizontal, vertical }
+enum DSeparatorOrientation { horizontal, vertical }
 
 /// Separator type
-enum USeparatorType { solid, dashed, dotted }
+enum DSeparatorType { solid, dashed, dotted }
 
 /// DuxtUI Separator component - hr/divider
-class USeparator extends StatelessComponent {
-  final USeparatorOrientation orientation;
-  final USeparatorType type;
+class DSeparator extends StatelessComponent {
+  final DSeparatorOrientation orientation;
+  final DSeparatorType type;
   final String? label;
   final String? classes;
 
-  const USeparator({
+  const DSeparator({
     super.key,
-    this.orientation = USeparatorOrientation.horizontal,
-    this.type = USeparatorType.solid,
+    this.orientation = DSeparatorOrientation.horizontal,
+    this.type = DSeparatorType.solid,
     this.label,
     this.classes,
   });
 
   String get _orientationClasses {
     switch (orientation) {
-      case USeparatorOrientation.horizontal:
+      case DSeparatorOrientation.horizontal:
         return 'w-full border-t';
-      case USeparatorOrientation.vertical:
+      case DSeparatorOrientation.vertical:
         return 'h-full border-l self-stretch';
     }
   }
 
   String get _typeClasses {
     switch (type) {
-      case USeparatorType.solid:
+      case DSeparatorType.solid:
         return 'border-solid';
-      case USeparatorType.dashed:
+      case DSeparatorType.dashed:
         return 'border-dashed';
-      case USeparatorType.dotted:
+      case DSeparatorType.dotted:
         return 'border-dotted';
     }
   }
@@ -46,7 +46,7 @@ class USeparator extends StatelessComponent {
   Component build(BuildContext context) {
     final baseClasses = 'border-gray-200 dark:border-gray-800';
 
-    if (label != null && orientation == USeparatorOrientation.horizontal) {
+    if (label != null && orientation == DSeparatorOrientation.horizontal) {
       // Separator with label
       return div(
         classes: 'relative flex items-center w-full ${classes ?? ""}'.trim(),
@@ -73,22 +73,22 @@ class USeparator extends StatelessComponent {
 }
 
 /// Convenience component for horizontal rule
-class UHr extends StatelessComponent {
-  final USeparatorType type;
+class DHr extends StatelessComponent {
+  final DSeparatorType type;
   final String? label;
   final String? classes;
 
-  const UHr({
+  const DHr({
     super.key,
-    this.type = USeparatorType.solid,
+    this.type = DSeparatorType.solid,
     this.label,
     this.classes,
   });
 
   @override
   Component build(BuildContext context) {
-    return USeparator(
-      orientation: USeparatorOrientation.horizontal,
+    return DSeparator(
+      orientation: DSeparatorOrientation.horizontal,
       type: type,
       label: label,
       classes: classes,
@@ -97,18 +97,18 @@ class UHr extends StatelessComponent {
 }
 
 /// Convenience component for vertical divider
-class UDivider extends StatelessComponent {
+class DDivider extends StatelessComponent {
   final String? classes;
 
-  const UDivider({
+  const DDivider({
     super.key,
     this.classes,
   });
 
   @override
   Component build(BuildContext context) {
-    return USeparator(
-      orientation: USeparatorOrientation.vertical,
+    return DSeparator(
+      orientation: DSeparatorOrientation.vertical,
       classes: classes,
     );
   }

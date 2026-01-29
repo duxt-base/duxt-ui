@@ -5,7 +5,7 @@ import 'package:jaspr/dom.dart';
 ///
 /// A collapsible sidebar for dashboard layouts.
 /// Supports expanded (w-64), collapsed (w-16), and mobile overlay states.
-class UDashboardSidebar extends StatefulComponent {
+class DDashboardSidebar extends StatefulComponent {
   /// Custom CSS classes to apply to the sidebar
   final String? classes;
 
@@ -28,10 +28,10 @@ class UDashboardSidebar extends StatefulComponent {
   final bool bordered;
 
   /// Background variant
-  final USidebarBackground background;
+  final DSidebarBackground background;
 
   /// The side of the screen the sidebar is on
-  final USidebarSide side;
+  final DSidebarSide side;
 
   /// Callback when collapse state changes
   final ValueChanged<bool>? onCollapseChange;
@@ -39,7 +39,7 @@ class UDashboardSidebar extends StatefulComponent {
   /// Child components (navigation items)
   final List<Component> children;
 
-  const UDashboardSidebar({
+  const DDashboardSidebar({
     super.key,
     this.classes,
     this.initialCollapsed = false,
@@ -48,17 +48,17 @@ class UDashboardSidebar extends StatefulComponent {
     this.header,
     this.footer,
     this.bordered = true,
-    this.background = USidebarBackground.gray,
-    this.side = USidebarSide.left,
+    this.background = DSidebarBackground.gray,
+    this.side = DSidebarSide.left,
     this.onCollapseChange,
     this.children = const [],
   });
 
   @override
-  State<UDashboardSidebar> createState() => _UDashboardSidebarState();
+  State<DDashboardSidebar> createState() => _UDashboardSidebarState();
 }
 
-class _UDashboardSidebarState extends State<UDashboardSidebar> {
+class _UDashboardSidebarState extends State<DDashboardSidebar> {
   late bool _collapsed;
 
   @override
@@ -98,9 +98,9 @@ class _UDashboardSidebarState extends State<UDashboardSidebar> {
 
   String get _backgroundClasses {
     switch (component.background) {
-      case USidebarBackground.white:
+      case DSidebarBackground.white:
         return 'bg-white dark:bg-gray-900';
-      case USidebarBackground.gray:
+      case DSidebarBackground.gray:
         return 'bg-gray-50 dark:bg-gray-900';
     }
   }
@@ -108,9 +108,9 @@ class _UDashboardSidebarState extends State<UDashboardSidebar> {
   String get _borderClasses {
     if (!component.bordered) return '';
     switch (component.side) {
-      case USidebarSide.left:
+      case DSidebarSide.left:
         return 'border-r border-gray-200 dark:border-gray-800';
-      case USidebarSide.right:
+      case DSidebarSide.right:
         return 'border-l border-gray-200 dark:border-gray-800';
     }
   }
@@ -131,7 +131,7 @@ class _UDashboardSidebarState extends State<UDashboardSidebar> {
         // Sidebar
         aside(
           classes:
-              'fixed inset-y-0 ${component.side == USidebarSide.left ? "left-0" : "right-0"} w-64 flex flex-col $_backgroundClasses $_borderClasses shadow-xl transition-transform duration-300',
+              'fixed inset-y-0 ${component.side == DSidebarSide.left ? "left-0" : "right-0"} w-64 flex flex-col $_backgroundClasses $_borderClasses shadow-xl transition-transform duration-300',
           [
             // Header
             if (component.header != null)
@@ -188,13 +188,13 @@ class _SidebarCollapseProvider extends StatelessComponent {
 }
 
 /// Sidebar background variants
-enum USidebarBackground { white, gray }
+enum DSidebarBackground { white, gray }
 
 /// Sidebar side options
-enum USidebarSide { left, right }
+enum DSidebarSide { left, right }
 
 /// Sidebar navigation item
-class USidebarItem extends StatelessComponent {
+class DSidebarItem extends StatelessComponent {
   /// Item label
   final String label;
 
@@ -216,7 +216,7 @@ class USidebarItem extends StatelessComponent {
   /// Whether the sidebar is collapsed (icons only)
   final bool collapsed;
 
-  const USidebarItem({
+  const DSidebarItem({
     super.key,
     required this.label,
     this.icon,
@@ -278,7 +278,7 @@ class USidebarItem extends StatelessComponent {
 }
 
 /// Sidebar section with label
-class USidebarSection extends StatelessComponent {
+class DSidebarSection extends StatelessComponent {
   /// Section label
   final String? label;
 
@@ -291,7 +291,7 @@ class USidebarSection extends StatelessComponent {
   /// Child items
   final List<Component> children;
 
-  const USidebarSection({
+  const DSidebarSection({
     super.key,
     this.label,
     this.showLabelCollapsed = false,

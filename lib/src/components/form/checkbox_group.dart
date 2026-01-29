@@ -3,16 +3,16 @@ import 'package:jaspr/dom.dart';
 import 'checkbox.dart';
 
 /// Checkbox group orientation
-enum UCheckboxGroupOrientation { horizontal, vertical }
+enum DCheckboxGroupOrientation { horizontal, vertical }
 
 /// Checkbox option item
-class UCheckboxOption<T> {
+class DCheckboxOption<T> {
   final T value;
   final String label;
   final String? description;
   final bool disabled;
 
-  const UCheckboxOption({
+  const DCheckboxOption({
     required this.value,
     required this.label,
     this.description,
@@ -21,21 +21,21 @@ class UCheckboxOption<T> {
 }
 
 /// DuxtUI Checkbox Group component - Matches Nuxt UI styling
-class UCheckboxGroup<T> extends StatelessComponent {
+class DCheckboxGroup<T> extends StatelessComponent {
   final String? label;
-  final List<UCheckboxOption<T>> options;
+  final List<DCheckboxOption<T>> options;
   final List<T> value;
   final String? name;
   final bool disabled;
   final bool required;
-  final UCheckboxSize size;
-  final UCheckboxColor color;
-  final UCheckboxGroupOrientation orientation;
+  final DCheckboxSize size;
+  final DCheckboxColor color;
+  final DCheckboxGroupOrientation orientation;
   final String? error;
   final String? hint;
   final ValueChanged<List<T>>? onChange;
 
-  const UCheckboxGroup({
+  const DCheckboxGroup({
     super.key,
     this.label,
     required this.options,
@@ -43,9 +43,9 @@ class UCheckboxGroup<T> extends StatelessComponent {
     this.name,
     this.disabled = false,
     this.required = false,
-    this.size = UCheckboxSize.md,
-    this.color = UCheckboxColor.primary,
-    this.orientation = UCheckboxGroupOrientation.vertical,
+    this.size = DCheckboxSize.md,
+    this.color = DCheckboxColor.primary,
+    this.orientation = DCheckboxGroupOrientation.vertical,
     this.error,
     this.hint,
     this.onChange,
@@ -53,9 +53,9 @@ class UCheckboxGroup<T> extends StatelessComponent {
 
   String get _orientationClasses {
     switch (orientation) {
-      case UCheckboxGroupOrientation.horizontal:
+      case DCheckboxGroupOrientation.horizontal:
         return 'flex flex-row flex-wrap gap-4';
-      case UCheckboxGroupOrientation.vertical:
+      case DCheckboxGroupOrientation.vertical:
         return 'flex flex-col gap-2';
     }
   }
@@ -96,7 +96,7 @@ class UCheckboxGroup<T> extends StatelessComponent {
         classes: _orientationClasses,
         [
           for (final option in options)
-            UCheckbox(
+            DCheckbox(
               label: option.label,
               description: option.description,
               name: name != null ? '${name}[]' : null,

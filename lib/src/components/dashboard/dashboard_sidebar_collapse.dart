@@ -5,7 +5,7 @@ import 'package:jaspr/dom.dart';
 ///
 /// A collapsible section within the sidebar that shows/hides nested items.
 /// Useful for grouping related navigation items.
-class UDashboardSidebarCollapse extends StatefulComponent {
+class DDashboardSidebarCollapse extends StatefulComponent {
   /// Custom CSS classes
   final String? classes;
 
@@ -24,7 +24,7 @@ class UDashboardSidebarCollapse extends StatefulComponent {
   /// Child navigation items
   final List<Component> children;
 
-  const UDashboardSidebarCollapse({
+  const DDashboardSidebarCollapse({
     super.key,
     this.classes,
     required this.label,
@@ -35,11 +35,11 @@ class UDashboardSidebarCollapse extends StatefulComponent {
   });
 
   @override
-  State<UDashboardSidebarCollapse> createState() =>
+  State<DDashboardSidebarCollapse> createState() =>
       _UDashboardSidebarCollapseState();
 }
 
-class _UDashboardSidebarCollapseState extends State<UDashboardSidebarCollapse> {
+class _UDashboardSidebarCollapseState extends State<DDashboardSidebarCollapse> {
   late bool _open;
 
   @override

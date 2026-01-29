@@ -2,30 +2,30 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Breadcrumb separator style
-enum UBreadcrumbSeparator { slash, chevron, arrow, dot }
+enum DBreadcrumbSeparator { slash, chevron, arrow, dot }
 
 /// DuxtUI Breadcrumb component
-class UBreadcrumb extends StatelessComponent {
-  final List<UBreadcrumbItem> items;
-  final UBreadcrumbSeparator separator;
+class DBreadcrumb extends StatelessComponent {
+  final List<DBreadcrumbItem> items;
+  final DBreadcrumbSeparator separator;
   final String? classes;
 
-  const UBreadcrumb({
+  const DBreadcrumb({
     super.key,
     required this.items,
-    this.separator = UBreadcrumbSeparator.chevron,
+    this.separator = DBreadcrumbSeparator.chevron,
     this.classes,
   });
 
   String get _separatorChar {
     switch (separator) {
-      case UBreadcrumbSeparator.slash:
+      case DBreadcrumbSeparator.slash:
         return '/';
-      case UBreadcrumbSeparator.chevron:
+      case DBreadcrumbSeparator.chevron:
         return '\u203A'; // Unicode single right-pointing angle quotation mark
-      case UBreadcrumbSeparator.arrow:
+      case DBreadcrumbSeparator.arrow:
         return '\u2192'; // Unicode rightwards arrow
-      case UBreadcrumbSeparator.dot:
+      case DBreadcrumbSeparator.dot:
         return '\u2022'; // Unicode bullet
     }
   }
@@ -85,12 +85,12 @@ class UBreadcrumb extends StatelessComponent {
 }
 
 /// Breadcrumb item data
-class UBreadcrumbItem extends StatelessComponent {
+class DBreadcrumbItem extends StatelessComponent {
   final String label;
   final String? href;
   final Component? icon;
 
-  const UBreadcrumbItem({
+  const DBreadcrumbItem({
     super.key,
     required this.label,
     this.href,

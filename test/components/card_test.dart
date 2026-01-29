@@ -5,11 +5,11 @@ import 'package:duxt_ui/src/components/button.dart';
 import 'package:duxt_ui/src/components/card.dart';
 
 void main() {
-  group('UCard', () {
+  group('DCard', () {
     group('rendering', () {
       testComponents('renders with default props', (tester) async {
         tester.pumpComponent(
-          UCard(children: [Component.text('Card content')]),
+          DCard(children: [Component.text('Card content')]),
         );
 
         expect(find.text('Card content'), findsOneComponent);
@@ -18,7 +18,7 @@ void main() {
 
       testComponents('renders header when provided', (tester) async {
         tester.pumpComponent(
-          UCard(
+          DCard(
             header: span([Component.text('Header')]),
             children: [Component.text('Body')],
           ),
@@ -30,7 +30,7 @@ void main() {
 
       testComponents('renders footer when provided', (tester) async {
         tester.pumpComponent(
-          UCard(
+          DCard(
             children: [Component.text('Body')],
             footer: span([Component.text('Footer')]),
           ),
@@ -42,7 +42,7 @@ void main() {
 
       testComponents('renders with header and footer', (tester) async {
         tester.pumpComponent(
-          UCard(
+          DCard(
             header: span([Component.text('Title')]),
             children: [Component.text('Content')],
             footer: span([Component.text('Actions')]),
@@ -56,7 +56,7 @@ void main() {
 
       testComponents('renders with custom classes', (tester) async {
         tester.pumpComponent(
-          UCard(
+          DCard(
             classes: 'custom-class',
             children: [Component.text('Content')],
           ),
@@ -67,7 +67,7 @@ void main() {
 
       testComponents('renders with noPadding', (tester) async {
         tester.pumpComponent(
-          UCard(
+          DCard(
             noPadding: true,
             children: [Component.text('No padding content')],
           ),
@@ -80,8 +80,8 @@ void main() {
     group('variants', () {
       testComponents('renders solid variant', (tester) async {
         tester.pumpComponent(
-          UCard(
-            variant: UCardVariant.solid,
+          DCard(
+            variant: DCardVariant.solid,
             children: [Component.text('Solid')],
           ),
         );
@@ -91,8 +91,8 @@ void main() {
 
       testComponents('renders outline variant (default)', (tester) async {
         tester.pumpComponent(
-          UCard(
-            variant: UCardVariant.outline,
+          DCard(
+            variant: DCardVariant.outline,
             children: [Component.text('Outline')],
           ),
         );
@@ -102,8 +102,8 @@ void main() {
 
       testComponents('renders soft variant', (tester) async {
         tester.pumpComponent(
-          UCard(
-            variant: UCardVariant.soft,
+          DCard(
+            variant: DCardVariant.soft,
             children: [Component.text('Soft')],
           ),
         );
@@ -113,8 +113,8 @@ void main() {
 
       testComponents('renders subtle variant', (tester) async {
         tester.pumpComponent(
-          UCard(
-            variant: UCardVariant.subtle,
+          DCard(
+            variant: DCardVariant.subtle,
             children: [Component.text('Subtle')],
           ),
         );
@@ -124,10 +124,10 @@ void main() {
     });
   });
 
-  group('UCardHeader', () {
+  group('DCardHeader', () {
     testComponents('renders with title', (tester) async {
       tester.pumpComponent(
-        UCardHeader(title: 'Card Title'),
+        DCardHeader(title: 'Card Title'),
       );
 
       expect(find.text('Card Title'), findsOneComponent);
@@ -136,7 +136,7 @@ void main() {
 
     testComponents('renders with description', (tester) async {
       tester.pumpComponent(
-        UCardHeader(
+        DCardHeader(
           title: 'Title',
           description: 'Description text',
         ),
@@ -148,7 +148,7 @@ void main() {
 
     testComponents('renders with trailing component', (tester) async {
       tester.pumpComponent(
-        UCardHeader(
+        DCardHeader(
           title: 'Title',
           trailing: span([Component.text('Action')]),
         ),
@@ -160,7 +160,7 @@ void main() {
 
     testComponents('renders with children', (tester) async {
       tester.pumpComponent(
-        UCardHeader(
+        DCardHeader(
           title: 'Title',
           children: [
             span([Component.text('Extra content')])
@@ -173,10 +173,10 @@ void main() {
     });
   });
 
-  group('UCardBody', () {
+  group('DCardBody', () {
     testComponents('renders children', (tester) async {
       tester.pumpComponent(
-        UCardBody(
+        DCardBody(
           children: [Component.text('Body content')],
         ),
       );
@@ -186,7 +186,7 @@ void main() {
 
     testComponents('renders with custom classes', (tester) async {
       tester.pumpComponent(
-        UCardBody(
+        DCardBody(
           classes: 'my-custom-class',
           children: [Component.text('Content')],
         ),
@@ -196,13 +196,13 @@ void main() {
     });
   });
 
-  group('UCardFooter', () {
+  group('DCardFooter', () {
     testComponents('renders children', (tester) async {
       tester.pumpComponent(
-        UCardFooter(
+        DCardFooter(
           children: [
-            UButton(label: 'Cancel'),
-            UButton(label: 'Save'),
+            DButton(label: 'Cancel'),
+            DButton(label: 'Save'),
           ],
         ),
       );
@@ -213,7 +213,7 @@ void main() {
 
     testComponents('renders with custom classes', (tester) async {
       tester.pumpComponent(
-        UCardFooter(
+        DCardFooter(
           classes: 'footer-class',
           children: [Component.text('Footer text')],
         ),
@@ -223,24 +223,24 @@ void main() {
     });
   });
 
-  group('UCard integration', () {
+  group('DCard integration', () {
     testComponents('renders complete card structure', (tester) async {
       tester.pumpComponent(
-        UCard(
-          variant: UCardVariant.outline,
-          header: UCardHeader(
+        DCard(
+          variant: DCardVariant.outline,
+          header: DCardHeader(
             title: 'User Profile',
             description: 'Manage your account',
           ),
           children: [
-            UCardBody(
+            DCardBody(
               children: [Component.text('Profile settings here')],
             ),
           ],
-          footer: UCardFooter(
+          footer: DCardFooter(
             children: [
-              UButton(label: 'Cancel', variant: UButtonVariant.ghost),
-              UButton(label: 'Save'),
+              DButton(label: 'Cancel', variant: DButtonVariant.ghost),
+              DButton(label: 'Save'),
             ],
           ),
         ),

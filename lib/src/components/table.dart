@@ -2,13 +2,13 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Table column definition
-class UTableColumn<T> {
+class DTableColumn<T> {
   final String key;
   final String label;
   final Component Function(T item)? render;
   final String? classes;
 
-  const UTableColumn({
+  const DTableColumn({
     required this.key,
     required this.label,
     this.render,
@@ -17,8 +17,8 @@ class UTableColumn<T> {
 }
 
 /// DuxtUI Table component
-class UTable<T> extends StatelessComponent {
-  final List<UTableColumn<T>> columns;
+class DTable<T> extends StatelessComponent {
+  final List<DTableColumn<T>> columns;
   final List<T> data;
   final String Function(T item)? rowKey;
   final bool striped;
@@ -26,7 +26,7 @@ class UTable<T> extends StatelessComponent {
   final bool bordered;
   final Component? emptyState;
 
-  const UTable({
+  const DTable({
     super.key,
     required this.columns,
     required this.data,

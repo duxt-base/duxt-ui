@@ -5,7 +5,7 @@ import 'package:jaspr/dom.dart';
 ///
 /// A search input with icon and keyboard shortcut hint.
 /// Commonly used in dashboard navbars or toolbars.
-class UDashboardSearch extends StatefulComponent {
+class DDashboardSearch extends StatefulComponent {
   /// Custom CSS classes
   final String? classes;
 
@@ -22,7 +22,7 @@ class UDashboardSearch extends StatefulComponent {
   final String shortcut;
 
   /// Size variant
-  final USearchSize size;
+  final DSearchSize size;
 
   /// Whether the search is disabled
   final bool disabled;
@@ -42,14 +42,14 @@ class UDashboardSearch extends StatefulComponent {
   /// Whether to expand on focus
   final bool expandOnFocus;
 
-  const UDashboardSearch({
+  const DDashboardSearch({
     super.key,
     this.classes,
     this.placeholder = 'Search...',
     this.value,
     this.showShortcut = true,
     this.shortcut = 'K',
-    this.size = USearchSize.md,
+    this.size = DSearchSize.md,
     this.disabled = false,
     this.onInput,
     this.onSubmit,
@@ -59,10 +59,10 @@ class UDashboardSearch extends StatefulComponent {
   });
 
   @override
-  State<UDashboardSearch> createState() => _UDashboardSearchState();
+  State<DDashboardSearch> createState() => _UDashboardSearchState();
 }
 
-class _UDashboardSearchState extends State<UDashboardSearch> {
+class _UDashboardSearchState extends State<DDashboardSearch> {
   String _value = '';
   bool _focused = false;
 
@@ -74,33 +74,33 @@ class _UDashboardSearchState extends State<UDashboardSearch> {
 
   String get _sizeClasses {
     switch (component.size) {
-      case USearchSize.sm:
+      case DSearchSize.sm:
         return 'h-8 text-xs';
-      case USearchSize.md:
+      case DSearchSize.md:
         return 'h-9 text-sm';
-      case USearchSize.lg:
+      case DSearchSize.lg:
         return 'h-10 text-base';
     }
   }
 
   String get _inputPaddingClasses {
     switch (component.size) {
-      case USearchSize.sm:
+      case DSearchSize.sm:
         return 'pl-8 pr-12';
-      case USearchSize.md:
+      case DSearchSize.md:
         return 'pl-10 pr-14';
-      case USearchSize.lg:
+      case DSearchSize.lg:
         return 'pl-11 pr-16';
     }
   }
 
   String get _iconSizeClasses {
     switch (component.size) {
-      case USearchSize.sm:
+      case DSearchSize.sm:
         return 'w-4 h-4';
-      case USearchSize.md:
+      case DSearchSize.md:
         return 'w-5 h-5';
-      case USearchSize.lg:
+      case DSearchSize.lg:
         return 'w-5 h-5';
     }
   }
@@ -202,10 +202,10 @@ class _UDashboardSearchState extends State<UDashboardSearch> {
 }
 
 /// Search size variants
-enum USearchSize { sm, md, lg }
+enum DSearchSize { sm, md, lg }
 
 /// Compact search button that expands to full search
-class UDashboardSearchButton extends StatelessComponent {
+class DDashboardSearchButton extends StatelessComponent {
   /// Custom CSS classes
   final String? classes;
 
@@ -215,7 +215,7 @@ class UDashboardSearchButton extends StatelessComponent {
   /// Keyboard shortcut to display
   final String shortcut;
 
-  const UDashboardSearchButton({
+  const DDashboardSearchButton({
     super.key,
     this.classes,
     this.onClick,

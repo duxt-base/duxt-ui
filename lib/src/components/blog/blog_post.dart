@@ -2,12 +2,12 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Author information for blog posts
-class UBlogAuthor {
+class DBlogAuthor {
   final String name;
   final String? avatar;
   final String? role;
 
-  const UBlogAuthor({
+  const DBlogAuthor({
     required this.name,
     this.avatar,
     this.role,
@@ -15,27 +15,27 @@ class UBlogAuthor {
 }
 
 /// Blog post orientation
-enum UBlogPostOrientation { vertical, horizontal }
+enum DBlogPostOrientation { vertical, horizontal }
 
 /// DuxtUI BlogPost component - Article card
 ///
 /// Displays a blog post preview with image, title, excerpt, author, and date.
 /// Matches Nuxt UI styling with group hover effects.
-class UBlogPost extends StatelessComponent {
+class DBlogPost extends StatelessComponent {
   /// The post title
   final String title;
 
   /// Post excerpt/description
   final String? excerpt;
 
-  /// Featured image URL
+  /// Featured image DRL
   final String? image;
 
   /// Image alt text
   final String? imageAlt;
 
   /// Author information
-  final UBlogAuthor? author;
+  final DBlogAuthor? author;
 
   /// Publication date string
   final String? date;
@@ -49,11 +49,11 @@ class UBlogPost extends StatelessComponent {
   /// Reading time (e.g., "5 min read")
   final String? readingTime;
 
-  /// Link URL for the post
+  /// Link DRL for the post
   final String? href;
 
   /// Layout orientation
-  final UBlogPostOrientation orientation;
+  final DBlogPostOrientation orientation;
 
   /// Additional CSS classes
   final String? classes;
@@ -61,7 +61,7 @@ class UBlogPost extends StatelessComponent {
   /// Click handler
   final VoidCallback? onClick;
 
-  const UBlogPost({
+  const DBlogPost({
     super.key,
     required this.title,
     this.excerpt,
@@ -73,14 +73,14 @@ class UBlogPost extends StatelessComponent {
     this.categoryColor,
     this.readingTime,
     this.href,
-    this.orientation = UBlogPostOrientation.vertical,
+    this.orientation = DBlogPostOrientation.vertical,
     this.classes,
     this.onClick,
   });
 
   @override
   Component build(BuildContext context) {
-    final isHorizontal = orientation == UBlogPostOrientation.horizontal;
+    final isHorizontal = orientation == DBlogPostOrientation.horizontal;
 
     final imageComponent = image != null
         ? div(

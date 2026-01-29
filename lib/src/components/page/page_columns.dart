@@ -4,7 +4,7 @@ import 'package:jaspr/dom.dart';
 /// DuxtUI PageColumns component - Multi-column layout
 ///
 /// A flexible multi-column layout for content sections.
-class UPageColumns extends StatelessComponent {
+class DPageColumns extends StatelessComponent {
   /// Column content
   final List<Component> children;
 
@@ -23,7 +23,7 @@ class UPageColumns extends StatelessComponent {
   /// Reverse order on mobile
   final bool reverseOnMobile;
 
-  const UPageColumns({
+  const DPageColumns({
     super.key,
     this.children = const [],
     this.columns = 2,
@@ -61,7 +61,7 @@ class UPageColumns extends StatelessComponent {
 }
 
 /// DuxtUI PageColumn component - Individual column in a multi-column layout
-class UPageColumn extends StatelessComponent {
+class DPageColumn extends StatelessComponent {
   /// Column content
   final List<Component> children;
 
@@ -77,7 +77,7 @@ class UPageColumn extends StatelessComponent {
   /// Top offset for sticky positioning
   final String stickyTop;
 
-  const UPageColumn({
+  const DPageColumn({
     super.key,
     this.children = const [],
     this.span,

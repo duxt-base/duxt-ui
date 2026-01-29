@@ -3,18 +3,18 @@ import 'package:jaspr/dom.dart';
 import 'blog_post.dart';
 
 /// Grid column configuration
-enum UBlogPostsColumns { one, two, three, four }
+enum DBlogPostsColumns { one, two, three, four }
 
 /// DuxtUI BlogPosts component - Grid of blog posts
 ///
-/// Displays a responsive grid of UBlogPost components.
+/// Displays a responsive grid of DBlogPost components.
 /// Matches Nuxt UI grid styling with responsive breakpoints.
-class UBlogPosts extends StatelessComponent {
+class DBlogPosts extends StatelessComponent {
   /// List of blog posts to display
-  final List<UBlogPost> posts;
+  final List<DBlogPost> posts;
 
   /// Number of columns at large breakpoint
-  final UBlogPostsColumns columns;
+  final DBlogPostsColumns columns;
 
   /// Gap between posts
   final String gap;
@@ -31,10 +31,10 @@ class UBlogPosts extends StatelessComponent {
   /// Empty state component when no posts
   final Component? emptyState;
 
-  const UBlogPosts({
+  const DBlogPosts({
     super.key,
     required this.posts,
-    this.columns = UBlogPostsColumns.three,
+    this.columns = DBlogPostsColumns.three,
     this.gap = 'gap-8',
     this.classes,
     this.title,
@@ -44,13 +44,13 @@ class UBlogPosts extends StatelessComponent {
 
   String get _columnClasses {
     switch (columns) {
-      case UBlogPostsColumns.one:
+      case DBlogPostsColumns.one:
         return 'grid-cols-1';
-      case UBlogPostsColumns.two:
+      case DBlogPostsColumns.two:
         return 'grid-cols-1 md:grid-cols-2';
-      case UBlogPostsColumns.three:
+      case DBlogPostsColumns.three:
         return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3';
-      case UBlogPostsColumns.four:
+      case DBlogPostsColumns.four:
         return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4';
     }
   }
@@ -102,13 +102,13 @@ class UBlogPosts extends StatelessComponent {
 }
 
 /// Empty state for blog posts
-class UBlogPostsEmpty extends StatelessComponent {
+class DBlogPostsEmpty extends StatelessComponent {
   final String? title;
   final String? description;
   final Component? icon;
   final Component? action;
 
-  const UBlogPostsEmpty({
+  const DBlogPostsEmpty({
     super.key,
     this.title,
     this.description,

@@ -4,7 +4,7 @@ import '../../theme/variants.dart';
 import '../../theme/colors.dart';
 
 /// Tree node data structure
-class UTreeNode {
+class DTreeNode {
   /// Unique identifier for the node
   final String id;
 
@@ -15,7 +15,7 @@ class UTreeNode {
   final String? icon;
 
   /// Child nodes
-  final List<UTreeNode> children;
+  final List<DTreeNode> children;
 
   /// Whether this node is initially expanded
   final bool expanded;
@@ -29,7 +29,7 @@ class UTreeNode {
   /// Custom data associated with this node
   final dynamic data;
 
-  const UTreeNode({
+  const DTreeNode({
     required this.id,
     required this.label,
     this.icon,
@@ -44,17 +44,17 @@ class UTreeNode {
   bool get hasChildren => children.isNotEmpty;
 
   /// Create a copy with modified properties
-  UTreeNode copyWith({
+  DTreeNode copyWith({
     String? id,
     String? label,
     String? icon,
-    List<UTreeNode>? children,
+    List<DTreeNode>? children,
     bool? expanded,
     bool? selected,
     bool? disabled,
     dynamic data,
   }) {
-    return UTreeNode(
+    return DTreeNode(
       id: id ?? this.id,
       label: label ?? this.label,
       icon: icon ?? this.icon,
@@ -68,15 +68,15 @@ class UTreeNode {
 }
 
 /// DuxtUI Tree component - Hierarchical list with expand/collapse
-class UTree extends StatefulComponent {
+class DTree extends StatefulComponent {
   /// Root nodes of the tree
-  final List<UTreeNode> nodes;
+  final List<DTreeNode> nodes;
 
   /// Callback when a node is selected
-  final void Function(UTreeNode node)? onSelect;
+  final void Function(DTreeNode node)? onSelect;
 
   /// Callback when a node is expanded/collapsed
-  final void Function(UTreeNode node, bool expanded)? onToggle;
+  final void Function(DTreeNode node, bool expanded)? onToggle;
 
   /// Whether multiple nodes can be selected
   final bool multiSelect;
@@ -103,12 +103,12 @@ class UTree extends StatefulComponent {
   final String collapseIcon;
 
   /// Tree color
-  final UColor color;
+  final DColor color;
 
   /// Size
-  final USize size;
+  final DSize size;
 
-  const UTree({
+  const DTree({
     super.key,
     required this.nodes,
     this.onSelect,
@@ -121,15 +121,15 @@ class UTree extends StatefulComponent {
     this.leafIcon = 'i-lucide-file',
     this.expandIcon = 'i-lucide-chevron-down',
     this.collapseIcon = 'i-lucide-chevron-right',
-    this.color = UColor.primary,
-    this.size = USize.md,
+    this.color = DColor.primary,
+    this.size = DSize.md,
   });
 
   @override
-  State<UTree> createState() => _UTreeState();
+  State<DTree> createState() => _UTreeState();
 }
 
-class _UTreeState extends State<UTree> {
+class _UTreeState extends State<DTree> {
   late Map<String, bool> _expandedState;
   late Set<String> _selectedIds;
 
@@ -141,7 +141,7 @@ class _UTreeState extends State<UTree> {
     _initializeState(component.nodes);
   }
 
-  void _initializeState(List<UTreeNode> nodes) {
+  void _initializeState(List<DTreeNode> nodes) {
     for (final node in nodes) {
       _expandedState[node.id] = node.expanded;
       if (node.selected) {
@@ -157,14 +157,14 @@ class _UTreeState extends State<UTree> {
 
   bool _isSelected(String id) => _selectedIds.contains(id);
 
-  void _toggleExpand(UTreeNode node) {
+  void _toggleExpand(DTreeNode node) {
     setState(() {
       _expandedState[node.id] = !_isExpanded(node.id);
     });
     component.onToggle?.call(node, _isExpanded(node.id));
   }
 
-  void _selectNode(UTreeNode node) {
+  void _selectNode(DTreeNode node) {
     if (node.disabled) return;
 
     setState(() {
@@ -184,45 +184,45 @@ class _UTreeState extends State<UTree> {
 
   String get _iconSize {
     switch (component.size) {
-      case USize.xs:
+      case DSize.xs:
         return 'size-3';
-      case USize.sm:
+      case DSize.sm:
         return 'size-3.5';
-      case USize.md:
+      case DSize.md:
         return 'size-4';
-      case USize.lg:
+      case DSize.lg:
         return 'size-5';
-      case USize.xl:
+      case DSize.xl:
         return 'size-6';
     }
   }
 
   String get _textSize {
     switch (component.size) {
-      case USize.xs:
+      case DSize.xs:
         return 'text-xs';
-      case USize.sm:
+      case DSize.sm:
         return 'text-sm';
-      case USize.md:
+      case DSize.md:
         return 'text-sm';
-      case USize.lg:
+      case DSize.lg:
         return 'text-base';
-      case USize.xl:
+      case DSize.xl:
         return 'text-lg';
     }
   }
 
   String get _itemPadding {
     switch (component.size) {
-      case USize.xs:
+      case DSize.xs:
         return 'py-0.5 px-1';
-      case USize.sm:
+      case DSize.sm:
         return 'py-1 px-1.5';
-      case USize.md:
+      case DSize.md:
         return 'py-1.5 px-2';
-      case USize.lg:
+      case DSize.lg:
         return 'py-2 px-2.5';
-      case USize.xl:
+      case DSize.xl:
         return 'py-2.5 px-3';
     }
   }
@@ -243,7 +243,7 @@ class _UTreeState extends State<UTree> {
     );
   }
 
-  Component _buildNode(UTreeNode node, int depth) {
+  Component _buildNode(DTreeNode node, int depth) {
     final isExpanded = _isExpanded(node.id);
     final isSelected = _isSelected(node.id);
     final hasChildren = node.hasChildren;
@@ -369,17 +369,17 @@ class _UTreeState extends State<UTree> {
 }
 
 /// Simple tree for file browser use case
-class UFileTree extends StatelessComponent {
+class DFileTree extends StatelessComponent {
   /// Root nodes
-  final List<UTreeNode> nodes;
+  final List<DTreeNode> nodes;
 
   /// Callback when a file is selected
-  final void Function(UTreeNode node)? onSelect;
+  final void Function(DTreeNode node)? onSelect;
 
   /// Currently selected file ID
   final String? selectedId;
 
-  const UFileTree({
+  const DFileTree({
     super.key,
     required this.nodes,
     this.onSelect,
@@ -388,14 +388,14 @@ class UFileTree extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
-    return UTree(
+    return DTree(
       nodes: nodes,
       onSelect: onSelect,
       folderIcon: 'i-lucide-folder-open',
       folderCollapsedIcon: 'i-lucide-folder',
       leafIcon: 'i-lucide-file-text',
       showLines: true,
-      color: UColor.primary,
+      color: DColor.primary,
     );
   }
 }

@@ -5,28 +5,28 @@ import 'package:jaspr/dom.dart';
 ///
 /// A layout wrapper that provides the main container for dashboard layouts.
 /// Uses flexbox with min-h-screen to fill the viewport.
-class UDashboardGroup extends StatelessComponent {
+class DDashboardGroup extends StatelessComponent {
   /// Custom CSS classes to apply to the group container
   final String? classes;
 
   /// Orientation of the dashboard layout
-  final UDashboardOrientation orientation;
+  final DDashboardOrientation orientation;
 
   /// Child components (typically sidebar + panel combinations)
   final List<Component> children;
 
-  const UDashboardGroup({
+  const DDashboardGroup({
     super.key,
     this.classes,
-    this.orientation = UDashboardOrientation.horizontal,
+    this.orientation = DDashboardOrientation.horizontal,
     this.children = const [],
   });
 
   String get _orientationClasses {
     switch (orientation) {
-      case UDashboardOrientation.horizontal:
+      case DDashboardOrientation.horizontal:
         return 'flex-row';
-      case UDashboardOrientation.vertical:
+      case DDashboardOrientation.vertical:
         return 'flex-col';
     }
   }
@@ -41,4 +41,4 @@ class UDashboardGroup extends StatelessComponent {
 }
 
 /// Dashboard orientation options
-enum UDashboardOrientation { horizontal, vertical }
+enum DDashboardOrientation { horizontal, vertical }

@@ -3,23 +3,23 @@ import 'package:jaspr/dom.dart';
 import '../spinner.dart';
 
 /// Submit button size
-enum UChatPromptSubmitSize { sm, md, lg }
+enum DChatPromptSubmitSize { sm, md, lg }
 
 /// DuxtUI ChatPromptSubmit component - send button for chat prompt
-class UChatPromptSubmit extends StatelessComponent {
+class DChatPromptSubmit extends StatelessComponent {
   final bool disabled;
   final bool loading;
-  final UChatPromptSubmitSize size;
+  final DChatPromptSubmitSize size;
   final String? tooltip;
   final VoidCallback? onSubmit;
   final Component? icon;
   final String? bgColor;
 
-  const UChatPromptSubmit({
+  const DChatPromptSubmit({
     super.key,
     this.disabled = false,
     this.loading = false,
-    this.size = UChatPromptSubmitSize.md,
+    this.size = DChatPromptSubmitSize.md,
     this.tooltip,
     this.onSubmit,
     this.icon,
@@ -28,34 +28,34 @@ class UChatPromptSubmit extends StatelessComponent {
 
   String get _sizeClasses {
     switch (size) {
-      case UChatPromptSubmitSize.sm:
+      case DChatPromptSubmitSize.sm:
         return 'p-1.5';
-      case UChatPromptSubmitSize.md:
+      case DChatPromptSubmitSize.md:
         return 'p-2';
-      case UChatPromptSubmitSize.lg:
+      case DChatPromptSubmitSize.lg:
         return 'p-3';
     }
   }
 
   String get _iconSize {
     switch (size) {
-      case UChatPromptSubmitSize.sm:
+      case DChatPromptSubmitSize.sm:
         return 'w-4 h-4';
-      case UChatPromptSubmitSize.md:
+      case DChatPromptSubmitSize.md:
         return 'w-5 h-5';
-      case UChatPromptSubmitSize.lg:
+      case DChatPromptSubmitSize.lg:
         return 'w-6 h-6';
     }
   }
 
-  USpinnerSize get _spinnerSize {
+  DSpinnerSize get _spinnerSize {
     switch (size) {
-      case UChatPromptSubmitSize.sm:
-        return USpinnerSize.xs;
-      case UChatPromptSubmitSize.md:
-        return USpinnerSize.sm;
-      case UChatPromptSubmitSize.lg:
-        return USpinnerSize.md;
+      case DChatPromptSubmitSize.sm:
+        return DSpinnerSize.xs;
+      case DChatPromptSubmitSize.md:
+        return DSpinnerSize.sm;
+      case DChatPromptSubmitSize.lg:
+        return DSpinnerSize.md;
     }
   }
 
@@ -92,7 +92,7 @@ class UChatPromptSubmit extends StatelessComponent {
       },
       [
         if (loading)
-          USpinner(size: _spinnerSize, color: 'border-white')
+          DSpinner(size: _spinnerSize, color: 'border-white')
         else
           icon ?? defaultIcon,
       ],

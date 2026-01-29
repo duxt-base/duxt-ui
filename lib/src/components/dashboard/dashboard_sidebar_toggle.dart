@@ -5,7 +5,7 @@ import 'package:jaspr/dom.dart';
 ///
 /// A button to toggle the sidebar collapse state.
 /// Can be placed in the navbar or sidebar header.
-class UDashboardSidebarToggle extends StatelessComponent {
+class DDashboardSidebarToggle extends StatelessComponent {
   /// Custom CSS classes
   final String? classes;
 
@@ -22,40 +22,40 @@ class UDashboardSidebarToggle extends StatelessComponent {
   final Component? expandedIcon;
 
   /// Button variant
-  final UToggleVariant variant;
+  final DToggleVariant variant;
 
   /// Size of the toggle button
-  final UToggleSize size;
+  final DToggleSize size;
 
-  const UDashboardSidebarToggle({
+  const DDashboardSidebarToggle({
     super.key,
     this.classes,
     this.collapsed = false,
     this.onToggle,
     this.collapsedIcon,
     this.expandedIcon,
-    this.variant = UToggleVariant.ghost,
-    this.size = UToggleSize.md,
+    this.variant = DToggleVariant.ghost,
+    this.size = DToggleSize.md,
   });
 
   String get _variantClasses {
     switch (variant) {
-      case UToggleVariant.ghost:
+      case DToggleVariant.ghost:
         return 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800';
-      case UToggleVariant.outline:
+      case DToggleVariant.outline:
         return 'border border-gray-200 dark:border-gray-700 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800';
-      case UToggleVariant.solid:
+      case DToggleVariant.solid:
         return 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700';
     }
   }
 
   String get _sizeClasses {
     switch (size) {
-      case UToggleSize.sm:
+      case DToggleSize.sm:
         return 'p-1.5';
-      case UToggleSize.md:
+      case DToggleSize.md:
         return 'p-2';
-      case UToggleSize.lg:
+      case DToggleSize.lg:
         return 'p-2.5';
     }
   }
@@ -117,7 +117,7 @@ class UDashboardSidebarToggle extends StatelessComponent {
 }
 
 /// Toggle button variants
-enum UToggleVariant { ghost, outline, solid }
+enum DToggleVariant { ghost, outline, solid }
 
 /// Toggle button sizes
-enum UToggleSize { sm, md, lg }
+enum DToggleSize { sm, md, lg }

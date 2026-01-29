@@ -5,17 +5,17 @@ import 'package:duxt_ui/src/components/button.dart';
 import 'package:duxt_ui/src/components/alert.dart';
 
 void main() {
-  group('UAlert', () {
+  group('DAlert', () {
     group('rendering', () {
       testComponents('renders with default props', (tester) async {
-        tester.pumpComponent(UAlert());
+        tester.pumpComponent(DAlert());
 
         expect(find.tag('div'), findsComponents);
       });
 
       testComponents('renders with title', (tester) async {
         tester.pumpComponent(
-          UAlert(title: 'Success!'),
+          DAlert(title: 'Success!'),
         );
 
         expect(find.text('Success!'), findsOneComponent);
@@ -24,7 +24,7 @@ void main() {
 
       testComponents('renders with description', (tester) async {
         tester.pumpComponent(
-          UAlert(description: 'Your action was completed successfully.'),
+          DAlert(description: 'Your action was completed successfully.'),
         );
 
         expect(find.text('Your action was completed successfully.'),
@@ -33,7 +33,7 @@ void main() {
 
       testComponents('renders with title and description', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Information',
             description: 'This is an informational message.',
           ),
@@ -46,7 +46,7 @@ void main() {
 
       testComponents('renders with icon', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Alert',
             icon: span([Component.text('!')]),
           ),
@@ -58,7 +58,7 @@ void main() {
 
       testComponents('renders with avatar', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'User Alert',
             avatar: div([Component.text('A')]),
           ),
@@ -70,7 +70,7 @@ void main() {
 
       testComponents('renders with children', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Custom Content',
             children: [
               p([Component.text('Paragraph 1')]),
@@ -86,11 +86,11 @@ void main() {
 
       testComponents('renders with actions', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Action Required',
             actions: [
-              UButton(label: 'Dismiss', size: UButtonSize.sm),
-              UButton(label: 'View', size: UButtonSize.sm),
+              DButton(label: 'Dismiss', size: DButtonSize.sm),
+              DButton(label: 'View', size: DButtonSize.sm),
             ],
           ),
         );
@@ -103,7 +103,7 @@ void main() {
       testComponents('renders close button when onClose provided',
           (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Closable',
             onClose: () {},
           ),
@@ -116,9 +116,9 @@ void main() {
     group('variants', () {
       testComponents('renders solid variant', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Solid',
-            variant: UAlertVariant.solid,
+            variant: DAlertVariant.solid,
           ),
         );
 
@@ -127,9 +127,9 @@ void main() {
 
       testComponents('renders outline variant', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Outline',
-            variant: UAlertVariant.outline,
+            variant: DAlertVariant.outline,
           ),
         );
 
@@ -138,9 +138,9 @@ void main() {
 
       testComponents('renders soft variant (default)', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Soft',
-            variant: UAlertVariant.soft,
+            variant: DAlertVariant.soft,
           ),
         );
 
@@ -149,9 +149,9 @@ void main() {
 
       testComponents('renders subtle variant', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Subtle',
-            variant: UAlertVariant.subtle,
+            variant: DAlertVariant.subtle,
           ),
         );
 
@@ -162,9 +162,9 @@ void main() {
     group('colors', () {
       testComponents('renders primary color (default)', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Primary',
-            color: UAlertColor.primary,
+            color: DAlertColor.primary,
           ),
         );
 
@@ -173,9 +173,9 @@ void main() {
 
       testComponents('renders secondary color', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Secondary',
-            color: UAlertColor.secondary,
+            color: DAlertColor.secondary,
           ),
         );
 
@@ -184,9 +184,9 @@ void main() {
 
       testComponents('renders success color', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Success',
-            color: UAlertColor.success,
+            color: DAlertColor.success,
           ),
         );
 
@@ -195,9 +195,9 @@ void main() {
 
       testComponents('renders info color', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Info',
-            color: UAlertColor.info,
+            color: DAlertColor.info,
           ),
         );
 
@@ -206,9 +206,9 @@ void main() {
 
       testComponents('renders warning color', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Warning',
-            color: UAlertColor.warning,
+            color: DAlertColor.warning,
           ),
         );
 
@@ -217,9 +217,9 @@ void main() {
 
       testComponents('renders error color', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Error',
-            color: UAlertColor.error,
+            color: DAlertColor.error,
           ),
         );
 
@@ -228,9 +228,9 @@ void main() {
 
       testComponents('renders neutral color', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Neutral',
-            color: UAlertColor.neutral,
+            color: DAlertColor.neutral,
           ),
         );
 
@@ -241,11 +241,11 @@ void main() {
     group('variant + color combinations', () {
       testComponents('solid + error', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Critical Error',
             description: 'Something went wrong.',
-            variant: UAlertVariant.solid,
-            color: UAlertColor.error,
+            variant: DAlertVariant.solid,
+            color: DAlertColor.error,
           ),
         );
 
@@ -255,10 +255,10 @@ void main() {
 
       testComponents('outline + success', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Success!',
-            variant: UAlertVariant.outline,
-            color: UAlertColor.success,
+            variant: DAlertVariant.outline,
+            color: DAlertColor.success,
           ),
         );
 
@@ -267,11 +267,11 @@ void main() {
 
       testComponents('soft + warning', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Heads Up',
             description: 'Please review before continuing.',
-            variant: UAlertVariant.soft,
-            color: UAlertColor.warning,
+            variant: DAlertVariant.soft,
+            color: DAlertColor.warning,
           ),
         );
 
@@ -280,10 +280,10 @@ void main() {
 
       testComponents('subtle + info', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Note',
-            variant: UAlertVariant.subtle,
-            color: UAlertColor.info,
+            variant: DAlertVariant.subtle,
+            color: DAlertColor.info,
           ),
         );
 
@@ -292,10 +292,10 @@ void main() {
 
       testComponents('solid + neutral', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Update Available',
-            variant: UAlertVariant.solid,
-            color: UAlertColor.neutral,
+            variant: DAlertVariant.solid,
+            color: DAlertColor.neutral,
           ),
         );
 
@@ -308,7 +308,7 @@ void main() {
           (tester) async {
         var closed = false;
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Closable Alert',
             onClose: () => closed = true,
           ),
@@ -320,10 +320,10 @@ void main() {
 
       testComponents('action buttons are clickable', (tester) async {
         tester.pumpComponent(
-          UAlert(
+          DAlert(
             title: 'Alert',
             actions: [
-              UButton(
+              DButton(
                 label: 'Action',
                 onClick: () {},
               ),
@@ -339,18 +339,18 @@ void main() {
       testComponents('renders complete alert with all elements',
           (tester) async {
         tester.pumpComponent(
-          UAlert(
-            variant: UAlertVariant.subtle,
-            color: UAlertColor.warning,
+          DAlert(
+            variant: DAlertVariant.subtle,
+            color: DAlertColor.warning,
             icon: span([Component.text('!')]),
             title: 'Security Warning',
             description: 'Your session will expire in 5 minutes.',
             onClose: () {},
             actions: [
-              UButton(
+              DButton(
                 label: 'Stay Logged In',
-                size: UButtonSize.sm,
-                variant: UButtonVariant.soft,
+                size: DButtonSize.sm,
+                variant: DButtonVariant.soft,
               ),
             ],
           ),
@@ -366,17 +366,17 @@ void main() {
       testComponents('renders stacked alerts', (tester) async {
         tester.pumpComponent(
           div([
-            UAlert(
+            DAlert(
               title: 'Error',
-              color: UAlertColor.error,
+              color: DAlertColor.error,
             ),
-            UAlert(
+            DAlert(
               title: 'Warning',
-              color: UAlertColor.warning,
+              color: DAlertColor.warning,
             ),
-            UAlert(
+            DAlert(
               title: 'Success',
-              color: UAlertColor.success,
+              color: DAlertColor.success,
             ),
           ]),
         );

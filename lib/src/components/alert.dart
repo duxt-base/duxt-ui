@@ -2,29 +2,29 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
 /// Alert variants matching Nuxt UI
-enum UAlertVariant { solid, outline, soft, subtle }
+enum DAlertVariant { solid, outline, soft, subtle }
 
 /// Alert colors matching Nuxt UI semantic colors
-enum UAlertColor { primary, secondary, success, info, warning, error, neutral }
+enum DAlertColor { primary, secondary, success, info, warning, error, neutral }
 
 /// DuxtUI Alert component - Nuxt UI compatible
-class UAlert extends StatelessComponent {
+class DAlert extends StatelessComponent {
   final String? title;
   final String? description;
-  final UAlertVariant variant;
-  final UAlertColor color;
+  final DAlertVariant variant;
+  final DAlertColor color;
   final Component? icon;
   final Component? avatar;
   final VoidCallback? onClose;
   final List<Component> actions;
   final List<Component> children;
 
-  const UAlert({
+  const DAlert({
     super.key,
     this.title,
     this.description,
-    this.variant = UAlertVariant.soft,
-    this.color = UAlertColor.primary,
+    this.variant = DAlertVariant.soft,
+    this.color = DAlertColor.primary,
     this.icon,
     this.avatar,
     this.onClose,
@@ -36,89 +36,89 @@ class UAlert extends StatelessComponent {
 
   String get _variantClasses {
     switch (variant) {
-      case UAlertVariant.solid:
+      case DAlertVariant.solid:
         return _solidClasses;
-      case UAlertVariant.outline:
+      case DAlertVariant.outline:
         return _outlineClasses;
-      case UAlertVariant.soft:
+      case DAlertVariant.soft:
         return _softClasses;
-      case UAlertVariant.subtle:
+      case DAlertVariant.subtle:
         return _subtleClasses;
     }
   }
 
   String get _solidClasses {
     switch (color) {
-      case UAlertColor.primary:
+      case DAlertColor.primary:
         return 'bg-green-500 text-white';
-      case UAlertColor.secondary:
+      case DAlertColor.secondary:
         return 'bg-blue-500 text-white';
-      case UAlertColor.success:
+      case DAlertColor.success:
         return 'bg-green-500 text-white';
-      case UAlertColor.info:
+      case DAlertColor.info:
         return 'bg-blue-500 text-white';
-      case UAlertColor.warning:
+      case DAlertColor.warning:
         return 'bg-yellow-500 text-white';
-      case UAlertColor.error:
+      case DAlertColor.error:
         return 'bg-red-500 text-white';
-      case UAlertColor.neutral:
+      case DAlertColor.neutral:
         return 'bg-gray-900 text-white dark:bg-white dark:text-gray-900';
     }
   }
 
   String get _outlineClasses {
     switch (color) {
-      case UAlertColor.primary:
+      case DAlertColor.primary:
         return 'bg-white dark:bg-gray-900 ring ring-inset ring-green-500 text-green-500';
-      case UAlertColor.secondary:
+      case DAlertColor.secondary:
         return 'bg-white dark:bg-gray-900 ring ring-inset ring-blue-500 text-blue-500';
-      case UAlertColor.success:
+      case DAlertColor.success:
         return 'bg-white dark:bg-gray-900 ring ring-inset ring-green-500 text-green-500';
-      case UAlertColor.info:
+      case DAlertColor.info:
         return 'bg-white dark:bg-gray-900 ring ring-inset ring-blue-500 text-blue-500';
-      case UAlertColor.warning:
+      case DAlertColor.warning:
         return 'bg-white dark:bg-gray-900 ring ring-inset ring-yellow-500 text-yellow-600';
-      case UAlertColor.error:
+      case DAlertColor.error:
         return 'bg-white dark:bg-gray-900 ring ring-inset ring-red-500 text-red-500';
-      case UAlertColor.neutral:
+      case DAlertColor.neutral:
         return 'bg-white dark:bg-gray-900 ring ring-inset ring-gray-300 dark:ring-gray-700 text-gray-700 dark:text-gray-200';
     }
   }
 
   String get _softClasses {
     switch (color) {
-      case UAlertColor.primary:
+      case DAlertColor.primary:
         return 'bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300';
-      case UAlertColor.secondary:
+      case DAlertColor.secondary:
         return 'bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300';
-      case UAlertColor.success:
+      case DAlertColor.success:
         return 'bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300';
-      case UAlertColor.info:
+      case DAlertColor.info:
         return 'bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300';
-      case UAlertColor.warning:
+      case DAlertColor.warning:
         return 'bg-yellow-50 text-yellow-700 dark:bg-yellow-950 dark:text-yellow-300';
-      case UAlertColor.error:
+      case DAlertColor.error:
         return 'bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-300';
-      case UAlertColor.neutral:
+      case DAlertColor.neutral:
         return 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-200';
     }
   }
 
   String get _subtleClasses {
     switch (color) {
-      case UAlertColor.primary:
+      case DAlertColor.primary:
         return 'bg-green-50 ring ring-inset ring-green-200 text-green-700 dark:bg-green-950 dark:ring-green-800 dark:text-green-300';
-      case UAlertColor.secondary:
+      case DAlertColor.secondary:
         return 'bg-blue-50 ring ring-inset ring-blue-200 text-blue-700 dark:bg-blue-950 dark:ring-blue-800 dark:text-blue-300';
-      case UAlertColor.success:
+      case DAlertColor.success:
         return 'bg-green-50 ring ring-inset ring-green-200 text-green-700 dark:bg-green-950 dark:ring-green-800 dark:text-green-300';
-      case UAlertColor.info:
+      case DAlertColor.info:
         return 'bg-blue-50 ring ring-inset ring-blue-200 text-blue-700 dark:bg-blue-950 dark:ring-blue-800 dark:text-blue-300';
-      case UAlertColor.warning:
+      case DAlertColor.warning:
         return 'bg-yellow-50 ring ring-inset ring-yellow-200 text-yellow-700 dark:bg-yellow-950 dark:ring-yellow-800 dark:text-yellow-300';
-      case UAlertColor.error:
+      case DAlertColor.error:
         return 'bg-red-50 ring ring-inset ring-red-200 text-red-700 dark:bg-red-950 dark:ring-red-800 dark:text-red-300';
-      case UAlertColor.neutral:
+      case DAlertColor.neutral:
         return 'bg-gray-100 ring ring-inset ring-gray-300 text-gray-700 dark:bg-gray-800 dark:ring-gray-700 dark:text-gray-200';
     }
   }

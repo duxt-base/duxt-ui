@@ -4,7 +4,7 @@ import 'package:jaspr/dom.dart';
 /// DuxtUI PageCard component - Card with title and description
 ///
 /// A card component for page layouts with hover effects.
-class UPageCard extends StatelessComponent {
+class DPageCard extends StatelessComponent {
   /// Card title
   final String? title;
 
@@ -32,7 +32,7 @@ class UPageCard extends StatelessComponent {
   /// Optional footer content
   final Component? footer;
 
-  const UPageCard({
+  const DPageCard({
     super.key,
     this.title,
     this.description,
