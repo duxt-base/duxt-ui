@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.1
+
+- Revamp README with comprehensive documentation and examples
+- Add usage examples for buttons, inputs, cards, alerts, modals, forms
+- Add variants, colors, and sizes reference tables
+- Add dark mode and theming documentation
+
 ## 0.2.0
 
 **BREAKING CHANGE:** All components renamed from `U` prefix to `D` prefix.

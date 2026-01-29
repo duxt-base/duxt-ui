@@ -1,7 +1,7 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/base-al/duxt/main/web/logo.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/base-al/duxt/main/web/logo.svg">
-  <img alt="Duxt UI" src="https://raw.githubusercontent.com/base-al/duxt/main/web/logo.svg" width="180">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/duxt-base/duxt/main/web/logo.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/duxt-base/duxt/main/web/logo.svg">
+  <img alt="Duxt UI" src="https://raw.githubusercontent.com/duxt-base/duxt/main/web/logo.svg" width="180">
 </picture>
 
 # Duxt UI
@@ -14,34 +14,34 @@
 
 ---
 
-## ✨ Highlights
+## Highlights
 
 <table>
 <tr>
 <td align="center" width="25%">
 
-**🎨 Beautiful**
+**Beautiful**
 
 Carefully designed components with attention to detail
 
 </td>
 <td align="center" width="25%">
 
-**🌙 Dark Mode**
+**Dark Mode**
 
 Full dark mode support out of the box
 
 </td>
 <td align="center" width="25%">
 
-**⚡ Tailwind**
+**Tailwind**
 
 Built with Tailwind CSS for easy customization
 
 </td>
 <td align="center" width="25%">
 
-**🔒 Type Safe**
+**Type Safe**
 
 Full Dart type safety with enums & classes
 
@@ -51,7 +51,7 @@ Full Dart type safety with enums & classes
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
@@ -59,7 +59,7 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  duxt_ui: ^0.2.0
+  duxt_ui: ^0.2.1
 ```
 
 ### Setup Tailwind
@@ -94,7 +94,7 @@ class App extends StatelessComponent {
 
 ---
 
-## 🎯 Usage Examples
+## Usage Examples
 
 ### Buttons
 
@@ -244,7 +244,7 @@ DForm(
 
 ---
 
-## 🎨 Variants & Colors
+## Variants & Colors
 
 ### Variants
 
@@ -261,13 +261,13 @@ DForm(
 
 | Color | Value | Usage |
 |-------|-------|-------|
-| `primary` | ![#22c55e](https://via.placeholder.com/12/22c55e/22c55e.png) Green | Primary actions |
-| `secondary` | ![#3b82f6](https://via.placeholder.com/12/3b82f6/3b82f6.png) Blue | Secondary actions |
-| `success` | ![#22c55e](https://via.placeholder.com/12/22c55e/22c55e.png) Green | Success states |
-| `info` | ![#3b82f6](https://via.placeholder.com/12/3b82f6/3b82f6.png) Blue | Informational |
-| `warning` | ![#f59e0b](https://via.placeholder.com/12/f59e0b/f59e0b.png) Amber | Warnings |
-| `error` | ![#ef4444](https://via.placeholder.com/12/ef4444/ef4444.png) Red | Errors & destructive |
-| `neutral` | ![#737373](https://via.placeholder.com/12/737373/737373.png) Gray | Neutral actions |
+| `primary` | Green | Primary actions |
+| `secondary` | Blue | Secondary actions |
+| `success` | Green | Success states |
+| `info` | Blue | Informational |
+| `warning` | Amber | Warnings |
+| `error` | Red | Errors & destructive |
+| `neutral` | Gray | Neutral actions |
 
 ### Sizes
 
@@ -281,7 +281,7 @@ DForm(
 
 ---
 
-## 📦 Component Library
+## Component Library
 
 ### Form Components
 
@@ -451,7 +451,7 @@ DForm(
 
 ---
 
-## 🌙 Dark Mode
+## Dark Mode
 
 Duxt UI supports dark mode out of the box. Use the color mode components:
 
@@ -478,7 +478,7 @@ DThemeProvider(
 
 ---
 
-## 🎨 Theming
+## Theming
 
 ### Custom Colors
 
@@ -494,20 +494,20 @@ DThemeProvider(
 
 ---
 
-## 📦 Requirements
+## Requirements
 
 - **Jaspr** ^0.22.1
 - **Tailwind CSS** (via jaspr_tailwind)
 
 ---
 
-## 📚 Documentation
+## Documentation
 
 Visit [duxt.dev](https://duxt.dev) for full documentation and interactive examples.
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) first.
 
@@ -519,12 +519,12 @@ Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md)
 
 ---
 
-## 📄 License
+## License
 
 MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
 <p align="center">
-  <sub>Built with 💙 by the <a href="https://github.com/base-al">Base.al</a> team</sub>
+  <sub>Built by the <a href="https://github.com/duxt-base">Base.al</a> team</sub>
 </p>
