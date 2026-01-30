@@ -1,5 +1,6 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
+import '../utility/icon.dart';
 
 /// Select sizes
 enum DSelectSize { xs, sm, md, lg, xl }
@@ -163,7 +164,7 @@ class _USelectState<T> extends State<DSelect<T>> {
 
   String get _focusRingClasses {
     final baseColor = switch (component.color) {
-      DSelectColor.primary => 'indigo',
+      DSelectColor.primary => 'cyan',
       DSelectColor.gray => 'gray',
       DSelectColor.success => 'green',
       DSelectColor.warning => 'yellow',
@@ -226,16 +227,10 @@ class _USelectState<T> extends State<DSelect<T>> {
               classes:
                   'absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none',
               [
-                svg(
-                  classes: 'h-5 w-5 text-gray-400',
-                  attributes: {
-                    'viewBox': '0 0 20 20',
-                    'fill': 'currentColor',
-                    'aria-hidden': 'true',
-                  },
-                  [
-                    RawText('<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>'),
-                  ],
+                DIcon(
+                  name: DIconNames.chevronDown,
+                  size: DIconSize.sm,
+                  color: 'text-gray-400',
                 ),
               ],
             ),
@@ -265,7 +260,7 @@ class _USelectState<T> extends State<DSelect<T>> {
                       input(
                         type: InputType.text,
                         classes:
-                            'w-full px-3 py-1.5 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white dark:bg-gray-800',
+                            'w-full px-3 py-1.5 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 bg-white dark:bg-gray-800',
                         attributes: {
                           'placeholder': 'Search...',
                         },
@@ -322,7 +317,7 @@ class _USelectState<T> extends State<DSelect<T>> {
       disabled: option.disabled,
       onClick: option.disabled ? null : () => _selectOption(option),
       classes:
-          'w-full px-3 py-2 text-left text-sm flex items-center gap-2 ${option.disabled ? "text-gray-400 cursor-not-allowed" : isSelected ? "bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400" : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"}',
+          'w-full px-3 py-2 text-left text-sm flex items-center gap-2 ${option.disabled ? "text-gray-400 cursor-not-allowed" : isSelected ? "bg-cyan-50 dark:bg-cyan-900/20 text-cyan-600 dark:text-cyan-400" : "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"}',
       [
         // Option icon
         if (option.icon != null)
@@ -333,15 +328,10 @@ class _USelectState<T> extends State<DSelect<T>> {
 
         // Check mark for selected
         if (isSelected)
-          svg(
-            classes: 'h-5 w-5 text-indigo-600 dark:text-indigo-400',
-            attributes: {
-              'viewBox': '0 0 20 20',
-              'fill': 'currentColor',
-            },
-            [
-              RawText('<path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/>'),
-            ],
+          DIcon(
+            name: DIconNames.check,
+            size: DIconSize.sm,
+            color: 'text-cyan-600 dark:text-cyan-400',
           ),
       ],
     );

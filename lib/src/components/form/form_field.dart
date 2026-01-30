@@ -48,7 +48,7 @@ class DValidators {
     return DValidationRule(
       message: message ?? 'Must be at least $length characters',
       validator: (value) {
-        if (value == null || value is! String) return true;
+        if (value == null || value is! String || value.isEmpty) return true;
         return value.length >= length;
       },
     );

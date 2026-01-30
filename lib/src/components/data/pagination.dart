@@ -144,12 +144,18 @@ class DPagination extends StatelessComponent {
   List<int?> get _pageNumbers {
     final pages = <int?>[];
 
+    // Handle edge cases
+    if (totalPages <= 0) return pages;
+    if (totalPages == 1) return [1];
+    if (totalPages == 2) return [1, 2];
+
     // Always show first page
     pages.add(1);
 
-    // Calculate range around current page
-    final rangeStart = (currentPage - siblingCount).clamp(2, totalPages - 1);
-    final rangeEnd = (currentPage + siblingCount).clamp(2, totalPages - 1);
+    // Calculate range around current page (only if totalPages > 2)
+    final maxPage = totalPages - 1;
+    final rangeStart = (currentPage - siblingCount).clamp(2, maxPage);
+    final rangeEnd = (currentPage + siblingCount).clamp(2, maxPage);
 
     // Add ellipsis if needed before range
     if (rangeStart > 2) {
@@ -168,10 +174,8 @@ class DPagination extends StatelessComponent {
       pages.add(null);
     }
 
-    // Always show last page (if more than 1 page)
-    if (totalPages > 1) {
-      pages.add(totalPages);
-    }
+    // Always show last page
+    pages.add(totalPages);
 
     return pages;
   }

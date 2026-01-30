@@ -2,6 +2,7 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 import '../../theme/variants.dart';
 import '../../theme/colors.dart';
+import '../utility/icon.dart';
 
 /// File upload sizes
 enum DFileUploadSize { sm, md, lg }
@@ -105,15 +106,26 @@ class _UFileUploadState extends State<DFileUpload> {
     }
   }
 
+  DIconSize get _iconSize {
+    switch (component.size) {
+      case DFileUploadSize.sm:
+        return DIconSize.lg;
+      case DFileUploadSize.md:
+        return DIconSize.xl;
+      case DFileUploadSize.lg:
+        return DIconSize.xl;
+    }
+  }
+
   String get _colorClasses {
     if (_isDragOver) {
       switch (component.color) {
         case DColor.primary:
-          return 'border-green-500 bg-green-50 dark:bg-green-950';
+          return 'border-cyan-500 bg-cyan-50 dark:bg-cyan-950';
         case DColor.secondary:
           return 'border-blue-500 bg-blue-50 dark:bg-blue-950';
         case DColor.success:
-          return 'border-green-500 bg-green-50 dark:bg-green-950';
+          return 'border-cyan-500 bg-cyan-50 dark:bg-cyan-950';
         case DColor.info:
           return 'border-blue-500 bg-blue-50 dark:bg-blue-950';
         case DColor.warning:
@@ -130,11 +142,11 @@ class _UFileUploadState extends State<DFileUpload> {
   String get _linkColorClasses {
     switch (component.color) {
       case DColor.primary:
-        return 'text-green-600 hover:text-green-700 dark:text-green-400';
+        return 'text-cyan-600 hover:text-cyan-700 dark:text-cyan-400';
       case DColor.secondary:
         return 'text-blue-600 hover:text-blue-700 dark:text-blue-400';
       case DColor.success:
-        return 'text-green-600 hover:text-green-700 dark:text-green-400';
+        return 'text-cyan-600 hover:text-cyan-700 dark:text-cyan-400';
       case DColor.info:
         return 'text-blue-600 hover:text-blue-700 dark:text-blue-400';
       case DColor.warning:
@@ -245,13 +257,12 @@ class _UFileUploadState extends State<DFileUpload> {
             if (component.icon != null)
               div(classes: '$_iconSizeClasses text-gray-400', [component.icon!])
             else
-              div(classes: '$_iconSizeClasses text-gray-400', [
-                // Default upload icon (SVG)
-                RawText('''
-                  <svg class="$_iconSizeClasses" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
-                  </svg>
-                '''),
+              div(classes: 'text-gray-400', [
+                DIcon(
+                  name: DIconNames.upload,
+                  size: _iconSize,
+                  color: 'text-gray-400',
+                ),
               ]),
             // Text
             div(classes: _textSizeClasses, [

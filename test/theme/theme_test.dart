@@ -38,7 +38,7 @@ void main() {
 
   group('defaultColorMapping', () {
     test('maps all semantic colors', () {
-      expect(defaultColorMapping[DColor.primary], equals('green'));
+      expect(defaultColorMapping[DColor.primary], equals('cyan'));
       expect(defaultColorMapping[DColor.secondary], equals('blue'));
       expect(defaultColorMapping[DColor.success], equals('green'));
       expect(defaultColorMapping[DColor.info], equals('blue'));
@@ -50,35 +50,35 @@ void main() {
 
   group('colorClass', () {
     test('generates color class with default shade', () {
-      expect(colorClass(DColor.primary), equals('green-500'));
+      expect(colorClass(DColor.primary), equals('cyan-500'));
       expect(colorClass(DColor.secondary), equals('blue-500'));
       expect(colorClass(DColor.error), equals('red-500'));
     });
 
     test('generates color class with custom shade', () {
-      expect(colorClass(DColor.primary, 100), equals('green-100'));
-      expect(colorClass(DColor.primary, 900), equals('green-900'));
+      expect(colorClass(DColor.primary, 100), equals('cyan-100'));
+      expect(colorClass(DColor.primary, 900), equals('cyan-900'));
       expect(colorClass(DColor.error, 600), equals('red-600'));
     });
   });
 
   group('bgColor', () {
     test('generates background color class', () {
-      expect(bgColor(DColor.primary), equals('bg-green-500'));
+      expect(bgColor(DColor.primary), equals('bg-cyan-500'));
       expect(bgColor(DColor.error, 100), equals('bg-red-100'));
     });
   });
 
   group('textColor', () {
     test('generates text color class', () {
-      expect(textColor(DColor.primary), equals('text-green-500'));
+      expect(textColor(DColor.primary), equals('text-cyan-500'));
       expect(textColor(DColor.warning, 600), equals('text-yellow-600'));
     });
   });
 
   group('ringColor', () {
     test('generates ring color class', () {
-      expect(ringColor(DColor.primary), equals('ring-green-500'));
+      expect(ringColor(DColor.primary), equals('ring-cyan-500'));
       expect(ringColor(DColor.info, 400), equals('ring-blue-400'));
     });
   });
