@@ -10,7 +10,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-00C0E8.svg)](https://opensource.org/licenses/MIT)
 [![Dart](https://img.shields.io/badge/Dart-3.0+-00C0E8.svg)](https://dart.dev)
 
-**A comprehensive UI component library for [Jaspr](https://jaspr.dev)** — 100+ beautifully crafted, accessible components inspired by Nuxt UI.
+**A comprehensive UI component library for [Jaspr](https://jaspr.dev)** — 100+ beautifully crafted, accessible components.
 
 ---
 

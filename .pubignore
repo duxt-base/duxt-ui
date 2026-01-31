@@ -1,0 +1,18 @@
+# Build artifacts
+build/
+doc/
+.dart_tool/
+
+# Test files (optional, keep if you want them published)
+# test/
+
+# Development files
+.DS_Store
+*.DS_Store
+TEST_PLAN.md
+PORTING_PLAN.md
+
+# IDE
+.idea/
+.vscode/
+*.iml
