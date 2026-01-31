@@ -132,7 +132,7 @@ class _UContextMenuState extends State<DContextMenu> {
         if (hasSubmenu)
           div(
             classes:
-                'absolute left-full top-0 ml-1 hidden group-hover:block min-w-48 bg-white dark:bg-gray-900 rounded-lg shadow-lg ring-1 ring-gray-200 dark:ring-gray-800 py-1',
+                'absolute left-full top-0 ml-1 hidden group-hover:block min-w-48 bg-white dark:bg-zinc-900 rounded-lg shadow-lg ring-1 ring-gray-200 dark:ring-gray-800 py-1',
             [
               for (final subItem in item.submenu!) _buildMenuItem(subItem),
             ],
@@ -162,7 +162,7 @@ class _UContextMenuState extends State<DContextMenu> {
           // Context menu
           div(
             classes:
-                'absolute z-50 min-w-48 bg-white dark:bg-gray-900 rounded-lg shadow-lg ring-1 ring-gray-200 dark:ring-gray-800 py-1',
+                'absolute z-50 min-w-48 bg-white dark:bg-zinc-900 rounded-lg shadow-lg ring-1 ring-gray-200 dark:ring-gray-800 py-1',
             styles: Styles(raw: {'left': '${_x}px', 'top': '${_y}px'}),
             [
               for (final item in component.items) _buildMenuItem(item),
@@ -245,7 +245,7 @@ class DContextMenuControlled extends StatelessComponent {
         // Context menu
         div(
           classes:
-              'fixed z-50 min-w-48 bg-white dark:bg-gray-900 rounded-lg shadow-lg ring-1 ring-gray-200 dark:ring-gray-800 py-1',
+              'fixed z-50 min-w-48 bg-white dark:bg-zinc-900 rounded-lg shadow-lg ring-1 ring-gray-200 dark:ring-gray-800 py-1',
           styles: Styles(raw: {'left': '${x}px', 'top': '${y}px'}),
           [
             for (final item in items)

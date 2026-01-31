@@ -1,13 +1,13 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
-/// Alert variants matching Nuxt UI
+/// Alert variants
 enum DAlertVariant { solid, outline, soft, subtle }
 
-/// Alert colors matching Nuxt UI semantic colors
+/// Alert colors
 enum DAlertColor { primary, secondary, success, info, warning, error, neutral }
 
-/// DuxtUI Alert component - Nuxt UI compatible
+/// DuxtUI Alert component
 class DAlert extends StatelessComponent {
   final String? title;
   final String? description;
@@ -50,11 +50,11 @@ class DAlert extends StatelessComponent {
   String get _solidClasses {
     switch (color) {
       case DAlertColor.primary:
-        return 'bg-green-500 text-white';
+        return 'bg-cyan-500 text-white';
       case DAlertColor.secondary:
         return 'bg-blue-500 text-white';
       case DAlertColor.success:
-        return 'bg-green-500 text-white';
+        return 'bg-cyan-500 text-white';
       case DAlertColor.info:
         return 'bg-blue-500 text-white';
       case DAlertColor.warning:
@@ -69,30 +69,30 @@ class DAlert extends StatelessComponent {
   String get _outlineClasses {
     switch (color) {
       case DAlertColor.primary:
-        return 'bg-white dark:bg-gray-900 ring ring-inset ring-green-500 text-green-500';
+        return 'bg-white dark:bg-zinc-900 ring ring-inset ring-cyan-500 text-cyan-500';
       case DAlertColor.secondary:
-        return 'bg-white dark:bg-gray-900 ring ring-inset ring-blue-500 text-blue-500';
+        return 'bg-white dark:bg-zinc-900 ring ring-inset ring-blue-500 text-blue-500';
       case DAlertColor.success:
-        return 'bg-white dark:bg-gray-900 ring ring-inset ring-green-500 text-green-500';
+        return 'bg-white dark:bg-zinc-900 ring ring-inset ring-cyan-500 text-cyan-500';
       case DAlertColor.info:
-        return 'bg-white dark:bg-gray-900 ring ring-inset ring-blue-500 text-blue-500';
+        return 'bg-white dark:bg-zinc-900 ring ring-inset ring-blue-500 text-blue-500';
       case DAlertColor.warning:
-        return 'bg-white dark:bg-gray-900 ring ring-inset ring-yellow-500 text-yellow-600';
+        return 'bg-white dark:bg-zinc-900 ring ring-inset ring-yellow-500 text-yellow-600';
       case DAlertColor.error:
-        return 'bg-white dark:bg-gray-900 ring ring-inset ring-red-500 text-red-500';
+        return 'bg-white dark:bg-zinc-900 ring ring-inset ring-red-500 text-red-500';
       case DAlertColor.neutral:
-        return 'bg-white dark:bg-gray-900 ring ring-inset ring-gray-300 dark:ring-gray-700 text-gray-700 dark:text-gray-200';
+        return 'bg-white dark:bg-zinc-900 ring ring-inset ring-gray-300 dark:ring-gray-700 text-gray-700 dark:text-gray-200';
     }
   }
 
   String get _softClasses {
     switch (color) {
       case DAlertColor.primary:
-        return 'bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300';
+        return 'bg-cyan-50 text-cyan-700 dark:bg-cyan-950 dark:text-cyan-300';
       case DAlertColor.secondary:
         return 'bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300';
       case DAlertColor.success:
-        return 'bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300';
+        return 'bg-cyan-50 text-cyan-700 dark:bg-cyan-950 dark:text-cyan-300';
       case DAlertColor.info:
         return 'bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300';
       case DAlertColor.warning:
@@ -100,18 +100,18 @@ class DAlert extends StatelessComponent {
       case DAlertColor.error:
         return 'bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-300';
       case DAlertColor.neutral:
-        return 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-200';
+        return 'bg-gray-100 text-gray-700 dark:bg-zinc-800 dark:text-gray-200';
     }
   }
 
   String get _subtleClasses {
     switch (color) {
       case DAlertColor.primary:
-        return 'bg-green-50 ring ring-inset ring-green-200 text-green-700 dark:bg-green-950 dark:ring-green-800 dark:text-green-300';
+        return 'bg-cyan-50 ring ring-inset ring-cyan-200 text-cyan-700 dark:bg-cyan-950 dark:ring-cyan-800 dark:text-cyan-300';
       case DAlertColor.secondary:
         return 'bg-blue-50 ring ring-inset ring-blue-200 text-blue-700 dark:bg-blue-950 dark:ring-blue-800 dark:text-blue-300';
       case DAlertColor.success:
-        return 'bg-green-50 ring ring-inset ring-green-200 text-green-700 dark:bg-green-950 dark:ring-green-800 dark:text-green-300';
+        return 'bg-cyan-50 ring ring-inset ring-cyan-200 text-cyan-700 dark:bg-cyan-950 dark:ring-cyan-800 dark:text-cyan-300';
       case DAlertColor.info:
         return 'bg-blue-50 ring ring-inset ring-blue-200 text-blue-700 dark:bg-blue-950 dark:ring-blue-800 dark:text-blue-300';
       case DAlertColor.warning:
@@ -119,7 +119,7 @@ class DAlert extends StatelessComponent {
       case DAlertColor.error:
         return 'bg-red-50 ring ring-inset ring-red-200 text-red-700 dark:bg-red-950 dark:ring-red-800 dark:text-red-300';
       case DAlertColor.neutral:
-        return 'bg-gray-100 ring ring-inset ring-gray-300 text-gray-700 dark:bg-gray-800 dark:ring-gray-700 dark:text-gray-200';
+        return 'bg-gray-100 ring ring-inset ring-gray-300 text-gray-700 dark:bg-zinc-800 dark:ring-gray-700 dark:text-gray-200';
     }
   }
 

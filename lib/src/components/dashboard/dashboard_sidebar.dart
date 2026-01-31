@@ -99,9 +99,9 @@ class _UDashboardSidebarState extends State<DDashboardSidebar> {
   String get _backgroundClasses {
     switch (component.background) {
       case DSidebarBackground.white:
-        return 'bg-white dark:bg-gray-900';
+        return 'bg-white dark:bg-zinc-900';
       case DSidebarBackground.gray:
-        return 'bg-gray-50 dark:bg-gray-900';
+        return 'bg-gray-50 dark:bg-zinc-900';
     }
   }
 
@@ -230,7 +230,7 @@ class DSidebarItem extends StatelessComponent {
   @override
   Component build(BuildContext context) {
     final activeClasses = active
-        ? 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white'
+        ? 'bg-gray-100 dark:bg-zinc-800 text-gray-900 dark:text-white'
         : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white';
 
     final disabledClasses = disabled ? 'opacity-50 cursor-not-allowed' : '';

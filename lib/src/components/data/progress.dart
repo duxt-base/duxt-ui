@@ -70,7 +70,7 @@ class DProgress extends StatelessComponent {
   }
 
   String get _trackColorClass {
-    return trackColor ?? 'bg-gray-200 dark:bg-gray-700';
+    return trackColor ?? 'bg-gray-200 dark:bg-zinc-700';
   }
 
   String get _indicatorColorClass {
@@ -364,7 +364,7 @@ class DProgressSteps extends StatelessComponent {
                   'flex-1 rounded-full $_heightClass transition-colors',
                   i <= currentStep
                       ? _activeColor
-                      : 'bg-gray-200 dark:bg-gray-700',
+                      : 'bg-gray-200 dark:bg-zinc-700',
                 ]),
                 [],
               ),

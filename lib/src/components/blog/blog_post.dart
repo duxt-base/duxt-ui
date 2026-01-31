@@ -20,7 +20,6 @@ enum DBlogPostOrientation { vertical, horizontal }
 /// DuxtUI BlogPost component - Article card
 ///
 /// Displays a blog post preview with image, title, excerpt, author, and date.
-/// Matches Nuxt UI styling with group hover effects.
 class DBlogPost extends StatelessComponent {
   /// The post title
   final String title;
@@ -131,7 +130,7 @@ class DBlogPost extends StatelessComponent {
           else
             div(
               classes:
-                  'h-8 w-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-sm font-medium text-gray-600 dark:text-gray-300',
+                  'h-8 w-8 rounded-full bg-gray-200 dark:bg-zinc-700 flex items-center justify-center text-sm font-medium text-gray-600 dark:text-gray-300',
               [
                 Component.text(author!.name.isNotEmpty
                     ? author!.name[0].toUpperCase()

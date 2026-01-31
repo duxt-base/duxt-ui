@@ -1,12 +1,27 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 import '../../theme/variants.dart';
-import '../../theme/colors.dart';
 
-/// Slider sizes
-enum DSliderSize { xs, sm, md, lg, xl }
+/// Slider sizes with serialization support for @client
+enum DSliderSize {
+  xs,
+  sm,
+  md,
+  lg,
+  xl;
 
-/// DuxtUI Slider component - Range input with Nuxt UI styling
+  @encoder
+  static String encode(DSliderSize value) => value.name;
+
+  @decoder
+  static DSliderSize decode(String value) => DSliderSize.values.byName(value);
+}
+
+/// DuxtUI Slider component - Range input with client-side interactivity
+///
+/// This component uses @client for hydration and manages its own state.
+/// Listen to value changes via the 'input' event on the element.
+@client
 class DSlider extends StatefulComponent {
   final String? label;
   final double value;
@@ -14,12 +29,11 @@ class DSlider extends StatefulComponent {
   final double max;
   final double step;
   final String? name;
-  final DSliderSize size;
-  final DColor color;
+  final String size; // Use string for serialization: 'xs', 'sm', 'md', 'lg', 'xl'
+  final String color; // Use string: 'primary', 'secondary', etc.
   final bool disabled;
   final bool showValue;
   final String? hint;
-  final ValueChanged<double>? onChange;
 
   const DSlider({
     super.key,
@@ -29,19 +43,18 @@ class DSlider extends StatefulComponent {
     this.max = 100,
     this.step = 1,
     this.name,
-    this.size = DSliderSize.md,
-    this.color = DColor.primary,
+    this.size = 'md',
+    this.color = 'primary',
     this.disabled = false,
     this.showValue = false,
     this.hint,
-    this.onChange,
   });
 
   @override
-  State<DSlider> createState() => _USliderState();
+  State<DSlider> createState() => _DSliderState();
 }
 
-class _USliderState extends State<DSlider> {
+class _DSliderState extends State<DSlider> {
   late double _value;
 
   @override
@@ -52,42 +65,41 @@ class _USliderState extends State<DSlider> {
 
   String get _trackHeightClass {
     switch (component.size) {
-      case DSliderSize.xs:
+      case 'xs':
         return 'h-1';
-      case DSliderSize.sm:
+      case 'sm':
         return 'h-1.5';
-      case DSliderSize.md:
-        return 'h-2';
-      case DSliderSize.lg:
+      case 'lg':
         return 'h-2.5';
-      case DSliderSize.xl:
+      case 'xl':
         return 'h-3';
+      default:
+        return 'h-2';
     }
   }
 
   String get _accentColor {
     switch (component.color) {
-      case DColor.primary:
-        return 'accent-green-500';
-      case DColor.secondary:
+      case 'secondary':
         return 'accent-blue-500';
-      case DColor.success:
+      case 'success':
         return 'accent-green-500';
-      case DColor.info:
+      case 'info':
         return 'accent-blue-500';
-      case DColor.warning:
+      case 'warning':
         return 'accent-yellow-500';
-      case DColor.error:
+      case 'error':
         return 'accent-red-500';
-      case DColor.neutral:
+      case 'neutral':
         return 'accent-slate-500';
+      default:
+        return 'accent-cyan-500';
     }
   }
 
   void _handleInput(String value) {
     final doubleValue = double.tryParse(value) ?? component.min;
     setState(() => _value = doubleValue);
-    component.onChange?.call(doubleValue);
   }
 
   @override
@@ -96,7 +108,7 @@ class _USliderState extends State<DSlider> {
       'w-full',
       _trackHeightClass,
       'bg-gray-200',
-      'dark:bg-gray-700',
+      'dark:bg-zinc-700',
       'rounded-lg',
       'appearance-none',
       'cursor-pointer',

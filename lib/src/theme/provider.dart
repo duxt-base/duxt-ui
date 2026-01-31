@@ -102,7 +102,7 @@ class DApp extends StatelessComponent {
     return DThemeProvider(
       config: theme,
       child: div(
-        classes: 'min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased',
+        classes: 'min-h-screen bg-white dark:bg-zinc-900 text-gray-900 dark:text-gray-100 antialiased',
         [child],
       ),
     );

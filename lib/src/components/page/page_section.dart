@@ -71,7 +71,7 @@ class DPageSection extends StatelessComponent {
   @override
   Component build(BuildContext context) {
     final bgClasses = background
-        ? (backgroundClasses ?? 'bg-gray-50 dark:bg-gray-900/50')
+        ? (backgroundClasses ?? 'bg-gray-50 dark:bg-zinc-900/50')
         : '';
     final hasHeader =
         title != null || description != null || headerSlot != null;

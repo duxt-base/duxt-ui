@@ -34,7 +34,7 @@ class DKbd extends StatelessComponent {
   @override
   Component build(BuildContext context) {
     final baseClasses =
-        'inline-flex items-center justify-center font-mono font-medium bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded shadow-sm';
+        'inline-flex items-center justify-center font-mono font-medium bg-gray-100 dark:bg-zinc-800 border border-gray-300 dark:border-gray-600 rounded shadow-sm';
 
     // If multiple keys (shortcut), render with separator
     if (keys != null && keys!.isNotEmpty) {

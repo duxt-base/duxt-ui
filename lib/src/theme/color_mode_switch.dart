@@ -53,8 +53,8 @@ class _UColorModeSwitchState extends State<DColorModeSwitch> {
       classes: [
         'relative inline-flex h-8 w-16 items-center rounded-full',
         'transition-colors duration-200 ease-in-out',
-        'focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
-        _isDark ? 'bg-indigo-600' : 'bg-gray-200 dark:bg-gray-700',
+        'focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2',
+        _isDark ? 'bg-cyan-600' : 'bg-gray-200 dark:bg-zinc-700',
         if (component.classes != null) component.classes!,
       ].join(' '),
       attributes: {
@@ -87,7 +87,7 @@ class _UColorModeSwitchState extends State<DColorModeSwitch> {
         span(
           classes: [
             'absolute right-1.5 flex items-center justify-center',
-            'text-indigo-300 transition-opacity',
+            'text-cyan-300 transition-opacity',
             _isDark ? 'opacity-40' : 'opacity-100',
           ].join(' '),
           [

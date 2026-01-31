@@ -1,5 +1,7 @@
-/// DuxtUI Color System - Matches Nuxt UI semantic colors
+/// DuxtUI Color System
 library;
+
+import 'package:jaspr/jaspr.dart';
 
 /// Semantic color names used throughout DuxtUI
 enum DColor {
@@ -9,7 +11,13 @@ enum DColor {
   info,
   warning,
   error,
-  neutral,
+  neutral;
+
+  @encoder
+  static String encode(DColor value) => value.name;
+
+  @decoder
+  static DColor decode(String value) => DColor.values.byName(value);
 }
 
 /// Color shade levels (50-950)
@@ -28,9 +36,9 @@ enum DColorShade {
 }
 
 /// Default color palette mapping to Tailwind colors
-/// Primary = Green, Secondary = Blue, etc (matches Nuxt UI defaults)
+/// Primary = Cyan (Duxt brand), Secondary = Blue, Success = Green, etc
 const Map<DColor, String> defaultColorMapping = {
-  DColor.primary: 'green',
+  DColor.primary: 'cyan',
   DColor.secondary: 'blue',
   DColor.success: 'green',
   DColor.info: 'blue',
@@ -54,7 +62,7 @@ String textColor(DColor color, [int shade = 500]) => 'text-${colorClass(color, s
 /// Get border/ring class for a color
 String ringColor(DColor color, [int shade = 500]) => 'ring-${colorClass(color, shade)}';
 
-/// Semantic text colors based on Nuxt UI
+/// Semantic text colors
 class DTextColors {
   static const String highlighted = 'text-gray-900 dark:text-white';
   static const String muted = 'text-gray-500 dark:text-gray-400';
@@ -63,15 +71,15 @@ class DTextColors {
   static const String defaultText = 'text-gray-700 dark:text-gray-200';
 }
 
-/// Semantic background colors based on Nuxt UI
+/// Semantic background colors
 class DBgColors {
-  static const String defaultBg = 'bg-white dark:bg-gray-900';
-  static const String elevated = 'bg-gray-50 dark:bg-gray-800';
+  static const String defaultBg = 'bg-white dark:bg-zinc-900';
+  static const String elevated = 'bg-gray-50 dark:bg-zinc-800';
   static const String inverted = 'bg-gray-900 dark:bg-white';
-  static const String muted = 'bg-gray-100 dark:bg-gray-800';
+  static const String muted = 'bg-gray-100 dark:bg-zinc-800';
 }
 
-/// Semantic ring/border colors based on Nuxt UI
+/// Semantic ring/border colors
 class DRingColors {
   static const String defaultRing = 'ring-gray-200 dark:ring-gray-800';
   static const String accented = 'ring-gray-300 dark:ring-gray-700';

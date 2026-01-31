@@ -14,13 +14,12 @@ enum DTooltipPlacement {
 }
 
 /// DuxtUI Tooltip component - hover hint
-class DTooltip extends StatefulComponent {
+/// Uses CSS group-hover for reliable static site support
+class DTooltip extends StatelessComponent {
   final Component child;
   final String text;
   final DTooltipPlacement placement;
   final int delayMs;
-  final VoidCallback? onOpen;
-  final VoidCallback? onClose;
 
   const DTooltip({
     super.key,
@@ -28,33 +27,10 @@ class DTooltip extends StatefulComponent {
     required this.text,
     this.placement = DTooltipPlacement.top,
     this.delayMs = 0,
-    this.onOpen,
-    this.onClose,
   });
 
-  @override
-  State<DTooltip> createState() => _UTooltipState();
-}
-
-class _UTooltipState extends State<DTooltip> {
-  bool _visible = false;
-
-  void _show() {
-    setState(() {
-      _visible = true;
-      component.onOpen?.call();
-    });
-  }
-
-  void _hide() {
-    setState(() {
-      _visible = false;
-      component.onClose?.call();
-    });
-  }
-
   String get _positionClasses {
-    switch (component.placement) {
+    switch (placement) {
       case DTooltipPlacement.top:
         return 'bottom-full left-1/2 -translate-x-1/2 mb-2';
       case DTooltipPlacement.topStart:
@@ -75,96 +51,67 @@ class _UTooltipState extends State<DTooltip> {
   }
 
   String get _arrowClasses {
-    switch (component.placement) {
+    switch (placement) {
       case DTooltipPlacement.top:
       case DTooltipPlacement.topStart:
       case DTooltipPlacement.topEnd:
-        return 'top-full left-1/2 -translate-x-1/2 border-t-gray-900 dark:border-t-gray-100 border-t-4 border-x-4 border-x-transparent border-b-0';
+        return 'top-full left-1/2 -translate-x-1/2 border-t-zinc-900 dark:border-t-zinc-100 border-t-4 border-x-4 border-x-transparent border-b-0';
       case DTooltipPlacement.bottom:
       case DTooltipPlacement.bottomStart:
       case DTooltipPlacement.bottomEnd:
-        return 'bottom-full left-1/2 -translate-x-1/2 border-b-gray-900 dark:border-b-gray-100 border-b-4 border-x-4 border-x-transparent border-t-0';
+        return 'bottom-full left-1/2 -translate-x-1/2 border-b-zinc-900 dark:border-b-zinc-100 border-b-4 border-x-4 border-x-transparent border-t-0';
       case DTooltipPlacement.left:
-        return 'left-full top-1/2 -translate-y-1/2 border-l-gray-900 dark:border-l-gray-100 border-l-4 border-y-4 border-y-transparent border-r-0';
+        return 'left-full top-1/2 -translate-y-1/2 border-l-zinc-900 dark:border-l-zinc-100 border-l-4 border-y-4 border-y-transparent border-r-0';
       case DTooltipPlacement.right:
-        return 'right-full top-1/2 -translate-y-1/2 border-r-gray-900 dark:border-r-gray-100 border-r-4 border-y-4 border-y-transparent border-l-0';
+        return 'right-full top-1/2 -translate-y-1/2 border-r-zinc-900 dark:border-r-zinc-100 border-r-4 border-y-4 border-y-transparent border-l-0';
     }
   }
 
   @override
   Component build(BuildContext context) {
+    final delayStyle = delayMs > 0 ? 'transition-delay: ${delayMs}ms;' : '';
+
     return div(
-      classes: 'relative inline-block',
+      classes: 'relative inline-block group',
       [
-        // Child with hover events
+        // Child element
+        child,
+        // Tooltip - uses CSS group-hover for reliable display
         div(
-          events: {
-            'mouseenter': (_) => _show(),
-            'mouseleave': (_) => _hide(),
-            'focus': (_) => _show(),
-            'blur': (_) => _hide(),
-          },
-          [component.child],
+          classes:
+              'absolute z-50 $_positionClasses px-2 py-1 text-xs font-medium bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded whitespace-nowrap pointer-events-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-150',
+          styles: delayStyle.isNotEmpty ? Styles(raw: {'transition-delay': '${delayMs}ms'}) : null,
+          [
+            Component.text(text),
+            // Arrow
+            div(
+              classes: 'absolute w-0 h-0 $_arrowClasses',
+              [],
+            ),
+          ],
         ),
-        // Tooltip
-        if (_visible)
-          div(
-            classes:
-                'absolute z-50 $_positionClasses px-2 py-1 text-xs font-medium bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 rounded whitespace-nowrap pointer-events-none',
-            [
-              Component.text(component.text),
-              // Arrow
-              div(
-                classes: 'absolute w-0 h-0 $_arrowClasses',
-                [],
-              ),
-            ],
-          ),
       ],
     );
   }
 }
 
 /// Tooltip with custom content instead of just text
-class DTooltipCustom extends StatefulComponent {
+class DTooltipCustom extends StatelessComponent {
   final Component child;
   final Component content;
   final DTooltipPlacement placement;
-  final VoidCallback? onOpen;
-  final VoidCallback? onClose;
+  final int delayMs;
 
   const DTooltipCustom({
     super.key,
     required this.child,
     required this.content,
     this.placement = DTooltipPlacement.top,
-    this.onOpen,
-    this.onClose,
+    this.delayMs = 0,
   });
 
-  @override
-  State<DTooltipCustom> createState() => _UTooltipCustomState();
-}
-
-class _UTooltipCustomState extends State<DTooltipCustom> {
-  bool _visible = false;
-
-  void _show() {
-    setState(() {
-      _visible = true;
-      component.onOpen?.call();
-    });
-  }
-
-  void _hide() {
-    setState(() {
-      _visible = false;
-      component.onClose?.call();
-    });
-  }
-
   String get _positionClasses {
-    switch (component.placement) {
+    switch (placement) {
       case DTooltipPlacement.top:
         return 'bottom-full left-1/2 -translate-x-1/2 mb-2';
       case DTooltipPlacement.topStart:
@@ -187,25 +134,17 @@ class _UTooltipCustomState extends State<DTooltipCustom> {
   @override
   Component build(BuildContext context) {
     return div(
-      classes: 'relative inline-block',
+      classes: 'relative inline-block group',
       [
-        // Child with hover events
-        div(
-          events: {
-            'mouseenter': (_) => _show(),
-            'mouseleave': (_) => _hide(),
-            'focus': (_) => _show(),
-            'blur': (_) => _hide(),
-          },
-          [component.child],
-        ),
+        // Child element
+        child,
         // Tooltip
-        if (_visible)
-          div(
-            classes:
-                'absolute z-50 $_positionClasses bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 rounded p-2 pointer-events-none',
-            [component.content],
-          ),
+        div(
+          classes:
+              'absolute z-50 $_positionClasses bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded p-2 pointer-events-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-150',
+          styles: delayMs > 0 ? Styles(raw: {'transition-delay': '${delayMs}ms'}) : null,
+          [content],
+        ),
       ],
     );
   }

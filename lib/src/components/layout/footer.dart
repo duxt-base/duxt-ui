@@ -29,7 +29,7 @@ class DFooter extends StatelessComponent {
   Component build(BuildContext context) {
     final borderClasses =
         bordered ? 'border-t border-gray-200 dark:border-gray-800' : '';
-    final bgClasses = 'bg-white dark:bg-gray-900';
+    final bgClasses = 'bg-white dark:bg-zinc-900';
 
     // If left/center/right slots are provided, use structured layout
     if (left != null || center != null || right != null) {

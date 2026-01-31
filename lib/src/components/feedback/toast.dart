@@ -57,7 +57,7 @@ class DToast extends StatelessComponent {
       case DToastVariant.solid:
         return 'bg-$c-500 text-white';
       case DToastVariant.outline:
-        return 'bg-white dark:bg-gray-900 ring-1 ring-inset ring-$c-500 text-$c-600 dark:text-$c-400';
+        return 'bg-white dark:bg-zinc-900 ring-1 ring-inset ring-$c-500 text-$c-600 dark:text-$c-400';
       case DToastVariant.soft:
         return 'bg-$c-50 dark:bg-$c-950 text-$c-700 dark:text-$c-300';
       case DToastVariant.subtle:

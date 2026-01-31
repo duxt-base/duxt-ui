@@ -131,7 +131,7 @@ class _UDashboardSearchState extends State<DDashboardSearch> {
   @override
   Component build(BuildContext context) {
     final borderClasses = _focused
-        ? 'border-indigo-500 ring-2 ring-indigo-500/20'
+        ? 'border-cyan-500 ring-2 ring-cyan-500/20'
         : 'border-gray-200 dark:border-gray-700';
 
     return div(
@@ -154,7 +154,7 @@ class _UDashboardSearchState extends State<DDashboardSearch> {
             component.onInput?.call(val);
           },
           classes:
-              'w-full $_sizeClasses $_inputPaddingClasses rounded-lg border $borderClasses bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none transition-colors ${component.disabled ? "opacity-50 cursor-not-allowed" : ""}',
+              'w-full $_sizeClasses $_inputPaddingClasses rounded-lg border $borderClasses bg-white dark:bg-zinc-900 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none transition-colors ${component.disabled ? "opacity-50 cursor-not-allowed" : ""}',
           attributes: {
             'placeholder': component.placeholder,
           },
@@ -181,12 +181,12 @@ class _UDashboardSearchState extends State<DDashboardSearch> {
                   // Command/Ctrl key
                   span(
                     classes:
-                        'px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded border border-gray-200 dark:border-gray-700 font-medium',
+                        'px-1.5 py-0.5 bg-gray-100 dark:bg-zinc-800 rounded border border-gray-200 dark:border-gray-700 font-medium',
                     [Component.text(_isMac ? '\u2318' : 'Ctrl')],
                   ),
                   span(
                     classes:
-                        'px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded border border-gray-200 dark:border-gray-700 font-medium',
+                        'px-1.5 py-0.5 bg-gray-100 dark:bg-zinc-800 rounded border border-gray-200 dark:border-gray-700 font-medium',
                     [Component.text(component.shortcut)],
                   ),
                 ],
@@ -246,19 +246,19 @@ class DDashboardSearchButton extends StatelessComponent {
       type: ButtonType.button,
       onClick: onClick,
       classes:
-          'flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-400 hover:border-gray-300 dark:hover:border-gray-600 transition-colors ${classes ?? ""}',
+          'flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 text-gray-400 hover:border-gray-300 dark:hover:border-gray-600 transition-colors ${classes ?? ""}',
       [
         _searchIcon,
         span(classes: 'text-sm', [Component.text('Search...')]),
         div(classes: 'flex items-center gap-1 ml-auto', [
           span(
             classes:
-                'px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded border border-gray-200 dark:border-gray-700 text-xs font-medium',
+                'px-1.5 py-0.5 bg-gray-100 dark:bg-zinc-800 rounded border border-gray-200 dark:border-gray-700 text-xs font-medium',
             [Component.text('\u2318')],
           ),
           span(
             classes:
-                'px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded border border-gray-200 dark:border-gray-700 text-xs font-medium',
+                'px-1.5 py-0.5 bg-gray-100 dark:bg-zinc-800 rounded border border-gray-200 dark:border-gray-700 text-xs font-medium',
             [Component.text(shortcut)],
           ),
         ]),

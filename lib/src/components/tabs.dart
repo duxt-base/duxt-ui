@@ -21,120 +21,142 @@ class DTabItem {
   });
 }
 
-/// DuxtUI Tabs component - Nuxt UI compatible
+/// DuxtUI Tabs component with native JS interactivity
 ///
-/// A stateful component that manages tab selection internally.
-/// Use [defaultValue] to set the initial selected tab.
-/// Use [onSelect] callback to respond to tab changes.
-class DTabs extends StatefulComponent {
+/// Uses browser-native JavaScript for tab switching without requiring @client.
+/// Tab content is shown/hidden using CSS classes.
+class DTabs extends StatelessComponent {
   final List<DTabItem> items;
   final String? defaultValue;
   final DTabsOrientation orientation;
-  final bool unmountOnHide;
-  final ValueChanged<String>? onSelect;
 
   const DTabs({
     super.key,
     required this.items,
     this.defaultValue,
     this.orientation = DTabsOrientation.horizontal,
-    this.unmountOnHide = true,
-    this.onSelect,
   });
 
-  @override
-  State<DTabs> createState() => _UTabsState();
-}
-
-class _UTabsState extends State<DTabs> {
-  late String _selected;
-
-  @override
-  void initState() {
-    super.initState();
-    _selected = component.defaultValue ??
-        (component.items.isNotEmpty ? component.items.first.value : '');
-  }
-
-  void _handleSelect(String value) {
-    setState(() {
-      _selected = value;
-    });
-    component.onSelect?.call(value);
-  }
+  String get _tabsId => 'tabs_$hashCode';
 
   @override
   Component build(BuildContext context) {
-    final isVertical = component.orientation == DTabsOrientation.vertical;
+    final isVertical = orientation == DTabsOrientation.vertical;
+    final initialValue =
+        defaultValue ?? (items.isNotEmpty ? items.first.value : '');
+
+    // Generate JS for tab switching
+    final tabScript = '''
+      (function() {
+        var tabsEl = document.getElementById('$_tabsId');
+        if (!tabsEl) return;
+        tabsEl.querySelectorAll('[data-tab-trigger]').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var value = this.getAttribute('data-tab-trigger');
+            // Update button states
+            tabsEl.querySelectorAll('[data-tab-trigger]').forEach(function(b) {
+              b.classList.remove('tab-active');
+              b.setAttribute('aria-selected', 'false');
+            });
+            this.classList.add('tab-active');
+            this.setAttribute('aria-selected', 'true');
+            // Update panel visibility
+            tabsEl.querySelectorAll('[data-tab-panel]').forEach(function(p) {
+              if (p.getAttribute('data-tab-panel') === value) {
+                p.classList.remove('hidden');
+              } else {
+                p.classList.add('hidden');
+              }
+            });
+          });
+        });
+      })();
+    ''';
 
     if (isVertical) {
-      return div(classes: 'flex gap-4', [
+      return div(id: _tabsId, classes: 'flex gap-4', [
         // Tab list (vertical)
         div(
           classes: 'flex flex-col gap-1',
+          attributes: {'role': 'tablist', 'aria-orientation': 'vertical'},
           [
-            for (final item in component.items) _buildTab(item, isVertical),
+            for (final item in items) _buildTab(item, isVertical, initialValue),
           ],
         ),
         // Tab panels
         div(classes: 'flex-1', [
-          for (final item in component.items)
-            if (!component.unmountOnHide || item.value == _selected)
-              div(
-                classes: item.value == _selected ? '' : 'hidden',
-                [if (item.content != null) item.content!],
-              ),
+          for (final item in items) _buildPanel(item, initialValue),
         ]),
+        // Inline script for interactivity
+        RawText('<script>$tabScript</script>'),
       ]);
     }
 
-    return div([
+    return div(id: _tabsId, [
       // Tab list (horizontal)
       div(
         classes: 'flex border-b border-gray-200 dark:border-gray-800 gap-1',
+        attributes: {'role': 'tablist'},
         [
-          for (final item in component.items) _buildTab(item, isVertical),
+          for (final item in items) _buildTab(item, isVertical, initialValue),
         ],
       ),
       // Tab panels
       div(classes: 'mt-4', [
-        for (final item in component.items)
-          if (!component.unmountOnHide || item.value == _selected)
-            div(
-              classes: item.value == _selected ? '' : 'hidden',
-              [if (item.content != null) item.content!],
-            ),
+        for (final item in items) _buildPanel(item, initialValue),
       ]),
+      // Inline script for interactivity
+      RawText('<script>$tabScript</script>'),
     ]);
   }
 
-  Component _buildTab(DTabItem item, bool isVertical) {
-    final isActive = item.value == _selected;
+  Component _buildTab(DTabItem item, bool isVertical, String activeValue) {
+    final isActive = item.value == activeValue;
 
     final baseClasses =
-        'flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2';
+        'flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2';
 
     final activeClasses = isVertical
-        ? 'bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white rounded-md'
-        : 'border-b-2 border-green-500 text-green-600 dark:text-green-400 -mb-px';
+        ? 'bg-gray-100 text-gray-900 dark:bg-zinc-800 dark:text-white rounded-md'
+        : 'border-b-2 border-cyan-500 text-cyan-600 dark:text-cyan-400 -mb-px';
 
     final inactiveClasses = isVertical
         ? 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800/50'
         : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 border-b-2 border-transparent hover:border-gray-300 dark:hover:border-gray-700 -mb-px';
 
-    final stateClasses = isActive ? activeClasses : inactiveClasses;
     final disabledClasses =
         item.disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer';
 
     return button(
       type: ButtonType.button,
       disabled: item.disabled,
-      onClick: item.disabled ? null : () => _handleSelect(item.value),
-      classes: '$baseClasses $stateClasses $disabledClasses',
+      classes:
+          '$baseClasses ${isActive ? activeClasses : inactiveClasses} $disabledClasses ${isActive ? "tab-active" : ""}',
+      attributes: {
+        'role': 'tab',
+        'data-tab-trigger': item.value,
+        'aria-selected': isActive.toString(),
+        'aria-controls': 'panel_${item.value}',
+      },
       [
         if (item.icon != null) span(classes: 'size-4', [item.icon!]),
         Component.text(item.label),
       ],
+    );
+  }
+
+  Component _buildPanel(DTabItem item, String activeValue) {
+    final isActive = item.value == activeValue;
+
+    return div(
+      id: 'panel_${item.value}',
+      classes: isActive ? '' : 'hidden',
+      attributes: {
+        'role': 'tabpanel',
+        'data-tab-panel': item.value,
+        'aria-labelledby': item.value,
+      },
+      [if (item.content != null) item.content!],
     );
   }
 }
@@ -201,11 +223,11 @@ class DControlledTabs extends StatelessComponent {
     final isActive = item.value == selected;
 
     final baseClasses =
-        'flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2';
+        'flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2';
 
     final activeClasses = isVertical
-        ? 'bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white rounded-md'
-        : 'border-b-2 border-green-500 text-green-600 dark:text-green-400 -mb-px';
+        ? 'bg-gray-100 text-gray-900 dark:bg-zinc-800 dark:text-white rounded-md'
+        : 'border-b-2 border-cyan-500 text-cyan-600 dark:text-cyan-400 -mb-px';
 
     final inactiveClasses = isVertical
         ? 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800/50'

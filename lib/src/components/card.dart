@@ -1,10 +1,10 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
-/// Card variants matching Nuxt UI
+/// Card variants
 enum DCardVariant { solid, outline, soft, subtle }
 
-/// DuxtUI Card component - Nuxt UI compatible
+/// DuxtUI Card component
 class DCard extends StatelessComponent {
   final Component? header;
   final Component? footer;
@@ -30,11 +30,11 @@ class DCard extends StatelessComponent {
       case DCardVariant.solid:
         return 'bg-gray-900 text-white dark:bg-white dark:text-gray-900';
       case DCardVariant.outline:
-        return 'bg-white ring ring-gray-200 divide-y divide-gray-200 dark:bg-gray-900 dark:ring-gray-800 dark:divide-gray-800';
+        return 'bg-white ring ring-gray-200 divide-y divide-gray-200 dark:bg-zinc-900 dark:ring-gray-800 dark:divide-gray-800';
       case DCardVariant.soft:
-        return 'bg-gray-50/50 divide-y divide-gray-200 dark:bg-gray-800/50 dark:divide-gray-800';
+        return 'bg-gray-50/50 divide-y divide-gray-200 dark:bg-zinc-800/50 dark:divide-gray-800';
       case DCardVariant.subtle:
-        return 'bg-gray-50/50 ring ring-gray-200 divide-y divide-gray-200 dark:bg-gray-800/50 dark:ring-gray-800 dark:divide-gray-800';
+        return 'bg-gray-50/50 ring ring-gray-200 divide-y divide-gray-200 dark:bg-zinc-800/50 dark:ring-gray-800 dark:divide-gray-800';
     }
   }
 

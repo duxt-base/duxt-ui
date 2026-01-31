@@ -53,7 +53,7 @@ class DSkeleton extends StatelessComponent {
 
   String get _baseClasses {
     return cx([
-      'bg-gray-200 dark:bg-gray-700',
+      'bg-gray-200 dark:bg-zinc-700',
       animate ? 'animate-pulse' : null,
     ]);
   }
@@ -131,7 +131,7 @@ class DSkeletonCard extends StatelessComponent {
   @override
   Component build(BuildContext context) {
     return div(
-      classes: 'bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden',
+      classes: 'bg-white dark:bg-zinc-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden',
       [
         // Image placeholder
         if (showImage)

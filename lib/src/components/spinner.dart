@@ -32,7 +32,7 @@ class DSpinner extends StatelessComponent {
   Component build(BuildContext context) {
     return div(
       classes:
-          'animate-spin $_sizeClasses ${color ?? "border-indigo-600"} border-t-transparent rounded-full',
+          'animate-spin $_sizeClasses ${color ?? "border-cyan-600"} border-t-transparent rounded-full',
       [],
     );
   }

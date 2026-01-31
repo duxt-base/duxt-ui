@@ -7,7 +7,7 @@ enum DCheckboxSize { xs, sm, md, lg, xl }
 /// Checkbox colors
 enum DCheckboxColor { primary, gray, success, warning, error }
 
-/// DuxtUI Checkbox component - Matches Nuxt UI styling
+/// DuxtUI Checkbox component
 class DCheckbox extends StatelessComponent {
   final String? label;
   final String? description;
@@ -70,7 +70,7 @@ class DCheckbox extends StatelessComponent {
 
   String get _colorClasses {
     final baseColor = switch (color) {
-      DCheckboxColor.primary => 'indigo',
+      DCheckboxColor.primary => 'cyan',
       DCheckboxColor.gray => 'gray',
       DCheckboxColor.success => 'green',
       DCheckboxColor.warning => 'yellow',
@@ -93,7 +93,7 @@ class DCheckbox extends StatelessComponent {
             name: name,
             disabled: disabled,
             classes:
-                '$_sizeClasses $_colorClasses rounded border-2 $borderColor bg-white dark:bg-gray-900 cursor-pointer focus:ring-2 focus:ring-offset-0 ${disabled ? "opacity-50 cursor-not-allowed" : ""}',
+                '$_sizeClasses $_colorClasses rounded border-2 $borderColor bg-white dark:bg-zinc-900 cursor-pointer focus:ring-2 focus:ring-offset-0 ${disabled ? "opacity-50 cursor-not-allowed" : ""}',
             attributes: {
               if (checked) 'checked': 'true',
               if (indeterminate) 'indeterminate': 'true',

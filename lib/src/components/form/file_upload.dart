@@ -310,7 +310,7 @@ class _UFileUploadState extends State<DFileUpload> {
           for (var i = 0; i < _files.length; i++)
             div(
               classes:
-                  'flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg',
+                  'flex items-center justify-between p-3 bg-gray-50 dark:bg-zinc-800 rounded-lg',
               [
                 div(classes: 'flex items-center space-x-3 min-w-0', [
                   // File icon

@@ -7,7 +7,9 @@ import '../../theme/colors.dart';
 enum DInputNumberSize { xs, sm, md, lg, xl }
 
 /// DuxtUI InputNumber component - Numeric input with increment/decrement buttons
-class DInputNumber extends StatefulComponent {
+///
+/// Uses inline JavaScript for increment/decrement functionality.
+class DInputNumber extends StatelessComponent {
   final String? label;
   final double value;
   final double min;
@@ -21,7 +23,6 @@ class DInputNumber extends StatefulComponent {
   final bool required;
   final String? hint;
   final String? error;
-  final ValueChanged<double>? onChange;
 
   const DInputNumber({
     super.key,
@@ -38,24 +39,10 @@ class DInputNumber extends StatefulComponent {
     this.required = false,
     this.hint,
     this.error,
-    this.onChange,
   });
 
-  @override
-  State<DInputNumber> createState() => _UInputNumberState();
-}
-
-class _UInputNumberState extends State<DInputNumber> {
-  late double _value;
-
-  @override
-  void initState() {
-    super.initState();
-    _value = component.value;
-  }
-
   String get _sizeClasses {
-    switch (component.size) {
+    switch (size) {
       case DInputNumberSize.xs:
         return 'px-2 py-1 text-xs';
       case DInputNumberSize.sm:
@@ -70,7 +57,7 @@ class _UInputNumberState extends State<DInputNumber> {
   }
 
   String get _buttonSizeClasses {
-    switch (component.size) {
+    switch (size) {
       case DInputNumberSize.xs:
         return 'px-2 py-1';
       case DInputNumberSize.sm:
@@ -85,9 +72,9 @@ class _UInputNumberState extends State<DInputNumber> {
   }
 
   String get _colorClasses {
-    switch (component.color) {
+    switch (color) {
       case DColor.primary:
-        return 'focus:ring-green-500 focus:border-green-500';
+        return 'focus:ring-cyan-500 focus:border-cyan-500';
       case DColor.secondary:
         return 'focus:ring-blue-500 focus:border-blue-500';
       case DColor.success:
@@ -103,36 +90,9 @@ class _UInputNumberState extends State<DInputNumber> {
     }
   }
 
-  void _increment() {
-    if (component.disabled) return;
-    final newValue = _value + component.step;
-    if (newValue <= component.max) {
-      setState(() => _value = newValue);
-      component.onChange?.call(_value);
-    }
-  }
-
-  void _decrement() {
-    if (component.disabled) return;
-    final newValue = _value - component.step;
-    if (newValue >= component.min) {
-      setState(() => _value = newValue);
-      component.onChange?.call(_value);
-    }
-  }
-
-  void _handleInput(String value) {
-    final doubleValue = double.tryParse(value);
-    if (doubleValue != null) {
-      final clampedValue = doubleValue.clamp(component.min, component.max);
-      setState(() => _value = clampedValue);
-      component.onChange?.call(_value);
-    }
-  }
-
   @override
   Component build(BuildContext context) {
-    final hasError = component.error != null && component.error!.isNotEmpty;
+    final hasError = error != null && error!.isNotEmpty;
     final borderColor = hasError
         ? 'border-red-500 focus:ring-red-500'
         : 'border-gray-300 dark:border-gray-600 $_colorClasses';
@@ -147,100 +107,130 @@ class _UInputNumberState extends State<DInputNumber> {
       'focus:ring-2',
       'focus:ring-inset',
       _colorClasses,
-      component.disabled ? 'opacity-50 cursor-not-allowed' : null,
+      disabled ? 'opacity-50 cursor-not-allowed' : null,
     ]);
 
     return div(classes: 'space-y-1', [
-      if (component.label != null)
+      if (label != null)
         span(
             classes:
                 'block text-sm font-medium text-gray-700 dark:text-gray-200',
             [
-              Component.text(component.label!),
-              if (component.required)
+              Component.text(label!),
+              if (required)
                 span(classes: 'text-red-500 ml-1', [Component.text('*')]),
             ]),
-      div(classes: 'relative flex items-stretch', [
-        // Decrement button
-        button(
-          type: ButtonType.button,
-          disabled: component.disabled || _value <= component.min,
-          onClick: _decrement,
-          classes: cx([
-            buttonBaseClasses,
-            'rounded-l-lg',
-            'border',
-            'border-r-0',
-            borderColor,
-            'bg-gray-50',
-            'dark:bg-gray-800',
-          ]),
-          [
-            span(classes: 'sr-only', [Component.text('Decrement')]),
-            span(classes: 'text-lg font-medium', [Component.text('-')]),
-          ],
-        ),
-        // Input
-        input(
-          type: InputType.number,
-          name: component.name,
-          value: _value.toString(),
-          disabled: component.disabled,
-          classes: cx([
-            'block',
-            'w-full',
-            'text-center',
-            'border',
-            borderColor,
-            _sizeClasses,
-            component.disabled
-                ? 'bg-gray-100 dark:bg-gray-800 cursor-not-allowed'
-                : 'bg-white dark:bg-gray-900',
-            'focus:outline-none',
-            'focus:ring-2',
-          ]),
-          attributes: {
-            if (component.placeholder != null)
-              'placeholder': component.placeholder!,
-            'min': component.min.isFinite ? component.min.toString() : '',
-            'max': component.max.isFinite ? component.max.toString() : '',
-            'step': component.step.toString(),
-          },
-          events: {
-            'input': (event) {
-              final target = event.target as dynamic;
-              _handleInput(target.value as String);
+      div(
+        classes: 'relative flex items-stretch',
+        attributes: {
+          'data-input-number': 'true',
+          'data-step': step.toString(),
+          'data-min': min.isFinite ? min.toString() : '',
+          'data-max': max.isFinite ? max.toString() : '',
+        },
+        [
+          // Decrement button
+          button(
+            type: ButtonType.button,
+            disabled: disabled,
+            classes: cx([
+              buttonBaseClasses,
+              'rounded-l-lg',
+              'border',
+              'border-r-0',
+              borderColor,
+              'bg-gray-50',
+              'dark:bg-zinc-800',
+            ]),
+            attributes: {'data-action': 'decrement'},
+            [
+              span(classes: 'sr-only', [Component.text('Decrement')]),
+              span(classes: 'text-lg font-medium', [Component.text('−')]),
+            ],
+          ),
+          // Input
+          input(
+            type: InputType.number,
+            name: name,
+            value: value.toString(),
+            disabled: disabled,
+            classes: cx([
+              'block',
+              'w-full',
+              'text-center',
+              'border',
+              borderColor,
+              _sizeClasses,
+              'text-gray-900 dark:text-white',
+              disabled
+                  ? 'bg-gray-100 dark:bg-zinc-800 cursor-not-allowed'
+                  : 'bg-white dark:bg-zinc-900',
+              'focus:outline-none',
+              'focus:ring-2',
+              '[appearance:textfield]',
+              '[&::-webkit-outer-spin-button]:appearance-none',
+              '[&::-webkit-inner-spin-button]:appearance-none',
+            ]),
+            attributes: {
+              if (placeholder != null) 'placeholder': placeholder!,
+              if (min.isFinite) 'min': min.toString(),
+              if (max.isFinite) 'max': max.toString(),
+              'step': step.toString(),
+              'data-input': 'true',
             },
-          },
-        ),
-        // Increment button
-        button(
-          type: ButtonType.button,
-          disabled: component.disabled || _value >= component.max,
-          onClick: _increment,
-          classes: cx([
-            buttonBaseClasses,
-            'rounded-r-lg',
-            'border',
-            'border-l-0',
-            borderColor,
-            'bg-gray-50',
-            'dark:bg-gray-800',
-          ]),
-          [
-            span(classes: 'sr-only', [Component.text('Increment')]),
-            span(classes: 'text-lg font-medium', [Component.text('+')]),
-          ],
-        ),
-      ]),
+          ),
+          // Increment button
+          button(
+            type: ButtonType.button,
+            disabled: disabled,
+            classes: cx([
+              buttonBaseClasses,
+              'rounded-r-lg',
+              'border',
+              'border-l-0',
+              borderColor,
+              'bg-gray-50',
+              'dark:bg-zinc-800',
+            ]),
+            attributes: {'data-action': 'increment'},
+            [
+              span(classes: 'sr-only', [Component.text('Increment')]),
+              span(classes: 'text-lg font-medium', [Component.text('+')]),
+            ],
+          ),
+        ],
+      ),
       if (hasError)
-        p(
-            classes: 'text-sm text-red-600 dark:text-red-400',
-            [Component.text(component.error!)])
-      else if (component.hint != null)
-        p(
-            classes: 'text-sm text-gray-500 dark:text-gray-400',
-            [Component.text(component.hint!)]),
+        p(classes: 'text-sm text-red-600 dark:text-red-400',
+            [Component.text(error!)])
+      else if (hint != null)
+        p(classes: 'text-sm text-gray-500 dark:text-gray-400',
+            [Component.text(hint!)]),
+      // Global input number handler
+      RawText('''<script>
+if (!window._inputNumberInit) {
+  window._inputNumberInit = true;
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-action]');
+    if (!btn) return;
+    var container = btn.closest('[data-input-number]');
+    if (!container) return;
+    var input = container.querySelector('[data-input]');
+    if (!input || input.disabled) return;
+    var step = parseFloat(container.dataset.step) || 1;
+    var min = container.dataset.min !== '' ? parseFloat(container.dataset.min) : -Infinity;
+    var max = container.dataset.max !== '' ? parseFloat(container.dataset.max) : Infinity;
+    var val = parseFloat(input.value) || 0;
+    if (btn.dataset.action === 'increment') {
+      val = Math.min(val + step, max);
+    } else if (btn.dataset.action === 'decrement') {
+      val = Math.max(val - step, min);
+    }
+    input.value = val;
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+}
+</script>'''),
     ]);
   }
 }

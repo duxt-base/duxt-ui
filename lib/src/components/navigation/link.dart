@@ -104,7 +104,7 @@ class DNavLink extends StatelessComponent {
     final baseClasses =
         'inline-flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-colors';
     final stateClasses = active
-        ? 'text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-800'
+        ? 'text-gray-900 dark:text-white bg-gray-100 dark:bg-zinc-800'
         : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50';
 
     return a(

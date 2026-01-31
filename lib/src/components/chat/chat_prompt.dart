@@ -60,7 +60,7 @@ class _UChatPromptState extends State<DChatPrompt> {
 
     return div(
       classes:
-          'flex items-end gap-2 p-4 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900',
+          'flex items-end gap-2 p-4 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-zinc-900',
       [
         // Leading slot (e.g., attachment button)
         if (component.leadingSlot != null) component.leadingSlot!,
@@ -72,7 +72,7 @@ class _UChatPromptState extends State<DChatPrompt> {
             textarea(
               onInput: _handleInput,
               classes:
-                  'w-full resize-none rounded-lg border border-gray-300 dark:border-gray-600 p-3 pr-12 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed',
+                  'w-full resize-none rounded-lg border border-gray-300 dark:border-gray-600 p-3 pr-12 text-sm bg-white dark:bg-zinc-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 disabled:opacity-50 disabled:cursor-not-allowed',
               attributes: {
                 if (component.placeholder != null)
                   'placeholder': component.placeholder!,

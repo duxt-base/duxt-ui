@@ -11,7 +11,7 @@ export 'src/components/input.dart' hide DInputVariant; // Hide - defined in vari
 export 'src/components/card.dart' hide DCardVariant; // Hide - defined in variants.dart
 export 'src/components/badge.dart' hide DBadgeVariant; // Hide - defined in variants.dart
 export 'src/components/alert.dart' hide DAlertVariant; // Hide - defined in variants.dart
-export 'src/components/modal.dart' hide DSlideoverSide; // Hide - defined in slideover.dart
+export 'src/components/modal.dart';
 export 'src/components/dropdown.dart';
 export 'src/components/tabs.dart';
 export 'src/components/table.dart';
@@ -32,7 +32,7 @@ export 'src/components/form/form.dart';
 export 'src/components/form/form_field.dart';
 
 // Overlay Components
-export 'src/components/overlay/overlay.dart' hide DSlideover; // Hide - defined in modal.dart
+export 'src/components/overlay/overlay.dart';
 
 // Layout Components
 export 'src/components/layout/container.dart';

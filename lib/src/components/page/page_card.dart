@@ -92,7 +92,7 @@ class DPageCard extends StatelessComponent {
     ];
 
     final cardClasses =
-        'group relative bg-white dark:bg-gray-900 rounded-xl p-6 ring-1 ring-gray-200 dark:ring-gray-800 $hoverClasses transition-all ${classes ?? ""}';
+        'group relative bg-white dark:bg-zinc-900 rounded-xl p-6 ring-1 ring-gray-200 dark:ring-gray-800 $hoverClasses transition-all ${classes ?? ""}';
 
     // If there's a link, wrap in anchor
     if (to != null) {

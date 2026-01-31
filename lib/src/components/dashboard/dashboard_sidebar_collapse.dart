@@ -88,7 +88,7 @@ class _UDashboardSidebarCollapseState extends State<DDashboardSidebarCollapse> {
         // Flyout menu on hover
         div(
           classes:
-              'absolute left-full top-0 ml-2 w-48 py-2 bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50',
+              'absolute left-full top-0 ml-2 w-48 py-2 bg-white dark:bg-zinc-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50',
           [
             // Label
             div(

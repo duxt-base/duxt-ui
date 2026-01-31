@@ -1,13 +1,13 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
-/// Icon sizes matching Nuxt UI
+/// Icon sizes
 enum DIconSize { xs, sm, md, lg, xl }
 
 /// DuxtUI Icon component - Iconify icon wrapper
 ///
 /// Renders inline icons using Iconify icon names.
-/// Supports size variants matching Nuxt UI specifications.
+/// Supports size variants.
 class DIcon extends StatelessComponent {
   /// The icon name in Iconify format (e.g., 'heroicons:sun', 'mdi:home')
   final String name;

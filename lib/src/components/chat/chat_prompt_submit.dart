@@ -62,7 +62,7 @@ class DChatPromptSubmit extends StatelessComponent {
   @override
   Component build(BuildContext context) {
     final isDisabled = disabled || loading;
-    final colorClasses = bgColor ?? 'bg-indigo-600 hover:bg-indigo-700';
+    final colorClasses = bgColor ?? 'bg-cyan-600 hover:bg-cyan-700';
 
     // Default send icon (arrow up)
     final defaultIcon = svg(
@@ -85,7 +85,7 @@ class DChatPromptSubmit extends StatelessComponent {
       type: ButtonType.button,
       disabled: isDisabled,
       onClick: isDisabled ? null : onSubmit,
-      classes: '$_sizeClasses rounded-lg $colorClasses text-white transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed',
+      classes: '$_sizeClasses rounded-lg $colorClasses text-white transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed',
       attributes: {
         if (tooltip != null) 'title': tooltip!,
         'aria-label': tooltip ?? 'Send message',

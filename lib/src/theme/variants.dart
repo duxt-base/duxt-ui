@@ -1,4 +1,4 @@
-/// DuxtUI Variant Utilities - Matches Nuxt UI Tailwind Variants
+/// DuxtUI Variant Utilities
 library;
 
 /// Common size variants used across components

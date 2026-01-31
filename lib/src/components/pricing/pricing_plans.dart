@@ -127,13 +127,13 @@ class DBillingToggle extends StatelessComponent {
   Component build(BuildContext context) {
     return div(
       classes:
-          'inline-flex items-center gap-3 p-1 bg-gray-100 dark:bg-gray-800 rounded-lg',
+          'inline-flex items-center gap-3 p-1 bg-gray-100 dark:bg-zinc-800 rounded-lg',
       [
         // Monthly button
         button(
           type: ButtonType.button,
           classes:
-              'px-4 py-2 text-sm font-medium rounded-md transition-colors ${!isYearly ? "bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm" : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"}',
+              'px-4 py-2 text-sm font-medium rounded-md transition-colors ${!isYearly ? "bg-white dark:bg-zinc-700 text-gray-900 dark:text-white shadow-sm" : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"}',
           events: events(onClick: () => onChange?.call(false)),
           [Component.text(monthlyLabel)],
         ),
@@ -141,14 +141,14 @@ class DBillingToggle extends StatelessComponent {
         button(
           type: ButtonType.button,
           classes:
-              'px-4 py-2 text-sm font-medium rounded-md transition-colors flex items-center gap-2 ${isYearly ? "bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm" : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"}',
+              'px-4 py-2 text-sm font-medium rounded-md transition-colors flex items-center gap-2 ${isYearly ? "bg-white dark:bg-zinc-700 text-gray-900 dark:text-white shadow-sm" : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"}',
           events: events(onClick: () => onChange?.call(true)),
           [
             Component.text(yearlyLabel),
             if (yearlySavings != null)
               span(
                 classes:
-                    'inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300',
+                    'inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-cyan-100 text-cyan-700 dark:bg-cyan-900 dark:text-cyan-300',
                 [Component.text(yearlySavings!)],
               ),
           ],

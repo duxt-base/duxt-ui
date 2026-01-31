@@ -25,7 +25,7 @@ class DRadioOption<T> {
   });
 }
 
-/// DuxtUI Radio Group component - Matches Nuxt UI styling
+/// DuxtUI Radio Group component
 class DRadioGroup<T> extends StatelessComponent {
   final String? label;
   final List<DRadioOption<T>> options;
@@ -88,7 +88,7 @@ class DRadioGroup<T> extends StatelessComponent {
 
   String get _colorClasses {
     final baseColor = switch (color) {
-      DRadioGroupColor.primary => 'indigo',
+      DRadioGroupColor.primary => 'cyan',
       DRadioGroupColor.gray => 'gray',
       DRadioGroupColor.success => 'green',
       DRadioGroupColor.warning => 'yellow',
@@ -133,7 +133,7 @@ class DRadioGroup<T> extends StatelessComponent {
                   name: name,
                   disabled: disabled || option.disabled,
                   classes:
-                      '$_sizeClasses $_colorClasses rounded-full border-2 $borderColor bg-white dark:bg-gray-900 cursor-pointer focus:ring-2 focus:ring-offset-0 ${disabled || option.disabled ? "opacity-50 cursor-not-allowed" : ""}',
+                      '$_sizeClasses $_colorClasses rounded-full border-2 $borderColor bg-white dark:bg-zinc-900 cursor-pointer focus:ring-2 focus:ring-offset-0 ${disabled || option.disabled ? "opacity-50 cursor-not-allowed" : ""}',
                   attributes: {
                     'value': option.value.toString(),
                     if (value == option.value) 'checked': 'true',

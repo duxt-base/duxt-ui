@@ -119,7 +119,7 @@ class DPricingTable extends StatelessComponent {
                 [
                   // Empty cell for feature column
                   th(
-                    classes: 'bg-white dark:bg-gray-900 px-6 py-4 text-left',
+                    classes: 'bg-white dark:bg-zinc-900 px-6 py-4 text-left',
                     [],
                   ),
                   // Plan columns
@@ -155,7 +155,7 @@ class DPricingTable extends StatelessComponent {
   Component _buildPlanHeader(DPricingTablePlan plan) {
     final bgClass = plan.highlighted
         ? 'bg-primary-50 dark:bg-primary-900/20'
-        : 'bg-gray-50 dark:bg-gray-800';
+        : 'bg-gray-50 dark:bg-zinc-800';
 
     return th(
       classes: 'px-6 py-6 text-center $bgClass relative',
@@ -202,7 +202,7 @@ class DPricingTable extends StatelessComponent {
       [
         td(
           attributes: {'colspan': (plans.length + 1).toString()},
-          classes: 'px-6 py-4 bg-gray-50 dark:bg-gray-800/50',
+          classes: 'px-6 py-4 bg-gray-50 dark:bg-zinc-800/50',
           [
             span(
               classes:
@@ -322,7 +322,7 @@ class DPricingTable extends StatelessComponent {
 
     final buttonClasses = plan.highlighted
         ? 'w-full py-2.5 px-4 rounded-lg font-semibold text-sm text-center transition-colors bg-primary-600 text-white hover:bg-primary-700'
-        : 'w-full py-2.5 px-4 rounded-lg font-semibold text-sm text-center transition-colors bg-gray-100 text-gray-900 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600';
+        : 'w-full py-2.5 px-4 rounded-lg font-semibold text-sm text-center transition-colors bg-gray-100 text-gray-900 hover:bg-gray-200 dark:bg-zinc-700 dark:text-white dark:hover:bg-gray-600';
 
     return td(
       classes: 'px-6 py-6 $bgClass',

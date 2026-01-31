@@ -105,7 +105,7 @@ class DPricingPlan extends StatelessComponent {
       'lg:p-8',
       'rounded-2xl',
       'bg-white',
-      'dark:bg-gray-800',
+      'dark:bg-zinc-800',
       'border',
       highlighted
           ? 'ring-2 ring-primary-500 border-primary-500 scale-105 shadow-xl z-10'
@@ -248,7 +248,7 @@ class DPricingPlan extends StatelessComponent {
   Component _buildButton() {
     final buttonClasses = highlighted
         ? 'w-full py-3 px-4 rounded-lg font-semibold text-center transition-colors bg-primary-600 text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2'
-        : 'w-full py-3 px-4 rounded-lg font-semibold text-center transition-colors bg-gray-100 text-gray-900 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2';
+        : 'w-full py-3 px-4 rounded-lg font-semibold text-center transition-colors bg-gray-100 text-gray-900 hover:bg-gray-200 dark:bg-zinc-700 dark:text-white dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2';
 
     final disabledClasses = disabled ? ' opacity-50 cursor-not-allowed' : '';
 

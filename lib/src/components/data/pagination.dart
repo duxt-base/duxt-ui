@@ -129,7 +129,7 @@ class DPagination extends StatelessComponent {
       case DPaginationVariant.outline:
         return '$baseClasses ring-1 ring-inset ring-gray-200 dark:ring-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800';
       case DPaginationVariant.soft:
-        return '$baseClasses bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700';
+        return '$baseClasses bg-gray-100 text-gray-700 dark:bg-zinc-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700';
       case DPaginationVariant.subtle:
         return '$baseClasses text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800';
       case DPaginationVariant.ghost:
@@ -328,7 +328,7 @@ class DPaginationSimple extends StatelessComponent {
           type: ButtonType.button,
           classes: cx([
             'px-3 py-1.5 text-sm rounded-md transition-colors',
-            'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300',
+            'bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-gray-300',
             if (currentPage <= 1 || disabled) 'opacity-50 cursor-not-allowed',
             if (currentPage > 1 && !disabled)
               'hover:bg-gray-200 dark:hover:bg-gray-700',
@@ -350,7 +350,7 @@ class DPaginationSimple extends StatelessComponent {
           type: ButtonType.button,
           classes: cx([
             'px-3 py-1.5 text-sm rounded-md transition-colors',
-            'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300',
+            'bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-gray-300',
             if (currentPage >= totalPages || disabled)
               'opacity-50 cursor-not-allowed',
             if (currentPage < totalPages && !disabled)

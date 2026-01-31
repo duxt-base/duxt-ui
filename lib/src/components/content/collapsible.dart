@@ -4,13 +4,15 @@ import 'package:jaspr/dom.dart';
 import '../../theme/variants.dart';
 import '../../theme/colors.dart';
 
-/// DuxtUI Collapsible component - Single collapse panel
-class DCollapsible extends StatefulComponent {
+/// DuxtUI Collapsible component using native HTML details/summary
+///
+/// Uses native `<details>` and `<summary>` elements for accessibility
+/// and interactivity without JavaScript.
+class DCollapsible extends StatelessComponent {
   final Component trigger;
   final List<Component> children;
   final bool defaultOpen;
   final bool disabled;
-  final VoidCallback? onOpenChange;
 
   const DCollapsible({
     super.key,
@@ -18,66 +20,49 @@ class DCollapsible extends StatefulComponent {
     required this.children,
     this.defaultOpen = false,
     this.disabled = false,
-    this.onOpenChange,
   });
 
   @override
-  State<DCollapsible> createState() => _UCollapsibleState();
-}
-
-class _UCollapsibleState extends State<DCollapsible> {
-  late bool _open;
-
-  @override
-  void initState() {
-    super.initState();
-    _open = component.defaultOpen;
-  }
-
-  void _toggle() {
-    if (component.disabled) return;
-    setState(() {
-      _open = !_open;
-    });
-    component.onOpenChange?.call();
-  }
-
-  @override
   Component build(BuildContext context) {
-    return div(
-      classes: 'w-full',
+    return details(
+      classes: cx([
+        'w-full group',
+        disabled ? 'pointer-events-none opacity-50' : null,
+      ]),
+      attributes: {
+        if (defaultOpen) 'open': 'true',
+      },
       [
-        // Trigger
-        div(
-          events: component.disabled ? {} : {'click': (_) => _toggle()},
+        // Trigger wrapped in summary
+        summary(
           classes: cx([
-            component.disabled
-                ? 'opacity-50 cursor-not-allowed'
-                : 'cursor-pointer',
+            'list-none',
+            '[&::-webkit-details-marker]:hidden',
+            disabled ? 'cursor-not-allowed' : 'cursor-pointer',
           ]),
-          [component.trigger],
+          [trigger],
         ),
         // Content
-        if (_open)
-          div(
-            classes: 'overflow-hidden',
-            component.children,
-          ),
+        div(
+          classes: 'overflow-hidden',
+          children,
+        ),
       ],
     );
   }
 }
 
 /// Collapsible trigger helper component with chevron
+///
+/// Use inside DCollapsible's trigger parameter. The chevron automatically
+/// rotates when the parent details element is open via CSS group-open.
 class DCollapsibleTrigger extends StatelessComponent {
   final String label;
-  final bool open;
   final Component? icon;
 
   const DCollapsibleTrigger({
     super.key,
     required this.label,
-    this.open = false,
     this.icon,
   });
 
@@ -102,7 +87,7 @@ class DCollapsibleTrigger extends StatelessComponent {
         span(
           classes: cx([
             'transform transition-transform duration-200',
-            open ? 'rotate-180' : null,
+            'group-open:rotate-180', // Rotates when details is open
           ]),
           [Component.text('\u25BC')],
         ),

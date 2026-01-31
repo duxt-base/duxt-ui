@@ -85,11 +85,11 @@ class _UColorModeSelectState extends State<DColorModeSelect> {
           onClick: _toggleDropdown,
           classes: [
             'inline-flex items-center justify-between gap-2 px-3 py-2',
-            'bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600',
+            'bg-white dark:bg-zinc-800 border border-gray-300 dark:border-gray-600',
             'rounded-lg shadow-sm min-w-[140px]',
             'text-sm text-gray-700 dark:text-gray-200',
             'hover:bg-gray-50 dark:hover:bg-gray-700',
-            'focus:outline-none focus:ring-2 focus:ring-indigo-500',
+            'focus:outline-none focus:ring-2 focus:ring-cyan-500',
             'transition-colors',
           ].join(' '),
           attributes: {
@@ -126,7 +126,7 @@ class _UColorModeSelectState extends State<DColorModeSelect> {
           div(
             classes: [
               'absolute z-10 mt-1 w-full',
-              'bg-white dark:bg-gray-800',
+              'bg-white dark:bg-zinc-800',
               'border border-gray-200 dark:border-gray-700',
               'rounded-lg shadow-lg',
               'py-1',
@@ -150,7 +150,7 @@ class _UColorModeSelectState extends State<DColorModeSelect> {
         'w-full flex items-center gap-2 px-3 py-2 text-sm',
         'transition-colors',
         if (isSelected)
-          'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400'
+          'bg-cyan-50 dark:bg-cyan-900/20 text-cyan-600 dark:text-cyan-400'
         else
           'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700',
       ].join(' '),
@@ -163,7 +163,7 @@ class _UColorModeSelectState extends State<DColorModeSelect> {
           name: _getModeIcon(mode),
           size: DIconSize.sm,
           color: isSelected
-              ? 'text-indigo-500'
+              ? 'text-cyan-500'
               : 'text-gray-400 dark:text-gray-500',
         ),
         Component.text(_getModeLabel(mode)),
@@ -174,7 +174,7 @@ class _UColorModeSelectState extends State<DColorModeSelect> {
               DIcon(
                 name: DIconNames.check,
                 size: DIconSize.sm,
-                color: 'text-indigo-500',
+                color: 'text-cyan-500',
               ),
             ],
           ),

@@ -7,7 +7,7 @@ enum DSwitchSize { xs, sm, md, lg, xl }
 /// Switch colors
 enum DSwitchColor { primary, gray, success, warning, error }
 
-/// DuxtUI Switch component - Matches Nuxt UI styling
+/// DuxtUI Switch component
 class DSwitch extends StatelessComponent {
   final String? label;
   final String? description;
@@ -102,18 +102,18 @@ class DSwitch extends StatelessComponent {
 
   String get _trackColorClasses {
     final baseColor = switch (color) {
-      DSwitchColor.primary => 'indigo',
+      DSwitchColor.primary => 'cyan',
       DSwitchColor.gray => 'gray',
       DSwitchColor.success => 'green',
       DSwitchColor.warning => 'yellow',
       DSwitchColor.error => 'red',
     };
-    return checked ? 'bg-$baseColor-600' : 'bg-gray-200 dark:bg-gray-700';
+    return checked ? 'bg-$baseColor-600' : 'bg-gray-200 dark:bg-zinc-700';
   }
 
   String get _focusRingClasses {
     final baseColor = switch (color) {
-      DSwitchColor.primary => 'indigo',
+      DSwitchColor.primary => 'cyan',
       DSwitchColor.gray => 'gray',
       DSwitchColor.success => 'green',
       DSwitchColor.warning => 'yellow',

@@ -15,11 +15,11 @@ class DCarouselItem {
   });
 }
 
-/// DuxtUI Carousel component - CSS-only image carousel
+/// DuxtUI Carousel component - CSS/JS carousel
 ///
 /// A responsive carousel with prev/next navigation and dot indicators.
-/// Uses CSS scroll-snap for smooth scrolling behavior.
-class DCarousel extends StatefulComponent {
+/// Uses inline JavaScript for navigation.
+class DCarousel extends StatelessComponent {
   /// List of items to display
   final List<DCarouselItem> items;
 
@@ -29,11 +29,8 @@ class DCarousel extends StatefulComponent {
   /// Whether to show dot indicators
   final bool showDots;
 
-  /// Whether to auto-play
-  final bool autoPlay;
-
-  /// Auto-play interval in milliseconds
-  final int autoPlayInterval;
+  /// Initial slide index
+  final int initialIndex;
 
   /// Custom CSS classes
   final String? classes;
@@ -43,46 +40,28 @@ class DCarousel extends StatefulComponent {
     required this.items,
     this.showArrows = true,
     this.showDots = true,
-    this.autoPlay = false,
-    this.autoPlayInterval = 5000,
+    this.initialIndex = 0,
     this.classes,
   });
 
-  @override
-  State createState() => _UCarouselState();
-}
-
-class _UCarouselState extends State<DCarousel> {
-  int _currentIndex = 0;
-
-  void _goTo(int index) {
-    setState(() {
-      _currentIndex = index.clamp(0, component.items.length - 1);
-    });
-  }
-
-  void _goToPrevious() {
-    _goTo(_currentIndex - 1);
-  }
-
-  void _goToNext() {
-    _goTo(_currentIndex + 1);
-  }
+  String get _carouselId => 'carousel_$hashCode';
 
   @override
   Component build(BuildContext context) {
-    final items = component.items;
     if (items.isEmpty) {
       return div(classes: 'relative', []);
     }
 
     return div(
-      classes: 'relative overflow-hidden group ${component.classes ?? ""}',
+      id: _carouselId,
+      classes: 'relative overflow-hidden group ${classes ?? ""}',
+      attributes: {'data-carousel': 'true', 'data-index': '$initialIndex'},
       [
         // Slides container
         div(
           classes: 'flex transition-transform duration-300 ease-in-out',
-          styles: Styles(raw: {'transform': 'translateX(-${_currentIndex * 100}%)'}),
+          attributes: {'data-slides': 'true'},
+          styles: Styles(raw: {'transform': 'translateX(-${initialIndex * 100}%)'}),
           [
             for (var i = 0; i < items.length; i++)
               div(
@@ -102,44 +81,83 @@ class _UCarouselState extends State<DCarousel> {
         ),
 
         // Previous button
-        if (component.showArrows && items.length > 1)
+        if (showArrows && items.length > 1)
           button(
             type: ButtonType.button,
-            onClick: _currentIndex > 0 ? _goToPrevious : null,
-            classes: 'absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 dark:bg-gray-800/80 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white dark:hover:bg-gray-800',
-            attributes: {'aria-label': 'Previous slide'},
+            classes:
+                'absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 dark:bg-zinc-800/80 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white dark:hover:bg-zinc-800',
+            attributes: {'data-action': 'prev', 'aria-label': 'Previous slide'},
             [
               DIcon(name: DIconNames.chevronLeft, size: DIconSize.sm),
             ],
           ),
 
         // Next button
-        if (component.showArrows && items.length > 1)
+        if (showArrows && items.length > 1)
           button(
             type: ButtonType.button,
-            onClick: _currentIndex < items.length - 1 ? _goToNext : null,
-            classes: 'absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 dark:bg-gray-800/80 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white dark:hover:bg-gray-800',
-            attributes: {'aria-label': 'Next slide'},
+            classes:
+                'absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 dark:bg-zinc-800/80 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white dark:hover:bg-zinc-800',
+            attributes: {'data-action': 'next', 'aria-label': 'Next slide'},
             [
               DIcon(name: DIconNames.chevronRight, size: DIconSize.sm),
             ],
           ),
 
         // Dot indicators
-        if (component.showDots && items.length > 1)
+        if (showDots && items.length > 1)
           div(
             classes: 'absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2',
+            attributes: {'data-dots': 'true'},
             [
               for (var i = 0; i < items.length; i++)
                 button(
                   type: ButtonType.button,
-                  onClick: () => _goTo(i),
-                  classes: 'w-2 h-2 rounded-full transition-colors ${i == _currentIndex ? "bg-white" : "bg-white/50 hover:bg-white/75"}',
-                  attributes: {'aria-label': 'Go to slide ${i + 1}'},
+                  classes:
+                      'w-2 h-2 rounded-full transition-colors ${i == initialIndex ? "bg-white" : "bg-white/50 hover:bg-white/75"}',
+                  attributes: {
+                    'data-goto': '$i',
+                    'aria-label': 'Go to slide ${i + 1}'
+                  },
                   [],
                 ),
             ],
           ),
+
+        // Carousel JavaScript
+        RawText('''<script>
+if (!window._carouselInit) {
+  window._carouselInit = true;
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-action], [data-goto]');
+    if (!btn) return;
+    var carousel = btn.closest('[data-carousel]');
+    if (!carousel) return;
+    var slides = carousel.querySelector('[data-slides]');
+    var dots = carousel.querySelector('[data-dots]');
+    var total = slides.children.length;
+    var idx = parseInt(carousel.dataset.index) || 0;
+
+    if (btn.dataset.action === 'prev') {
+      idx = Math.max(0, idx - 1);
+    } else if (btn.dataset.action === 'next') {
+      idx = Math.min(total - 1, idx + 1);
+    } else if (btn.dataset.goto !== undefined) {
+      idx = parseInt(btn.dataset.goto);
+    }
+
+    carousel.dataset.index = idx;
+    slides.style.transform = 'translateX(-' + (idx * 100) + '%)';
+
+    if (dots) {
+      dots.querySelectorAll('button').forEach(function(dot, i) {
+        dot.className = dot.className.replace(/bg-white(\\/50)?/g, '');
+        dot.classList.add(i === idx ? 'bg-white' : 'bg-white/50');
+      });
+    }
+  });
+}
+</script>'''),
       ],
     );
   }

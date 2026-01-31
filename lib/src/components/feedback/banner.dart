@@ -62,7 +62,7 @@ class DBanner extends StatelessComponent {
       case DBannerVariant.solid:
         return 'bg-$c-500 text-white';
       case DBannerVariant.outline:
-        return 'bg-white dark:bg-gray-900 border-b border-$c-500 text-$c-600 dark:text-$c-400';
+        return 'bg-white dark:bg-zinc-900 border-b border-$c-500 text-$c-600 dark:text-$c-400';
       case DBannerVariant.soft:
         return 'bg-$c-50 dark:bg-$c-950 text-$c-700 dark:text-$c-300';
       case DBannerVariant.subtle:
@@ -287,7 +287,7 @@ class DBannerCookieConsent extends StatelessComponent {
           type: ButtonType.button,
           onClick: onDecline,
           classes:
-              'px-3 py-1 text-sm rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600',
+              'px-3 py-1 text-sm rounded bg-gray-200 dark:bg-zinc-700 hover:bg-gray-300 dark:hover:bg-gray-600',
           [Component.text('Decline')],
         ),
         button(

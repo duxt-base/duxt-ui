@@ -52,7 +52,7 @@ class _UChatMessagesState extends State<DChatMessages> {
           // Empty chat icon
           div(
             classes:
-                'w-16 h-16 mb-4 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center',
+                'w-16 h-16 mb-4 rounded-full bg-gray-100 dark:bg-zinc-800 flex items-center justify-center',
             [
               span(classes: 'text-2xl', [Component.text('💬')]),
             ],

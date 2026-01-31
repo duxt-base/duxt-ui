@@ -8,7 +8,6 @@ enum DBlogPostsColumns { one, two, three, four }
 /// DuxtUI BlogPosts component - Grid of blog posts
 ///
 /// Displays a responsive grid of DBlogPost components.
-/// Matches Nuxt UI grid styling with responsive breakpoints.
 class DBlogPosts extends StatelessComponent {
   /// List of blog posts to display
   final List<DBlogPost> posts;

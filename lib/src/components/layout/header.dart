@@ -30,11 +30,11 @@ class DHeader extends StatelessComponent {
   String get _variantClasses {
     switch (variant) {
       case DHeaderVariant.solid:
-        return 'bg-white dark:bg-gray-900';
+        return 'bg-white dark:bg-zinc-900';
       case DHeaderVariant.transparent:
         return 'bg-transparent';
       case DHeaderVariant.blur:
-        return 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg backdrop-saturate-150';
+        return 'bg-white/80 dark:bg-zinc-900/80 backdrop-blur-lg backdrop-saturate-150';
     }
   }
 

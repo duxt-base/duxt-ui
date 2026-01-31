@@ -1,16 +1,16 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
-/// Button variants matching Nuxt UI
+/// Button variants
 enum DButtonVariant { solid, outline, soft, subtle, ghost, link }
 
-/// Button sizes matching Nuxt UI
+/// Button sizes
 enum DButtonSize { xs, sm, md, lg, xl }
 
-/// Button colors matching Nuxt UI semantic colors
+/// Button colors
 enum DButtonColor { primary, secondary, success, info, warning, error, neutral }
 
-/// DuxtUI Button component - Nuxt UI compatible
+/// DuxtUI Button component
 class DButton extends StatelessComponent {
   final String? label;
   final Component? leadingIcon;
@@ -109,11 +109,11 @@ class DButton extends StatelessComponent {
   String get _solidClasses {
     switch (color) {
       case DButtonColor.primary:
-        return 'bg-green-500 text-white hover:bg-green-600 focus-visible:outline-green-500 dark:bg-green-400 dark:text-gray-900 dark:hover:bg-green-500';
+        return 'bg-cyan-500 text-white hover:bg-cyan-600 focus-visible:outline-cyan-500 dark:bg-cyan-400 dark:text-gray-900 dark:hover:bg-cyan-500';
       case DButtonColor.secondary:
         return 'bg-blue-500 text-white hover:bg-blue-600 focus-visible:outline-blue-500 dark:bg-blue-400 dark:text-gray-900 dark:hover:bg-blue-500';
       case DButtonColor.success:
-        return 'bg-green-500 text-white hover:bg-green-600 focus-visible:outline-green-500';
+        return 'bg-cyan-500 text-white hover:bg-cyan-600 focus-visible:outline-cyan-500';
       case DButtonColor.info:
         return 'bg-blue-500 text-white hover:bg-blue-600 focus-visible:outline-blue-500';
       case DButtonColor.warning:
@@ -128,11 +128,11 @@ class DButton extends StatelessComponent {
   String get _outlineClasses {
     switch (color) {
       case DButtonColor.primary:
-        return 'ring ring-inset ring-green-500/50 text-green-500 hover:bg-green-500/10 focus-visible:outline-green-500 dark:ring-green-400/50 dark:text-green-400';
+        return 'ring ring-inset ring-cyan-500/50 text-cyan-500 hover:bg-cyan-500/10 focus-visible:outline-cyan-500 dark:ring-cyan-400/50 dark:text-cyan-400';
       case DButtonColor.secondary:
         return 'ring ring-inset ring-blue-500/50 text-blue-500 hover:bg-blue-500/10 focus-visible:outline-blue-500';
       case DButtonColor.success:
-        return 'ring ring-inset ring-green-500/50 text-green-500 hover:bg-green-500/10 focus-visible:outline-green-500';
+        return 'ring ring-inset ring-cyan-500/50 text-cyan-500 hover:bg-cyan-500/10 focus-visible:outline-cyan-500';
       case DButtonColor.info:
         return 'ring ring-inset ring-blue-500/50 text-blue-500 hover:bg-blue-500/10 focus-visible:outline-blue-500';
       case DButtonColor.warning:
@@ -147,11 +147,11 @@ class DButton extends StatelessComponent {
   String get _softClasses {
     switch (color) {
       case DButtonColor.primary:
-        return 'bg-green-500/10 text-green-500 hover:bg-green-500/20 focus-visible:outline-green-500 dark:bg-green-400/10 dark:text-green-400';
+        return 'bg-cyan-500/10 text-cyan-500 hover:bg-cyan-500/20 focus-visible:outline-cyan-500 dark:bg-cyan-400/10 dark:text-cyan-400';
       case DButtonColor.secondary:
         return 'bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 focus-visible:outline-blue-500';
       case DButtonColor.success:
-        return 'bg-green-500/10 text-green-500 hover:bg-green-500/20 focus-visible:outline-green-500';
+        return 'bg-cyan-500/10 text-cyan-500 hover:bg-cyan-500/20 focus-visible:outline-cyan-500';
       case DButtonColor.info:
         return 'bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 focus-visible:outline-blue-500';
       case DButtonColor.warning:
@@ -159,18 +159,18 @@ class DButton extends StatelessComponent {
       case DButtonColor.error:
         return 'bg-red-500/10 text-red-500 hover:bg-red-500/20 focus-visible:outline-red-500';
       case DButtonColor.neutral:
-        return 'bg-gray-100 text-gray-700 hover:bg-gray-200 focus-visible:outline-gray-500 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700';
+        return 'bg-gray-100 text-gray-700 hover:bg-gray-200 focus-visible:outline-gray-500 dark:bg-zinc-800 dark:text-gray-200 dark:hover:bg-gray-700';
     }
   }
 
   String get _subtleClasses {
     switch (color) {
       case DButtonColor.primary:
-        return 'bg-green-500/10 text-green-500 ring ring-inset ring-green-500/25 hover:bg-green-500/20 focus-visible:outline-green-500';
+        return 'bg-cyan-500/10 text-cyan-500 ring ring-inset ring-cyan-500/25 hover:bg-cyan-500/20 focus-visible:outline-cyan-500';
       case DButtonColor.secondary:
         return 'bg-blue-500/10 text-blue-500 ring ring-inset ring-blue-500/25 hover:bg-blue-500/20 focus-visible:outline-blue-500';
       case DButtonColor.success:
-        return 'bg-green-500/10 text-green-500 ring ring-inset ring-green-500/25 hover:bg-green-500/20 focus-visible:outline-green-500';
+        return 'bg-cyan-500/10 text-cyan-500 ring ring-inset ring-cyan-500/25 hover:bg-cyan-500/20 focus-visible:outline-cyan-500';
       case DButtonColor.info:
         return 'bg-blue-500/10 text-blue-500 ring ring-inset ring-blue-500/25 hover:bg-blue-500/20 focus-visible:outline-blue-500';
       case DButtonColor.warning:
@@ -178,18 +178,18 @@ class DButton extends StatelessComponent {
       case DButtonColor.error:
         return 'bg-red-500/10 text-red-500 ring ring-inset ring-red-500/25 hover:bg-red-500/20 focus-visible:outline-red-500';
       case DButtonColor.neutral:
-        return 'bg-gray-100 text-gray-700 ring ring-inset ring-gray-300 hover:bg-gray-200 focus-visible:outline-gray-500 dark:bg-gray-800 dark:text-gray-200 dark:ring-gray-700';
+        return 'bg-gray-100 text-gray-700 ring ring-inset ring-gray-300 hover:bg-gray-200 focus-visible:outline-gray-500 dark:bg-zinc-800 dark:text-gray-200 dark:ring-gray-700';
     }
   }
 
   String get _ghostClasses {
     switch (color) {
       case DButtonColor.primary:
-        return 'text-green-500 hover:bg-green-500/10 focus-visible:outline-green-500';
+        return 'text-cyan-500 hover:bg-cyan-500/10 focus-visible:outline-cyan-500';
       case DButtonColor.secondary:
         return 'text-blue-500 hover:bg-blue-500/10 focus-visible:outline-blue-500';
       case DButtonColor.success:
-        return 'text-green-500 hover:bg-green-500/10 focus-visible:outline-green-500';
+        return 'text-cyan-500 hover:bg-cyan-500/10 focus-visible:outline-cyan-500';
       case DButtonColor.info:
         return 'text-blue-500 hover:bg-blue-500/10 focus-visible:outline-blue-500';
       case DButtonColor.warning:
@@ -204,11 +204,11 @@ class DButton extends StatelessComponent {
   String get _linkClasses {
     switch (color) {
       case DButtonColor.primary:
-        return 'text-green-500 hover:underline focus-visible:outline-green-500';
+        return 'text-cyan-500 hover:underline focus-visible:outline-cyan-500';
       case DButtonColor.secondary:
         return 'text-blue-500 hover:underline focus-visible:outline-blue-500';
       case DButtonColor.success:
-        return 'text-green-500 hover:underline focus-visible:outline-green-500';
+        return 'text-cyan-500 hover:underline focus-visible:outline-cyan-500';
       case DButtonColor.info:
         return 'text-blue-500 hover:underline focus-visible:outline-blue-500';
       case DButtonColor.warning:

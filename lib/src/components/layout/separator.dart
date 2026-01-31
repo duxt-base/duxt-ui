@@ -54,7 +54,7 @@ class DSeparator extends StatelessComponent {
           div(classes: 'flex-grow border-t $baseClasses $_typeClasses', []),
           span(
             classes:
-                'mx-4 text-sm text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-900 px-2',
+                'mx-4 text-sm text-gray-500 dark:text-gray-400 bg-white dark:bg-zinc-900 px-2',
             [Component.text(label!)],
           ),
           div(classes: 'flex-grow border-t $baseClasses $_typeClasses', []),

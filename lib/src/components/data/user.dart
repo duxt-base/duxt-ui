@@ -200,7 +200,7 @@ class DUser extends StatelessComponent {
             classes: cx([
               'absolute bottom-0 right-0 rounded-full ring-2 ring-white dark:ring-gray-900',
               _statusDotSize,
-              online! ? 'bg-green-500' : 'bg-gray-400',
+              online! ? 'bg-cyan-500' : 'bg-gray-400',
             ]),
             [],
           ),
@@ -350,7 +350,7 @@ class DUserListItem extends StatelessComponent {
     final content = div(
       classes: cx([
         'flex items-center justify-between gap-3 px-3 py-2 rounded-lg transition-colors',
-        if (selected) 'bg-gray-100 dark:bg-gray-800',
+        if (selected) 'bg-gray-100 dark:bg-zinc-800',
         if (onClick != null && !selected)
           'hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer',
       ]),

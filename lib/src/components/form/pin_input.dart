@@ -10,7 +10,9 @@ enum DPinInputSize { xs, sm, md, lg, xl }
 enum DPinInputType { text, number, password }
 
 /// DuxtUI PinInput component - PIN/OTP entry with individual digit inputs
-class DPinInput extends StatefulComponent {
+///
+/// Uses inline JavaScript for auto-advance functionality.
+class DPinInput extends StatelessComponent {
   final int length;
   final String? label;
   final String value;
@@ -24,8 +26,6 @@ class DPinInput extends StatefulComponent {
   final String? hint;
   final String? error;
   final String? name;
-  final ValueChanged<String>? onChange;
-  final VoidCallback? onComplete;
 
   const DPinInput({
     super.key,
@@ -42,28 +42,10 @@ class DPinInput extends StatefulComponent {
     this.hint,
     this.error,
     this.name,
-    this.onChange,
-    this.onComplete,
   });
 
-  @override
-  State<DPinInput> createState() => _UPinInputState();
-}
-
-class _UPinInputState extends State<DPinInput> {
-  late List<String> _digits;
-
-  @override
-  void initState() {
-    super.initState();
-    _digits = List.generate(
-      component.length,
-      (i) => i < component.value.length ? component.value[i] : '',
-    );
-  }
-
   String get _sizeClasses {
-    switch (component.size) {
+    switch (size) {
       case DPinInputSize.xs:
         return 'w-8 h-8 text-sm';
       case DPinInputSize.sm:
@@ -78,7 +60,7 @@ class _UPinInputState extends State<DPinInput> {
   }
 
   String get _gapClasses {
-    switch (component.size) {
+    switch (size) {
       case DPinInputSize.xs:
         return 'gap-1';
       case DPinInputSize.sm:
@@ -93,9 +75,9 @@ class _UPinInputState extends State<DPinInput> {
   }
 
   String get _colorClasses {
-    switch (component.color) {
+    switch (color) {
       case DColor.primary:
-        return 'focus:ring-green-500 focus:border-green-500';
+        return 'focus:ring-cyan-500 focus:border-cyan-500';
       case DColor.secondary:
         return 'focus:ring-blue-500 focus:border-blue-500';
       case DColor.success:
@@ -112,139 +94,150 @@ class _UPinInputState extends State<DPinInput> {
   }
 
   InputType get _inputType {
-    switch (component.type) {
+    switch (type) {
       case DPinInputType.text:
         return InputType.text;
       case DPinInputType.number:
-        return InputType
-            .text; // Use text with inputmode for better mobile support
+        return InputType.text; // Use text with inputmode for better mobile support
       case DPinInputType.password:
         return InputType.password;
     }
   }
 
-  void _handleInput(int index, String value) {
-    if (component.disabled) return;
-
-    // Handle paste - distribute characters across inputs
-    if (value.length > 1) {
-      for (var i = 0; i < value.length && index + i < component.length; i++) {
-        _digits[index + i] = value[i];
-      }
-    } else {
-      _digits[index] = value.isNotEmpty ? value[value.length - 1] : '';
-    }
-
-    setState(() {});
-
-    final fullValue = _digits.join();
-    component.onChange?.call(fullValue);
-
-    // Auto-advance to next input
-    if (value.isNotEmpty && index < component.length - 1) {
-      _focusNext(index);
-    }
-
-    // Check if complete
-    if (fullValue.length == component.length && !fullValue.contains('')) {
-      component.onComplete?.call();
-    }
-  }
-
-  void _handleKeyDown(int index, String key) {
-    if (component.disabled) return;
-
-    if (key == 'Backspace' && _digits[index].isEmpty && index > 0) {
-      _focusPrevious(index);
-    } else if (key == 'ArrowLeft' && index > 0) {
-      _focusPrevious(index);
-    } else if (key == 'ArrowRight' && index < component.length - 1) {
-      _focusNext(index);
-    }
-  }
-
-  void _focusNext(int currentIndex) {
-    // Focus management would require DOM access
-    // In Jaspr, this is typically handled via refs or native JS interop
-  }
-
-  void _focusPrevious(int currentIndex) {
-    // Focus management would require DOM access
-  }
-
   @override
   Component build(BuildContext context) {
-    final hasError = component.error != null && component.error!.isNotEmpty;
+    final hasError = error != null && error!.isNotEmpty;
     final borderColor =
         hasError ? 'border-red-500' : 'border-gray-300 dark:border-gray-600';
 
+    // Pre-fill digits from value
+    final digits = List.generate(
+      length,
+      (i) => i < value.length ? value[i] : '',
+    );
+
     return div(classes: 'space-y-2', [
-      if (component.label != null)
+      if (label != null)
         span(
             classes:
                 'block text-sm font-medium text-gray-700 dark:text-gray-200',
             [
-              Component.text(component.label!),
-              if (component.required)
+              Component.text(label!),
+              if (required)
                 span(classes: 'text-red-500 ml-1', [Component.text('*')]),
             ]),
-      div(classes: 'flex items-center $_gapClasses', [
-        for (var i = 0; i < component.length; i++)
-          input(
-            type: _inputType,
-            name: component.name != null ? '${component.name}_$i' : null,
-            value: _digits[i],
-            disabled: component.disabled,
-            classes: cx([
-              _sizeClasses,
-              'text-center',
-              'font-medium',
-              'rounded-lg',
-              'border',
-              borderColor,
-              _colorClasses,
-              component.disabled
-                  ? 'bg-gray-100 dark:bg-gray-800 cursor-not-allowed'
-                  : 'bg-white dark:bg-gray-900',
-              'focus:outline-none',
-              'focus:ring-2',
-            ]),
-            attributes: {
-              'maxlength': '1',
-              if (component.type == DPinInputType.number)
-                'inputmode': 'numeric',
-              if (component.type == DPinInputType.number) 'pattern': '[0-9]*',
-              if (component.placeholder != null)
-                'placeholder': component.placeholder!,
-              if (component.autofocus && i == 0) 'autofocus': 'true',
-            },
-            events: {
-              'input': (event) {
-                final target = event.target as dynamic;
-                _handleInput(i, target.value as String);
+      div(
+        classes: 'flex items-center $_gapClasses',
+        attributes: {'data-pin-input': 'true'},
+        [
+          for (var i = 0; i < length; i++)
+            input(
+              type: _inputType,
+              name: name != null ? '${name}_$i' : null,
+              value: digits[i],
+              disabled: disabled,
+              classes: cx([
+                _sizeClasses,
+                'text-center',
+                'font-medium',
+                'rounded-lg',
+                'border',
+                borderColor,
+                _colorClasses,
+                'text-gray-900 dark:text-white',
+                disabled
+                    ? 'bg-gray-100 dark:bg-zinc-800 cursor-not-allowed'
+                    : 'bg-white dark:bg-zinc-900',
+                'focus:outline-none',
+                'focus:ring-2',
+              ]),
+              attributes: {
+                'maxlength': '1',
+                'data-pin-index': '$i',
+                if (type == DPinInputType.number) 'inputmode': 'numeric',
+                if (type == DPinInputType.number) 'pattern': '[0-9]*',
+                if (placeholder != null) 'placeholder': placeholder!,
+                if (autofocus && i == 0) 'autofocus': 'true',
               },
-              'keydown': (event) {
-                final keyEvent = event as dynamic;
-                _handleKeyDown(i, keyEvent.key as String);
-              },
-            },
-          ),
-      ]),
-      // Hidden input for form submission with complete value
-      if (component.name != null)
-        input(
-          type: InputType.hidden,
-          name: component.name,
-          value: _digits.join(),
-        ),
+            ),
+          // Hidden input for form submission with complete value
+          if (name != null)
+            input(
+              type: InputType.hidden,
+              name: name,
+              value: value,
+              attributes: {'data-pin-hidden': 'true'},
+            ),
+        ],
+      ),
       if (hasError)
-        p(
-            classes: 'text-sm text-red-600 dark:text-red-400',
-            [Component.text(component.error!)])
-      else if (component.hint != null)
-        p(
-            classes: 'text-sm text-gray-500 dark:text-gray-400',
-            [Component.text(component.hint!)]),
+        p(classes: 'text-sm text-red-600 dark:text-red-400',
+            [Component.text(error!)])
+      else if (hint != null)
+        p(classes: 'text-sm text-gray-500 dark:text-gray-400',
+            [Component.text(hint!)]),
+      // Global PIN input handler
+      RawText('''<script>
+if (!window._pinInputInit) {
+  window._pinInputInit = true;
+  document.addEventListener('input', function(e) {
+    var input = e.target;
+    if (!input.hasAttribute('data-pin-index')) return;
+    var container = input.closest('[data-pin-input]');
+    if (!container) return;
+    var val = input.value;
+    // Keep only last character
+    if (val.length > 1) {
+      input.value = val[val.length - 1];
+    }
+    // Auto-advance to next input
+    if (input.value.length === 1) {
+      var next = input.nextElementSibling;
+      if (next && next.hasAttribute('data-pin-index')) {
+        next.focus();
+        next.select();
+      }
+    }
+    // Update hidden input
+    var inputs = container.querySelectorAll('[data-pin-index]');
+    var hidden = container.querySelector('[data-pin-hidden]');
+    if (hidden) {
+      var fullVal = '';
+      inputs.forEach(function(inp) { fullVal += inp.value; });
+      hidden.value = fullVal;
+    }
+  });
+  document.addEventListener('keydown', function(e) {
+    var input = e.target;
+    if (!input.hasAttribute('data-pin-index')) return;
+    if (e.key === 'Backspace' && input.value === '') {
+      var prev = input.previousElementSibling;
+      if (prev && prev.hasAttribute('data-pin-index')) {
+        prev.focus();
+        prev.select();
+      }
+    } else if (e.key === 'ArrowLeft') {
+      var prev = input.previousElementSibling;
+      if (prev && prev.hasAttribute('data-pin-index')) {
+        prev.focus();
+        prev.select();
+      }
+    } else if (e.key === 'ArrowRight') {
+      var next = input.nextElementSibling;
+      if (next && next.hasAttribute('data-pin-index')) {
+        next.focus();
+        next.select();
+      }
+    }
+  });
+  document.addEventListener('focus', function(e) {
+    var input = e.target;
+    if (input.hasAttribute && input.hasAttribute('data-pin-index')) {
+      input.select();
+    }
+  }, true);
+}
+</script>'''),
     ]);
   }
 }

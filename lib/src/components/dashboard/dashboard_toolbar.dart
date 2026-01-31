@@ -52,9 +52,9 @@ class DDashboardToolbar extends StatelessComponent {
   String get _backgroundClasses {
     switch (background) {
       case DToolbarBackground.white:
-        return 'bg-white dark:bg-gray-900';
+        return 'bg-white dark:bg-zinc-900';
       case DToolbarBackground.gray:
-        return 'bg-gray-50 dark:bg-gray-900';
+        return 'bg-gray-50 dark:bg-zinc-900';
       case DToolbarBackground.transparent:
         return 'bg-transparent';
     }
@@ -96,7 +96,7 @@ class DToolbarSeparator extends StatelessComponent {
   @override
   Component build(BuildContext context) {
     return div(
-      classes: 'w-px h-6 bg-gray-200 dark:bg-gray-700',
+      classes: 'w-px h-6 bg-gray-200 dark:bg-zinc-700',
       [],
     );
   }

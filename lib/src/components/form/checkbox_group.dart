@@ -20,7 +20,7 @@ class DCheckboxOption<T> {
   });
 }
 
-/// DuxtUI Checkbox Group component - Matches Nuxt UI styling
+/// DuxtUI Checkbox Group component
 class DCheckboxGroup<T> extends StatelessComponent {
   final String? label;
   final List<DCheckboxOption<T>> options;

@@ -132,7 +132,7 @@ class DTimeline extends StatelessComponent {
       case DTimelineStatus.current:
         return 'bg-$baseColor-500 ring-4 ring-$baseColor-100 dark:ring-$baseColor-900';
       case DTimelineStatus.pending:
-        return 'bg-gray-300 dark:bg-gray-600';
+        return 'bg-gray-300 dark:bg-zinc-600';
     }
   }
 
@@ -146,11 +146,11 @@ class DTimeline extends StatelessComponent {
       case DTimelineStatus.current:
         return 'bg-$baseColor-100 text-$baseColor-600 dark:bg-$baseColor-900 dark:text-$baseColor-400 ring-4 ring-$baseColor-50 dark:ring-$baseColor-950';
       case DTimelineStatus.pending:
-        return 'bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400';
+        return 'bg-gray-100 text-gray-500 dark:bg-zinc-800 dark:text-gray-400';
     }
   }
 
-  String get _connectorColor => 'bg-gray-200 dark:bg-gray-700';
+  String get _connectorColor => 'bg-gray-200 dark:bg-zinc-700';
 
   @override
   Component build(BuildContext context) {
@@ -381,7 +381,7 @@ class DTimelineSimple extends StatelessComponent {
                   if (activeIndex != null && i <= activeIndex!)
                     'bg-$baseColor-500'
                   else
-                    'bg-gray-300 dark:bg-gray-600',
+                    'bg-gray-300 dark:bg-zinc-600',
                 ]),
                 [],
               ),
@@ -393,7 +393,7 @@ class DTimelineSimple extends StatelessComponent {
                     if (activeIndex != null && i < activeIndex!)
                       'bg-$baseColor-500'
                     else
-                      'bg-gray-200 dark:bg-gray-700',
+                      'bg-gray-200 dark:bg-zinc-700',
                   ]),
                   [],
                 ),

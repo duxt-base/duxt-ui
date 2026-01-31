@@ -1,16 +1,16 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
-/// Badge variants matching Nuxt UI
+/// Badge variants
 enum DBadgeVariant { solid, outline, soft, subtle }
 
-/// Badge colors matching Nuxt UI semantic colors
+/// Badge colors
 enum DBadgeColor { primary, secondary, success, info, warning, error, neutral }
 
-/// Badge sizes matching Nuxt UI
+/// Badge sizes
 enum DBadgeSize { xs, sm, md, lg, xl }
 
-/// DuxtUI Badge component - Nuxt UI compatible
+/// DuxtUI Badge component
 class DBadge extends StatelessComponent {
   final String label;
   final Component? leadingIcon;
@@ -75,11 +75,11 @@ class DBadge extends StatelessComponent {
   String get _solidClasses {
     switch (color) {
       case DBadgeColor.primary:
-        return 'bg-green-500 text-white dark:bg-green-400 dark:text-gray-900';
+        return 'bg-cyan-500 text-white dark:bg-cyan-400 dark:text-gray-900';
       case DBadgeColor.secondary:
         return 'bg-blue-500 text-white';
       case DBadgeColor.success:
-        return 'bg-green-500 text-white';
+        return 'bg-cyan-500 text-white';
       case DBadgeColor.info:
         return 'bg-blue-500 text-white';
       case DBadgeColor.warning:
@@ -94,11 +94,11 @@ class DBadge extends StatelessComponent {
   String get _outlineClasses {
     switch (color) {
       case DBadgeColor.primary:
-        return 'ring ring-inset ring-green-500/50 text-green-500 dark:ring-green-400/50 dark:text-green-400';
+        return 'ring ring-inset ring-cyan-500/50 text-cyan-500 dark:ring-cyan-400/50 dark:text-cyan-400';
       case DBadgeColor.secondary:
         return 'ring ring-inset ring-blue-500/50 text-blue-500';
       case DBadgeColor.success:
-        return 'ring ring-inset ring-green-500/50 text-green-500';
+        return 'ring ring-inset ring-cyan-500/50 text-cyan-500';
       case DBadgeColor.info:
         return 'ring ring-inset ring-blue-500/50 text-blue-500';
       case DBadgeColor.warning:
@@ -106,18 +106,18 @@ class DBadge extends StatelessComponent {
       case DBadgeColor.error:
         return 'ring ring-inset ring-red-500/50 text-red-500';
       case DBadgeColor.neutral:
-        return 'ring ring-inset ring-gray-300 text-gray-700 bg-white dark:ring-gray-700 dark:text-gray-200 dark:bg-gray-900';
+        return 'ring ring-inset ring-gray-300 text-gray-700 bg-white dark:ring-gray-700 dark:text-gray-200 dark:bg-zinc-900';
     }
   }
 
   String get _softClasses {
     switch (color) {
       case DBadgeColor.primary:
-        return 'bg-green-500/10 text-green-500 dark:bg-green-400/10 dark:text-green-400';
+        return 'bg-cyan-500/10 text-cyan-500 dark:bg-cyan-400/10 dark:text-cyan-400';
       case DBadgeColor.secondary:
         return 'bg-blue-500/10 text-blue-500';
       case DBadgeColor.success:
-        return 'bg-green-500/10 text-green-500';
+        return 'bg-cyan-500/10 text-cyan-500';
       case DBadgeColor.info:
         return 'bg-blue-500/10 text-blue-500';
       case DBadgeColor.warning:
@@ -125,18 +125,18 @@ class DBadge extends StatelessComponent {
       case DBadgeColor.error:
         return 'bg-red-500/10 text-red-500';
       case DBadgeColor.neutral:
-        return 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-200';
+        return 'bg-gray-100 text-gray-700 dark:bg-zinc-800 dark:text-gray-200';
     }
   }
 
   String get _subtleClasses {
     switch (color) {
       case DBadgeColor.primary:
-        return 'bg-green-500/10 text-green-500 ring ring-inset ring-green-500/25';
+        return 'bg-cyan-500/10 text-cyan-500 ring ring-inset ring-cyan-500/25';
       case DBadgeColor.secondary:
         return 'bg-blue-500/10 text-blue-500 ring ring-inset ring-blue-500/25';
       case DBadgeColor.success:
-        return 'bg-green-500/10 text-green-500 ring ring-inset ring-green-500/25';
+        return 'bg-cyan-500/10 text-cyan-500 ring ring-inset ring-cyan-500/25';
       case DBadgeColor.info:
         return 'bg-blue-500/10 text-blue-500 ring ring-inset ring-blue-500/25';
       case DBadgeColor.warning:
@@ -144,7 +144,7 @@ class DBadge extends StatelessComponent {
       case DBadgeColor.error:
         return 'bg-red-500/10 text-red-500 ring ring-inset ring-red-500/25';
       case DBadgeColor.neutral:
-        return 'bg-gray-100 text-gray-700 ring ring-inset ring-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:ring-gray-700';
+        return 'bg-gray-100 text-gray-700 ring ring-inset ring-gray-300 dark:bg-zinc-800 dark:text-gray-200 dark:ring-gray-700';
     }
   }
 

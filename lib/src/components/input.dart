@@ -1,16 +1,16 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
-/// Input sizes matching Nuxt UI
+/// Input sizes
 enum DInputSize { xs, sm, md, lg, xl }
 
-/// Input variants matching Nuxt UI
+/// Input variants
 enum DInputVariant { outline, soft, subtle, ghost, none }
 
-/// Input colors matching Nuxt UI
+/// Input colors
 enum DInputColor { primary, secondary, success, info, warning, error, neutral }
 
-/// DuxtUI Input component - Nuxt UI compatible
+/// DuxtUI Input component
 class DInput extends StatelessComponent {
   final String? label;
   final String? placeholder;
@@ -113,16 +113,16 @@ class DInput extends StatelessComponent {
   String get _variantClasses {
     final hasError = error != null && error!.isNotEmpty;
     if (hasError) {
-      return 'text-gray-900 dark:text-white bg-white dark:bg-gray-900 ring ring-inset ring-red-500';
+      return 'text-gray-900 dark:text-white bg-white dark:bg-zinc-900 ring ring-inset ring-red-500';
     }
 
     switch (variant) {
       case DInputVariant.outline:
-        return 'text-gray-900 dark:text-white bg-white dark:bg-gray-900 ring ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-green-500 dark:focus:ring-green-400';
+        return 'text-gray-900 dark:text-white bg-white dark:bg-zinc-900 ring ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-cyan-500 dark:focus:ring-cyan-400';
       case DInputVariant.soft:
-        return 'text-gray-900 dark:text-white bg-gray-50/50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 focus:bg-gray-100 dark:focus:bg-gray-800';
+        return 'text-gray-900 dark:text-white bg-gray-50/50 dark:bg-zinc-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 focus:bg-gray-100 dark:focus:bg-gray-800';
       case DInputVariant.subtle:
-        return 'text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800 ring ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-green-500';
+        return 'text-gray-900 dark:text-white bg-gray-50 dark:bg-zinc-800 ring ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-cyan-500';
       case DInputVariant.ghost:
         return 'text-gray-900 dark:text-white bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800 focus:bg-gray-50 dark:focus:bg-gray-800';
       case DInputVariant.none:
@@ -194,7 +194,7 @@ class DInput extends StatelessComponent {
   }
 }
 
-/// DuxtUI Textarea component - Nuxt UI compatible
+/// DuxtUI Textarea component
 class DTextarea extends StatelessComponent {
   final String? label;
   final String? placeholder;
@@ -248,16 +248,16 @@ class DTextarea extends StatelessComponent {
   String get _variantClasses {
     final hasError = error != null && error!.isNotEmpty;
     if (hasError) {
-      return 'text-gray-900 dark:text-white bg-white dark:bg-gray-900 ring ring-inset ring-red-500';
+      return 'text-gray-900 dark:text-white bg-white dark:bg-zinc-900 ring ring-inset ring-red-500';
     }
 
     switch (variant) {
       case DInputVariant.outline:
-        return 'text-gray-900 dark:text-white bg-white dark:bg-gray-900 ring ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-green-500 dark:focus:ring-green-400';
+        return 'text-gray-900 dark:text-white bg-white dark:bg-zinc-900 ring ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-cyan-500 dark:focus:ring-cyan-400';
       case DInputVariant.soft:
-        return 'text-gray-900 dark:text-white bg-gray-50/50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 focus:bg-gray-100 dark:focus:bg-gray-800';
+        return 'text-gray-900 dark:text-white bg-gray-50/50 dark:bg-zinc-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 focus:bg-gray-100 dark:focus:bg-gray-800';
       case DInputVariant.subtle:
-        return 'text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800 ring ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-green-500';
+        return 'text-gray-900 dark:text-white bg-gray-50 dark:bg-zinc-800 ring ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-cyan-500';
       case DInputVariant.ghost:
         return 'text-gray-900 dark:text-white bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800 focus:bg-gray-50 dark:focus:bg-gray-800';
       case DInputVariant.none:

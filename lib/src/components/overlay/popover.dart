@@ -17,13 +17,14 @@ enum DPopoverPlacement {
   rightEnd,
 }
 
-/// DuxtUI Popover component - floating content near trigger
-class DPopover extends StatefulComponent {
+/// DuxtUI Popover component using native HTML details/summary
+///
+/// Uses native `<details>` and `<summary>` elements for accessibility
+/// and interactivity without JavaScript.
+class DPopover extends StatelessComponent {
   final Component trigger;
   final DPopoverPlacement placement;
   final bool closeOnClickOutside;
-  final VoidCallback? onOpen;
-  final VoidCallback? onClose;
   final List<Component> children;
 
   const DPopover({
@@ -31,40 +32,11 @@ class DPopover extends StatefulComponent {
     required this.trigger,
     this.placement = DPopoverPlacement.bottom,
     this.closeOnClickOutside = true,
-    this.onOpen,
-    this.onClose,
     this.children = const [],
   });
 
-  @override
-  State<DPopover> createState() => _UPopoverState();
-}
-
-class _UPopoverState extends State<DPopover> {
-  bool _open = false;
-
-  void _toggle() {
-    setState(() {
-      _open = !_open;
-      if (_open) {
-        component.onOpen?.call();
-      } else {
-        component.onClose?.call();
-      }
-    });
-  }
-
-  void _close() {
-    if (_open) {
-      setState(() {
-        _open = false;
-        component.onClose?.call();
-      });
-    }
-  }
-
   String get _positionClasses {
-    switch (component.placement) {
+    switch (placement) {
       case DPopoverPlacement.top:
         return 'bottom-full left-1/2 -translate-x-1/2 mb-2';
       case DPopoverPlacement.topStart:
@@ -94,36 +66,43 @@ class _UPopoverState extends State<DPopover> {
 
   @override
   Component build(BuildContext context) {
-    return div(
-      classes: 'relative inline-block',
+    return details(
+      classes: 'relative inline-block group',
+      attributes: {
+        'data-popover': 'true',
+      },
       [
-        // Trigger
-        div(
-          events: {'click': (_) => _toggle()},
-          [component.trigger],
+        // Trigger wrapped in summary - use pointer-events to let summary handle clicks
+        summary(
+          classes: 'list-none [&::-webkit-details-marker]:hidden cursor-pointer [&>*]:pointer-events-none',
+          [trigger],
         ),
-        // Popover content
-        if (_open) ...[
-          // Invisible overlay to catch outside clicks
-          if (component.closeOnClickOutside)
-            div(
-              classes: 'fixed inset-0 z-40',
-              events: {'click': (_) => _close()},
-              [],
-            ),
-          // Popover panel
-          div(
-            classes:
-                'absolute z-50 $_positionClasses bg-white dark:bg-gray-900 rounded-lg shadow-lg ring-1 ring-gray-200 dark:ring-gray-800 p-4',
-            component.children,
-          ),
-        ],
+        // Popover panel
+        div(
+          classes:
+              'absolute z-50 $_positionClasses bg-white dark:bg-zinc-900 rounded-lg shadow-lg ring-1 ring-gray-200 dark:ring-gray-800',
+          children,
+        ),
+        // Global click-outside handler (only added once per page)
+        if (closeOnClickOutside)
+          RawText('''<script>
+if (!window._popoverInit) {
+  window._popoverInit = true;
+  document.addEventListener('click', function(e) {
+    document.querySelectorAll('details[data-popover][open]').forEach(function(d) {
+      if (!d.contains(e.target)) d.removeAttribute('open');
+    });
+  });
+}
+</script>'''),
       ],
     );
   }
 }
 
 /// Controlled popover that accepts external open state
+///
+/// For use in @client components where parent manages the open state.
 class DPopoverControlled extends StatelessComponent {
   final bool open;
   final Component trigger;
@@ -193,7 +172,7 @@ class DPopoverControlled extends StatelessComponent {
           // Popover panel
           div(
             classes:
-                'absolute z-50 $_positionClasses bg-white dark:bg-gray-900 rounded-lg shadow-lg ring-1 ring-gray-200 dark:ring-gray-800 p-4',
+                'absolute z-50 $_positionClasses bg-white dark:bg-zinc-900 rounded-lg shadow-lg ring-1 ring-gray-200 dark:ring-gray-800 p-4',
             children,
           ),
         ],

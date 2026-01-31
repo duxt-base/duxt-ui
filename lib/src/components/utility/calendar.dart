@@ -5,22 +5,28 @@ import 'icon.dart';
 /// DuxtUI Calendar component - Date picker grid
 ///
 /// A calendar component for date selection with month/year navigation.
-/// Supports single date selection with visual feedback.
-class DCalendar extends StatefulComponent {
-  /// Currently selected date
-  final DateTime? selectedDate;
+/// Uses inline JavaScript for interactivity.
+class DCalendar extends StatelessComponent {
+  /// Currently selected date (format: YYYY-MM-DD)
+  final String? selectedDate;
 
-  /// Callback when date is selected
-  final ValueChanged<DateTime>? onDateSelect;
+  /// Initial display month (1-12)
+  final int? initialMonth;
 
-  /// Minimum selectable date
-  final DateTime? minDate;
+  /// Initial display year
+  final int? initialYear;
 
-  /// Maximum selectable date
-  final DateTime? maxDate;
+  /// Minimum selectable date (format: YYYY-MM-DD)
+  final String? minDate;
+
+  /// Maximum selectable date (format: YYYY-MM-DD)
+  final String? maxDate;
 
   /// First day of week (0 = Sunday, 1 = Monday)
   final int firstDayOfWeek;
+
+  /// Name attribute for form submission
+  final String? name;
 
   /// Custom CSS classes
   final String? classes;
@@ -28,152 +34,61 @@ class DCalendar extends StatefulComponent {
   const DCalendar({
     super.key,
     this.selectedDate,
-    this.onDateSelect,
+    this.initialMonth,
+    this.initialYear,
     this.minDate,
     this.maxDate,
     this.firstDayOfWeek = 1, // Monday default
+    this.name,
     this.classes,
   });
 
-  @override
-  State createState() => _UCalendarState();
-}
-
-class _UCalendarState extends State<DCalendar> {
-  late int _displayMonth;
-  late int _displayYear;
-
-  @override
-  void initState() {
-    super.initState();
-    final now = DateTime.now();
-    _displayMonth = component.selectedDate?.month ?? now.month;
-    _displayYear = component.selectedDate?.year ?? now.year;
-  }
-
-  void _goToPreviousMonth() {
-    setState(() {
-      if (_displayMonth == 1) {
-        _displayMonth = 12;
-        _displayYear--;
-      } else {
-        _displayMonth--;
-      }
-    });
-  }
-
-  void _goToNextMonth() {
-    setState(() {
-      if (_displayMonth == 12) {
-        _displayMonth = 1;
-        _displayYear++;
-      } else {
-        _displayMonth++;
-      }
-    });
-  }
-
-  void _selectDate(int day) {
-    final date = DateTime(_displayYear, _displayMonth, day);
-    component.onDateSelect?.call(date);
-  }
-
-  bool _isDateDisabled(int day) {
-    final date = DateTime(_displayYear, _displayMonth, day);
-    if (component.minDate != null && date.isBefore(component.minDate!)) {
-      return true;
-    }
-    if (component.maxDate != null && date.isAfter(component.maxDate!)) {
-      return true;
-    }
-    return false;
-  }
-
-  bool _isSelected(int day) {
-    if (component.selectedDate == null) return false;
-    return component.selectedDate!.year == _displayYear &&
-        component.selectedDate!.month == _displayMonth &&
-        component.selectedDate!.day == day;
-  }
-
-  bool _isToday(int day) {
-    final now = DateTime.now();
-    return now.year == _displayYear &&
-        now.month == _displayMonth &&
-        now.day == day;
-  }
-
-  int _getDaysInMonth() {
-    return DateTime(_displayYear, _displayMonth + 1, 0).day;
-  }
-
-  int _getFirstDayOfMonth() {
-    final firstDay = DateTime(_displayYear, _displayMonth, 1).weekday;
-    // Adjust for firstDayOfWeek
-    return (firstDay - component.firstDayOfWeek + 7) % 7;
-  }
-
-  List<String> _getWeekdayLabels() {
-    const labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    final result = <String>[];
-    for (var i = 0; i < 7; i++) {
-      result.add(labels[(i + component.firstDayOfWeek) % 7]);
-    }
-    return result;
-  }
-
-  String _getMonthName() {
-    const months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
-    ];
-    return months[_displayMonth - 1];
-  }
+  String get _calendarId => 'calendar_$hashCode';
 
   @override
   Component build(BuildContext context) {
-    final daysInMonth = _getDaysInMonth();
-    final firstDayOffset = _getFirstDayOfMonth();
-    final weekdayLabels = _getWeekdayLabels();
+    final now = DateTime.now();
+    final displayMonth = initialMonth ?? now.month;
+    final displayYear = initialYear ?? now.year;
 
     return div(
+      id: _calendarId,
       classes:
-          'p-4 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 ${component.classes ?? ""}',
+          'p-4 bg-white dark:bg-zinc-900 rounded-lg border border-gray-200 dark:border-gray-700 ${classes ?? ""}',
+      attributes: {
+        'data-calendar': 'true',
+        'data-month': '$displayMonth',
+        'data-year': '$displayYear',
+        'data-first-day': '$firstDayOfWeek',
+        if (minDate != null) 'data-min': minDate!,
+        if (maxDate != null) 'data-max': maxDate!,
+        if (selectedDate != null) 'data-selected': selectedDate!,
+      },
       [
         // Header with month/year navigation
         div(
           classes: 'flex items-center justify-between mb-4',
+          attributes: {'data-header': 'true'},
           [
             button(
               type: ButtonType.button,
-              onClick: _goToPreviousMonth,
               classes:
                   'p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors',
-              attributes: {'aria-label': 'Previous month'},
+              attributes: {'data-action': 'prev', 'aria-label': 'Previous month'},
               [
                 DIcon(name: DIconNames.chevronLeft, size: DIconSize.sm),
               ],
             ),
             span(
               classes: 'font-semibold text-gray-900 dark:text-white',
-              [Component.text('${_getMonthName()} $_displayYear')],
+              attributes: {'data-month-label': 'true'},
+              [Component.text(_getMonthName(displayMonth) + ' $displayYear')],
             ),
             button(
               type: ButtonType.button,
-              onClick: _goToNextMonth,
               classes:
                   'p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors',
-              attributes: {'aria-label': 'Next month'},
+              attributes: {'data-action': 'next', 'aria-label': 'Next month'},
               [
                 DIcon(name: DIconNames.chevronRight, size: DIconSize.sm),
               ],
@@ -185,7 +100,7 @@ class _UCalendarState extends State<DCalendar> {
         div(
           classes: 'grid grid-cols-7 gap-1 mb-2',
           [
-            for (final label in weekdayLabels)
+            for (final label in _getWeekdayLabels())
               div(
                 classes:
                     'text-center text-xs font-medium text-gray-500 dark:text-gray-400 py-2',
@@ -194,47 +109,175 @@ class _UCalendarState extends State<DCalendar> {
           ],
         ),
 
-        // Days grid
+        // Days grid (will be populated by JS)
         div(
           classes: 'grid grid-cols-7 gap-1',
-          [
-            // Empty cells for offset
-            for (var i = 0; i < firstDayOffset; i++) div(classes: 'p-2', []),
-
-            // Day cells
-            for (var day = 1; day <= daysInMonth; day++) _buildDayCell(day),
-          ],
+          attributes: {'data-days': 'true'},
+          _buildInitialDays(displayMonth, displayYear),
         ),
+
+        // Hidden input for form submission
+        if (name != null)
+          input(
+            type: InputType.hidden,
+            name: name,
+            value: selectedDate ?? '',
+            attributes: {'data-date-input': 'true'},
+          ),
+
+        // Calendar JavaScript
+        RawText('''<script>
+if (!window._calendarInit) {
+  window._calendarInit = true;
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+  function renderCalendar(cal) {
+    var m = parseInt(cal.dataset.month);
+    var y = parseInt(cal.dataset.year);
+    var firstDay = parseInt(cal.dataset.firstDay) || 1;
+    var selected = cal.dataset.selected || '';
+    var minD = cal.dataset.min || '';
+    var maxD = cal.dataset.max || '';
+
+    var label = cal.querySelector('[data-month-label]');
+    if (label) label.textContent = months[m-1] + ' ' + y;
+
+    var daysGrid = cal.querySelector('[data-days]');
+    if (!daysGrid) return;
+    daysGrid.innerHTML = '';
+
+    var firstOfMonth = new Date(y, m-1, 1);
+    var daysInMonth = new Date(y, m, 0).getDate();
+    var startDay = (firstOfMonth.getDay() - firstDay + 7) % 7;
+
+    for (var i = 0; i < startDay; i++) {
+      var empty = document.createElement('div');
+      empty.className = 'p-2';
+      daysGrid.appendChild(empty);
+    }
+
+    for (var d = 1; d <= daysInMonth; d++) {
+      var dateStr = y + '-' + String(m).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = d;
+      btn.dataset.date = dateStr;
+
+      var isSelected = dateStr === selected;
+      var isToday = dateStr === new Date().toISOString().split('T')[0];
+      var isDisabled = (minD && dateStr < minD) || (maxD && dateStr > maxD);
+
+      var cls = 'w-10 h-10 flex items-center justify-center text-sm rounded-lg transition-colors ';
+      if (isDisabled) {
+        cls += 'text-gray-300 dark:text-gray-600 cursor-not-allowed';
+        btn.disabled = true;
+      } else if (isSelected) {
+        cls += 'bg-cyan-600 text-white font-semibold';
+      } else if (isToday) {
+        cls += 'bg-cyan-50 dark:bg-cyan-900/20 text-cyan-600 dark:text-cyan-400 font-semibold hover:bg-cyan-100 dark:hover:bg-cyan-900/30 cursor-pointer';
+      } else {
+        cls += 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer';
+      }
+      btn.className = cls;
+      daysGrid.appendChild(btn);
+    }
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-action], [data-date]');
+    if (!btn) return;
+    var cal = btn.closest('[data-calendar]');
+    if (!cal) return;
+
+    if (btn.dataset.action === 'prev') {
+      var m = parseInt(cal.dataset.month);
+      var y = parseInt(cal.dataset.year);
+      if (m === 1) { m = 12; y--; } else { m--; }
+      cal.dataset.month = m;
+      cal.dataset.year = y;
+      renderCalendar(cal);
+    } else if (btn.dataset.action === 'next') {
+      var m = parseInt(cal.dataset.month);
+      var y = parseInt(cal.dataset.year);
+      if (m === 12) { m = 1; y++; } else { m++; }
+      cal.dataset.month = m;
+      cal.dataset.year = y;
+      renderCalendar(cal);
+    } else if (btn.dataset.date && !btn.disabled) {
+      cal.dataset.selected = btn.dataset.date;
+      var input = cal.querySelector('[data-date-input]');
+      if (input) input.value = btn.dataset.date;
+      renderCalendar(cal);
+      cal.dispatchEvent(new CustomEvent('dateselect', { detail: { date: btn.dataset.date } }));
+    }
+  });
+}
+</script>'''),
       ],
     );
   }
 
-  Component _buildDayCell(int day) {
-    final isDisabled = _isDateDisabled(day);
-    final isSelected = _isSelected(day);
-    final isToday = _isToday(day);
+  String _getMonthName(int month) {
+    const months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    return months[month - 1];
+  }
 
-    String cellClasses =
-        'w-10 h-10 flex items-center justify-center text-sm rounded-lg transition-colors ';
+  List<String> _getWeekdayLabels() {
+    const labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    final result = <String>[];
+    for (var i = 0; i < 7; i++) {
+      result.add(labels[(i + firstDayOfWeek) % 7]);
+    }
+    return result;
+  }
 
-    if (isDisabled) {
-      cellClasses += 'text-gray-300 dark:text-gray-600 cursor-not-allowed';
-    } else if (isSelected) {
-      cellClasses += 'bg-indigo-600 text-white font-semibold';
-    } else if (isToday) {
-      cellClasses +=
-          'bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 font-semibold hover:bg-indigo-100 dark:hover:bg-indigo-900/30 cursor-pointer';
-    } else {
-      cellClasses +=
-          'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer';
+  List<Component> _buildInitialDays(int month, int year) {
+    final firstOfMonth = DateTime(year, month, 1);
+    final daysInMonth = DateTime(year, month + 1, 0).day;
+    final startDay = (firstOfMonth.weekday - firstDayOfWeek + 7) % 7;
+    final today = DateTime.now();
+    final todayStr = '${today.year}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
+
+    final cells = <Component>[];
+
+    // Empty cells for offset
+    for (var i = 0; i < startDay; i++) {
+      cells.add(div(classes: 'p-2', []));
     }
 
-    return button(
-      type: ButtonType.button,
-      onClick: isDisabled ? null : () => _selectDate(day),
-      disabled: isDisabled,
-      classes: cellClasses,
-      [Component.text('$day')],
-    );
+    // Day cells
+    for (var day = 1; day <= daysInMonth; day++) {
+      final dateStr = '$year-${month.toString().padLeft(2, '0')}-${day.toString().padLeft(2, '0')}';
+      final isSelected = dateStr == selectedDate;
+      final isToday = dateStr == todayStr;
+      final isDisabled = (minDate != null && dateStr.compareTo(minDate!) < 0) ||
+          (maxDate != null && dateStr.compareTo(maxDate!) > 0);
+
+      String cellClasses = 'w-10 h-10 flex items-center justify-center text-sm rounded-lg transition-colors ';
+
+      if (isDisabled) {
+        cellClasses += 'text-gray-300 dark:text-gray-600 cursor-not-allowed';
+      } else if (isSelected) {
+        cellClasses += 'bg-cyan-600 text-white font-semibold';
+      } else if (isToday) {
+        cellClasses += 'bg-cyan-50 dark:bg-cyan-900/20 text-cyan-600 dark:text-cyan-400 font-semibold hover:bg-cyan-100 dark:hover:bg-cyan-900/30 cursor-pointer';
+      } else {
+        cellClasses += 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer';
+      }
+
+      cells.add(button(
+        type: ButtonType.button,
+        disabled: isDisabled,
+        classes: cellClasses,
+        attributes: {'data-date': dateStr},
+        [Component.text('$day')],
+      ));
+    }
+
+    return cells;
   }
 }

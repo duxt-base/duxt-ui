@@ -1,13 +1,13 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 
-/// Avatar sizes matching Nuxt UI
+/// Avatar sizes
 enum DAvatarSize { xxxs, xxs, xs, sm, md, lg, xl, xxl, xxxl }
 
 /// Avatar chip position
 enum DAvatarChipPosition { topRight, bottomRight, topLeft, bottomLeft }
 
-/// DuxtUI Avatar component - Nuxt UI compatible
+/// DuxtUI Avatar component
 class DAvatar extends StatelessComponent {
   final String? src;
   final String? alt;
@@ -94,7 +94,7 @@ class DAvatar extends StatelessComponent {
         // Avatar container
         div(
           classes:
-              '$_sizeClasses rounded-full overflow-hidden bg-gray-100 dark:bg-gray-800 flex items-center justify-center font-medium text-gray-600 dark:text-gray-300',
+              '$_sizeClasses rounded-full overflow-hidden bg-gray-100 dark:bg-zinc-800 flex items-center justify-center font-medium text-gray-600 dark:text-gray-300',
           [
             if (src != null)
               img(
@@ -124,13 +124,13 @@ class DAvatar extends StatelessComponent {
               if (chipText != null)
                 span(
                   classes:
-                      'flex items-center justify-center min-w-4 h-4 px-1 text-[10px] font-medium bg-green-500 text-white rounded-full ring-2 ring-white dark:ring-gray-900',
+                      'flex items-center justify-center min-w-4 h-4 px-1 text-[10px] font-medium bg-cyan-500 text-white rounded-full ring-2 ring-white dark:ring-gray-900',
                   [Component.text(chipText!)],
                 )
               else
                 span(
                   classes:
-                      'block size-2.5 bg-green-500 rounded-full ring-2 ring-white dark:ring-gray-900',
+                      'block size-2.5 bg-cyan-500 rounded-full ring-2 ring-white dark:ring-gray-900',
                   [],
                 ),
             ],
@@ -140,7 +140,7 @@ class DAvatar extends StatelessComponent {
   }
 }
 
-/// DuxtUI Avatar Group - Nuxt UI compatible
+/// DuxtUI Avatar Group
 class DAvatarGroup extends StatelessComponent {
   final List<DAvatar> avatars;
   final int max;
@@ -189,7 +189,7 @@ class DAvatarGroup extends StatelessComponent {
       if (remaining > 0)
         div(
           classes:
-              '$_sizeClasses rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center font-medium text-gray-600 dark:text-gray-300 ring-2 ring-white dark:ring-gray-900',
+              '$_sizeClasses rounded-full bg-gray-100 dark:bg-zinc-800 flex items-center justify-center font-medium text-gray-600 dark:text-gray-300 ring-2 ring-white dark:ring-gray-900',
           [Component.text('+$remaining')],
         ),
     ]);

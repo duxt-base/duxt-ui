@@ -12,6 +12,9 @@
 ///   - tabs_test.dart - DTabs, DControlledTabs, DTabItem tests
 ///   - modal_test.dart - DModal, DSlideover tests
 ///   - alert_test.dart - DAlert tests
+///   - tooltip_test.dart - DTooltip, DTooltipCustom tests
+///   - pin_input_test.dart - DPinInput tests
+///   - dropdown_test.dart - DDropdown, DDropdownItem tests
 /// - test/theme/ - Theme system tests
 ///   - theme_test.dart - Colors, Variants, Provider tests
 library;
@@ -28,6 +31,9 @@ import 'package:duxt_ui/src/components/input.dart';
 import 'package:duxt_ui/src/components/tabs.dart';
 import 'package:duxt_ui/src/components/modal.dart';
 import 'package:duxt_ui/src/components/alert.dart';
+import 'package:duxt_ui/src/components/overlay/tooltip.dart';
+import 'package:duxt_ui/src/components/form/pin_input.dart';
+import 'package:duxt_ui/src/components/dropdown.dart';
 
 // Component tests
 import 'components/button_test.dart' as button_test;
@@ -37,6 +43,9 @@ import 'components/input_test.dart' as input_test;
 import 'components/tabs_test.dart' as tabs_test;
 import 'components/modal_test.dart' as modal_test;
 import 'components/alert_test.dart' as alert_test;
+import 'components/tooltip_test.dart' as tooltip_test;
+import 'components/pin_input_test.dart' as pin_input_test;
+import 'components/dropdown_test.dart' as dropdown_test;
 
 // Theme tests
 import 'theme/theme_test.dart' as theme_test;
@@ -51,6 +60,9 @@ void main() {
       tabs_test.main();
       modal_test.main();
       alert_test.main();
+      tooltip_test.main();
+      pin_input_test.main();
+      dropdown_test.main();
     });
 
     group('Theme', () {

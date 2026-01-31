@@ -84,7 +84,7 @@ class _UChatPaletteState extends State<DChatPalette> {
         // Main container
         div(
           classes:
-              'flex flex-col h-full bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden',
+              'flex flex-col h-full bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden',
           [
             // Header
             _buildHeader(),
@@ -116,7 +116,7 @@ class _UChatPaletteState extends State<DChatPalette> {
 
     return div(
       classes:
-          'flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900',
+          'flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900',
       [
         // Title
         if (component.title != null)
@@ -199,7 +199,7 @@ class DChatPaletteTrigger extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
-    final colorClasses = bgColor ?? 'bg-indigo-600 hover:bg-indigo-700';
+    final colorClasses = bgColor ?? 'bg-cyan-600 hover:bg-cyan-700';
 
     // Default chat icon
     final chatIcon = svg(
@@ -237,7 +237,7 @@ class DChatPaletteTrigger extends StatelessComponent {
       type: ButtonType.button,
       onClick: onToggle,
       classes:
-          'fixed bottom-4 right-4 p-4 rounded-full $colorClasses text-white shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 z-40',
+          'fixed bottom-4 right-4 p-4 rounded-full $colorClasses text-white shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 z-40',
       attributes: {
         if (tooltip != null) 'title': tooltip!,
         'aria-label': tooltip ?? (isOpen ? 'Close chat' : 'Open chat'),

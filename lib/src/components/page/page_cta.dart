@@ -67,7 +67,7 @@ class DPageCTA extends StatelessComponent {
     final bgClasses = gradient ? (gradientClasses ?? defaultGradient) : '';
 
     final defaultCard =
-        'bg-gray-50 dark:bg-gray-900 rounded-2xl ring-1 ring-gray-200 dark:ring-gray-800';
+        'bg-gray-50 dark:bg-zinc-900 rounded-2xl ring-1 ring-gray-200 dark:ring-gray-800';
     final containerClasses = card ? (cardClasses ?? defaultCard) : '';
 
     final textColorClasses =

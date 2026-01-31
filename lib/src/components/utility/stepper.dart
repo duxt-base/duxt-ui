@@ -63,21 +63,21 @@ class DStepper extends StatelessComponent {
   String _getStepCircleClasses(DStepStatus status) {
     switch (status) {
       case DStepStatus.completed:
-        return 'bg-green-600 text-white border-green-600';
+        return 'bg-cyan-600 text-white border-cyan-600';
       case DStepStatus.current:
-        return 'bg-indigo-600 text-white border-indigo-600';
+        return 'bg-cyan-600 text-white border-cyan-600';
       case DStepStatus.upcoming:
-        return 'bg-white dark:bg-gray-900 text-gray-400 border-gray-300 dark:border-gray-600';
+        return 'bg-white dark:bg-zinc-900 text-gray-400 border-gray-300 dark:border-gray-600';
     }
   }
 
   String _getLineClasses(DStepStatus status) {
     switch (status) {
       case DStepStatus.completed:
-        return 'bg-green-600';
+        return 'bg-cyan-600';
       case DStepStatus.current:
       case DStepStatus.upcoming:
-        return 'bg-gray-300 dark:bg-gray-600';
+        return 'bg-gray-300 dark:bg-zinc-600';
     }
   }
 

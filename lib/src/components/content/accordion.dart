@@ -12,6 +12,7 @@ class DAccordionItem {
   final bool disabled;
   final Component content;
   final String? value;
+  final bool defaultOpen;
 
   const DAccordionItem({
     required this.label,
@@ -20,69 +21,35 @@ class DAccordionItem {
     this.icon,
     this.disabled = false,
     this.value,
+    this.defaultOpen = false,
   });
 }
 
 /// Accordion variants
 enum DAccordionVariant { soft, ghost }
 
-/// DuxtUI Accordion component - Collapsible panels
-class DAccordion extends StatefulComponent {
+/// DuxtUI Accordion component using native HTML details/summary
+///
+/// Uses native `<details>` and `<summary>` elements for accessibility
+/// and interactivity without JavaScript.
+class DAccordion extends StatelessComponent {
   final List<DAccordionItem> items;
   final String? defaultValue;
-  final bool multiple;
   final DColor color;
   final DAccordionVariant variant;
   final DSize size;
-  final ValueChanged<List<String>>? onValueChange;
 
   const DAccordion({
     super.key,
     required this.items,
     this.defaultValue,
-    this.multiple = false,
     this.color = DColor.primary,
     this.variant = DAccordionVariant.soft,
     this.size = DSize.md,
-    this.onValueChange,
   });
 
-  @override
-  State<DAccordion> createState() => _UAccordionState();
-}
-
-class _UAccordionState extends State<DAccordion> {
-  late Set<String> _openItems;
-
-  @override
-  void initState() {
-    super.initState();
-    _openItems = {};
-    if (component.defaultValue != null) {
-      _openItems.add(component.defaultValue!);
-    }
-  }
-
-  void _toggle(String value) {
-    setState(() {
-      if (_openItems.contains(value)) {
-        _openItems.remove(value);
-      } else {
-        if (!component.multiple) {
-          _openItems.clear();
-        }
-        _openItems.add(value);
-      }
-      component.onValueChange?.call(_openItems.toList());
-    });
-  }
-
-  String _getItemValue(DAccordionItem item, int index) {
-    return item.value ?? 'item-$index';
-  }
-
   String get _sizeClasses {
-    switch (component.size) {
+    switch (size) {
       case DSize.xs:
         return 'text-xs';
       case DSize.sm:
@@ -97,7 +64,7 @@ class _UAccordionState extends State<DAccordion> {
   }
 
   String get _paddingClasses {
-    switch (component.size) {
+    switch (size) {
       case DSize.xs:
         return 'px-2.5 py-1.5';
       case DSize.sm:
@@ -122,40 +89,44 @@ class _UAccordionState extends State<DAccordion> {
         DRingColors.defaultRing,
       ]),
       [
-        for (int i = 0; i < component.items.length; i++)
-          _buildItem(component.items[i], i),
+        for (int i = 0; i < items.length; i++) _buildItem(items[i], i),
       ],
     );
   }
 
   Component _buildItem(DAccordionItem item, int index) {
-    final value = _getItemValue(item, index);
-    final isOpen = _openItems.contains(value);
+    final value = item.value ?? 'item-$index';
+    final isOpen = item.defaultOpen || defaultValue == value;
     final isFirst = index == 0;
-    final isLast = index == component.items.length - 1;
+    final isLast = index == items.length - 1;
 
-    return div(
+    return details(
       classes: cx([
+        'group',
         isFirst ? 'rounded-t-lg' : null,
         isLast ? 'rounded-b-lg' : null,
       ]),
+      attributes: {
+        if (isOpen) 'open': 'true',
+        'name': 'accordion_$hashCode', // Groups accordions to close others when one opens
+      },
       [
-        // Header button
-        button(
-          type: ButtonType.button,
-          disabled: item.disabled,
-          onClick: item.disabled ? null : () => _toggle(value),
+        // Summary (clickable header)
+        summary(
           classes: cx([
-            'w-full flex items-center justify-between',
+            'flex items-center justify-between',
             _paddingClasses,
             _sizeClasses,
             'font-medium',
             DTextColors.highlighted,
             'hover:bg-gray-50 dark:hover:bg-gray-800/50',
             'transition-colors',
-            item.disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
+            'cursor-pointer',
+            'list-none', // Remove default marker
+            '[&::-webkit-details-marker]:hidden', // Hide marker in webkit
             isFirst ? 'rounded-t-lg' : null,
-            isLast && !isOpen ? 'rounded-b-lg' : null,
+            'group-open:rounded-b-none',
+            isLast ? 'group-[[open]]:rounded-b-none rounded-b-lg' : null,
           ]),
           [
             div(classes: 'flex items-center gap-2', [
@@ -171,28 +142,27 @@ class _UAccordionState extends State<DAccordion> {
                       ]),
               ]),
             ]),
-            // Chevron icon
+            // Chevron icon - rotates when open
             span(
               classes: cx([
                 'transform transition-transform duration-200',
-                isOpen ? 'rotate-180' : null,
+                'group-open:rotate-180',
               ]),
               [Component.text('\u25BC')], // Down arrow
             ),
           ],
         ),
         // Content
-        if (isOpen)
-          div(
-            classes: cx([
-              _paddingClasses,
-              'pt-0',
-              DTextColors.defaultText,
-              _sizeClasses,
-              isLast ? 'rounded-b-lg' : null,
-            ]),
-            [item.content],
-          ),
+        div(
+          classes: cx([
+            _paddingClasses,
+            'pt-0',
+            DTextColors.defaultText,
+            _sizeClasses,
+            isLast ? 'rounded-b-lg' : null,
+          ]),
+          [item.content],
+        ),
       ],
     );
   }

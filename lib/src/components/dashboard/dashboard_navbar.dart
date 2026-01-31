@@ -45,9 +45,9 @@ class DDashboardNavbar extends StatelessComponent {
   String get _backgroundClasses {
     switch (background) {
       case DNavbarBackground.white:
-        return 'bg-white dark:bg-gray-900';
+        return 'bg-white dark:bg-zinc-900';
       case DNavbarBackground.gray:
-        return 'bg-gray-50 dark:bg-gray-900';
+        return 'bg-gray-50 dark:bg-zinc-900';
       case DNavbarBackground.transparent:
         return 'bg-transparent';
     }

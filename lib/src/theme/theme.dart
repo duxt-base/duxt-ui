@@ -26,7 +26,7 @@ class ColorToken {
   String get ref => 'var($cssVar)';
 }
 
-/// Pre-defined theme colors matching Nuxt UI / Tailwind
+/// Pre-defined theme colors matching Tailwind
 class ThemeColors {
   // Slate
   static const slate = _ColorScale(
